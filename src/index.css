@@ -17,5 +17,20 @@ code {
 }
 .md-form {
   margin-top: 0;
-  margin-left: 20px;
 }
+
+.photo-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+  .photo-list__item {
+    width: calc(100% / 3);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  .photo-list__img {
+    max-width: 100%;
+  }
