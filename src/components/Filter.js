@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
-import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'mdbreact';
+import {Dropdown, DropdownToggle, DropdownMenu } from 'mdbreact';
 
 
 export class Filter extends Component {
 
-    state = {};
+    state = {
+        activeFilter: 'filter1'
+    };
 
 
     render() {
         return (
             <Dropdown className="ml-3">
                 <DropdownToggle caret color="primary ml-0">
-                    Material dropdown
+                    {this.state.activeFilter}
                 </DropdownToggle>
                 <DropdownMenu>
-                    <DropdownItem href="#">Action</DropdownItem>
-                    <DropdownItem href="#">Another Action</DropdownItem>
-                    <DropdownItem href="#">Something else here</DropdownItem>
-                    <DropdownItem href="#">Something else here</DropdownItem>
+                    <div
+                        className={`dropdown-item ${this.state.activeFilter === 'filter1' ? 'active' : ''}`}
+                        onClick={() => this.setState({activeFilter: 'filter1'})} >filter1
+                    </div>
+                    <div
+                        className={`dropdown-item ${this.state.activeFilter === 'filter2' ? 'active' : ''}`}
+                        onClick={() => this.setState({activeFilter: 'filter2'})} >filter2
+                    </div>
+                    <div
+                        className={`dropdown-item ${this.state.activeFilter === 'filter3' ? 'active' : ''}`}
+                        onClick={() => this.setState({activeFilter: 'filter3'})} >filter3
+                    </div>
+                    <div
+                        className={`dropdown-item ${this.state.activeFilter === 'filter4' ? 'active' : ''}`}
+                        onClick={() => this.setState({activeFilter: 'filter4'})} >filter4
+                    </div>
                 </DropdownMenu>
             </Dropdown>
         );
