@@ -7,7 +7,6 @@ export class DropdownItem extends Component {
     };
 
     render() {
-        console.log('this.props.filterType::', this.props.filterType)
         return (
             <div
                 onClick={this.props.onFilterClick}
