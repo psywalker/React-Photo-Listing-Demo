@@ -12,17 +12,24 @@ export class Filter extends Component {
     };
 
     render() {
-        const listItems = this.state.filters.map((item,i) => {
-            return <DropdownItem key={i} activeFilter={this.state.activeFilter} filterType={item} onFilterClick={() => this.setState({activeFilter: {item}, showDropdown: false})}/>});
-        console.log('listItems::', listItems)
+        const listItems = this.state.filters.map((item,i) =>
+            (<DropdownItem
+                key={i}
+                activeFilter={this.state.activeFilter}
+                filterType={item}
+                onFilterClick={() => this.setState({
+                    activeFilter: item,
+                    showDropdown: false
+                })}
+            />));
         return (
             <Dropdown className="ml-3">
                 <DropdownToggle caret color="primary ml-0" onClick={() => this.setState({showDropdown: true})}>
                     {this.state.activeFilter}
                 </DropdownToggle>
-                <DropdownMenu>
+                {this.state.showDropdown && <DropdownMenu style={{display: 'block'}} >
                     {listItems}
-                </DropdownMenu>
+                </DropdownMenu>}
             </Dropdown>
         );
     }
