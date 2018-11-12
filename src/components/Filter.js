@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {DropdownItem} from './DropdownItem';
 import {Dropdown, DropdownToggle, DropdownMenu } from 'mdbreact';
 
 
@@ -8,7 +9,6 @@ export class Filter extends Component {
         activeFilter: 'filter1'
     };
 
-
     render() {
         return (
             <Dropdown className="ml-3">
@@ -16,22 +16,26 @@ export class Filter extends Component {
                     {this.state.activeFilter}
                 </DropdownToggle>
                 <DropdownMenu>
-                    <div
-                        className={`dropdown-item ${this.state.activeFilter === 'filter1' ? 'active' : ''}`}
-                        onClick={() => this.setState({activeFilter: 'filter1'})} >filter1
-                    </div>
-                    <div
-                        className={`dropdown-item ${this.state.activeFilter === 'filter2' ? 'active' : ''}`}
-                        onClick={() => this.setState({activeFilter: 'filter2'})} >filter2
-                    </div>
-                    <div
-                        className={`dropdown-item ${this.state.activeFilter === 'filter3' ? 'active' : ''}`}
-                        onClick={() => this.setState({activeFilter: 'filter3'})} >filter3
-                    </div>
-                    <div
-                        className={`dropdown-item ${this.state.activeFilter === 'filter4' ? 'active' : ''}`}
-                        onClick={() => this.setState({activeFilter: 'filter4'})} >filter4
-                    </div>
+                    <DropdownItem
+                        {...this.state}
+                        filterType="filter1"
+                        onFilterClick={() => this.setState({activeFitler: "filter1"})}
+                    />
+                    <DropdownItem
+                        {...this.state}
+                        filterType="filter2"
+                        onFilterClick={() => this.setState({activeFitler: "filter2"})}
+                    />
+                    <DropdownItem
+                        {...this.state}
+                        filterType="filter3"
+                        onFilterClick={() => this.setState({activeFitler: "filter3"})}
+                    />
+                    <DropdownItem
+                        {...this.state}
+                        filterType="filter4"
+                        onFilterClick={() => this.setState({activeFitler: "filter4"})}
+                    />
                 </DropdownMenu>
             </Dropdown>
         );

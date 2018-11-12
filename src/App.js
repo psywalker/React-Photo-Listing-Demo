@@ -38,29 +38,29 @@ class App extends Component {
 
         <div className="row">
           <div className="col-12">      
-            <ul class="photo-list">
-              <li class="photo-list__item pl-3">
+            <ul className="photo-list">
+              <li className="photo-list__item pl-3">
                 <PhotoCard photoName={avenue} />
               </li>
-              <li class="photo-list__item pl-3">
+              <li className="photo-list__item pl-3">
                   <PhotoCard photoName={cosmea} />
               </li>
-              <li class="photo-list__item pl-3">
+              <li className="photo-list__item pl-3">
                   <PhotoCard photoName={fire} />
               </li>
-              <li class="photo-list__item pl-3">
+              <li className="photo-list__item pl-3">
                   <PhotoCard photoName={gerbera} />
               </li>
-              <li class="photo-list__item pl-3">
+              <li className="photo-list__item pl-3">
                   <PhotoCard photoName={hybrid} />
               </li>
-              <li class="photo-list__item pl-3">
+              <li className="photo-list__item pl-3">
                   <PhotoCard photoName={lane} />
               </li>
-              <li class="photo-list__item pl-3">
+              <li className="photo-list__item pl-3">
                   <PhotoCard photoName={leaf} />
               </li>
-              <li class="photo-list__item pl-3">
+              <li className="photo-list__item pl-3">
                   <PhotoCard photoName={rose} />
               </li>
             </ul>
