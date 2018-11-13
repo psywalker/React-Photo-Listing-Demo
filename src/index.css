@@ -34,3 +34,17 @@ code {
   .photo-list__img {
     max-width: 100%;
   }
+
+.dropdown-item {
+  display: flex;
+  justify-content: space-between;
+}
+.check {
+  margin-left: 3px;
+}
+.filter-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

@@ -4,6 +4,7 @@ import {Filter} from './components/Filter';
 import {PhotoCard} from './components/PhotoCard';
 import {PaginationSelf} from './components/PaginationSelf';
 
+import filters from './filters';
 import avenue from './images/avenue.jpg';
 import cosmea from './images/cosmea.jpg';
 import fire from './images/fire.jpg';
@@ -17,7 +18,7 @@ import './App.css';
 class App extends Component {
 
   state = {
-    filters: ['filter1', 'filter2', 'filter3', 'filter4']
+    filters: filters
   };
 
   render() {
@@ -33,8 +34,14 @@ class App extends Component {
         </div>
 
         <div className="row">
-          <div className="col-8">      
-            <Filter filters={this.state.filters}/>
+          <div className="col-8">
+            <ul className="filter-list">
+              {this.state.filters.map((item) => {
+                return (<li key={item.id} className="filter-list__item">
+                  <Filter key={item.id} filters={item.items} activeFilter={item.name}/>
+                </li>)
+              })}
+            </ul>
           </div>
           <div className="col-4">
 

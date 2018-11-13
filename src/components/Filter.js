@@ -6,23 +6,24 @@ import {Dropdown, DropdownToggle, DropdownMenu } from 'mdbreact';
 export class Filter extends Component {
 
   state = {
-    activeFilter: 'filter1',
+    activeFilter: this.props.activeFilter,
     showDropdown: false,
   };
 
-  renderListItems(filters){
+  renderListItems(filters, activeFilter){
     return filters.map((item,i) => (
       <DropdownItem
         key={i}
         activeFilter={this.state.activeFilter}
-        filterType={item}
-        onFilterClick={() => this.setState({activeFilter: item, showDropdown: false})}
+        filterType={item.text}
+        hasPadding={item.hasPadding}
+        onFilterClick={() => this.setState({activeFilter: item.text, showDropdown: false})}
       />
     ))
   }
 
   render() {
-    const {activeFilter, showDropdown} = this.state;
+    const {showDropdown, activeFilter} = this.state;
     const {filters} = this.props;
 
     return (
