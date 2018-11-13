@@ -6,6 +6,7 @@
   "dependencies": {
     "mdbreact": "^4.8.2",
     "react": "^16.6.1",
+    "react-click-outside": "github:tj/react-click-outside",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1"
   },
