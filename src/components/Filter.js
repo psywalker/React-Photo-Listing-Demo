@@ -1,37 +1,39 @@
 import React, { Component } from 'react';
-import {DropdownItem} from './DropdownItem';
+import DropdownItem from './DropdownItem';
 import {Dropdown, DropdownToggle, DropdownMenu } from 'mdbreact';
 
 
 export class Filter extends Component {
 
-    state = {
-        activeFilter: 'filter1',
-        showDropdown: false,
-        filters: ['filter1', 'filter2', 'filter3', 'filter4']
-    };
+  state = {
+    activeFilter: 'filter1',
+    showDropdown: false,
+  };
 
-    render() {
-        const listItems = this.state.filters.map((item,i) =>
-            (<DropdownItem
-                key={i}
-                activeFilter={this.state.activeFilter}
-                filterType={item}
-                onFilterClick={() => this.setState({
-                    activeFilter: item,
-                    showDropdown: false
-                })}
-            />));
-        return (
-            <Dropdown className="ml-3">
-                <DropdownToggle caret color="primary ml-0" onClick={() => this.setState({showDropdown: true})}>
-                    {this.state.activeFilter}
-                </DropdownToggle>
-                {this.state.showDropdown && <DropdownMenu style={{display: 'block'}} >
-                    {listItems}
-                </DropdownMenu>}
-            </Dropdown>
-        );
-    }
+  renderListItems(filters){
+    return filters.map((item,i) => (
+      <DropdownItem
+        key={i}
+        activeFilter={this.state.activeFilter}
+        filterType={item}
+        onFilterClick={() => this.setState({activeFilter: item, showDropdown: false})}
+      />
+    ))
+  }
 
+  render() {
+    const {activeFilter, showDropdown} = this.state;
+    const {filters} = this.props;
+
+    return (
+      <Dropdown className="ml-3">
+        <DropdownToggle caret color="primary ml-0" onClick={() => this.setState({showDropdown: true})}>
+          {activeFilter}
+        </DropdownToggle>
+        {showDropdown && <DropdownMenu style={{display: 'block'}} >
+          {this.renderListItems(filters)}
+        </DropdownMenu>}
+      </Dropdown>
+    );
+  }
 }

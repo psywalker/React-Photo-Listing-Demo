@@ -15,6 +15,11 @@ import rose from './images/rose.jpg';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    filters: ['filter1', 'filter2', 'filter3', 'filter4']
+  };
+
   render() {
     return (
       <div className="App">
@@ -29,7 +34,7 @@ class App extends Component {
 
         <div className="row">
           <div className="col-8">      
-            <Filter />
+            <Filter filters={this.state.filters}/>
           </div>
           <div className="col-4">
 

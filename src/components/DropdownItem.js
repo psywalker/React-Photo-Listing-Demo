@@ -1,19 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export class DropdownItem extends Component {
+const DropdownItem = ({onFilterClick, activeFilter, filterType}) => <div onClick={onFilterClick} className={`dropdown-item ${activeFilter === filterType ? 'active' : ''}`}>{filterType}</div>
 
-    state = {
-
-    };
-
-    render() {
-        return (
-            <div
-                onClick={this.props.onFilterClick}
-                className={`dropdown-item ${this.props.activeFilter === this.props.filterType ? 'active' : ''}`}>
-                {this.props.filterType}
-            </div>
-        );
-    }
-
-}
+export default DropdownItem
