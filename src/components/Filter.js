@@ -7,7 +7,7 @@ export class Filter extends Component {
 
   state = {
     activeFilter: this.props.activeFilter,
-    showDropdown: true,
+    showDropdown: false,
   };
 
   toggle() {
