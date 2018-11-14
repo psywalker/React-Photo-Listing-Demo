@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Search} from './components/Search';
-import {Filter} from './components/Filter';
-import {PhotoCard} from './components/PhotoCard';
-import {PaginationSelf} from './components/PaginationSelf';
+import Search from './components/Search';
+import Filter from './components/Filter';
+import PhotoCard from './components/PhotoCard';
+import PaginationSelf from './components/PaginationSelf';
 
 import filters from './filters';
 import avenue from './images/avenue.jpg';
@@ -16,69 +16,63 @@ import rose from './images/rose.jpg';
 import './App.css';
 
 class App extends Component {
-
-  state = {
-    filters: filters
-  };
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      filts: filters,
+    };
+  }
 
   render() {
+    const { filts } = this.state;
     return (
       <div className="App">
         <div className="row">
-          <div className="col-8">
+          <div className="col-12">
             <Search />
           </div>
-          <div className="col-4">
-
-          </div>
         </div>
 
         <div className="row">
-          <div className="col-8">
+          <div className="col-12">
             <ul className="filter-list">
-              {this.state.filters.map((item) => {
-                return (<li key={item.id} className="filter-list__item">
-                  <Filter key={item.id} filters={item.items} activeFilter={item.name}/>
-                </li>)
-              })}
+              {filts.map(item => (
+                <li key={item.id} className="filter-list__item">
+                  <Filter key={item.id} filters={item.items} activeFilter={item.name} />
+                </li>))
+              }
             </ul>
           </div>
-          <div className="col-4">
-
-          </div>
         </div>
 
         <div className="row">
-          <div className="col-12">      
+          <div className="col-12">
             <ul className="photo-list">
               <li className="photo-list__item pl-3">
                 <PhotoCard photoName={avenue} />
               </li>
               <li className="photo-list__item pl-3">
-                  <PhotoCard photoName={cosmea} />
+                <PhotoCard photoName={cosmea} />
               </li>
               <li className="photo-list__item pl-3">
-                  <PhotoCard photoName={fire} />
+                <PhotoCard photoName={fire} />
               </li>
               <li className="photo-list__item pl-3">
-                  <PhotoCard photoName={gerbera} />
+                <PhotoCard photoName={gerbera} />
               </li>
               <li className="photo-list__item pl-3">
-                  <PhotoCard photoName={hybrid} />
+                <PhotoCard photoName={hybrid} />
               </li>
               <li className="photo-list__item pl-3">
-                  <PhotoCard photoName={lane} />
+                <PhotoCard photoName={lane} />
               </li>
               <li className="photo-list__item pl-3">
-                  <PhotoCard photoName={leaf} />
+                <PhotoCard photoName={leaf} />
               </li>
               <li className="photo-list__item pl-3">
-                  <PhotoCard photoName={rose} />
+                <PhotoCard photoName={rose} />
               </li>
             </ul>
-          </div>
-          <div className="col-4">
-
           </div>
         </div>
         <div className="row">
