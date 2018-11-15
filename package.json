@@ -8,13 +8,15 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
     "react-click-outside": "github:tj/react-click-outside",
+    "react-clickoutside": "^2.0.0",
     "react-dom": "^16.6.1",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "vue-click-outside": "^1.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
@@ -22,11 +24,18 @@
   "eslintConfig": {
     "extends": "airbnb",
     "rules": {
-      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ]
     },
     "parser": "babel-eslint"
   },
-
   "browserslist": [
     ">0.2%",
     "not dead",
@@ -34,6 +43,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
