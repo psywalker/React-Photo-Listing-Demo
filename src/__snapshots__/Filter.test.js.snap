@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test of component of Filter.js Initial filter's state showDropdown  1`] = `
+<div>
+  <div
+    className="dropdown ml-3"
+    onKeyDown={[Function]}
+  >
+    <button
+      aria-expanded={false}
+      aria-haspopup={true}
+      className="btn btn-primary ml-0 Ripple-parent dropdown-toggle"
+      onClick={[Function]}
+      onMouseUp={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <span
+        className="sr-only"
+      >
+        Toggle Dropdown
+      </span>
+      <div
+        className="Ripple "
+        style={
+          Object {
+            "height": "0px",
+            "left": "0px",
+            "top": "0px",
+            "width": "0px",
+          }
+        }
+      />
+    </button>
+  </div>
+</div>
+`;
