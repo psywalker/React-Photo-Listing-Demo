@@ -19,12 +19,14 @@ describe('Test of component of Filter.js', () => {
     //expect(filter).toMatchSnapshot()
     //const tree = create(<Filter />).toJSON();
     //filter.find('t').at(1).simulate('click');
-    const tree = renderer.create(<Filter />).toJSON();
-    expect(tree).toMatchSnapshot()
+    //const tree = renderer.create(<Filter />).toJSON();
+
+    //expect(tree).toMatchSnapshot()
     //expect(filter.find('div')).toBe(true);
     //expect(filter.exists('div')).toEqual(true);
     //console.log(filter.debug());
     //console.log(filter.state());
     //console.log('111')
+
   });
 });

@@ -101,5 +101,45 @@ describe('components', () => {
 
       expect(dropdownItem.find('div').text()).toEqual(props.filterType + '✓')
     });
+
+    it('Test method of div element', () => {
+
+      function func() {
+        const props = {
+          onFilterClick: jest.fn(),
+        }     
+        const enzymeWrapper = shallow(<DropdownItem {...props} />)
+        return {
+          props,
+          enzymeWrapper
+        }
+      }
+      const { enzymeWrapper, props } = func()
+
+      const div = enzymeWrapper.find('div')
+      div.props().onClick()
+      expect(props.onFilterClick).toBeCalled();
+      expect(props.onFilterClick.mock.calls.length).toBe(1)
+    });
+
+    it('Test method of div element', () => {
+      function funcTest() {
+        const enzymeWrapper = shallow(<Test />);
+        return {
+          enzymeWrapper,
+        };
+      }
+      const mock = jest.fn();
+      mock.mockReturnValue(1);
+
+      const { enzymeWrapper } = funcTest();
+      const div = enzymeWrapper.find('div')
+      
+      expect(mock(div.prop.onClick)).toBe(1);
+
+      //console.log(enzymeWrapper.debug());
+      //expect(enzymeWrapper.find('div').hasClass('test')).toBe(true);
+
+    });
   });
 });
