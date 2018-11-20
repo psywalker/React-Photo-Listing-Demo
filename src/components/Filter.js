@@ -20,7 +20,7 @@ class Filter extends Component {
   }
 
   hide() {
-    this.setState({ showDropdown: false });
+    this.setState({ showDropdown: true });
     //const { showDropdown } = this.state;
     //this.setState({ showDropdown: !showDropdown });
   }
@@ -43,21 +43,18 @@ class Filter extends Component {
     const { filters } = this.props;
 
     return (
-      <div>
-        <button type="button" className="button-click">Button-Click</button>
-        <ClickOutside className="clickOutSide" onClickOutside={() => this.hide()}>
-          <Dropdown className="ml-3">
-            <DropdownToggle caret className="filter__toggler" color="primary ml-0" onClick={() => this.toggle()}>
-              {activeFilter}
-            </DropdownToggle>
-            {showDropdown && (
-            <DropdownMenu className="filter-dropDownMenu" style={{ display: 'block' }}>
-              {this.renderListItems(filters)}
-            </DropdownMenu>
-            )}
-          </Dropdown>
-        </ClickOutside>
-      </div>
+      <ClickOutside className="clickOutSide" onClickOutside={() => this.hide()}>
+        <Dropdown className="ml-3">
+          <DropdownToggle caret className="filter__toggler" color="primary ml-0" onClick={() => this.toggle()}>
+            {activeFilter}
+          </DropdownToggle>
+          {showDropdown && (
+          <DropdownMenu className="filter-dropDownMenu" style={{ display: 'block' }}>
+            {this.renderListItems(filters)}
+          </DropdownMenu>
+          )}
+        </Dropdown>
+      </ClickOutside>
     );
   }
 }

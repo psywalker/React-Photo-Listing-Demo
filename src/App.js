@@ -5,6 +5,7 @@ import PhotoCard from './components/PhotoCard';
 import PaginationSelf from './components/PaginationSelf';
 
 import filters from './filters';
+import pixabay from "./pixabay.json";
 import avenue from './images/avenue.jpg';
 import cosmea from './images/cosmea.jpg';
 import fire from './images/fire.jpg';
