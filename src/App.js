@@ -35,6 +35,7 @@ class App extends Component {
 
         <div className="row">
           <div className="col-12">
+            <button type="button" className="button-click">Button-Click</button>
             <ul className="filter-list">
               {filts.map(item => (
                 <li key={item.id} className="filter-list__item">
