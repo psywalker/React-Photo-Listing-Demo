@@ -43,11 +43,11 @@ class Filter extends Component {
     return (
       <ClickOutside onClickOutside={() => this.hide()}>
         <Dropdown className="ml-3">
-          <DropdownToggle caret color="primary ml-0" onClick={() => this.toggle()}>
+          <DropdownToggle caret className="filter__toggler" color="primary ml-0" onClick={() => this.toggle()}>
             {activeFilter}
           </DropdownToggle>
           {showDropdown && (
-          <DropdownMenu style={{ display: 'block' }}>
+          <DropdownMenu className="filter-dropDownMenu" style={{ display: 'block' }}>
             {this.renderListItems(filters)}
           </DropdownMenu>
           )}

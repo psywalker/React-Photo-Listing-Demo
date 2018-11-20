@@ -35,6 +35,10 @@
     },
     "parser": "babel-eslint"
   },
+  "presets": [
+    "env",
+    "react"
+  ],
   "env": {
     "test": {
       "presets": [
@@ -58,6 +62,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/jasmine": "^3.3.0",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-preset-stage-2": "^6.24.1",
     "enzyme": "^3.7.0",
@@ -67,6 +72,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "gh-pages": "^2.0.1",
+    "mocha": "^5.2.0",
     "react-click-outside": "github:tj/react-click-outside",
     "react-test-renderer": "^16.6.3"
   }

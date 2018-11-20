@@ -6,9 +6,6 @@ import DropdownItem from './components/DropdownItem';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-function num() {
-  return 1
-}
 
 function setup() {
   const enzymeWrapper = shallow(<Test />);
