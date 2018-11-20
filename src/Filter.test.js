@@ -41,7 +41,6 @@ describe('Test of component of Filter.js', () => {
 
     const filtersWrapper = mount(
       <div>
-        <button type="button" className="button-click">Button</button>
         <ul className="filter-wrapper">
           {filters.map(item => (
             <li key={item.id} className="filter-list__item">
@@ -51,14 +50,13 @@ describe('Test of component of Filter.js', () => {
         </ul>
       </div>,
     );
+
+    expect(filtersWrapper.find('.filter-1').find('.filter-dropDownMenu').length).toBe(0);
     expect(filtersWrapper.find('.filter-1').instance().state.showDropdown).toBe(false);
 
+    filtersWrapper.find('.filter-1').instance().hide()
 
-    console.log(filtersWrapper.debug())
-
-    expect(filtersWrapper.find('.button-click').length).toBe(1);
-    filtersWrapper.find('.button-click').simulate('click');
-    expect(filtersWrapper.find('.filter-1').instance().state.showDropdown).toBe(true);
-
+    expect(filtersWrapper.find('.filter-1').instance().state.showDropdown).toBe(false);
+    expect(filtersWrapper.find('.filter-1').find('.filter-dropDownMenu').length).toBe(0);
   });
 });
