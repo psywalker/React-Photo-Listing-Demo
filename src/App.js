@@ -50,30 +50,12 @@ class App extends Component {
         <div className="row">
           <div className="col-12">
             <ul className="photo-list">
-              <li className="photo-list__item pl-3">
-                <PhotoCard photoName={avenue} />
-              </li>
-              <li className="photo-list__item pl-3">
-                <PhotoCard photoName={cosmea} />
-              </li>
-              <li className="photo-list__item pl-3">
-                <PhotoCard photoName={fire} />
-              </li>
-              <li className="photo-list__item pl-3">
-                <PhotoCard photoName={gerbera} />
-              </li>
-              <li className="photo-list__item pl-3">
-                <PhotoCard photoName={hybrid} />
-              </li>
-              <li className="photo-list__item pl-3">
-                <PhotoCard photoName={lane} />
-              </li>
-              <li className="photo-list__item pl-3">
-                <PhotoCard photoName={leaf} />
-              </li>
-              <li className="photo-list__item pl-3">
-                <PhotoCard photoName={rose} />
-              </li>
+              {
+                pixabay.hits.map(item => (
+                  <li key={item.id} className="photo-list__item pl-3">
+                    <PhotoCard photoName={item.largeImageURL} />
+                  </li>))
+              }
             </ul>
           </div>
         </div>

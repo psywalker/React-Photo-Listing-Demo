@@ -20,9 +20,7 @@ class Filter extends Component {
   }
 
   hide() {
-    this.setState({ showDropdown: true });
-    //const { showDropdown } = this.state;
-    //this.setState({ showDropdown: !showDropdown });
+    this.setState({ showDropdown: false });
   }
 
   renderListItems(filters) {
