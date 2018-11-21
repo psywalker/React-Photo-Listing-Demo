@@ -1,33 +1,43 @@
 import React from 'react';
+import './PhotoCard.css';
 import PropTypes from 'prop-types';
 import {
-  Button,
   Card,
   CardBody,
   CardImage,
   CardTitle,
   CardText,
+  Badge,
+  Fa,
 } from 'mdbreact';
 
-const PhotoCard = ({ photoName }) => (
+const PhotoCard = ({ photoName, title }) => (
   <Card>
     <CardImage className="img-fluid" src={photoName} />
     <CardBody>
-      <CardTitle>Card title</CardTitle>
+      <CardTitle>{title}</CardTitle>
       <CardText>
-        Some quick example text to build on the card title
-        and make up the bulk of the card&apos;s content.
+        <Badge tag="a" href="#!" color="default">
+          <Fa icon="facebook" aria-hidden="true" />
+        </Badge>
+        <Badge tag="a" href="#!" color="primary">
+          <Fa icon="instagram" aria-hidden="true" />
+        </Badge>
+        <Badge tag="a" href="#!" color="success">
+          <Fa icon="snapchat-ghost" aria-hidden="true" />
+        </Badge>
       </CardText>
-      <Button href="#">Button</Button>
     </CardBody>
   </Card>);
 
 
 PhotoCard.propTypes = {
   photoName: PropTypes.string,
+  title: PropTypes.string,
 };
 PhotoCard.defaultProps = {
   photoName: '',
+  title: 'Noname',
 
 };
 

@@ -23,8 +23,7 @@ class App extends Component {
     axios.get('https://pixabay.com/api/?key=10435828-fcd242d0a49be22b3a7387dbb&q=yellow+flowers&image_type=photo&pretty=true')
       .then((res) => {
         const cards = res.data.hits;
-        this.setState({ cards });
-        this.setState({ isListingLoading: false });
+        this.setState({ cards, isListingLoading: false });
       })
       .catch(() => {
         console.log('pixabay API not responding');
@@ -62,7 +61,7 @@ class App extends Component {
                 {
                 cards.map(item => (
                   <li key={item.id} className="photo-list__item pl-3">
-                    <PhotoCard photoName={item.largeImageURL}/>
+                    <PhotoCard photoName={item.largeImageURL} title={item.user} />
                   </li>))
                 }
               </ul>
