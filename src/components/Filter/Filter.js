@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ClickOutside from 'react-click-outside';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'mdbreact';
-import DropdownItem from './DropdownItem';
+import DropdownItem from '../DropdownItem/DropdownItem';
 
 class Filter extends Component {
   constructor(...args) {

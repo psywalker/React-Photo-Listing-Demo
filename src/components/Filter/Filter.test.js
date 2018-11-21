@@ -1,8 +1,8 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Filter from './components/Filter';
-import filters from './filters';
+import Filter from './Filter';
+import filters from '../../filters';
 
 Enzyme.configure({ adapter: new Adapter() });
 

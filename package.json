@@ -4,9 +4,11 @@
   "private": true,
   "homepage": "http://psywalker.github.io/React-Photo-Listing-Demo",
   "dependencies": {
+    "axios": "^0.18.0",
     "mdbreact": "^4.8.2",
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
+    "react-click-outside": "github:tj/react-click-outside",
     "react-clickoutside": "^2.0.0",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1",
@@ -73,7 +75,6 @@
     "eslint-plugin-react": "^7.11.1",
     "gh-pages": "^2.0.1",
     "mocha": "^5.2.0",
-    "react-click-outside": "github:tj/react-click-outside",
     "react-test-renderer": "^16.6.3"
   }
 }

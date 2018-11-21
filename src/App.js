@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
-import Search from './components/Search';
-import Filter from './components/Filter';
-import PhotoCard from './components/PhotoCard';
-import PaginationSelf from './components/PaginationSelf';
-
+import axios from 'axios';
+import Search from './components/Search/Search';
+import Filter from './components/Filter/Filter';
+import PhotoCard from './components/PhotoCard/PhotoCard';
+import Spinner from './components/Spinner/Spinner';
+import PaginationSelf from './components/PaginationSelf/PaginationSelf';
 import filters from './filters';
-import pixabay from "./pixabay.json";
-import avenue from './images/avenue.jpg';
-import cosmea from './images/cosmea.jpg';
-import fire from './images/fire.jpg';
-import gerbera from './images/gerbera.jpg';
-import hybrid from './images/hybrid.jpg';
-import lane from './images/lane.jpg';
-import leaf from './images/leaf.jpg';
-import rose from './images/rose.jpg';
 import './App.css';
 
 class App extends Component {
@@ -21,13 +13,30 @@ class App extends Component {
     super(...args);
     this.state = {
       filts: filters,
+      isListingLoading: false,
+      cards: [],
     };
   }
 
+  componentDidMount() {
+    this.setState({ isListingLoading: true });
+    axios.get('https://pixabay.com/api/?key=10435828-fcd242d0a49be22b3a7387dbb&q=yellow+flowers&image_type=photo&pretty=true')
+      .then((res) => {
+        const cards = res.data.hits;
+        this.setState({ cards });
+        this.setState({ isListingLoading: false });
+      })
+      .catch(() => {
+        console.log('pixabay API not responding');
+        this.setState({ isListingLoading: false });
+      });
+  }
+
   render() {
-    const { filts } = this.state;
+    const { filts, cards, isListingLoading } = this.state;
     return (
       <div className="App">
+        { isListingLoading && (<Spinner />)}
         <div className="row">
           <div className="col-12">
             <Search />
@@ -36,7 +45,6 @@ class App extends Component {
 
         <div className="row">
           <div className="col-12">
-            <button type="button" className="button-click">Button-Click</button>
             <ul className="filter-list">
               {filts.map(item => (
                 <li key={item.id} className="filter-list__item">
@@ -49,14 +57,17 @@ class App extends Component {
 
         <div className="row">
           <div className="col-12">
-            <ul className="photo-list">
-              {
-                pixabay.hits.map(item => (
+            {!isListingLoading && (
+              <ul className="photo-list">
+                {
+                cards.map(item => (
                   <li key={item.id} className="photo-list__item pl-3">
-                    <PhotoCard photoName={item.largeImageURL} />
+                    <PhotoCard photoName={item.largeImageURL}/>
                   </li>))
-              }
-            </ul>
+                }
+              </ul>
+            )
+            }
           </div>
         </div>
         <div className="row">
