@@ -34,8 +34,8 @@ class PhotoCard extends Component {
     const { photoName, title } = this.props;
     const { tags, tagsColor } = this.state;
     return (
-      <Card>
-        <CardImage className="img-fluid" src={photoName} />
+      <Card className="photo-card">
+        <CardImage className="img-fluid photo-card__img" src={photoName} />
         <CardBody>
           <CardTitle>{title}</CardTitle>
           {tags.map((item, i) => (
