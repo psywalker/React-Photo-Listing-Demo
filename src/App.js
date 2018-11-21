@@ -61,7 +61,7 @@ class App extends Component {
                 {
                 cards.map(item => (
                   <li key={item.id} className="photo-list__item pl-3">
-                    <PhotoCard photoName={item.largeImageURL} title={item.user} />
+                    <PhotoCard photoName={item.largeImageURL} title={item.user} tags={item.tags} />
                   </li>))
                 }
               </ul>
