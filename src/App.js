@@ -15,6 +15,15 @@ class App extends Component {
       filts: filters,
       isListingLoading: false,
       cards: [],
+      buttonsColor: [
+        'primary',
+        'warning',
+        'danger',
+        'success',
+        'elegant',
+        'ins',
+        'default',
+      ],
     };
   }
 
@@ -32,7 +41,13 @@ class App extends Component {
   }
 
   render() {
-    const { filts, cards, isListingLoading } = this.state;
+    const {
+      filts,
+      cards,
+      isListingLoading,
+      buttonsColor,
+    } = this.state;
+
     return (
       <div className="App">
         { isListingLoading && (<Spinner />)}
@@ -45,9 +60,9 @@ class App extends Component {
         <div className="row">
           <div className="col-12">
             <ul className="filter-list">
-              {filts.map(item => (
+              {filts.map((item, i) => (
                 <li key={item.id} className="filter-list__item">
-                  <Filter key={item.id} filters={item.items} activeFilter={item.name} />
+                  <Filter key={item.id} filters={item.items} activeFilter={item.name} buttonColor={i < buttonsColor.length ? buttonsColor[i] : 'default'} />
                 </li>))
               }
             </ul>

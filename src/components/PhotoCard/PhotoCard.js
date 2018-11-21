@@ -26,9 +26,8 @@ class PhotoCard extends Component {
   }
 
   componentDidMount() {
-    let { tags } = this.props;
-    tags = tags.split(', ');
-    this.setState({ tags });
+    const { tags } = this.props;
+    this.setState({ tags: tags.split(', ') });
   }
 
   render() {
@@ -40,7 +39,7 @@ class PhotoCard extends Component {
         <CardBody>
           <CardTitle>{title}</CardTitle>
           {tags.map((item, i) => (
-            <Badge tag="a" href="#!" color={i < tagsColor.length ? tagsColor[i] : 'pink'}>
+            <Badge tag="a" href="#!" color={i < tagsColor.length ? tagsColor[i] : 'default'}>
               { item }
             </Badge>))
           }

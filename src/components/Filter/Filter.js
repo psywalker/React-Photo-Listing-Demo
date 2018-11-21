@@ -38,12 +38,12 @@ class Filter extends Component {
 
   render() {
     const { activeFilter, showDropdown } = this.state;
-    const { filters } = this.props;
+    const { filters, buttonColor } = this.props;
 
     return (
       <ClickOutside className="clickOutSide" onClickOutside={() => this.hide()}>
         <Dropdown className="ml-3">
-          <DropdownToggle caret className="filter__toggler" color="primary ml-0" onClick={() => this.toggle()}>
+          <DropdownToggle caret className="filter__toggler" color={`${buttonColor} ml-0`} onClick={() => this.toggle()}>
             {activeFilter}
           </DropdownToggle>
           {showDropdown && (
@@ -61,9 +61,11 @@ class Filter extends Component {
 Filter.propTypes = {
   activeFilter: PropTypes.string,
   filters: PropTypes.arrayOf(PropTypes.object),
+  buttonColor: PropTypes.string,
 };
 Filter.defaultProps = {
   activeFilter: '',
+  buttonColor: 'primary',
   filters: [],
 };
 export default Filter;
