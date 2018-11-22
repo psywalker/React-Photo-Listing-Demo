@@ -21,6 +21,7 @@ code {
 
 .photo-list {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   list-style: none;
   margin: 0;
@@ -30,6 +31,7 @@ code {
     width: calc(100% / 3);
     box-sizing: border-box;
     margin-bottom: 20px;
+    min-width: 300px;
   }
   .photo-list__img {
     max-width: 100%;
@@ -44,7 +46,14 @@ code {
 }
 .filter-list {
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
   margin: 0 0 30px;
   padding: 0;
+}
+
+@media (min-width: 00px) and (max-width: 400px) {
+  .filter__toggler {
+    width: calc(100vw - 3rem);
+  }
 }

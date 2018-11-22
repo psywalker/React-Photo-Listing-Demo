@@ -59,11 +59,12 @@ class App extends Component {
 
   getFilterItemValue(item) {
     const { cardsData } = this.state;
-    const clonCardsData = Object.assign({}, cardsData);
-    clonCardsData[item.filterValue] = item.labelValue;
-    this.setState({ cardsData: clonCardsData });
-    this.getCardsPhotos();
-
+    this.setState({
+      cardsData: {
+        ...cardsData,
+        [item.filterValue]: item.labelValue,
+      },
+    }, this.getCardsPhotos);
   }
 
   render() {
