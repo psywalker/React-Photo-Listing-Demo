@@ -39,7 +39,7 @@ class PhotoCard extends Component {
         <CardBody>
           <CardTitle>{title}</CardTitle>
           {tags.map((item, i) => (
-            <Badge tag="a" href="#!" color={i < tagsColor.length ? tagsColor[i] : 'default'}>
+            <Badge key={item} tag="a" href="#!" color={i < tagsColor.length ? tagsColor[i] : 'default'}>
               { item }
             </Badge>))
           }

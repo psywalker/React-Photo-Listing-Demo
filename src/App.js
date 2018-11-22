@@ -15,6 +15,12 @@ class App extends Component {
       filts: filters,
       isListingLoading: false,
       cards: [],
+      cardsData: {
+        order: 'latest',
+        image_type: 'all',
+        orientation: 'all',
+        category: 'all',
+      },
       buttonsColor: [
         'primary',
         'warning',
@@ -25,11 +31,22 @@ class App extends Component {
         'default',
       ],
     };
+    this.getFilterItemValue = this.getFilterItemValue.bind(this);
+    this.getCardsPhotos = this.getCardsPhotos.bind(this);
   }
 
   componentDidMount() {
+    this.getCardsPhotos();
+  }
+
+  getCardsPhotos() {
     this.setState({ isListingLoading: true });
-    axios.get('https://pixabay.com/api/?key=10435828-fcd242d0a49be22b3a7387dbb&q=yellow+flowers&image_type=photo&pretty=true')
+    const { cardsData } = this.state;
+    let queryStr = 'https://pixabay.com/api/?key=5902386-0f23bc626123b6d6520f3ef4b&q=';
+    Object.keys(cardsData).forEach((i) => {
+      queryStr = `${queryStr}&${i}=${cardsData[i]}`;
+    }, cardsData);
+    axios.get(queryStr)
       .then((res) => {
         const cards = res.data.hits;
         this.setState({ cards, isListingLoading: false });
@@ -38,6 +55,15 @@ class App extends Component {
         console.log('pixabay API not responding');
         this.setState({ isListingLoading: false });
       });
+  }
+
+  getFilterItemValue(item) {
+    const { cardsData } = this.state;
+    const clonCardsData = Object.assign({}, cardsData);
+    clonCardsData[item.filterValue] = item.labelValue;
+    this.setState({ cardsData: clonCardsData });
+    this.getCardsPhotos();
+
   }
 
   render() {
@@ -62,7 +88,7 @@ class App extends Component {
             <ul className="filter-list">
               {filts.map((item, i) => (
                 <li key={item.id} className="filter-list__item">
-                  <Filter key={item.id} filters={item.items} activeFilter={item.name} buttonColor={i < buttonsColor.length ? buttonsColor[i] : 'default'} />
+                  <Filter getFilterItemValue={this.getFilterItemValue} key={item.id} filters={item.items} activeFilter={item.defaultLabel} buttonColor={i < buttonsColor.length ? buttonsColor[i] : 'default'} />
                 </li>))
               }
             </ul>

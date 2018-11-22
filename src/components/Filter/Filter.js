@@ -14,24 +14,30 @@ class Filter extends Component {
     };
   }
 
-  toggle() {
-    const { showDropdown } = this.state;
-    this.setState({ showDropdown: !showDropdown });
+  onFilterClick(item) {
+    const { getFilterItemValue } = this.props;
+    this.setState({ activeFilter: item.label, showDropdown: false });
+    getFilterItemValue(item);
   }
 
   hide() {
     this.setState({ showDropdown: false });
   }
 
+  toggle() {
+    const { showDropdown } = this.state;
+    this.setState({ showDropdown: !showDropdown });
+  }
+
   renderListItems(filters) {
     const { activeFilter } = this.state;
     return filters.map(item => (
       <DropdownItem
-        key={item.text}
+        key={item.label}
         activeFilter={activeFilter}
-        filterType={item.text}
+        filterType={item.label}
         hasPadding={item.hasPadding}
-        onFilterClick={() => this.setState({ activeFilter: item.text, showDropdown: false })}
+        onFilterClick={() => this.onFilterClick(item)}
       />
     ));
   }
@@ -62,10 +68,12 @@ Filter.propTypes = {
   activeFilter: PropTypes.string,
   filters: PropTypes.arrayOf(PropTypes.object),
   buttonColor: PropTypes.string,
+  getFilterItemValue: PropTypes.func,
 };
 Filter.defaultProps = {
   activeFilter: '',
   buttonColor: 'primary',
   filters: [],
+  getFilterItemValue: () => {},
 };
 export default Filter;
