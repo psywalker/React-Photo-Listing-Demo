@@ -58,11 +58,17 @@ class App extends Component {
         const cards = res.data.hits;
         const navigationItems = [];
         const i = (Math.floor(res.data.total / cardsData.per_page)) + cardsData.page;
-        for (let k = cardsData.page; k < i; k += 1) {
-          navigationItems.push(k);
-        }
 
-        console.log('111', res.data);
+        if (cardsData.page < 11) {
+          for (let k = 1; k < i; k += 1) {
+            navigationItems.push(k);
+          }
+        } else {
+          for (let k = cardsData.page - 9; k < i; k += 1) {
+            navigationItems.push(k);
+          }
+        }
+        
         this.setState({
           cards,
           isListingLoading: false,
