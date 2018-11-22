@@ -42,7 +42,7 @@ class PaginationSelf extends Component {
             if (i < 10) {
               return (
                 <PageItem active={item === navigationActiveItem} key={item}>
-                  <PageLink key={item} onClick={() => getNavigationClick(item, i)} className="page-link">
+                  <PageLink key={item} onClick={() => getNavigationClick(item)} className="page-link">
                     {item}
                   </PageLink>
                 </PageItem>);

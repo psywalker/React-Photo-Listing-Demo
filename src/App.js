@@ -17,7 +17,6 @@ class App extends Component {
       cards: [],
       totalCards: 10,
       navigationItems: [1],
-      navigationActiveItem: 0,
       cardsData: {
         page: 1,
         per_page: 20,
@@ -49,7 +48,7 @@ class App extends Component {
 
   getCardsPhotos() {
     this.setState({ isListingLoading: true });
-    const { cardsData, totalCards } = this.state;
+    const { cardsData } = this.state;
     let queryStr = 'https://pixabay.com/api/?key=5902386-0f23bc626123b6d6520f3ef4b&q=';
     Object.keys(cardsData).forEach((i) => {
       queryStr = `${queryStr}&${i}=${cardsData[i]}`;
@@ -59,7 +58,7 @@ class App extends Component {
         const cards = res.data.hits;
         const navigationItems = [];
         const i = (Math.floor(res.data.total / cardsData.per_page)) + cardsData.page;
-        for (let k = 1; k < i; k += 1) {
+        for (let k = cardsData.page; k < i; k += 1) {
           navigationItems.push(k);
         }
 
@@ -87,22 +86,32 @@ class App extends Component {
     }, this.getCardsPhotos);
   }
 
-  getNavigationClick() {
-
+  getNavigationClick(item) {
+    const { cardsData } = this.state;
+    this.setState({
+      cardsData: {
+        ...cardsData,
+        page: item,
+      },
+    }, this.getCardsPhotos);
   }
 
   getNavigationPrevClick() {
-    const { navigationActiveItem } = this.state;
-    if (navigationActiveItem) {
-
+    const { cardsData } = this.state;
+    if (cardsData.page) {
+      this.setState({
+        cardsData: {
+          ...cardsData,
+          page: cardsData.page - 1,
+        },
+      }, this.getCardsPhotos);
     }
   }
 
   getNavigationNextClick() {
-    const { navigationActiveItem, cardsData } = this.state;
-    if (navigationActiveItem <= 8) {
+    const { cardsData, totalCards } = this.state;
+    if (cardsData.page <= totalCards) {
       this.setState({
-        navigationActiveItem: navigationActiveItem + 1,
         cardsData: {
           ...cardsData,
           page: cardsData.page + 1,
@@ -120,7 +129,6 @@ class App extends Component {
       totalCards,
       cardsData,
       navigationItems,
-      navigationActiveItem,
     } = this.state;
 
     return (
