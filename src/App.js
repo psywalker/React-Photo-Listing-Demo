@@ -15,7 +15,12 @@ class App extends Component {
       filts: filters,
       isListingLoading: false,
       cards: [],
+      totalCards: 10,
+      navigationItems: [1],
+      navigationActiveItem: 0,
       cardsData: {
+        page: 1,
+        per_page: 20,
         order: 'latest',
         image_type: 'all',
         orientation: 'all',
@@ -33,6 +38,9 @@ class App extends Component {
     };
     this.getFilterItemValue = this.getFilterItemValue.bind(this);
     this.getCardsPhotos = this.getCardsPhotos.bind(this);
+    this.getNavigationClick = this.getNavigationClick.bind(this);
+    this.getNavigationPrevClick = this.getNavigationPrevClick.bind(this);
+    this.getNavigationNextClick = this.getNavigationNextClick.bind(this);
   }
 
   componentDidMount() {
@@ -41,7 +49,7 @@ class App extends Component {
 
   getCardsPhotos() {
     this.setState({ isListingLoading: true });
-    const { cardsData } = this.state;
+    const { cardsData, totalCards } = this.state;
     let queryStr = 'https://pixabay.com/api/?key=5902386-0f23bc626123b6d6520f3ef4b&q=';
     Object.keys(cardsData).forEach((i) => {
       queryStr = `${queryStr}&${i}=${cardsData[i]}`;
@@ -49,7 +57,19 @@ class App extends Component {
     axios.get(queryStr)
       .then((res) => {
         const cards = res.data.hits;
-        this.setState({ cards, isListingLoading: false });
+        const navigationItems = [];
+        const i = (Math.floor(res.data.total / cardsData.per_page)) + cardsData.page;
+        for (let k = 1; k < i; k += 1) {
+          navigationItems.push(k);
+        }
+
+        console.log('111', res.data);
+        this.setState({
+          cards,
+          isListingLoading: false,
+          totalCards: res.data.total,
+          navigationItems,
+        });
       })
       .catch(() => {
         console.log('pixabay API not responding');
@@ -67,12 +87,40 @@ class App extends Component {
     }, this.getCardsPhotos);
   }
 
+  getNavigationClick() {
+
+  }
+
+  getNavigationPrevClick() {
+    const { navigationActiveItem } = this.state;
+    if (navigationActiveItem) {
+
+    }
+  }
+
+  getNavigationNextClick() {
+    const { navigationActiveItem, cardsData } = this.state;
+    if (navigationActiveItem <= 8) {
+      this.setState({
+        navigationActiveItem: navigationActiveItem + 1,
+        cardsData: {
+          ...cardsData,
+          page: cardsData.page + 1,
+        },
+      }, this.getCardsPhotos);
+    }
+  }
+
   render() {
     const {
       filts,
       cards,
       isListingLoading,
       buttonsColor,
+      totalCards,
+      cardsData,
+      navigationItems,
+      navigationActiveItem,
     } = this.state;
 
     return (
@@ -113,7 +161,16 @@ class App extends Component {
         </div>
         <div className="row">
           <div className="col-12">
-            <PaginationSelf />
+            <PaginationSelf
+              totalCards={totalCards}
+              page={cardsData.page}
+              perPage={cardsData.per_page}
+              navigationItems={navigationItems}
+              navigationActiveItem={cardsData.page}
+              getNavigationClick={this.getNavigationClick}
+              getNavigationPrevClick={this.getNavigationPrevClick}
+              getNavigationNextClick={this.getNavigationNextClick}
+            />
           </div>
         </div>
       </div>

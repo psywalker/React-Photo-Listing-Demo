@@ -14,5 +14,7 @@
 .photo-card .photo-card__img {
     position: absolute;
     height: 100%;
-    max-width: 100%;
+    max-width: none;
+    left: 50%;
+    transform: translate(-50%,0);
 }
