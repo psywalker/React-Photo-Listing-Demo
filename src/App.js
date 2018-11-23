@@ -18,6 +18,7 @@ class App extends Component {
       totalCards: 10,
       navigationItems: [1],
       cardsData: {
+        q: '',
         page: 1,
         per_page: 20,
         order: 'latest',
@@ -122,8 +123,14 @@ class App extends Component {
     }
   };
 
-  getSearchText = (e) => {
-
+  getSearchText = (text) => {
+    const { cardsData } = this.state;
+    this.setState({
+      cardsData: {
+        ...cardsData,
+        q: text,
+      },
+    }, this.getCardsPhotos);
   }
 
   render() {
@@ -141,7 +148,7 @@ class App extends Component {
         { isListingLoading && (<Spinner />)}
         <div className="row">
           <div className="col-12">
-            <Search getFilterItemValue={this.getFilterItemValue} />
+            <Search getSearchInputValue={this.getSearchText} />
           </div>
         </div>
 
