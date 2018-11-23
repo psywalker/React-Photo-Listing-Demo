@@ -44,7 +44,7 @@ class App extends Component {
   getCardsPhotos = () => {
     const { cardsData } = this.state;
     this.setState({ isListingLoading: true });
-    const API_URL = `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}&q=`;
+    const API_URL = `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}`;
     let queryStr = '';
     Object.keys(cardsData).forEach((i) => {
       queryStr = `${queryStr}&${i}=${cardsData[i]}`;
@@ -86,7 +86,7 @@ class App extends Component {
         [item.filterValue]: item.labelValue,
       },
     }, this.getCardsPhotos);
-  }
+  };
 
   getNavigationClick = (item) => {
     const { cardsData } = this.state;
