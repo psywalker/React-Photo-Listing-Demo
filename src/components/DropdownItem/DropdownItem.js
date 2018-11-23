@@ -10,8 +10,7 @@ const DropdownItem = ({
   <div
     role="presentation"
     onClick={onFilterClick}
-    className={`dropdown-item ${activeFilter === filterType ? 'active' : ''}`}
-    style={(hasPadding) ? { paddingLeft: '34px' } : {}}
+    className={`dropdown-item ${hasPadding ? 'pl-5' : ''} ${activeFilter === filterType ? 'active' : ''}`}
   >
     {filterType}
     {(activeFilter === filterType) && <i className="check">✓</i>}

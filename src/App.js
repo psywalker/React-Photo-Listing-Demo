@@ -35,25 +35,21 @@ class App extends Component {
         'default',
       ],
     };
-    this.getFilterItemValue = this.getFilterItemValue.bind(this);
-    this.getCardsPhotos = this.getCardsPhotos.bind(this);
-    this.getNavigationClick = this.getNavigationClick.bind(this);
-    this.getNavigationPrevClick = this.getNavigationPrevClick.bind(this);
-    this.getNavigationNextClick = this.getNavigationNextClick.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.getCardsPhotos();
-  }
+  };
 
-  getCardsPhotos() {
-    this.setState({ isListingLoading: true });
+  getCardsPhotos = () => {
     const { cardsData } = this.state;
-    let queryStr = 'https://pixabay.com/api/?key=5902386-0f23bc626123b6d6520f3ef4b&q=';
+    this.setState({ isListingLoading: true });
+    const API_URL = `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}&q=`;
+    let queryStr = '';
     Object.keys(cardsData).forEach((i) => {
       queryStr = `${queryStr}&${i}=${cardsData[i]}`;
     }, cardsData);
-    axios.get(queryStr)
+    axios.get(`${API_URL}${queryStr}`)
       .then((res) => {
         const cards = res.data.hits;
         const navigationItems = [];
@@ -68,7 +64,7 @@ class App extends Component {
             navigationItems.push(k);
           }
         }
-        
+
         this.setState({
           cards,
           isListingLoading: false,
@@ -80,9 +76,9 @@ class App extends Component {
         console.log('pixabay API not responding');
         this.setState({ isListingLoading: false });
       });
-  }
+  };
 
-  getFilterItemValue(item) {
+  getFilterItemValue = (item) => {
     const { cardsData } = this.state;
     this.setState({
       cardsData: {
@@ -92,7 +88,7 @@ class App extends Component {
     }, this.getCardsPhotos);
   }
 
-  getNavigationClick(item) {
+  getNavigationClick = (item) => {
     const { cardsData } = this.state;
     this.setState({
       cardsData: {
@@ -100,9 +96,9 @@ class App extends Component {
         page: item,
       },
     }, this.getCardsPhotos);
-  }
+  };
 
-  getNavigationPrevClick() {
+  getNavigationPrevClick = () => {
     const { cardsData } = this.state;
     if (cardsData.page) {
       this.setState({
@@ -112,9 +108,9 @@ class App extends Component {
         },
       }, this.getCardsPhotos);
     }
-  }
+  };
 
-  getNavigationNextClick() {
+  getNavigationNextClick = () => {
     const { cardsData, totalCards } = this.state;
     if (cardsData.page <= totalCards) {
       this.setState({
@@ -124,7 +120,7 @@ class App extends Component {
         },
       }, this.getCardsPhotos);
     }
-  }
+  };
 
   render() {
     const {
@@ -136,7 +132,6 @@ class App extends Component {
       cardsData,
       navigationItems,
     } = this.state;
-
     return (
       <div className="App">
         { isListingLoading && (<Spinner />)}
@@ -165,7 +160,7 @@ class App extends Component {
                 {
                 cards.map(item => (
                   <li key={item.id} className="photo-list__item pl-3">
-                    <PhotoCard photoName={item.largeImageURL} title={item.user} tags={item.tags} />
+                    <PhotoCard photoName={item.largeImageURL} title={item.user} tags={item.tags.split(',')} />
                   </li>))
                 }
               </ul>

@@ -1,11 +1,19 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Test from './components/Test';
-import DropdownItem from './components/DropdownItem/DropdownItem';
+import DropdownItem from './DropdownItem';
 
 Enzyme.configure({ adapter: new Adapter() });
 
+function func() {
+  return 1;
+}
+
+const Test = () => (
+  <div className="test" onClick={func}>
+    Text
+  </div>
+);
 
 function setup() {
   const enzymeWrapper = shallow(<Test />);
@@ -36,7 +44,7 @@ describe('components', () => {
 
       expect(dropdownItem.find('div').prop('role')).toEqual('presentation')
       expect(dropdownItem.find('div').prop('style')).toEqual({})
-      
+
     });
 
 
@@ -50,7 +58,7 @@ describe('components', () => {
       const dropdownItem1 = shallow(<DropdownItem {...props1} />)
 
       expect(dropdownItem1.find('div').hasClass('active')).toEqual(true);
-      
+
 
       const props2 = {
         onFilterClick: () => {},
@@ -74,7 +82,7 @@ describe('components', () => {
       const dropdownItem1 = shallow(<DropdownItem {...props1} />)
 
       expect(dropdownItem1.find('i').length).toEqual(1);
-      
+
 
       const props2 = {
         onFilterClick: () => {},
@@ -101,17 +109,17 @@ describe('components', () => {
 
     it('Test method of div element', () => {
 
-      function func() {
+      function func2() {
         const props = {
           onFilterClick: jest.fn(),
-        }     
+        }
         const enzymeWrapper = shallow(<DropdownItem {...props} />)
         return {
           props,
           enzymeWrapper
         }
       }
-      const { enzymeWrapper, props } = func()
+      const { enzymeWrapper, props } = func2()
 
       const div = enzymeWrapper.find('div')
       div.props().onClick()
@@ -131,7 +139,7 @@ describe('components', () => {
 
       const { enzymeWrapper } = funcTest();
       const div = enzymeWrapper.find('div')
-      
+
       expect(mock(div.prop.onClick)).toBe(1);
 
       //console.log(enzymeWrapper.debug());

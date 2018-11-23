@@ -14,22 +14,22 @@ class Filter extends Component {
     };
   }
 
-  onFilterClick(item) {
+  onFilterClick = (item) => {
     const { getFilterItemValue } = this.props;
     this.setState({ activeFilter: item.label, showDropdown: false });
     getFilterItemValue(item);
-  }
+  };
 
-  hide() {
+  hide = () => {
     this.setState({ showDropdown: false });
-  }
+  };
 
-  toggle() {
+  toggle = () => {
     const { showDropdown } = this.state;
     this.setState({ showDropdown: !showDropdown });
-  }
+  };
 
-  renderListItems(filters) {
+  renderListItems = (filters) => {
     const { activeFilter } = this.state;
     return filters.map(item => (
       <DropdownItem
@@ -40,16 +40,16 @@ class Filter extends Component {
         onFilterClick={() => this.onFilterClick(item)}
       />
     ));
-  }
+  };
 
   render() {
     const { activeFilter, showDropdown } = this.state;
     const { filters, buttonColor } = this.props;
 
     return (
-      <ClickOutside className="clickOutSide" onClickOutside={() => this.hide()}>
+      <ClickOutside className="clickOutSide" onClickOutside={this.hide}>
         <Dropdown className="ml-3">
-          <DropdownToggle caret className="filter__toggler" color={`${buttonColor} ml-0`} onClick={() => this.toggle()}>
+          <DropdownToggle caret className="filter__toggler" color={`${buttonColor} ml-0`} onClick={this.toggle}>
             {activeFilter}
           </DropdownToggle>
           {showDropdown && (

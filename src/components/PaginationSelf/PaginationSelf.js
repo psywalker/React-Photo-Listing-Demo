@@ -16,9 +16,6 @@ class PaginationSelf extends Component {
 
   render() {
     const {
-      totalCards,
-      page,
-      perPage,
       getNavigationClick,
       getNavigationPrevClick,
       getNavigationNextClick,
@@ -29,7 +26,7 @@ class PaginationSelf extends Component {
       <Pagination className="pagination-lg">
         <PageItem>
           <PageLink
-            onClick={() => getNavigationPrevClick()}
+            onClick={getNavigationPrevClick}
             className="page-link"
             aria-label="Previous"
           >
@@ -52,7 +49,7 @@ class PaginationSelf extends Component {
         }
         <PageItem>
           <PageLink
-            onClick={() => getNavigationNextClick()}
+            onClick={getNavigationNextClick}
             className="page-link"
             aria-label="Next"
           >
@@ -64,9 +61,6 @@ class PaginationSelf extends Component {
   }
 }
 PaginationSelf.propTypes = {
-  totalCards: PropTypes.number,
-  page: PropTypes.number,
-  perPage: PropTypes.number,
   navigationActiveItem: PropTypes.number,
   navigationItems: PropTypes.arrayOf(PropTypes.number),
   getNavigationClick: PropTypes.func,
@@ -74,9 +68,6 @@ PaginationSelf.propTypes = {
   getNavigationNextClick: PropTypes.func,
 };
 PaginationSelf.defaultProps = {
-  totalCards: 20,
-  page: 1,
-  perPage: 20,
   navigationItems: [],
   navigationActiveItem: 0,
   getNavigationClick: () => {},
