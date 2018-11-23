@@ -122,6 +122,10 @@ class App extends Component {
     }
   };
 
+  getSearchText = (e) => {
+
+  }
+
   render() {
     const {
       filts,
@@ -137,7 +141,7 @@ class App extends Component {
         { isListingLoading && (<Spinner />)}
         <div className="row">
           <div className="col-12">
-            <Search />
+            <Search getFilterItemValue={this.getFilterItemValue} />
           </div>
         </div>
 
@@ -146,7 +150,7 @@ class App extends Component {
             <ul className="filter-list">
               {filts.map((item, i) => (
                 <li key={item.id} className="filter-list__item">
-                  <Filter getFilterItemValue={this.getFilterItemValue} key={item.id} filters={item.items} activeFilter={item.defaultLabel} buttonColor={i < buttonsColor.length ? buttonsColor[i] : 'default'} />
+                  <Filter getSearchText={this.getSearchText} key={item.id} filters={item.items} activeFilter={item.defaultLabel} buttonColor={i < buttonsColor.length ? buttonsColor[i] : 'default'} />
                 </li>))
               }
             </ul>
