@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import PhotoCard from './PhotoCard';
 
@@ -7,16 +7,14 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('Test of component of PhotoCard', () => {
   it('Test state PhotoCard component', () => {
-    const card = shallow(<PhotoCard />)
-    expect(Array.isArray(card.state().tagsColor)).toEqual(true);
-    expect(Array.isArray(card.state().tags)).toEqual(true);
-    expect(typeof card.instance().props.photoName).toEqual('string');
-    expect(typeof card.instance().props.title).toEqual('string');
+    const card = mount(<PhotoCard />)
+    expect(typeof card.prop('photoName')).toEqual('string');
+    expect(typeof card.prop('title')).toEqual('string');
+    expect(Array.isArray(card.prop('tags'))).toEqual(true);
   });
 
   it('Test snapshot PhotoCard component', () => {
     const card = shallow(<PhotoCard />);
     expect(card).toMatchSnapshot();
-
   });
 });

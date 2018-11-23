@@ -54,7 +54,7 @@ describe('Test of component of Filter.js', () => {
     expect(filtersWrapper.find('.filter-1').find('.filter-dropDownMenu').length).toBe(0);
     expect(filtersWrapper.find('.filter-1').instance().state.showDropdown).toBe(false);
 
-    filtersWrapper.find('.filter-1').instance().hide()
+    filtersWrapper.find('.filter-1').instance().hide();
 
     expect(filtersWrapper.find('.filter-1').instance().state.showDropdown).toBe(false);
     expect(filtersWrapper.find('.filter-1').find('.filter-dropDownMenu').length).toBe(0);
