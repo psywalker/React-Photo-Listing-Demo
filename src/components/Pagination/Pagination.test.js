@@ -30,7 +30,7 @@ describe('Test of component of Pagination', () => {
 
     //pagination.find('a.pagination__link').at(1).simulate('click');
     //expect(pagination.find('a.pagination__link_active').text()).toEqual('1');
-    pagination.instance().handleNavigationClick(1)
-    console.log(pagination.debug());
+     //pagination.instance().handleNavigationClick(1)
+    //console.log(pagination.debug());
   });
 });
