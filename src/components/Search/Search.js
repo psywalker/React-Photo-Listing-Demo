@@ -23,8 +23,9 @@ class Search extends Component {
   changeInputValue = (e) => {
     this.setState({
       inputValue: e.target.value
+    }, () => {
+      if(this.state.inputValue) this.props.onChangeInputValue(this.state.inputValue);
     });
-    if(this.state.inputValue) this.props.onChangeInputValue(this.state.inputValue);
   };
 
   render() {
