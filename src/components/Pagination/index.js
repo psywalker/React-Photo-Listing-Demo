@@ -74,10 +74,6 @@ class PaginationSelf extends Component {
   }
 
   render() {
-    const {
-      perPage, 
-      totalCards,
-    } = this.props;
 
     const { navigationItems, page } = this.state;
 
