@@ -50,6 +50,11 @@ class App extends Component {
     Object.keys(cardsData).forEach((i) => {
       queryStr = `${queryStr}&${i}=${cardsData[i]}`;
     }, cardsData);
+
+    console.log('111:::', API_URL)
+    console.log('222:::', queryStr)
+    console.log('333:::', `${API_URL}${queryStr}`)
+
     axios.get(`${API_URL}${queryStr}`)
       .then((res) => {
         const cards = res.data.hits;
@@ -133,6 +138,16 @@ class App extends Component {
     }, this.getCardsPhotos);
   }
 
+  onChangeInputValue = (text) => {
+    const { cardsData } = this.state;
+    this.setState({
+      cardsData: {
+        ...cardsData,
+        q: text,
+      },
+    });
+  }
+
   render() {
     const {
       filts,
@@ -148,7 +163,7 @@ class App extends Component {
         { isListingLoading && (<Spinner />)}
         <div className="row">
           <div className="col-12">
-            <Search getSearchInputValue={this.getSearchText} />
+            <Search getSearchInputValue={this.getSearchText} onChangeInputValue={this.onChangeInputValue}/>
           </div>
         </div>
 
@@ -157,7 +172,7 @@ class App extends Component {
             <ul className="filter-list">
               {filts.map((item, i) => (
                 <li key={item.id} className="filter-list__item">
-                  <Filter getSearchText={this.getSearchText} key={item.id} filters={item.items} activeFilter={item.defaultLabel} buttonColor={i < buttonsColor.length ? buttonsColor[i] : 'default'} />
+                  <Filter getFilterItemValue={this.getFilterItemValue} key={item.id} filters={item.items} activeFilter={item.defaultLabel} buttonColor={i < buttonsColor.length ? buttonsColor[i] : 'default'} />
                 </li>))
               }
             </ul>

@@ -14,7 +14,7 @@ class Search extends Component {
   }
 
   submitSearch = (e) => {
-    if(e.charCode == 13) {
+    if(e.charCode === 13) {
       e.preventDefault();
       if(this.state.inputValue) this.props.getSearchInputValue(this.state.inputValue);
     } 
@@ -24,6 +24,7 @@ class Search extends Component {
     this.setState({
       inputValue: e.target.value
     });
+    if(this.state.inputValue) this.props.onChangeInputValue(this.state.inputValue);
   };
 
   render() {
@@ -31,7 +32,7 @@ class Search extends Component {
       <div className="flex-container">
         <FormInline className="md-form ml-3">
           <Fa icon="search" onClick={this.submitSearch} />
-          <input onChange={this.changeInputValue} onKeyPress={this.submitSearch} className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" value={this.state.inputValue} />
+          <input onChange={this.changeInputValue} onInput={this.changeInputValue} onKeyPress={this.submitSearch} className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" value={this.state.inputValue} />
         </FormInline>
       </div>
     );
