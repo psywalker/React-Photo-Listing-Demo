@@ -16,7 +16,7 @@ class Search extends Component {
   submitSearch = (e) => {
     if(e.charCode === 13) {
       e.preventDefault();
-      if(this.state.inputValue) this.props.getSearchInputValue(this.state.inputValue);
+      if(this.state.inputValue) this.props.onSearchInputValue(this.state.inputValue);
     } 
   }
 
@@ -24,7 +24,7 @@ class Search extends Component {
     this.setState({
       inputValue: e.target.value
     }, () => {
-      if(this.state.inputValue) this.props.onChangeInputValue(this.state.inputValue);
+      this.props.onChangeInputValue(this.state.inputValue);
     });
   };
 

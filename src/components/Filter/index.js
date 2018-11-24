@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ClickOutside from 'react-click-outside';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'mdbreact';
-import DropdownItem from '../DropdownItem/DropdownItem';
+import DropdownItem from '../DropdownItem';
 
 class Filter extends Component {
   constructor(...args) {
@@ -15,9 +15,9 @@ class Filter extends Component {
   }
 
   onFilterClick = (item) => {
-    const { getFilterItemValue } = this.props;
+    const { onFilterItemValue } = this.props;
     this.setState({ activeFilter: item.label, showDropdown: false });
-    getFilterItemValue(item);
+    onFilterItemValue(item);
   };
 
   hide = () => {
@@ -68,12 +68,12 @@ Filter.propTypes = {
   activeFilter: PropTypes.string,
   filters: PropTypes.arrayOf(PropTypes.object),
   buttonColor: PropTypes.string,
-  getFilterItemValue: PropTypes.func,
+  onFilterItemValue: PropTypes.func,
 };
 Filter.defaultProps = {
   activeFilter: '',
   buttonColor: 'primary',
   filters: [],
-  getFilterItemValue: () => {},
+  onFilterItemValue: () => {},
 };
 export default Filter;

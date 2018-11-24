@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Search from './components/Search/Search';
-import Filter from './components/Filter/Filter';
-import PhotoCard from './components/PhotoCard/PhotoCard';
-import Spinner from './components/Spinner/Spinner';
-import PaginationSelf from './components/PaginationSelf/PaginationSelf';
+import Search from './components/Search';
+import Filter from './components/Filter';
+import PhotoCard from './components/PhotoCard';
+import Spinner from './components/Spinner';
+import PaginationSelf from './components/Pagination';
 import filters from './filters';
 import './App.css';
 
@@ -16,7 +16,6 @@ class App extends Component {
       isListingLoading: false,
       cards: [],
       totalCards: 10,
-      navigationItems: [1],
       cardsData: {
         q: '',
         page: 1,
@@ -39,43 +38,26 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.getCardsPhotos();
+    this.handleCardsPhotos();
   };
 
-  getCardsPhotos = () => {
+  handleCardsPhotos = () => {
     const { cardsData } = this.state;
     this.setState({ isListingLoading: true });
     const API_URL = `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}`;
     let queryStr = '';
     Object.keys(cardsData).forEach((i) => {
-      queryStr = `${queryStr}&${i}=${cardsData[i]}`;
+      queryStr += `&${i}=${cardsData[i]}`;
     }, cardsData);
-
-    console.log('111:::', API_URL)
-    console.log('222:::', queryStr)
-    console.log('333:::', `${API_URL}${queryStr}`)
 
     axios.get(`${API_URL}${queryStr}`)
       .then((res) => {
         const cards = res.data.hits;
-        const navigationItems = [];
-        const i = (Math.floor(res.data.total / cardsData.per_page)) + cardsData.page;
-
-        if (cardsData.page < 11) {
-          for (let k = 1; k < i; k += 1) {
-            navigationItems.push(k);
-          }
-        } else {
-          for (let k = cardsData.page - 9; k < i; k += 1) {
-            navigationItems.push(k);
-          }
-        }
-
+      
         this.setState({
           cards,
           isListingLoading: false,
-          totalCards: res.data.total,
-          navigationItems,
+          totalCards: res.data.total
         });
       })
       .catch(() => {
@@ -84,27 +66,27 @@ class App extends Component {
       });
   };
 
-  getFilterItemValue = (item) => {
+  handleFilterItemValue = (item) => {
     const { cardsData } = this.state;
     this.setState({
       cardsData: {
         ...cardsData,
         [item.filterValue]: item.labelValue,
       },
-    }, this.getCardsPhotos);
+    }, this.handleCardsPhotos);
   };
 
-  getNavigationClick = (item) => {
+  handleNavigationClick = (item) => {
     const { cardsData } = this.state;
     this.setState({
       cardsData: {
         ...cardsData,
         page: item,
       },
-    }, this.getCardsPhotos);
+    }, this.handleCardsPhotos);
   };
 
-  getNavigationPrevClick = () => {
+  handleNavigationPrevClick = () => {
     const { cardsData } = this.state;
     if (cardsData.page) {
       this.setState({
@@ -112,11 +94,11 @@ class App extends Component {
           ...cardsData,
           page: cardsData.page - 1,
         },
-      }, this.getCardsPhotos);
+      }, this.handleCardsPhotos);
     }
   };
 
-  getNavigationNextClick = () => {
+  handleNavigationNextClick = () => {
     const { cardsData, totalCards } = this.state;
     if (cardsData.page <= totalCards) {
       this.setState({
@@ -124,21 +106,22 @@ class App extends Component {
           ...cardsData,
           page: cardsData.page + 1,
         },
-      }, this.getCardsPhotos);
+      }, this.handleCardsPhotos);
     }
   };
 
-  getSearchText = (text) => {
+  handleSearchText = (text) => {
     const { cardsData } = this.state;
     this.setState({
       cardsData: {
         ...cardsData,
         q: text,
+        page: 1,
       },
-    }, this.getCardsPhotos);
+    }, this.handleCardsPhotos);
   }
 
-  onChangeInputValue = (text) => {
+  handleChangeInputValue = (text) => {
     const { cardsData } = this.state;
     this.setState({
       cardsData: {
@@ -155,15 +138,15 @@ class App extends Component {
       isListingLoading,
       buttonsColor,
       totalCards,
-      cardsData,
-      navigationItems,
+      cardsData
     } = this.state;
+
     return (
       <div className="App">
         { isListingLoading && (<Spinner />)}
         <div className="row">
           <div className="col-12">
-            <Search getSearchInputValue={this.getSearchText} onChangeInputValue={this.onChangeInputValue}/>
+            <Search onSearchInputValue={this.handleSearchText} onChangeInputValue={this.handleChangeInputValue} />
           </div>
         </div>
 
@@ -172,7 +155,7 @@ class App extends Component {
             <ul className="filter-list">
               {filts.map((item, i) => (
                 <li key={item.id} className="filter-list__item">
-                  <Filter getFilterItemValue={this.getFilterItemValue} key={item.id} filters={item.items} activeFilter={item.defaultLabel} buttonColor={i < buttonsColor.length ? buttonsColor[i] : 'default'} />
+                  <Filter onFilterItemValue={this.handleFilterItemValue} key={item.id} filters={item.items} activeFilter={item.defaultLabel} buttonColor={i < buttonsColor.length ? buttonsColor[i] : 'default'} />
                 </li>))
               }
             </ul>
@@ -200,11 +183,9 @@ class App extends Component {
               totalCards={totalCards}
               page={cardsData.page}
               perPage={cardsData.per_page}
-              navigationItems={navigationItems}
-              navigationActiveItem={cardsData.page}
-              getNavigationClick={this.getNavigationClick}
-              getNavigationPrevClick={this.getNavigationPrevClick}
-              getNavigationNextClick={this.getNavigationNextClick}
+              onNavigationClick={this.handleNavigationClick}
+              onNavigationPrevClick={this.handleNavigationPrevClick}
+              onNavigationNextClick={this.handleNavigationNextClick}
             />
           </div>
         </div>

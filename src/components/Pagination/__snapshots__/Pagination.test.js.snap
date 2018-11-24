@@ -1,0 +1,484 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test of component of Pagination Test snapshot Pagination component 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <PaginationSelf
+    onNavigationClick={[Function]}
+    onNavigationNextClick={[Function]}
+    onNavigationPrevClick={[Function]}
+    page={1}
+    perPage={20}
+    totalCards={0}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <t
+          active={false}
+          className="pagination__item pagination__item_left"
+          disabled={false}
+          tag="li"
+        >
+          <t
+            aria-label="Previous"
+            className="page-link page-link_left"
+            onClick={[Function]}
+            tag="a"
+          >
+            <span
+              aria-hidden="true"
+            >
+              «
+            </span>
+            <span
+              className="sr-only"
+            >
+              Previous
+            </span>
+          </t>
+        </t>,
+        Array [
+          <t
+            active={true}
+            className="pagination__item pagination__item_active"
+            disabled={false}
+            tag="li"
+          >
+            <t
+              className="page-link pagination__link pagination__link_active"
+              onClick={[Function]}
+              tag="a"
+            >
+              1
+            </t>
+          </t>,
+        ],
+        <t
+          active={false}
+          className="pagination__item pagination__item_right"
+          disabled={false}
+          tag="li"
+        >
+          <t
+            aria-label="Next"
+            className="page-link page-link_right"
+            onClick={[Function]}
+            tag="a"
+          >
+            »
+          </t>
+        </t>,
+      ],
+      "className": "pagination-lg pagination",
+      "tag": "ul",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": false,
+          "children": <t
+            aria-label="Previous"
+            className="page-link page-link_left"
+            onClick={[Function]}
+            tag="a"
+          >
+            <span
+              aria-hidden="true"
+            >
+              «
+            </span>
+            <span
+              className="sr-only"
+            >
+              Previous
+            </span>
+          </t>,
+          "className": "pagination__item pagination__item_left",
+          "disabled": false,
+          "tag": "li",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "aria-label": "Previous",
+            "children": Array [
+              <span
+                aria-hidden="true"
+              >
+                «
+              </span>,
+              <span
+                className="sr-only"
+              >
+                Previous
+              </span>,
+            ],
+            "className": "page-link page-link_left",
+            "onClick": [Function],
+            "tag": "a",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "aria-hidden": "true",
+                "children": "«",
+              },
+              "ref": null,
+              "rendered": "«",
+              "type": "span",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Previous",
+                "className": "sr-only",
+              },
+              "ref": null,
+              "rendered": "Previous",
+              "type": "span",
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "1",
+        "nodeType": "class",
+        "props": Object {
+          "active": true,
+          "children": <t
+            className="page-link pagination__link pagination__link_active"
+            onClick={[Function]}
+            tag="a"
+          >
+            1
+          </t>,
+          "className": "pagination__item pagination__item_active",
+          "disabled": false,
+          "tag": "li",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "class",
+          "props": Object {
+            "children": 1,
+            "className": "page-link pagination__link pagination__link_active",
+            "onClick": [Function],
+            "tag": "a",
+          },
+          "ref": null,
+          "rendered": 1,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": false,
+          "children": <t
+            aria-label="Next"
+            className="page-link page-link_right"
+            onClick={[Function]}
+            tag="a"
+          >
+            »
+          </t>,
+          "className": "pagination__item pagination__item_right",
+          "disabled": false,
+          "tag": "li",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "aria-label": "Next",
+            "children": "»",
+            "className": "page-link page-link_right",
+            "onClick": [Function],
+            "tag": "a",
+          },
+          "ref": null,
+          "rendered": "»",
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <t
+            active={false}
+            className="pagination__item pagination__item_left"
+            disabled={false}
+            tag="li"
+          >
+            <t
+              aria-label="Previous"
+              className="page-link page-link_left"
+              onClick={[Function]}
+              tag="a"
+            >
+              <span
+                aria-hidden="true"
+              >
+                «
+              </span>
+              <span
+                className="sr-only"
+              >
+                Previous
+              </span>
+            </t>
+          </t>,
+          Array [
+            <t
+              active={true}
+              className="pagination__item pagination__item_active"
+              disabled={false}
+              tag="li"
+            >
+              <t
+                className="page-link pagination__link pagination__link_active"
+                onClick={[Function]}
+                tag="a"
+              >
+                1
+              </t>
+            </t>,
+          ],
+          <t
+            active={false}
+            className="pagination__item pagination__item_right"
+            disabled={false}
+            tag="li"
+          >
+            <t
+              aria-label="Next"
+              className="page-link page-link_right"
+              onClick={[Function]}
+              tag="a"
+            >
+              »
+            </t>
+          </t>,
+        ],
+        "className": "pagination-lg pagination",
+        "tag": "ul",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": false,
+            "children": <t
+              aria-label="Previous"
+              className="page-link page-link_left"
+              onClick={[Function]}
+              tag="a"
+            >
+              <span
+                aria-hidden="true"
+              >
+                «
+              </span>
+              <span
+                className="sr-only"
+              >
+                Previous
+              </span>
+            </t>,
+            "className": "pagination__item pagination__item_left",
+            "disabled": false,
+            "tag": "li",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "aria-label": "Previous",
+              "children": Array [
+                <span
+                  aria-hidden="true"
+                >
+                  «
+                </span>,
+                <span
+                  className="sr-only"
+                >
+                  Previous
+                </span>,
+              ],
+              "className": "page-link page-link_left",
+              "onClick": [Function],
+              "tag": "a",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "aria-hidden": "true",
+                  "children": "«",
+                },
+                "ref": null,
+                "rendered": "«",
+                "type": "span",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Previous",
+                  "className": "sr-only",
+                },
+                "ref": null,
+                "rendered": "Previous",
+                "type": "span",
+              },
+            ],
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "class",
+          "props": Object {
+            "active": true,
+            "children": <t
+              className="page-link pagination__link pagination__link_active"
+              onClick={[Function]}
+              tag="a"
+            >
+              1
+            </t>,
+            "className": "pagination__item pagination__item_active",
+            "disabled": false,
+            "tag": "li",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "class",
+            "props": Object {
+              "children": 1,
+              "className": "page-link pagination__link pagination__link_active",
+              "onClick": [Function],
+              "tag": "a",
+            },
+            "ref": null,
+            "rendered": 1,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": false,
+            "children": <t
+              aria-label="Next"
+              className="page-link page-link_right"
+              onClick={[Function]}
+              tag="a"
+            >
+              »
+            </t>,
+            "className": "pagination__item pagination__item_right",
+            "disabled": false,
+            "tag": "li",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "aria-label": "Next",
+              "children": "»",
+              "className": "page-link page-link_right",
+              "onClick": [Function],
+              "tag": "a",
+            },
+            "ref": null,
+            "rendered": "»",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import DropdownItem from './DropdownItem';
+import DropdownItem from '.';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -43,8 +43,7 @@ describe('components', () => {
       const dropdownItem = shallow(<DropdownItem {...props} />)
 
       expect(dropdownItem.find('div').prop('role')).toEqual('presentation')
-      expect(dropdownItem.find('div').prop('style')).toEqual({})
-
+  
     });
 
 
