@@ -5,21 +5,17 @@
   "homepage": "http://psywalker.github.io/React-Photo-Listing-Demo",
   "dependencies": {
     "axios": "^0.18.0",
-    "dot-prop": "^4.2.0",
-    "env-dot-prop": "^1.0.2",
     "mdbreact": "^4.8.2",
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
     "react-click-outside": "github:tj/react-click-outside",
-    "react-clickoutside": "^2.0.0",
     "react-dom": "^16.6.1",
-    "react-scripts": "2.1.1",
-    "vue-click-outside": "^1.0.7"
+    "react-scripts": "2.1.1"
   },
   "scripts": {
-    "start": "REACT_APP_PIXABAY_API_KEY=5902386-0f23bc626123b6d6520f3ef4b react-scripts start",
-    "build": "REACT_APP_PIXABAY_API_KEY=5902386-0f23bc626123b6d6520f3ef4b react-scripts build",
-    "test": "REACT_APP_PIXABAY_API_KEY=5902386-0f23bc626123b6d6520f3ef4b react-scripts test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { getPageNumbers, generateNavItems } from "../../utils";
 import {
   Pagination,
   PageItem,
@@ -11,6 +12,7 @@ class PaginationSelf extends Component {
     super(...args);
     this.state = {
       page: 1,
+      itemNumbers: 10,
       navigationItems: [1],
     };
   }
@@ -20,33 +22,16 @@ class PaginationSelf extends Component {
   };
 
   componentDidUpdate = (prevProps) => {
-    if (prevProps.totalCards !== this.props.totalCards || prevProps.page !== this.props.page) this.pageCalc();
-  }
-
-  getPageNumbers = (page, perPage, totalCards) => {
-    return (page + (Math.ceil(totalCards / perPage)));
+    if (prevProps.totalCards !== this.props.totalCards) this.pageCalc();
   }
 
   pageCalc = () => {
-    const { page, perPage, totalCards } = this.props;
+    const { perPage, totalCards } = this.props;
+    const { page, itemNumbers} = this.state;
 
-    const navigationItems = [];
-    const i = this.getPageNumbers(page, perPage, totalCards);
-    
-    if (!i || i === 1) {
-      navigationItems.push(1);
-    } else if (page < 11) {
-      for (let k = 1; k < i ; k += 1) {
-        navigationItems.push(k);
-      }
-    } else {
-      for (let k = page - 9; k < i; k += 1) {
-        navigationItems.push(k);
-      }
-    }
+    const navigationItems = generateNavItems(page, perPage, totalCards, itemNumbers);
 
     this.setState({
-      page,
       navigationItems,
     });
   }
@@ -54,28 +39,41 @@ class PaginationSelf extends Component {
   handleNavigationPrevClick = () => {
     const { onNavigationPrevClick } = this.props;
     const { page } = this.state;
-    if (page - 1 <= 1) return false;
-    else onNavigationPrevClick();
+    if (page - 1 < 1) return false;
+    else {
+      this.setState({
+        page: page - 1,
+      }, onNavigationPrevClick);
+    }
   }
 
   handleNavigationNextClick = () => {
-    const { totalCards, perPage, onNavigationNextClick} = this.props;
+    const { totalCards, perPage, onNavigationNextClick } = this.props;
     const { page } = this.state;
-    const i = this.getPageNumbers(page, perPage, totalCards);
+    const i = getPageNumbers(page, perPage, totalCards);
     if (page + 1 >= i) return false;
-    else onNavigationNextClick();
+    else {
+      
+      this.setState({
+        page: page + 1,
+      }, onNavigationNextClick);
+    }
   }
 
   handleNavigationClick = (item) => {
     const { onNavigationClick } = this.props;
     const { page } = this.state;
     if (page === item) return false;
-    else onNavigationClick(item);
+    else {
+      this.setState({
+        page: item,
+      }, onNavigationClick(item));
+    }
   }
 
   render() {
 
-    const { navigationItems, page } = this.state;
+    const { navigationItems, page, itemNumbers } = this.state;
 
     return (
       <Pagination className="pagination-lg pagination">
@@ -91,7 +89,7 @@ class PaginationSelf extends Component {
         </PageItem>
         {
           navigationItems.map((item, i) => {
-            if (i < 10) {
+            if (i < itemNumbers) {
               return (
                 <PageItem className={`pagination__item ${item === page ? 'pagination__item_active' : ''}`} active={item === page} key={item}>
                   <PageLink key={item} onClick={() => this.handleNavigationClick(item)} className={`page-link pagination__link ${item === page ? 'pagination__link_active' : ''}`}>
@@ -127,8 +125,8 @@ PaginationSelf.defaultProps = {
   page: 1,
   perPage: 20,
   totalCards: 0,
-  onNavigationClick: () => {},
-  onNavigationPrevClick: () => {},
-  onNavigationNextClick: () => {},
+  onNavigationClick: () => { },
+  onNavigationPrevClick: () => { },
+  onNavigationNextClick: () => { },
 };
 export default PaginationSelf;

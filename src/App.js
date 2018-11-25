@@ -181,7 +181,6 @@ class App extends Component {
           <div className="col-12">
             <PaginationSelf
               totalCards={totalCards}
-              page={cardsData.page}
               perPage={cardsData.per_page}
               onNavigationClick={this.handleNavigationClick}
               onNavigationPrevClick={this.handleNavigationPrevClick}
