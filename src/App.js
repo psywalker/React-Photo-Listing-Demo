@@ -71,6 +71,7 @@ class App extends Component {
     this.setState({
       cardsData: {
         ...cardsData,
+        page: 1,
         [item.filterValue]: item.labelValue,
       },
     }, this.handleCardsPhotos);

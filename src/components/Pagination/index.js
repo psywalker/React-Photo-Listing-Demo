@@ -21,8 +21,15 @@ class PaginationSelf extends Component {
     this.pageCalc();
   };
 
-  componentDidUpdate = (prevProps) => {
-    if (prevProps.totalCards !== this.props.totalCards) this.pageCalc();
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.totalCards !== this.props.totalCards) {
+
+      this.setState({
+        page: 1,
+      }, this.pageCalc);
+    
+    }
+    if (prevState.page !== this.state.page) this.pageCalc();
   }
 
   pageCalc = () => {
@@ -30,10 +37,17 @@ class PaginationSelf extends Component {
     const { page, itemNumbers} = this.state;
 
     const navigationItems = generateNavItems(page, perPage, totalCards, itemNumbers);
-
-    this.setState({
-      navigationItems,
-    });
+  
+    if(page > navigationItems.length) {
+      this.setState({
+        page: 1,
+        navigationItems,
+      });
+    } else {
+      this.setState({
+        navigationItems,
+      });
+    }
   }
 
   handleNavigationPrevClick = () => {
@@ -53,7 +67,6 @@ class PaginationSelf extends Component {
     const i = getPageNumbers(page, perPage, totalCards);
     if (page + 1 >= i) return false;
     else {
-      
       this.setState({
         page: page + 1,
       }, onNavigationNextClick);
@@ -74,7 +87,7 @@ class PaginationSelf extends Component {
   render() {
 
     const { navigationItems, page, itemNumbers } = this.state;
-
+    if(!navigationItems.length) return false;
     return (
       <Pagination className="pagination-lg pagination">
         <PageItem className="pagination__item pagination__item_left">
