@@ -7,6 +7,7 @@ import { getPageNumbers, generateNavItems } from "../../utils";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Test of component of Pagination', () => {
+  
  
   it('Test snapshot Pagination component', () => {
     const pagination = shallow(<Pagination />);

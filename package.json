@@ -66,6 +66,7 @@
     "@types/jasmine": "^3.3.0",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-preset-stage-2": "^6.24.1",
+    "create-react-server": "^0.3.2",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "eslint-config-airbnb": "^17.1.0",
