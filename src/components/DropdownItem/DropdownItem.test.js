@@ -141,9 +141,6 @@ describe('components', () => {
 
       expect(mock(div.prop.onClick)).toBe(1);
 
-      //console.log(enzymeWrapper.debug());
-      //expect(enzymeWrapper.find('div').hasClass('test')).toBe(true);
-
     });
   });
 });
