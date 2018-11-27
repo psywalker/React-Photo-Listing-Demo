@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Search from './components/Search';
-import Filter from './components/Filter';
-import PhotoCard from './components/PhotoCard';
-import Spinner from './components/Spinner';
-import PaginationSelf from './components/Pagination';
-import filters from './filters';
+import Search from '../../components/Search';
+import Filter from '../../components/Filter';
+import PhotoCard from '../../components/PhotoCard';
+import Spinner from '../../components/Spinner';
+import PaginationSelf from '../../components/Pagination';
+import filters from '../../filters';
 import './App.css';
 
 class App extends Component {

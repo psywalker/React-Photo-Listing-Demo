@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import App from './App';
+import App from './pages/Home';
 import ComponentTest from './components/ComponentTest';
 
 const Main = () => (
