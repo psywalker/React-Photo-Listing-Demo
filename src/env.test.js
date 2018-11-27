@@ -5,9 +5,16 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('Test', () => {
+describe('test .env file', () => {
  
-    it('Test', () => {
-        expect(process.env.REACT_APP_PIXABAY_API_KEY).toEqual('5902386-0f23bc626123b6d6520f3ef4b'); 
+    it('test .env file on empty string', () => {
+        function isEmpty(str) {
+            if (str.trim() != '') 
+              return true;
+              
+            return false;
+          }
+        expect(typeof process.env.REACT_APP_PIXABAY_API_KEY).toEqual('string');
+        expect(isEmpty(process.env.REACT_APP_PIXABAY_API_KEY)).toEqual(true);  
     });
 });
