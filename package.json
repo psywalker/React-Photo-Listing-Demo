@@ -2,7 +2,6 @@
   "name": "React-Photo-Listing-Demo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://psywalker.github.io/React-Photo-Listing-Demo",
   "dependencies": {
     "axios": "^0.18.0",
     "mdbreact": "^4.8.2",
