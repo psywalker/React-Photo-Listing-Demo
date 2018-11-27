@@ -89,4 +89,22 @@ describe('Test of component of Pagination', () => {
     const i = getPageNumbers(1, 20, 100);
     expect(i).toEqual(6);
   });
+
+  it('Test Pagination component: navigationItems array ', () => {
+    let navigationItems = generateNavItems(0, 20, 100, 10);
+    expect(navigationItems.length).toEqual(5);
+
+    navigationItems = generateNavItems(0, -10, -10, 1);
+    expect(navigationItems.length).toEqual(1);
+    expect(navigationItems[0]).toEqual(1);
+
+    navigationItems = generateNavItems(0, 1000, -10, 6000);
+    expect(navigationItems.length).toEqual(0);
+
+
+    navigationItems = generateNavItems(0, -10, 1000, 6000);
+    expect(navigationItems.length).toEqual(0);
+
+  });
+
 });
