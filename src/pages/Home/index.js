@@ -17,13 +17,13 @@ class App extends Component {
       cards: [],
       totalCards: 10,
       cardsData: {
-        q: '',
+        //q: '',
         page: 1,
         per_page: 20,
-        order: 'latest',
-        image_type: 'all',
-        orientation: 'all',
-        category: 'all',
+        //order: 'latest',
+        //image_type: 'all',
+        //orientation: 'all',
+        //category: 'all',
       },
       buttonsColor: [
         'primary',
@@ -44,21 +44,24 @@ class App extends Component {
   handleCardsPhotos = () => {
     const { cardsData } = this.state;
     this.setState({ isListingLoading: true });
-    const API_URL = `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}`;
-    let queryStr = '';
+    const API_URL = `&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
+    let queryStr = 'https://api.unsplash.com/photos?';
     Object.keys(cardsData).forEach((i) => {
       queryStr += `&${i}=${cardsData[i]}`;
     }, cardsData);
 
-    axios.get(`${API_URL}${queryStr}`)
+    
+    axios.get(`${queryStr}${API_URL}`)
       .then((res) => {
-        const cards = res.data.hits;
-      
+        const cards = res.data;
+        console.log('111::', res)
         this.setState({
           cards,
           isListingLoading: false,
-          totalCards: res.data.total
-        });
+          totalCards: parseInt(res.headers['x-total'], 10),
+        }); 
+
+
       })
       .catch(() => {
         console.log('pixabay API not responding');
@@ -170,7 +173,7 @@ class App extends Component {
                 {
                 cards.map(item => (
                   <li key={item.id} className="photo-list__item pl-3">
-                    <PhotoCard photoName={item.largeImageURL} title={item.user} tags={item.tags.split(',')} />
+                    <PhotoCard photoName={item.urls.full} title={item.user.first_name} />
                   </li>))
                 }
               </ul>
