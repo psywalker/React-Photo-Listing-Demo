@@ -1,0 +1,20 @@
+.photo {
+    width: 30%;
+    margin: 50px auto;
+}
+    .photo__img {
+        width: 100%;
+    }
+
+    .photo-card {
+        padding: 20px;
+    }
+
+    .card-body {
+        
+    }
+    .card-body > * {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
