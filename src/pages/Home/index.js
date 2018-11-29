@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Search from '../../components/Search';
 import PhotoCard from '../../components/PhotoCard';
+import NavTop from '../../components/NavTop';
 import Spinner from '../../components/Spinner';
 import PaginationSelf from '../../components/Pagination';
 import filters from '../../filters';
@@ -15,6 +16,7 @@ class App extends Component {
       isListingLoading: false,
       cards: [],
       totalCards: 10,
+      navTopItemActive: 0,
       cardsData: {
         query: '',
         page: 1,
@@ -73,15 +75,16 @@ class App extends Component {
       });
   };
 
-  handleFilterItemValue = (item) => {
+  handleFilterItemValue = (itemText, itemId) => {
     const { cardsData } = this.state;
     this.setState({
+      navTopItemActive: itemId,
       cardsData: {
         ...cardsData,
         page: 1,
-        [item.filterValue]: item.labelValue,
+        query: itemText,
       },
-    }, this.handleCardsPhotos);
+    }, ()=> {this.handleCardsPhotos('search')});
   };
 
   handleNavigationClick = (item) => {
@@ -146,7 +149,8 @@ class App extends Component {
       isListingLoading,
       buttonsColor,
       totalCards,
-      cardsData
+      cardsData,
+      navTopItemActive
     } = this.state;
 
     return (
@@ -160,8 +164,18 @@ class App extends Component {
 
         <div className="row">
           <div className="col-12">
-            <ul className="navigation-list">
-     
+            <ul className="nav-top">
+            {filts.map((item, i) => (
+                <li key={item.id} className={`nav-top__item ${item.border? 'nav-top__item_border-right': ''}`}>
+                  <NavTop 
+                    navTopItemActive={navTopItemActive}
+                    itemId={item.id}
+                    onFilterItemValue={this.handleFilterItemValue} 
+                    key={item.id} label={item.label} 
+                    filterValue={item.filterValue} 
+                  />
+                </li>))
+              }
             </ul>
           </div>
         </div>

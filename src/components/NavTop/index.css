@@ -1,0 +1,33 @@
+.nav-top {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0 0 30px;
+    padding: 0;
+}
+.nav-top__item {
+    margin-right: 12px;
+}
+.nav-top__item_border-right {
+    border-right: 1px solid #ddd;
+    padding-right: 12px;
+}
+.nav-top__btn {
+    display: block;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    line-height: 1;
+    font-size: 14px;
+    white-space: nowrap;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    outline: none;
+}
+
+.nav-top__btn:hover,
+.nav-top__btn:focus,
+.nav-top__btn_active {
+    color: #111;
+    outline: none;
+}

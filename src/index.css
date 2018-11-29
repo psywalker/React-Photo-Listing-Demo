@@ -52,6 +52,8 @@ code {
   padding: 0;
 }
 
+
+
 @media (min-width: 00px) and (max-width: 400px) {
   .filter__toggler {
     width: calc(100vw - 3rem);
