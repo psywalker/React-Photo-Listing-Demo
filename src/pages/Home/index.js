@@ -50,9 +50,7 @@ class App extends Component {
       queryStr += `&${i}=${cardsData[i]}`;
     }, cardsData);
 
-    console.log('111:::', `${queryStr}${API_URL}`)
-
-    axios.get(`https://api.unsplash.com/search/photos?page=1&query=office&client_id=49ad32d0834cd26409d2fdfe8edf42e1c9f5d32bc01b89bfdab3fd14a3826fc7`)
+    axios.get(`${queryStr}${API_URL}`)
       .then((res) => {
         const cards = res.data;
         console.log('222::', res)
@@ -61,8 +59,6 @@ class App extends Component {
           isListingLoading: false,
           totalCards: parseInt(res.headers['x-total'], 10),
         }); 
-
-
       })
       .catch(() => {
         console.log('pixabay API not responding');
