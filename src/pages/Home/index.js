@@ -50,7 +50,6 @@ class App extends Component {
       queryStr += `&${i}=${cardsData[i]}`;
     }, cardsData);
 
-    
     axios.get(`${queryStr}${API_URL}`)
       .then((res) => {
         const cards = res.data;
@@ -60,8 +59,6 @@ class App extends Component {
           isListingLoading: false,
           totalCards: parseInt(res.headers['x-total'], 10),
         }); 
-
-
       })
       .catch(() => {
         console.log('pixabay API not responding');
