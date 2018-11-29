@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Search from '../../components/Search';
-import Filter from '../../components/Filter';
 import PhotoCard from '../../components/PhotoCard';
 import Spinner from '../../components/Spinner';
 import PaginationSelf from '../../components/Pagination';
@@ -41,23 +40,31 @@ class App extends Component {
     this.handleCardsPhotos();
   };
 
-  handleCardsPhotos = () => {
+  handleCardsPhotos = (text) => {
     const { cardsData } = this.state;
     this.setState({ isListingLoading: true });
     const API_URL = `&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
     let queryStr = 'https://api.unsplash.com/photos?';
+    if(text === 'search') queryStr = 'https://api.unsplash.com/search/photos?';
     Object.keys(cardsData).forEach((i) => {
       queryStr += `&${i}=${cardsData[i]}`;
     }, cardsData);
-
+    console.log('111:::', `${queryStr}${API_URL}`)
     axios.get(`${queryStr}${API_URL}`)
       .then((res) => {
-        const cards = res.data;
-        console.log('222::', res)
+        console.log('222:::', res)
+
+        let cards = res.data;
+        let totalCards = parseInt(res.headers['x-total'], 10);
+        if(text === 'search') {
+          cards = res.data.results;
+          totalCards = res.data.total;
+        }
+
         this.setState({
           cards,
           isListingLoading: false,
-          totalCards: parseInt(res.headers['x-total'], 10),
+          totalCards,
         }); 
       })
       .catch(() => {
@@ -119,7 +126,7 @@ class App extends Component {
         query: text,
         page: 1,
       },
-    }, this.handleCardsPhotos);
+    }, ()=> {this.handleCardsPhotos('search')});
   }
 
   handleChangeInputValue = (text) => {
@@ -153,12 +160,8 @@ class App extends Component {
 
         <div className="row">
           <div className="col-12">
-            <ul className="filter-list">
-              {filts.map((item, i) => (
-                <li key={item.id} className="filter-list__item">
-                  <Filter onFilterItemValue={this.handleFilterItemValue} key={item.id} filters={item.items} activeFilter={item.defaultLabel} buttonColor={i < buttonsColor.length ? buttonsColor[i] : 'default'} />
-                </li>))
-              }
+            <ul className="navigation-list">
+     
             </ul>
           </div>
         </div>
@@ -176,6 +179,7 @@ class App extends Component {
               </ul>
             )
             }
+            {!totalCards && (<h2 className="cards__text-empty pl-3">No images were found for your request. Try to find more.</h2>)}
           </div>
         </div>
         <div className="row">
