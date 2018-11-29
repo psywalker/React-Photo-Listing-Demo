@@ -15,6 +15,7 @@ class PaginationSelf extends Component {
       itemNumbers: 10,
       navigationItems: [1],
     };
+
   }
 
   componentDidMount = () => {

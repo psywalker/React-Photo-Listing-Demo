@@ -3,8 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import App from './pages/Home';
 import Photo from './components/Photo';
 
-console.log('111::', process.env.REACT_APP_PATH)
-
 const Main = () => (
     <main>
       <Switch>

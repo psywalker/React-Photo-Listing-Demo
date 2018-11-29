@@ -9,9 +9,16 @@ class Search extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
-      inputValue: '',
+      inputValue: this.props.queryText,
     };
   }
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.queryText !== this.props.queryText) {
+      this.setState({
+        inputValue: this.props.queryText,
+      });
+    }
+  };
 
   submitSearch = (e) => {
     if(e.charCode === 13) {
@@ -29,6 +36,7 @@ class Search extends Component {
   };
 
   render() {
+
     return (
       <div className="flex-container">
         <FormInline className="md-form ml-3">
@@ -41,9 +49,11 @@ class Search extends Component {
 }
 
 Search.propTypes = {
+  queryText: PropTypes.string,
   getSearchInputValue: PropTypes.func,
 };
 Search.defaultProps = {
+  queryText: '',
   getSearchInputValue: () => {},
 };
 

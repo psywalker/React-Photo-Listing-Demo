@@ -18,6 +18,7 @@ class App extends Component {
       cards: [],
       totalCards: 10,
       navTopItemActive: 0,
+      queryText: '',
       cardsData: {
         query: '',
         page: 1,
@@ -86,7 +87,10 @@ class App extends Component {
         ...cardsData,
         page: item,
       },
-    }, this.handleCardsPhotos);
+    }, ()=> {
+      if(cardsData.query) this.handleCardsPhotos('search')
+      else this.handleCardsPhotos()
+    });
   };
 
   handleNavigationPrevClick = () => {
@@ -97,7 +101,10 @@ class App extends Component {
           ...cardsData,
           page: cardsData.page - 1,
         },
-      }, this.handleCardsPhotos);
+      }, ()=> {
+        if(cardsData.query) this.handleCardsPhotos('search')
+        else this.handleCardsPhotos()
+      });
     }
   };
 
@@ -109,7 +116,11 @@ class App extends Component {
           ...cardsData,
           page: cardsData.page + 1,
         },
-      }, this.handleCardsPhotos);
+      }, ()=> {
+        console.log('333::::', cardsData.query)
+        if(cardsData.query) this.handleCardsPhotos('search')
+        else this.handleCardsPhotos()
+      });
     }
   };
 
@@ -149,7 +160,7 @@ class App extends Component {
         { isListingLoading && (<Spinner />)}
         <div className="row">
           <div className="col-12">
-            <Search onSearchInputValue={this.handleSearchText} onChangeInputValue={this.handleChangeInputValue} />
+            <Search onSearchInputValue={this.handleSearchText} onChangeInputValue={this.handleChangeInputValue} queryText={cardsData.query} />
           </div>
         </div>
 
