@@ -1,7 +1,10 @@
 .badge {
     margin-right: 5px;
 }
-
+.photo-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
 .photo-card {
  
 }

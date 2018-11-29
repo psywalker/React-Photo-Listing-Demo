@@ -17,12 +17,12 @@ class App extends Component {
       isListingLoading: false,
       cards: [],
       totalCards: 10,
-      navTopItemActive: 0,
+      navTopItemActive: 2,
       queryText: '',
       cardsData: {
-        query: '',
+        query: 'wallpapers',
         page: 1,
-        per_page: 20,
+        per_page: 6,
         //order: 'latest',
         //image_type: 'all',
         //orientation: 'all',
@@ -35,27 +35,20 @@ class App extends Component {
     this.handleCardsPhotos();
   };
 
-  handleCardsPhotos = (text) => {
+  handleCardsPhotos = () => {
     const { cardsData } = this.state;
     this.setState({ isListingLoading: true });
     const API_URL = `&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
-    let queryStr = 'https://api.unsplash.com/photos?';
-    if(text === 'search') queryStr = 'https://api.unsplash.com/search/photos?';
+    let queryStr = 'https://api.unsplash.com/search/photos?';
     Object.keys(cardsData).forEach((i) => {
       queryStr += `&${i}=${cardsData[i]}`;
     }, cardsData);
-    console.log('111:::', `${queryStr}${API_URL}`)
     axios.get(`${queryStr}${API_URL}`)
       .then((res) => {
-        console.log('222:::', res)
 
-        let cards = res.data;
-        let totalCards = parseInt(res.headers['x-total'], 10);
-        if(text === 'search') {
-          cards = res.data.results;
-          totalCards = res.data.total;
-        }
-
+        const cards = res.data.results;
+        const totalCards = res.data.total;
+        
         this.setState({
           cards,
           isListingLoading: false,
@@ -77,7 +70,7 @@ class App extends Component {
         page: 1,
         query: itemText,
       },
-    }, ()=> {this.handleCardsPhotos('search')});
+    }, this.handleCardsPhotos);
   };
 
   handleNavigationClick = (item) => {
@@ -87,10 +80,7 @@ class App extends Component {
         ...cardsData,
         page: item,
       },
-    }, ()=> {
-      if(cardsData.query) this.handleCardsPhotos('search')
-      else this.handleCardsPhotos()
-    });
+    }, this.handleCardsPhotos);
   };
 
   handleNavigationPrevClick = () => {
@@ -101,10 +91,7 @@ class App extends Component {
           ...cardsData,
           page: cardsData.page - 1,
         },
-      }, ()=> {
-        if(cardsData.query) this.handleCardsPhotos('search')
-        else this.handleCardsPhotos()
-      });
+      }, this.handleCardsPhotos);
     }
   };
 
@@ -116,11 +103,7 @@ class App extends Component {
           ...cardsData,
           page: cardsData.page + 1,
         },
-      }, ()=> {
-        console.log('333::::', cardsData.query)
-        if(cardsData.query) this.handleCardsPhotos('search')
-        else this.handleCardsPhotos()
-      });
+      }, this.handleCardsPhotos);
     }
   };
 
@@ -132,7 +115,7 @@ class App extends Component {
         query: text,
         page: 1,
       },
-    }, ()=> {this.handleCardsPhotos('search')});
+    }, this.handleCardsPhotos);
   }
 
   handleChangeInputValue = (text) => {
@@ -190,7 +173,7 @@ class App extends Component {
                 cards.map(item => (
                   <li key={item.id} className="photo-list__item pl-3">
                     <Link to={`/photo/${item.id}`}>
-                      <PhotoCard photoName={item.urls.full} title={item.user.first_name} />
+                      <PhotoCard photoName={item.urls.regular} title={item.user.first_name} />
                     </Link>
                   </li>))
                 }
