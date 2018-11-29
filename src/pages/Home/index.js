@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Search from '../../components/Search';
 import PhotoCard from '../../components/PhotoCard';
@@ -26,15 +27,6 @@ class App extends Component {
         //orientation: 'all',
         //category: 'all',
       },
-      buttonsColor: [
-        'primary',
-        'warning',
-        'danger',
-        'success',
-        'elegant',
-        'ins',
-        'default',
-      ],
     };
   }
 
@@ -147,7 +139,6 @@ class App extends Component {
       filts,
       cards,
       isListingLoading,
-      buttonsColor,
       totalCards,
       cardsData,
       navTopItemActive
@@ -187,7 +178,9 @@ class App extends Component {
                 {
                 cards.map(item => (
                   <li key={item.id} className="photo-list__item pl-3">
-                    <PhotoCard photoName={item.urls.full} title={item.user.first_name} />
+                    <Link to={`/photo/${item.id}`}>
+                      <PhotoCard photoName={item.urls.full} title={item.user.first_name} />
+                    </Link>
                   </li>))
                 }
               </ul>

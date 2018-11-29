@@ -8,7 +8,12 @@
 
     .photo-card {
         padding: 20px;
+        cursor: pointer;
     }
+    .photo-card > .view {
+        cursor: pointer;
+    }
+
 
     .card-body {
         
