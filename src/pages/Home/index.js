@@ -17,7 +17,7 @@ class App extends Component {
       cards: [],
       totalCards: 10,
       cardsData: {
-        //q: '',
+        query: '',
         page: 1,
         per_page: 20,
         //order: 'latest',
@@ -50,11 +50,12 @@ class App extends Component {
       queryStr += `&${i}=${cardsData[i]}`;
     }, cardsData);
 
-    
-    axios.get(`${queryStr}${API_URL}`)
+    console.log('111:::', `${queryStr}${API_URL}`)
+
+    axios.get(`https://api.unsplash.com/search/photos?page=1&query=office&client_id=49ad32d0834cd26409d2fdfe8edf42e1c9f5d32bc01b89bfdab3fd14a3826fc7`)
       .then((res) => {
         const cards = res.data;
-        console.log('111::', res)
+        console.log('222::', res)
         this.setState({
           cards,
           isListingLoading: false,
@@ -119,7 +120,7 @@ class App extends Component {
     this.setState({
       cardsData: {
         ...cardsData,
-        q: text,
+        query: text,
         page: 1,
       },
     }, this.handleCardsPhotos);
@@ -130,7 +131,7 @@ class App extends Component {
     this.setState({
       cardsData: {
         ...cardsData,
-        q: text,
+        query: text,
       },
     });
   }
