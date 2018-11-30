@@ -24,7 +24,6 @@ class User extends Component {
         const API_URL = `https://api.unsplash.com/users/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
         axios.get(API_URL)
         .then((res) => {
-            console.log('222', res)
             const userName = res.data.first_name;
             const userLastName = res.data.last_name;
             const userPhoto = res.data.profile_image.large;

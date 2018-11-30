@@ -6,9 +6,9 @@ import NavTop from '../../components/NavTop';
 import Spinner from '../../components/Spinner';
 import PaginationSelf from '../../components/Pagination';
 import filters from '../../filters';
-import './App.css';
+import './home.css';
 
-class App extends Component {
+class Home extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
@@ -22,10 +22,6 @@ class App extends Component {
         query: 'wallpapers',
         page: 1,
         per_page: 6,
-        //order: 'latest',
-        //image_type: 'all',
-        //orientation: 'all',
-        //category: 'all',
       },
       buttonsColor: [
         'primary',
@@ -216,4 +212,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;
