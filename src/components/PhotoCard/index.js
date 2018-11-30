@@ -1,6 +1,7 @@
 import React from 'react';
 import './PhotoCard.css';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardBody,
@@ -17,14 +18,16 @@ const COLOR_LIST = [
   'orange',
   'green',
 ];
-const PhotoCard = ({ tags, photoName, title }) => (
+const PhotoCard = ({ tags, photoName, title, buttonColor, photoID }) => (
   <Card className="photo-card">
-    <CardImage className="img-fluid photo-card__img" src={photoName} />
+    <Link to={`/photo/${photoID}`}>
+      <CardImage className="img-fluid photo-card__img" src={photoName} />
+    </Link>
     <CardBody>
       <CardTitle>{title}</CardTitle>
       {tags.map((item, i) => (
-        <Badge key={item} tag="a" href="#!" color={i < COLOR_LIST.length ? COLOR_LIST[i] : 'default'}>
-          { item }
+        <Badge key={item.title} tag="a" href="#!" color={i < COLOR_LIST.length ? COLOR_LIST[i] : 'default'}>
+          { item.title }
         </Badge>))
       }
     </CardBody>
@@ -33,12 +36,14 @@ const PhotoCard = ({ tags, photoName, title }) => (
 PhotoCard.propTypes = {
   photoName: PropTypes.string,
   title: PropTypes.string,
-  tags: PropTypes.arrayOf(PropTypes.string),
+  tags: PropTypes.arrayOf(PropTypes.object),
+  buttonColor: PropTypes.string,
 };
 PhotoCard.defaultProps = {
   photoName: '',
   title: 'Noname',
   tags: [],
+  buttonColor: 'default',
 
 };
 

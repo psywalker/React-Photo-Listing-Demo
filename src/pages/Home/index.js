@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Search from '../../components/Search';
 import PhotoCard from '../../components/PhotoCard';
@@ -28,6 +27,15 @@ class App extends Component {
         //orientation: 'all',
         //category: 'all',
       },
+      buttonsColor: [
+        'primary',
+        'warning',
+        'danger',
+        'success',
+        'elegant',
+        'ins',
+        'default',
+      ],
     };
   }
 
@@ -135,9 +143,10 @@ class App extends Component {
       isListingLoading,
       totalCards,
       cardsData,
-      navTopItemActive
+      navTopItemActive,
+      buttonsColor,
     } = this.state;
-
+    //const tags = Object.values(obj);
     return (
       <div className="App">
         { isListingLoading && (<Spinner />)}
@@ -157,7 +166,8 @@ class App extends Component {
                     itemId={item.id}
                     onFilterItemValue={this.handleFilterItemValue} 
                     key={item.id} label={item.label} 
-                    filterValue={item.filterValue} 
+                    filterValue={item.filterValue}
+                    
                   />
                 </li>))
               }
@@ -170,11 +180,15 @@ class App extends Component {
             {!isListingLoading && (
               <ul className="photo-list">
                 {
-                cards.map(item => (
+                cards.map((item, index) => (
                   <li key={item.id} className="photo-list__item pl-3">
-                    <Link to={`/photo/${item.id}`}>
-                      <PhotoCard photoName={item.urls.regular} title={item.user.first_name} />
-                    </Link>
+                      <PhotoCard 
+                        photoName={item.urls.regular} 
+                        title={item.user.first_name} 
+                        buttonColor={index < buttonsColor.length ? buttonsColor[index] : 'default'} 
+                        tags={item.photo_tags}  
+                        photoID={item.id}
+                      />
                   </li>))
                 }
               </ul>
