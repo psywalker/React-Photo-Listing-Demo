@@ -85,7 +85,6 @@ class App extends Component {
 
   handleNavigationClick = (item) => {
     const { cardsData } = this.state;
-    console.log('444::', item)
     this.setState({
       cardsData: {
         ...cardsData,
@@ -148,7 +147,6 @@ class App extends Component {
       cardsData,
       navTopItemActive,
     } = this.state;
-    //const tags = Object.values(obj);
     return (
       <div className="App">
         { isListingLoading && (<Spinner />)}

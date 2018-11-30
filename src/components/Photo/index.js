@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
     Card,
     CardBody,
@@ -16,6 +17,7 @@ class Photo extends Component {
         photoID: 1,
         userId: 'User',
         userName: 'UserName',
+        userNic: 'UserNic',
         userLastName: '',
         userPortfolioUrl: '',
         photoCreated: '',
@@ -25,9 +27,6 @@ class Photo extends Component {
     componentDidMount = () => {
         this.handlePhotoQuery();
     };
-    componentDidUpdate = (prevProps, prevState) => {
-        //this.handlePhotoQuery();
-    };
 
     handlePhotoQuery = () => {
         const { match } = this.props;
@@ -35,11 +34,11 @@ class Photo extends Component {
         
         axios.get(API_URL)
         .then((res) => {
-
             const photoSrc = res.data.urls.full;
             const photoID = match.params.id;
             const userId = res.data.user.id;
             const userName = res.data.user.first_name;
+            const userNic = res.data.user.username;
             const userLastName = res.data.user.last_name;
             const userPortfolioUrl = res.data.user.portfolio_url;
             const photoCreated = res.data.created_at;
@@ -52,6 +51,7 @@ class Photo extends Component {
                 userLastName,
                 userPortfolioUrl,
                 photoCreated,
+                userNic,
             });
         })
         .catch(() => {
@@ -66,6 +66,7 @@ class Photo extends Component {
             userName,
             userLastName,
             userPortfolioUrl,
+            userNic,
          } = this.state;
 
         return (
@@ -74,7 +75,9 @@ class Photo extends Component {
                 <CardImage className="img-fluid photo-card__img" src={photoSrc} />
                 <CardBody>
                     <h1>Photo ID: {photoID}</h1>
-                    <h2>Autor: {userName} {userLastName}</h2>
+                    <Link to={`/users/${userNic}`}>
+                        <h2>Autor: {userName} {userLastName}</h2>
+                    </Link>
                     <a href={userPortfolioUrl}>Autor's portfolio link</a>
 
                 </CardBody>
