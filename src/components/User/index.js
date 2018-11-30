@@ -21,7 +21,7 @@ class User extends Component {
 
     handleUserQuery = () => {
         const { match } = this.props;
-        const API_URL = `https://api.unsplash.com/users/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
+        const API_URL = `${process.env.REACT_APP_UNSPLASH_API_NAME}users/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
         axios.get(API_URL)
         .then((res) => {
             const userName = res.data.first_name;

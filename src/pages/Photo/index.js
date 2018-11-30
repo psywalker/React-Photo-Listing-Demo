@@ -30,7 +30,7 @@ class Photo extends Component {
 
     handlePhotoQuery = () => {
         const { match } = this.props;
-        const API_URL = `https://api.unsplash.com/photos/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
+        const API_URL = `${process.env.REACT_APP_UNSPLASH_API_NAME}photos/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
         
         axios.get(API_URL)
         .then((res) => {
