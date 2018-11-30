@@ -188,6 +188,7 @@ class App extends Component {
                         buttonColor={index < buttonsColor.length ? buttonsColor[index] : 'default'} 
                         tags={item.photo_tags}  
                         photoID={item.id}
+                        userAvatar={item.user.profile_image.small}
                       />
                   </li>))
                 }

@@ -8,13 +8,25 @@
 
     .photo-card {
         padding: 20px;
+       
+    }
+    .photo-card .view {
         cursor: pointer;
     }
-    .photo-card > .view {
-        cursor: pointer;
+    .photo-card__user-ava {
+        border-radius: 100%;
+        margin-right: 4px;
+        width: 22px;
     }
 
 
     .card-body {
-        
+        text-align: center;
+    }
+
+    .card-title {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
