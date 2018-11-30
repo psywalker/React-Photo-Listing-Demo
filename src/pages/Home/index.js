@@ -43,6 +43,7 @@ class App extends Component {
     this.handleCardsPhotos();
   };
 
+
   handleCardsPhotos = () => {
     const { cardsData } = this.state;
     this.setState({ isListingLoading: true });
@@ -51,6 +52,7 @@ class App extends Component {
     Object.keys(cardsData).forEach((i) => {
       queryStr += `&${i}=${cardsData[i]}`;
     }, cardsData);
+
     axios.get(`${queryStr}${API_URL}`)
       .then((res) => {
 
@@ -83,6 +85,7 @@ class App extends Component {
 
   handleNavigationClick = (item) => {
     const { cardsData } = this.state;
+    console.log('444::', item)
     this.setState({
       cardsData: {
         ...cardsData,
@@ -203,6 +206,7 @@ class App extends Component {
             <PaginationSelf
               totalCards={totalCards}
               perPage={cardsData.per_page}
+              navItem={cardsData.query}
               onNavigationClick={this.handleNavigationClick}
               onNavigationPrevClick={this.handleNavigationPrevClick}
               onNavigationNextClick={this.handleNavigationNextClick}
