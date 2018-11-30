@@ -144,7 +144,6 @@ class App extends Component {
       totalCards,
       cardsData,
       navTopItemActive,
-      buttonsColor,
     } = this.state;
     //const tags = Object.values(obj);
     return (
@@ -185,10 +184,10 @@ class App extends Component {
                       <PhotoCard 
                         photoName={item.urls.regular} 
                         title={item.user.first_name} 
-                        buttonColor={index < buttonsColor.length ? buttonsColor[index] : 'default'} 
                         tags={item.photo_tags}  
                         photoID={item.id}
                         userAvatar={item.user.profile_image.small}
+                        onSearchTagValue={this.handleSearchText}
                       />
                   </li>))
                 }
