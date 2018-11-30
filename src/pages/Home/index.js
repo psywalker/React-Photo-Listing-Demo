@@ -186,6 +186,7 @@ class App extends Component {
                         title={item.user.first_name} 
                         tags={item.photo_tags}  
                         photoID={item.id}
+                        userID={item.user.username}
                         userAvatar={item.user.profile_image.small}
                         onSearchTagValue={this.handleSearchText}
                       />
