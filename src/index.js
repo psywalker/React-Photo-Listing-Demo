@@ -5,7 +5,7 @@ import "font-awesome/css/font-awesome.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import './index.css';
-import Main from './Main';
+import Main from './router';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<BrowserRouter basename={process.env.REACT_APP_PATH|| '/'}><Main /></BrowserRouter>, document.getElementById('root'));
