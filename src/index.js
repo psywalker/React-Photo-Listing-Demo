@@ -9,7 +9,7 @@ import './index.css';
 import Main from './router';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<BrowserRouter basename={process.env.REACT_APP_PATH|| '/'}><LastLocationProvider><Main /></LastLocationProvider></BrowserRouter>, document.getElementById('root'));
+ReactDOM.render(<BrowserRouter basename={process.env.PUBLIC_URL|| '/'}><LastLocationProvider><Main /></LastLocationProvider></BrowserRouter>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
