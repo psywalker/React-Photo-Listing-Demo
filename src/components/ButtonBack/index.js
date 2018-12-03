@@ -3,8 +3,9 @@ import { MDBBtn } from "mdbreact";
 import { withRouter } from 'react-router-dom'
 import { withLastLocation } from 'react-router-last-location';
 
-const ButtonBack = withRouter(({ history, lastLocation }) => (
-    <MDBBtn
+const ButtonBack = withRouter(({ history, lastLocation }) => {
+  if (!lastLocation) return false;
+  return (<MDBBtn
       color="danger"
       type='button'
       onClick={() => {
@@ -12,7 +13,7 @@ const ButtonBack = withRouter(({ history, lastLocation }) => (
       }}
     >
       ← Come back
-    </MDBBtn>
-  ))
+    </MDBBtn>)
+})
 
   export default withLastLocation(ButtonBack);

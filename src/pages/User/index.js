@@ -13,7 +13,6 @@ class User extends Component {
         userPhoto: '',
         userFirstPhoto: '',
         userPortfolioUrl: '',
-        lastLocation: false,
       }
     }
 
@@ -22,7 +21,7 @@ class User extends Component {
     };
 
     handleUserQuery = () => {
-        const { match, history, lastLocation } = this.props;
+        const { match, history } = this.props;
         const API_URL = `${process.env.REACT_APP_UNSPLASH_API_NAME}users/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
         axios.get(API_URL)
         .then((res) => {
@@ -38,7 +37,6 @@ class User extends Component {
                 userPhoto,
                 userFirstPhoto,
                 userPortfolioUrl,
-                lastLocation: lastLocation ?  true : false,
             });
         })
         .catch(() => {
@@ -54,7 +52,6 @@ class User extends Component {
             userLastName,
             userPortfolioUrl,
             userFirstPhoto,
-            lastLocation,
          } = this.state;
         return (
         <div className="user">
@@ -64,9 +61,9 @@ class User extends Component {
                 <CardBody>
                     <h2>{userName} {userLastName}</h2>
                     <a href={userPortfolioUrl}>{`${userName}'s`} portfolio link</a>
-                    {lastLocation && (<div>
+                    <div>
                         <ButtonBack />
-                    </div>)}
+                    </div>
                 </CardBody>
             </Card>
         </div>

@@ -21,7 +21,6 @@ class Photo extends Component {
         userLastName: '',
         userPortfolioUrl: '',
         photoCreated: '',
-        lastLocation: false,
       }
     }
 
@@ -30,9 +29,9 @@ class Photo extends Component {
     };
 
     handlePhotoQuery = () => {
-        const { match, history, lastLocation } = this.props;
+        const { match, history } = this.props;
         const API_URL = `${process.env.REACT_APP_UNSPLASH_API_NAME}photos/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
-        
+
         axios.get(API_URL)
         .then((res) => {
             const photoSrc = res.data.urls.full;
@@ -51,10 +50,9 @@ class Photo extends Component {
                 userPortfolioUrl,
                 photoCreated,
                 userNic,
-                lastLocation: lastLocation ?  true : false,
             });
         })
-        .catch(() => {
+        .catch((err, error) => {
           console.log('api.unsplash not responding');
           history.push('/') 
         });
@@ -66,7 +64,6 @@ class Photo extends Component {
             userLastName,
             userPortfolioUrl,
             userNic,
-            lastLocation,
          } = this.state;
 
         return (
@@ -78,9 +75,9 @@ class Photo extends Component {
                         <h2>Autor: {userName} {userLastName}</h2>
                     </Link>
                     <a href={userPortfolioUrl}>Autor's portfolio link</a>
-                    {lastLocation && (<div>
+                    <div>
                         <ButtonBack />
-                    </div>)}
+                    </div>
                     
                 </CardBody>
             </Card>
