@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { LastLocationProvider } from 'react-router-last-location';
-import Button from '../../components/Button';
+import ButtonBack from '../../components/ButtonBack';
 import {
     Card,
     CardBody,
@@ -76,9 +75,10 @@ class Photo extends Component {
                         <h2>Autor: {userName} {userLastName}</h2>
                     </Link>
                     <a href={userPortfolioUrl}>Autor's portfolio link</a>
-                    <LastLocationProvider>
-                        <Button />
-                    </LastLocationProvider>
+                    <div>
+                        <ButtonBack />
+                    </div>
+                    
                 </CardBody>
             </Card>
         </div>

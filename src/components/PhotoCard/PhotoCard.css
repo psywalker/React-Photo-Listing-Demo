@@ -9,12 +9,12 @@
  
 }
 
-.photo-card .Ripple-parent {
+div.photo-card .view .Ripple-parent {
     position: relative;
     padding-bottom: 75%;
 }
 
-.photo-card .photo-card__img {
+div.photo-card  .view .photo-card__img {
     position: absolute;
     height: 100%;
     max-width: none;

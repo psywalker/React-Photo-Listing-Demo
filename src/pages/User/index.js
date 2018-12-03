@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardBody } from 'mdbreact';
+import ButtonBack from '../../components/ButtonBack';
 import axios from 'axios';
 import './user.css';
 
@@ -60,6 +61,9 @@ class User extends Component {
                 <CardBody>
                     <h2>{userName} {userLastName}</h2>
                     <a href={userPortfolioUrl}>{`${userName}'s`} portfolio link</a>
+                    <div>
+                        <ButtonBack />
+                    </div>
                 </CardBody>
             </Card>
         </div>
