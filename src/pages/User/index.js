@@ -23,7 +23,6 @@ class User extends Component {
 
     handleUserQuery = () => {
         const { match, history, lastLocation } = this.props;
-        console.log('2222::', history, lastLocation)
         const API_URL = `${process.env.REACT_APP_UNSPLASH_API_NAME}users/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
         axios.get(API_URL)
         .then((res) => {
