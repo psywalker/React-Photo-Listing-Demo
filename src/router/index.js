@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from '../pages/Home/Home';
 import Photo from '../pages/Photo';
-import User from '../components/User';
+import User from '../pages/User';
 
 const Main = () => (
       <Switch>

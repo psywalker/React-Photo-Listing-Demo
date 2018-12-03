@@ -14,7 +14,6 @@ class Photo extends Component {
       super(...args);
       this.state = {
         photoSrc: null,
-        photoID: 1,
         userId: 'User',
         userName: 'UserName',
         userNic: 'UserNic',
@@ -35,7 +34,6 @@ class Photo extends Component {
         axios.get(API_URL)
         .then((res) => {
             const photoSrc = res.data.urls.full;
-            const photoID = match.params.id;
             const userId = res.data.user.id;
             const userName = res.data.user.first_name;
             const userNic = res.data.user.username;
@@ -45,7 +43,6 @@ class Photo extends Component {
   
             this.setState({
                 photoSrc,
-                photoID,
                 userId,
                 userName,
                 userLastName,
@@ -62,7 +59,6 @@ class Photo extends Component {
     render() {
         const { 
             photoSrc,
-            photoID,
             userName,
             userLastName,
             userPortfolioUrl,
@@ -74,12 +70,10 @@ class Photo extends Component {
             <Card className="photo-card">
                 <CardImage className="img-fluid photo-card__img" src={photoSrc} />
                 <CardBody>
-                    <h1>Photo ID: {photoID}</h1>
                     <Link to={`/users/${userNic}`}>
                         <h2>Autor: {userName} {userLastName}</h2>
                     </Link>
                     <a href={userPortfolioUrl}>Autor's portfolio link</a>
-
                 </CardBody>
             </Card>
         </div>
