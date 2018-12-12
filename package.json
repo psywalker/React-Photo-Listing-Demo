@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://psywalker.github.io/React-Photo-Listing-Demo/",
   "dependencies": {
+    "antd": "^3.11.2",
     "axios": "^0.18.0",
     "mdbreact": "^4.8.2",
     "prop-types": "^15.6.2",

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Pagination } from 'antd';
 import Search from '../../components/Search';
 import PhotoCard from '../../components/PhotoCard';
 import NavTop from '../../components/NavTop';
 import Spinner from '../../components/Spinner';
-import PaginationSelf from '../../components/Pagination';
 import filters from '../../filters';
 import './home.css';
+import 'antd/dist/antd.css';
 
 class Home extends Component {
   constructor(...args) {
@@ -38,7 +39,17 @@ class Home extends Component {
   componentDidMount = () => {
     this.handleCardsPhotos();
   };
+  handlePaginationChange = (current) => { 
+    const { cardsData } = this.state;
 
+    this.setState({
+      cardsData: {
+        ...cardsData,
+        page: current,
+      },
+    }, this.handleCardsPhotos);
+
+  };
 
   handleCardsPhotos = () => {
     const { cardsData } = this.state;
@@ -74,40 +85,6 @@ class Home extends Component {
         query: itemText,
       },
     }, this.handleCardsPhotos);
-  };
-
-  handleNavigationClick = (item) => {
-    const { cardsData } = this.state;
-    this.setState({
-      cardsData: {
-        ...cardsData,
-        page: item,
-      },
-    }, this.handleCardsPhotos);
-  };
-
-  handleNavigationPrevClick = () => {
-    const { cardsData } = this.state;
-    if (cardsData.page) {
-      this.setState({
-        cardsData: {
-          ...cardsData,
-          page: cardsData.page - 1,
-        },
-      }, this.handleCardsPhotos);
-    }
-  };
-
-  handleNavigationNextClick = () => {
-    const { cardsData, totalCards } = this.state;
-    if (cardsData.page <= totalCards) {
-      this.setState({
-        cardsData: {
-          ...cardsData,
-          page: cardsData.page + 1,
-        },
-      }, this.handleCardsPhotos);
-    }
   };
 
   handleSearchText = (text) => {
@@ -194,14 +171,7 @@ class Home extends Component {
         </div>
         <div className="row">
           <div className="col-12">
-            <PaginationSelf
-              totalCards={totalCards}
-              perPage={cardsData.per_page}
-              navItem={cardsData.query}
-              onNavigationClick={this.handleNavigationClick}
-              onNavigationPrevClick={this.handleNavigationPrevClick}
-              onNavigationNextClick={this.handleNavigationNextClick}
-            />
+            <Pagination className="ml-3" showSizeChanger onChange={this.handlePaginationChange} current={cardsData.page} defaultCurrent={1} total={totalCards} />
           </div>
         </div>
       </div>
