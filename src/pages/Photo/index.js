@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ButtonBack from '../../components/ButtonBack';
 import Spinner from '../../components/Spinner';
-import {
-    Card,
-    CardBody,
-    CardImage,
-  } from 'mdbreact';
+import { Card } from "antd";
 import axios from 'axios';
 import './photo.css';
 
@@ -72,23 +68,25 @@ class Photo extends Component {
          } = this.state;
 
         return (
-        <div className="photo-container">
+        <div className="photo-container photo">
             { isListingLoading && (<Spinner />)}
-            <div className="photo">
-                <Card className="photo-card">
-                    <CardImage className="img-fluid photo-card__img" src={photoSrc} />
-                    <CardBody>
-                        <Link to={`/users/${userNic}`}>
-                            <h2>Autor: {userName} {userLastName}</h2>
-                        </Link>
-                        <a className="photo-card__autor-link" href={userPortfolioUrl}>Autor's portfolio link</a>
-                        <div>
-                            <ButtonBack />
-                        </div>
-                        
-                    </CardBody>
-                </Card>
-            </div>
+            <Card
+                style={{ width: '100%' }}
+                cover={<img
+                    className="photo__img"
+                    alt="example"
+                    src={photoSrc}
+                    />
+                }
+            >
+                <Link to={`/users/${userNic}`}>
+                    <h2>Autor: {userName} {userLastName}</h2>
+                </Link>
+                <a className="photo__autor-link" href={userPortfolioUrl}>Autor's portfolio link</a>
+                <div className="photo__btn-go-back">
+                    <ButtonBack />
+                </div>
+            </Card>
         </div>
         );
     }

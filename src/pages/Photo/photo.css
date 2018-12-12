@@ -5,7 +5,9 @@
     .photo__img {
         width: 100%;
     }
-
+    .photo__btn-go-back {
+        margin-top: 10px;
+    }
     .photo-card {
         padding: 20px;
        

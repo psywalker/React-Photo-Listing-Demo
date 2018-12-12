@@ -1,19 +1,18 @@
 import React from 'react';
-import { MDBBtn } from "mdbreact";
+import { Button, Icon } from 'antd';
 import { withRouter } from 'react-router-dom'
 import { withLastLocation } from 'react-router-last-location';
 
 const ButtonBack = withRouter(({ history, lastLocation }) => {
   if (!lastLocation) return false;
-  return (<MDBBtn
-      color="danger"
-      type='button'
+  return (<Button
+      type='primary'
       onClick={() => {
         history.push(lastLocation.pathname) 
       }}
     >
-      ← Come back
-    </MDBBtn>)
+      <Icon type="left" />Go back
+    </Button>)
 })
 
   export default withLastLocation(ButtonBack);
