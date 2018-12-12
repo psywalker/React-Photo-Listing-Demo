@@ -2,9 +2,25 @@
     margin: 50px auto;
     max-width: 300px;
 }
-
+.user .ant-card-body {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+.user-card__photo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: -45px;
+}
+.user-card__title {
+    font-size: 18px;
+    margin: 10px 0;
+}
 .user-card {
     padding: 20px;
+}
+.user-card__btn-go-back {
+    margin-top: 10px;
 }
 .user-card__first-img {
     width: 100%;

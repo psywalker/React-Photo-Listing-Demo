@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardBody } from 'mdbreact';
+import { Card } from "antd";
 import ButtonBack from '../../components/ButtonBack';
 import Spinner from '../../components/Spinner';
 import axios from 'axios';
@@ -62,16 +62,25 @@ class User extends Component {
         <div className="user-container">
             { isListingLoading && (<Spinner />)}
             <div className="user">
-                <Card className="user-card">
-                    <img className="user-card__first-img" src={userFirstPhoto} alt="" />
-                    <img className="user-card__photo" src={userPhoto} alt="" />
-                    <CardBody>
-                        <h2 className="user-card__title">{userName} {userLastName}</h2>
-                        <a className="user-card__link-portfolio" href={userPortfolioUrl}>{`${userName}'s`} portfolio link</a>
-                        <div>
-                            <ButtonBack />
-                        </div>
-                    </CardBody>
+                <Card
+                    className="user-card"
+                    style={{ width: '100%' }}
+                    cover={
+                        <img
+                        className="user-card__first-img"
+                        alt="example"
+                        src={userFirstPhoto}
+                        />
+                    }
+                >
+                    <div className="user-card__photo-wrap">
+                        <img className="user-card__photo" src={userPhoto} alt="" />
+                    </div>
+                    <h2 className="user-card__title">{userName} {userLastName}</h2>
+                    <a className="user-card__link-portfolio" href={userPortfolioUrl}>{`${userName}'s`} portfolio link</a>
+                    <div className="user-card__btn-go-back">
+                        <ButtonBack />
+                    </div>
                 </Card>
             </div>
         </div>
