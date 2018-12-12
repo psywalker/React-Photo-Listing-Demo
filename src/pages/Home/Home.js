@@ -43,15 +43,12 @@ class Home extends Component {
   handleCardsPhotos = () => {
     const { cardsData } = this.state;
     this.setState({ isListingLoading: true });
-    const API_URL = `&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
-    let queryStr = 'https://api.unsplash.com/search/photos?';
-    Object.keys(cardsData).forEach((i) => {
-      queryStr += `&${i}=${cardsData[i]}`;
-    }, cardsData);
-
-    axios.get(`${queryStr}${API_URL}`)
-      .then((res) => {
-
+    axios.get('https://api.unsplash.com/search/photos?', {
+      params: {
+        ...cardsData, 
+        client_id: process.env.REACT_APP_UNSPLASH_API_KEY
+      },
+    }).then((res) => {
         const cards = res.data.results;
         const totalCards = res.data.total;
         
