@@ -5,19 +5,25 @@
     max-width: 900px;
     margin: 0 auto;
 }
-.photo-card {
- 
+div.photo-card-self .photo-card-self__link-ava {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
 }
-
-div.photo-card .view .Ripple-parent {
+div.photo-card-self .photo-card-self__badge {
+    margin: 5px 3px;
+    cursor: pointer;
+}
+div.photo-card-self .photo-card__photo-link {
     position: relative;
     padding-bottom: 75%;
 }
 
-div.photo-card  .view .photo-card__img {
+div.photo-card-self .photo-card__img {
     position: absolute;
     height: 100%;
     max-width: none;
     left: 50%;
     transform: translate(-50%,0);
+    max-width: 100%;
 }
