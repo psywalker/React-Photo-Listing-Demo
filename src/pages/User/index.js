@@ -59,8 +59,8 @@ class User extends Component {
                 <img className="user-card__first-img" src={userFirstPhoto} alt="" />
                 <img className="user-card__photo" src={userPhoto} alt="" />
                 <CardBody>
-                    <h2>{userName} {userLastName}</h2>
-                    <a href={userPortfolioUrl}>{`${userName}'s`} portfolio link</a>
+                    <h2 className="user-card__title">{userName} {userLastName}</h2>
+                    <a className="user-card__link-portfolio" href={userPortfolioUrl}>{`${userName}'s`} portfolio link</a>
                     <div>
                         <ButtonBack />
                     </div>
