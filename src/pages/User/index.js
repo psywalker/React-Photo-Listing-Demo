@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardBody } from 'mdbreact';
 import ButtonBack from '../../components/ButtonBack';
+import Spinner from '../../components/Spinner';
 import axios from 'axios';
 import './user.css';
 
@@ -8,6 +9,7 @@ class User extends Component {
     constructor(...args) {
       super(...args);
       this.state = {
+        isListingLoading: false,
         userName: '',
         userLastName: '',
         userPhoto: '',
@@ -22,6 +24,7 @@ class User extends Component {
 
     handleUserQuery = () => {
         const { match, history } = this.props;
+        this.setState({ isListingLoading: true });
         const API_URL = `${process.env.REACT_APP_UNSPLASH_API_NAME}users/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
         axios.get(API_URL)
         .then((res) => {
@@ -32,6 +35,7 @@ class User extends Component {
             const userFirstPhoto = res.data.photos[0].urls.regular;
 
             this.setState({
+                isListingLoading: false,
                 userName,
                 userLastName,
                 userPhoto,
@@ -47,6 +51,7 @@ class User extends Component {
 
     render() {
         const { 
+            isListingLoading,
             userPhoto,
             userName,
             userLastName,
@@ -54,18 +59,21 @@ class User extends Component {
             userFirstPhoto,
          } = this.state;
         return (
-        <div className="user">
-            <Card className="user-card">
-                <img className="user-card__first-img" src={userFirstPhoto} alt="" />
-                <img className="user-card__photo" src={userPhoto} alt="" />
-                <CardBody>
-                    <h2 className="user-card__title">{userName} {userLastName}</h2>
-                    <a className="user-card__link-portfolio" href={userPortfolioUrl}>{`${userName}'s`} portfolio link</a>
-                    <div>
-                        <ButtonBack />
-                    </div>
-                </CardBody>
-            </Card>
+        <div className="user-container">
+            { isListingLoading && (<Spinner />)}
+            <div className="user">
+                <Card className="user-card">
+                    <img className="user-card__first-img" src={userFirstPhoto} alt="" />
+                    <img className="user-card__photo" src={userPhoto} alt="" />
+                    <CardBody>
+                        <h2 className="user-card__title">{userName} {userLastName}</h2>
+                        <a className="user-card__link-portfolio" href={userPortfolioUrl}>{`${userName}'s`} portfolio link</a>
+                        <div>
+                            <ButtonBack />
+                        </div>
+                    </CardBody>
+                </Card>
+            </div>
         </div>
         );
     }
