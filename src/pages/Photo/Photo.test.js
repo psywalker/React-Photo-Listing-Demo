@@ -17,10 +17,14 @@ describe('Test of component of Photo', () => {
     }
 
     const photo = shallow(<Photo {...props} />);
-    //photo.instance().handlePhotoQuery();
-    //expect(photo.state('userNic')).toEqual('Ricardo Frantz');
-    photo.setState({ userName: 'User111', userNic: 'url' });
-    console.log(photo.debug());
-    //expect(filter.state().showDropdown).toEqual(false);
+    photo.setState({ 
+      userName: 'User111', 
+      userNic: 'url',
+      userPortfolioUrl: 'linkUrl',
+    }); 
+    expect(photo.find('h2').text()).toEqual("Autor: User111 ");
+    expect(photo.find('Link').prop('to')).toEqual("/users/url");
+    expect(photo.find('.photo-card__autor-link').prop('href')).toEqual("linkUrl");
+    expect(photo).toMatchSnapshot();
   });
 });

@@ -1,0 +1,477 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test of component of Photo Initial 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Photo
+    match={
+      Object {
+        "params": Object {
+          "id": "sC-BXbi9ajw",
+        },
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <t
+        className="photo-card"
+        tag="div"
+      >
+        <t
+          cascade={false}
+          className="img-fluid photo-card__img"
+          hover={false}
+          overlay="white-slight"
+          src={null}
+          tag="img"
+          waves={true}
+        />
+        <t
+          tag="div"
+        >
+          <Link
+            replace={false}
+            to="/users/url"
+          >
+            <h2>
+              Autor: 
+              User111
+               
+              
+            </h2>
+          </Link>
+          <a
+            className="photo-card__autor-link"
+            href="linkUrl"
+          >
+            Autor's portfolio link
+          </a>
+          <div>
+            <withRouter(WithLastLocation(withRouter())) />
+          </div>
+        </t>
+      </t>,
+      "className": "photo",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <t
+            cascade={false}
+            className="img-fluid photo-card__img"
+            hover={false}
+            overlay="white-slight"
+            src={null}
+            tag="img"
+            waves={true}
+          />,
+          <t
+            tag="div"
+          >
+            <Link
+              replace={false}
+              to="/users/url"
+            >
+              <h2>
+                Autor: 
+                User111
+                 
+                
+              </h2>
+            </Link>
+            <a
+              className="photo-card__autor-link"
+              href="linkUrl"
+            >
+              Autor's portfolio link
+            </a>
+            <div>
+              <withRouter(WithLastLocation(withRouter())) />
+            </div>
+          </t>,
+        ],
+        "className": "photo-card",
+        "tag": "div",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "cascade": false,
+            "className": "img-fluid photo-card__img",
+            "hover": false,
+            "overlay": "white-slight",
+            "src": null,
+            "tag": "img",
+            "waves": true,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Link
+                replace={false}
+                to="/users/url"
+              >
+                <h2>
+                  Autor: 
+                  User111
+                   
+                  
+                </h2>
+              </Link>,
+              <a
+                className="photo-card__autor-link"
+                href="linkUrl"
+              >
+                Autor's portfolio link
+              </a>,
+              <div>
+                <withRouter(WithLastLocation(withRouter())) />
+              </div>,
+            ],
+            "tag": "div",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <h2>
+                  Autor: 
+                  User111
+                   
+                  
+                </h2>,
+                "replace": false,
+                "to": "/users/url",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    "Autor: ",
+                    "User111",
+                    " ",
+                    "",
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  "Autor: ",
+                  "User111",
+                  " ",
+                  "",
+                ],
+                "type": "h2",
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Autor's portfolio link",
+                "className": "photo-card__autor-link",
+                "href": "linkUrl",
+              },
+              "ref": null,
+              "rendered": "Autor's portfolio link",
+              "type": "a",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <withRouter(WithLastLocation(withRouter())) />,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "div",
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <t
+          className="photo-card"
+          tag="div"
+        >
+          <t
+            cascade={false}
+            className="img-fluid photo-card__img"
+            hover={false}
+            overlay="white-slight"
+            src={null}
+            tag="img"
+            waves={true}
+          />
+          <t
+            tag="div"
+          >
+            <Link
+              replace={false}
+              to="/users/url"
+            >
+              <h2>
+                Autor: 
+                User111
+                 
+                
+              </h2>
+            </Link>
+            <a
+              className="photo-card__autor-link"
+              href="linkUrl"
+            >
+              Autor's portfolio link
+            </a>
+            <div>
+              <withRouter(WithLastLocation(withRouter())) />
+            </div>
+          </t>
+        </t>,
+        "className": "photo",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <t
+              cascade={false}
+              className="img-fluid photo-card__img"
+              hover={false}
+              overlay="white-slight"
+              src={null}
+              tag="img"
+              waves={true}
+            />,
+            <t
+              tag="div"
+            >
+              <Link
+                replace={false}
+                to="/users/url"
+              >
+                <h2>
+                  Autor: 
+                  User111
+                   
+                  
+                </h2>
+              </Link>
+              <a
+                className="photo-card__autor-link"
+                href="linkUrl"
+              >
+                Autor's portfolio link
+              </a>
+              <div>
+                <withRouter(WithLastLocation(withRouter())) />
+              </div>
+            </t>,
+          ],
+          "className": "photo-card",
+          "tag": "div",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "cascade": false,
+              "className": "img-fluid photo-card__img",
+              "hover": false,
+              "overlay": "white-slight",
+              "src": null,
+              "tag": "img",
+              "waves": true,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <Link
+                  replace={false}
+                  to="/users/url"
+                >
+                  <h2>
+                    Autor: 
+                    User111
+                     
+                    
+                  </h2>
+                </Link>,
+                <a
+                  className="photo-card__autor-link"
+                  href="linkUrl"
+                >
+                  Autor's portfolio link
+                </a>,
+                <div>
+                  <withRouter(WithLastLocation(withRouter())) />
+                </div>,
+              ],
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <h2>
+                    Autor: 
+                    User111
+                     
+                    
+                  </h2>,
+                  "replace": false,
+                  "to": "/users/url",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      "Autor: ",
+                      "User111",
+                      " ",
+                      "",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "Autor: ",
+                    "User111",
+                    " ",
+                    "",
+                  ],
+                  "type": "h2",
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Autor's portfolio link",
+                  "className": "photo-card__autor-link",
+                  "href": "linkUrl",
+                },
+                "ref": null,
+                "rendered": "Autor's portfolio link",
+                "type": "a",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <withRouter(WithLastLocation(withRouter())) />,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "div",
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

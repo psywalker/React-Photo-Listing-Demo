@@ -74,7 +74,7 @@ class Photo extends Component {
                     <Link to={`/users/${userNic}`}>
                         <h2>Autor: {userName} {userLastName}</h2>
                     </Link>
-                    <a href={userPortfolioUrl}>Autor's portfolio link</a>
+                    <a className="photo-card__autor-link" href={userPortfolioUrl}>Autor's portfolio link</a>
                     <div>
                         <ButtonBack />
                     </div>
