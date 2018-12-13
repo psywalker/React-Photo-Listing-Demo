@@ -2,9 +2,21 @@
     margin: 50px auto;
     max-width: 300px;
 }
+.user-layout {
+
+}
+.user-layout__header {
+    background: #fff;
+    border-bottom: 1px solid #cbcdd0;
+    box-shadow: 0 1px 1px rgba(0,0,0,.15);
+}
 .user__icon-home {
     width: 70px;
     height: auto;
+}
+
+.user__icon-home:hover {
+    opacity: .7;
 }
 .user .ant-card-body {
     position: relative;

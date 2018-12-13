@@ -11,7 +11,7 @@ const ButtonBack = withRouter(({ history, lastLocation }) => {
         history.push(lastLocation.pathname) 
       }}
     >
-      <Icon type="left" />
+      <Icon type="left" /> Go back
     </Button>)
 })
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Avatar, Menu, Icon, Tabs  } from "antd";
+import { Row, Col, Avatar, Layout, Icon, Tabs  } from "antd";
 import ButtonBack from '../../components/ButtonBack';
 import UserPhotoListing from '../../pages/UserPhotoListing';
 import Spinner from '../../components/Spinner';
@@ -8,6 +8,9 @@ import axios from 'axios';
 import './user.css';
 
 const TabPane = Tabs.TabPane;
+const {
+    Header,
+  } = Layout;
 
 class User extends Component {
     constructor(...args) {
@@ -67,18 +70,16 @@ class User extends Component {
         return (
         <div className="user-container">
             { isListingLoading && (<Spinner />)}
-            <Row style={{display: 'flex', justifyContent: 'center', margin: '30px 0'}}>
+            <Row style={{margin: '0px 0 30px'}}>
                 <Col>
-                    <Menu mode="horizontal">
-                        <Menu.Item key="back" style={{padding: '0'}}>
-                            <ButtonBack />
-                        </Menu.Item>
-                        <Menu.Item key="home">
+                    <Layout className="user-layout">
+                        <Header className="user-layout__header">
                             <Link to={`/`}>
-                                <Icon component={() => <img className="user__icon-home" alt="pixabay.com" src="https://i.pinimg.com/236x/d2/63/bd/d263bd90744ac5f17e8f17c6d45fd98c.jpg"/>} />
+                                <Icon component={() => <img className="user__icon-home" alt="pixabay.com" src="https://www.vectorlogo.zone/logos/pixabay/pixabay-card.png"/>} />
                             </Link>
-                        </Menu.Item>
-                    </Menu>
+                            <ButtonBack />
+                        </Header>
+                    </Layout>
                 </Col>
             </Row>
             <Row style={{display: 'flex', justifyContent: 'center'}}>

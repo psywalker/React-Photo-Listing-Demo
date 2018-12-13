@@ -40,7 +40,6 @@ class UserPhotoListing extends Component {
                 client_id: process.env.REACT_APP_UNSPLASH_API_KEY
             },
         }).then((res) => {
-            console.log('111::', res)
             const cards = res.data;
             const totalCards = parseInt(res.headers['x-total'], 10);
             
@@ -66,7 +65,7 @@ class UserPhotoListing extends Component {
             <div>
                 { isListingLoading && (<Spinner />)}
                 <div>
-                    <Row justify="center" style={{margin: '40px 0'}}>
+                    <Row justify="center" style={{margin: '20px 0'}}>
                         <Col span={24}>
                             {!isListingLoading && (
                                 <ul className="photo-list">
@@ -90,7 +89,7 @@ class UserPhotoListing extends Component {
                     </Row>
                     <Row justify="center" style={{display: 'flex', justifyContent: 'center'}}>
                         <Col  style={{display: 'flex', justifyContent: 'center'}}>
-                            <Pagination className="ml-3" onChange={this.handlePaginationChange} showSizeChanger current={page} defaultCurrent={1} total={totalCards} />
+                            <Pagination className="ml-3 mb-5" onChange={this.handlePaginationChange} showSizeChanger current={page} defaultCurrent={1} total={totalCards} />
                         </Col>
                     </Row>
                 </div>
