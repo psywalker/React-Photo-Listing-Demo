@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { Card } from "antd";
+import { Link } from 'react-router-dom';
+import { Card, Button } from "antd";
 import ButtonBack from '../../components/ButtonBack';
 import Spinner from '../../components/Spinner';
 import axios from 'axios';
 import './user.css';
+
+const ButtonGroup = Button.Group;
 
 class User extends Component {
     constructor(...args) {
       super(...args);
       this.state = {
         isListingLoading: false,
+        userNameNic: '',
         userName: '',
         userLastName: '',
         userPhoto: '',
@@ -28,6 +32,7 @@ class User extends Component {
         const API_URL = `${process.env.REACT_APP_UNSPLASH_API_NAME}users/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
         axios.get(API_URL)
         .then((res) => {
+            const userNameNic = res.data.username;
             const userName = res.data.first_name;
             const userLastName = res.data.last_name;
             const userPhoto = res.data.profile_image.large;
@@ -36,6 +41,7 @@ class User extends Component {
 
             this.setState({
                 isListingLoading: false,
+                userNameNic,
                 userName,
                 userLastName,
                 userPhoto,
@@ -57,6 +63,7 @@ class User extends Component {
             userLastName,
             userPortfolioUrl,
             userFirstPhoto,
+            userNameNic,
          } = this.state;
         return (
         <div className="user-container">
@@ -80,6 +87,13 @@ class User extends Component {
                     <a className="user-card__link-portfolio" href={userPortfolioUrl}>{`${userName}'s`} portfolio link</a>
                     <div className="user-card__btn-go-back">
                         <ButtonBack />
+                    </div>
+                    <div className="user-card__tabs user-tabs">
+                        <ButtonGroup>
+                            <Link to={`/users/${userNameNic}/photos`}>
+                                <Button>My photos</Button>
+                            </Link>
+                        </ButtonGroup>
                     </div>
                 </Card>
             </div>

@@ -5,14 +5,6 @@ import { Link } from 'react-router-dom';
 import { Badge, Card, Avatar } from "antd";
 const { Meta } = Card;
 
-const COLOR_LIST = [
-  'pink',
-  'light-blue',
-  'indigo',
-  'purple',
-  'orange',
-  'green',
-];
 const PhotoCard = ({ tags, photoName, title, photoID, userID, userAvatar, onSearchTagValue }) => (
     <div className="photo-card-self">
       <Card
@@ -28,16 +20,16 @@ const PhotoCard = ({ tags, photoName, title, photoID, userID, userAvatar, onSear
         }
       >
     
-      <Link className="photo-card-self__link-ava" to={`/users/${userID}`}>
+    { title && (<Link className="photo-card-self__link-ava" to={`/users/${userID}`}>
         <Meta
           avatar={
             <Avatar src={userAvatar} />
           }
           title={title}
         />
-      </Link>
+      </Link>)}
       {tags.map((item, i) => (
-          <Badge onClick={() => onSearchTagValue(item.title)} className="photo-card-self__badge" key={item.title} style={{ backgroundColor: `${i < COLOR_LIST.length ? COLOR_LIST[i] : 'default'}` }} count={item.title} />))
+          <Badge onClick={() => onSearchTagValue(item.title)} className="photo-card-self__badge" key={item.title} style={{ backgroundColor: "black"}} count={item.title} />))
         }
     </Card>
   </div>);
