@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Avatar, Layout, Icon, Tabs  } from "antd";
 import ButtonBack from '../../components/ButtonBack';
 import UserPhotoListing from '../../pages/UserPhotoListing';
+import UserLikesPhotos from '../../pages/UserLikesPhotos';
 import Spinner from '../../components/Spinner';
 import axios from 'axios';
 import './user.css';
@@ -100,7 +101,9 @@ class User extends Component {
                     <TabPane tab="My photos" key="1">
                         <UserPhotoListing userId={match.params.id} />
                     </TabPane>
-                    <TabPane tab="Tab 2" key="2">Content of Tab Pane 2</TabPane>
+                    <TabPane tab="My likes photos" key="2">
+                        <UserLikesPhotos userId={match.params.id} />
+                    </TabPane>
                     <TabPane tab="Tab 3" key="3">Content of Tab Pane 3</TabPane>
                 </Tabs>
                 </Col>
