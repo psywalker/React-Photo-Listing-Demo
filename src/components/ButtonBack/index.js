@@ -6,12 +6,12 @@ import { withLastLocation } from 'react-router-last-location';
 const ButtonBack = withRouter(({ history, lastLocation }) => {
   if (!lastLocation) return false;
   return (<Button
-      type='primary'
+      type='default'
       onClick={() => {
         history.push(lastLocation.pathname) 
       }}
     >
-      <Icon type="left" />Go back
+      <Icon type="left" />
     </Button>)
 })
 

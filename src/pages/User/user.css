@@ -2,6 +2,10 @@
     margin: 50px auto;
     max-width: 300px;
 }
+.user__icon-home {
+    width: 70px;
+    height: auto;
+}
 .user .ant-card-body {
     position: relative;
     z-index: 1;
@@ -10,7 +14,7 @@
 .user-card__photo-wrap {
     display: flex;
     justify-content: center;
-    margin-top: -45px;
+    margin-top: -75px;
 }
 .user-card__title {
     font-size: 18px;
@@ -23,10 +27,12 @@
     margin-top: 10px;
 }
 .user-card__first-img {
-    width: 100%;
-    height: auto;
+    width: 300px;
+    height: 300px;
     position: relative;
     z-index: 0;
+    max-height: 300px;
+    object-fit: fill;
 }
 .user-card__photo {
     width: 130px;

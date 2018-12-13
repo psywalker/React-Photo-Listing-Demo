@@ -30,10 +30,10 @@ class UserPhotoListing extends Component {
     };
 
     handleUserPhotoListingQuery = () => {
-        const { match, history } = this.props;
+        const { history, userId } = this.props;
         const { page, per_page } = this.state;
         this.setState({ isListingLoading: true });
-        axios.get(`${process.env.REACT_APP_UNSPLASH_API_NAME}users/${match.params.id}/photos?`, {
+        axios.get(`${process.env.REACT_APP_UNSPLASH_API_NAME}users/${userId}/photos?`, {
             params: {
                 page, 
                 per_page,
@@ -89,7 +89,7 @@ class UserPhotoListing extends Component {
                         </Col>
                     </Row>
                     <Row justify="center" style={{display: 'flex', justifyContent: 'center'}}>
-                        <Col span={12}  style={{display: 'flex', justifyContent: 'center'}}>
+                        <Col  style={{display: 'flex', justifyContent: 'center'}}>
                             <Pagination className="ml-3" onChange={this.handlePaginationChange} showSizeChanger current={page} defaultCurrent={1} total={totalCards} />
                         </Col>
                     </Row>

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, Button } from "antd";
+import { Row, Col, Avatar, Menu, Icon, Tabs  } from "antd";
 import ButtonBack from '../../components/ButtonBack';
+import UserPhotoListing from '../../pages/UserPhotoListing';
 import Spinner from '../../components/Spinner';
 import axios from 'axios';
 import './user.css';
 
-const ButtonGroup = Button.Group;
+const TabPane = Tabs.TabPane;
 
 class User extends Component {
     constructor(...args) {
@@ -59,44 +60,50 @@ class User extends Component {
         const { 
             isListingLoading,
             userPhoto,
-            userName,
-            userLastName,
-            userPortfolioUrl,
             userFirstPhoto,
-            userNameNic,
          } = this.state;
+
+         const { match } = this.props;
         return (
         <div className="user-container">
             { isListingLoading && (<Spinner />)}
-            <div className="user">
-                <Card
-                    className="user-card"
-                    style={{ width: '100%' }}
-                    cover={
-                        <img
+            <Row style={{display: 'flex', justifyContent: 'center', margin: '30px 0'}}>
+                <Col>
+                    <Menu mode="horizontal">
+                        <Menu.Item key="back" style={{padding: '0'}}>
+                            <ButtonBack />
+                        </Menu.Item>
+                        <Menu.Item key="home">
+                            <Link to={`/`}>
+                                <Icon component={() => <img className="user__icon-home" alt="pixabay.com" src="https://i.pinimg.com/236x/d2/63/bd/d263bd90744ac5f17e8f17c6d45fd98c.jpg"/>} />
+                            </Link>
+                        </Menu.Item>
+                    </Menu>
+                </Col>
+            </Row>
+            <Row style={{display: 'flex', justifyContent: 'center'}}>
+                <Col>
+                    <img
                         className="user-card__first-img"
                         alt="example"
                         src={userFirstPhoto}
-                        />
-                    }
-                >
+                    />
                     <div className="user-card__photo-wrap">
-                        <img className="user-card__photo" src={userPhoto} alt="" />
+                        <Avatar size={150} src={userPhoto} />
                     </div>
-                    <h2 className="user-card__title">{userName} {userLastName}</h2>
-                    <a className="user-card__link-portfolio" href={userPortfolioUrl}>{`${userName}'s`} portfolio link</a>
-                    <div className="user-card__btn-go-back">
-                        <ButtonBack />
-                    </div>
-                    <div className="user-card__tabs user-tabs">
-                        <ButtonGroup>
-                            <Link to={`/users/${userNameNic}/photos`}>
-                                <Button>My photos</Button>
-                            </Link>
-                        </ButtonGroup>
-                    </div>
-                </Card>
-            </div>
+                </Col>
+            </Row>
+            <Row style={{display: 'flex', justifyContent: 'center'}}>
+                <Col>
+                <Tabs defaultActiveKey="1">
+                    <TabPane tab="My photos" key="1">
+                        <UserPhotoListing userId={match.params.id} />
+                    </TabPane>
+                    <TabPane tab="Tab 2" key="2">Content of Tab Pane 2</TabPane>
+                    <TabPane tab="Tab 3" key="3">Content of Tab Pane 3</TabPane>
+                </Tabs>
+                </Col>
+            </Row>
         </div>
         );
     }
