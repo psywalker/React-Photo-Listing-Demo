@@ -96,19 +96,21 @@ class User extends Component {
                     </div>
                 </Col>
             </Row>
-            <Row style={{display: 'flex', justifyContent: 'center'}}>
+            <Row style={{display: 'flex', justifyContent: 'center', overflow: 'hidden'}}>
                 <Col>
-                <Tabs defaultActiveKey="1">
-                    <TabPane tab="My photos" key="1">
-                        <UserPhotoListing userId={match.params.id} />
-                    </TabPane>
-                    <TabPane tab="My likes photos" key="2">
-                        <UserLikesPhotos userId={match.params.id} />
-                    </TabPane>
-                    <TabPane tab="My statistic" key="3">
-                        <UserStatistic userId={match.params.id} />
-                    </TabPane>
-                </Tabs>
+                    <div className="user-tabs">
+                        <Tabs className="user-tabs__item" defaultActiveKey="1">
+                            <TabPane tab="My photos" key="1"  className="user-tabs__pane" >
+                                <UserPhotoListing userId={match.params.id} />
+                            </TabPane>
+                            <TabPane tab="My likes photos" key="2"  className="user-tabs__pane" >
+                                <UserLikesPhotos userId={match.params.id} />
+                            </TabPane>
+                            <TabPane tab="My statistic" key="3"  className="user-tabs__pane" >
+                                <UserStatistic userId={match.params.id} />
+                            </TabPane>
+                        </Tabs>
+                    </div>
                 </Col>
             </Row>
         </div>

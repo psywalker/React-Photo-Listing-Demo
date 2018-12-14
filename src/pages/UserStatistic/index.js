@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col, Pagination } from "antd";
 import * as Highcharts from "react-highcharts"; 
 import Spinner from '../../components/Spinner';
-import PhotoCard from '../../components/PhotoCard';
 import axios from 'axios';
 import './index.css';
 
@@ -12,12 +10,45 @@ class UserStatistic extends Component {
       this.state = {
         isListingLoading: false,
         highchartsConfig: {
+            title: {
+                text: 'My statistic'
+            },
             xAxis: {
                 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
             },
-            series: [{
-                data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
-            }],
+            series: [
+                {
+                    name: 'Downloads',
+                    data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
+                },
+                {
+                    name: 'Views',
+                    data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
+                },
+                {
+                    name: 'Likes',
+                    data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
+                },
+            ],
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            responsive: {
+                rules: [{
+                  condition: {
+                    maxWidth: 700
+                  },
+                  chartOptions: {
+                    legend: {
+                      layout: 'horizontal',
+                      align: 'center',
+                      verticalAlign: 'bottom'
+                    }
+                  }
+                }]
+              }
         },
         page: 1,
         per_page: 6,
@@ -44,18 +75,57 @@ class UserStatistic extends Component {
         }).then((res) => {
             console.log('999:::', res)
             const highchartsConfig = {
+                title: {
+                    text: 'My statistic'
+                },
                 xAxis: {
                     categories: []
                 },
-                series: [{
-                    data: []
-                }],
+                series: [
+                    {
+                        name: 'Downloads',
+                        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
+                    },
+                    {
+                        name: 'Views',
+                        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
+                    },
+                    {
+                        name: 'Likes',
+                        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
+                    },
+                ],
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+                responsive: {
+                    rules: [{
+                      condition: {
+                        maxWidth: 700
+                      },
+                      chartOptions: {
+                        legend: {
+                          layout: 'horizontal',
+                          align: 'center',
+                          verticalAlign: 'bottom'
+                        }
+                      }
+                    }]
+                  }
             }
             console.log('000:::', res.data.downloads.historical.values)
             highchartsConfig.xAxis.categories = res.data.downloads.historical.values.map(function(item) {
                 return item.date;
             });
             highchartsConfig.series[0].data = res.data.downloads.historical.values.map(function(item) {
+                return item.value;
+            });
+            highchartsConfig.series[1].data = res.data.views.historical.values.map(function(item) {
+                return item.value;
+            });
+            highchartsConfig.series[2].data = res.data.likes.historical.values.map(function(item) {
                 return item.value;
             });
 
@@ -74,9 +144,11 @@ class UserStatistic extends Component {
             highchartsConfig,
         } = this.state;
         return (
-            <div>
+            <div className="user-statistic">
                 { isListingLoading && (<Spinner />)}
-                <Highcharts config = {highchartsConfig}></Highcharts>
+                <div className="user-statistic__charts">
+                    <Highcharts config = {highchartsConfig}></Highcharts>
+                </div>
             </div>
         );
     }

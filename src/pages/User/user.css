@@ -54,7 +54,9 @@
 }
 
 .user-tabs {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0 0;
+    width: 100vw;
+}
+
+.user-tabs__pane {
+    width: 100%;
 }
