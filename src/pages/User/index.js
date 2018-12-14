@@ -4,6 +4,7 @@ import { Row, Col, Avatar, Layout, Icon, Tabs  } from "antd";
 import ButtonBack from '../../components/ButtonBack';
 import UserPhotoListing from '../../pages/UserPhotoListing';
 import UserLikesPhotos from '../../pages/UserLikesPhotos';
+import UserStatistic from '../../pages/UserStatistic';
 import Spinner from '../../components/Spinner';
 import axios from 'axios';
 import './user.css';
@@ -104,7 +105,9 @@ class User extends Component {
                     <TabPane tab="My likes photos" key="2">
                         <UserLikesPhotos userId={match.params.id} />
                     </TabPane>
-                    <TabPane tab="Tab 3" key="3">Content of Tab Pane 3</TabPane>
+                    <TabPane tab="My statistic" key="3">
+                        <UserStatistic userId={match.params.id} />
+                    </TabPane>
                 </Tabs>
                 </Col>
             </Row>

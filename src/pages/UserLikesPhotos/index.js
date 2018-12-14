@@ -18,18 +18,18 @@ class UserLikesPhotos extends Component {
     }
 
     componentDidMount = () => {
-        this.handleUserPhotoListingQuery();
+        this.handleUserLikesPhotosQuery();
     };
 
     handlePaginationChange = (current) => { 
         this.setState({
            page: current,
            per_page: 6,
-        }, this.handleUserPhotoListingQuery);
+        }, this.handleUserLikesPhotosQuery);
     
     };
 
-    handleUserPhotoListingQuery = () => {
+    handleUserLikesPhotosQuery = () => {
         const { history, userId } = this.props;
         const { page, per_page } = this.state;
         this.setState({ isListingLoading: true });
@@ -40,7 +40,6 @@ class UserLikesPhotos extends Component {
                 client_id: process.env.REACT_APP_UNSPLASH_API_KEY
             },
         }).then((res) => {
-            console.log('111:::', res)
             const cards = res.data;
             const totalCards = parseInt(res.headers['x-total'], 10);
             
