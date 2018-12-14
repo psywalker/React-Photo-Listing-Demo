@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Row, Col, Avatar, Layout, Icon, Tabs  } from "antd";
-import ButtonBack from '../../components/ButtonBack';
+import { Row, Col, Avatar, Tabs  } from "antd";
 import UserPhotoListing from '../../pages/UserPhotoListing';
 import UserLikesPhotos from '../../pages/UserLikesPhotos';
 import UserStatistic from '../../pages/UserStatistic';
@@ -10,9 +8,6 @@ import axios from 'axios';
 import './user.css';
 
 const TabPane = Tabs.TabPane;
-const {
-    Header,
-  } = Layout;
 
 class User extends Component {
     constructor(...args) {
@@ -72,18 +67,7 @@ class User extends Component {
         return (
         <div className="user-container">
             { isListingLoading && (<Spinner />)}
-            <Row style={{margin: '0px 0 30px'}}>
-                <Col>
-                    <Layout className="user-layout">
-                        <Header className="user-layout__header">
-                            <Link to={`/`}>
-                                <Icon component={() => <img className="user__icon-home" alt="pixabay.com" src="https://www.vectorlogo.zone/logos/pixabay/pixabay-card.png"/>} />
-                            </Link>
-                            <ButtonBack />
-                        </Header>
-                    </Layout>
-                </Col>
-            </Row>
+ 
             <Row style={{display: 'flex', justifyContent: 'center'}}>
                 <Col>
                     <img

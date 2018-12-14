@@ -28,9 +28,11 @@ const PhotoCard = ({ tags, photoName, title, photoID, userID, userAvatar, onSear
           title={title}
         />
       </Link>)}
-      {tags.map((item, i) => (
-          <Badge onClick={() => onSearchTagValue(item.title)} className="photo-card-self__badge" key={item.title} style={{ backgroundColor: "black"}} count={item.title} />))
-        }
+      <div className="photo-card-self__badge-wrap">
+        {tags.map((item, i) => (
+            <Badge onClick={() => onSearchTagValue(item.title)} className="photo-card-self__badge" key={item.title} style={{ backgroundColor: "black"}} count={item.title} />))
+          }
+      </div>
     </Card>
   </div>);
 
