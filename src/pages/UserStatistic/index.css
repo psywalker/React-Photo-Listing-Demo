@@ -6,3 +6,7 @@
     width: 80%;
     margin: 0 auto;
 }
+
+.user-statistic__chart-wrap {
+    margin: 0 0 50px;
+}
