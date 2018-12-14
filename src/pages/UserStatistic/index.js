@@ -160,7 +160,7 @@ class UserStatistic extends Component {
                     },
                     series: [
                         {
-                            ...highchartsConfigs.highchartsDownloadsConfig.series[0],
+                            ...highchartsConfigs.highchartsLikesConfig.series[0],
                             data: res.data.likes.historical.values.map((item) => item.value),
                         }
                     ] 
