@@ -10,3 +10,15 @@
 .user-statistic__chart-wrap {
     margin: 0 0 50px;
 }
+.user-statistic-chart__series_downloads path {
+    stroke: magenta !important;
+    stroke-width: 2px;
+}
+.user-statistic-chart__series_views path {
+    stroke: orange !important;
+    stroke-width: 2px;
+}
+.user-statistic-chart__series_likes path {
+    stroke: lime !important;
+    stroke-width: 2px;
+}

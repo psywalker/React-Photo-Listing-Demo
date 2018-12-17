@@ -15,12 +15,15 @@ class UserStatistic extends Component {
                     text: 'My Downloads'
                 },
                 xAxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    className: 'highcharts1111',
                 },
                 series: [
                     {
                         name: 'Downloads',
-                        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
+                        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4],
+                        className: 'user-statistic-chart__series_downloads',
+                        
                     },
                 ],
                 legend: {
@@ -53,7 +56,8 @@ class UserStatistic extends Component {
                 series: [
                     {
                         name: 'Views',
-                        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
+                        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4],
+                        className: 'user-statistic-chart__series_views',
                     },
                 ],
                 legend: {
@@ -86,7 +90,8 @@ class UserStatistic extends Component {
                 series: [
                     {
                         name: 'Likes',
-                        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
+                        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4],
+                        className: 'user-statistic-chart__series_likes',
                     },
                 ],
                 legend: {
@@ -132,7 +137,8 @@ class UserStatistic extends Component {
                 highchartsDownloadsConfig: {
                     ...highchartsConfigs.highchartsDownloadsConfig,
                     xAxis: {
-                        categories: res.data.downloads.historical.values.map((item) => item.date)
+                        categories: res.data.downloads.historical.values.map((item) => item.date),
+                        
                     },
                     series: [
                         {
@@ -193,7 +199,7 @@ class UserStatistic extends Component {
                     </div>
 
                     <div className="user-statistic__chart-wrap">
-                        <Highcharts  className="user-statistic__chart" config = {highchartsConfigs.highchartsLikesConfig}></Highcharts>
+                        <Highcharts  className="user-statistic__chart user-statistic-chart" config = {highchartsConfigs.highchartsLikesConfig}></Highcharts>
                     </div>
                 </div>
             </div>
