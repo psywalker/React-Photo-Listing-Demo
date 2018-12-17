@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Badge, Card, Avatar } from "antd";
 const { Meta } = Card;
 
-const PhotoCard = ({ tags, photoName, title, photoID, userID, userAvatar, onSearchTagValue }) => (
+const PhotoCard = ({ tags, photoName, photoDesc, title, photoID, userID, userAvatar, onSearchTagValue }) => (
     <div className="photo-card-self">
       <Card
         style={{ width: '100%' }}
@@ -27,7 +27,9 @@ const PhotoCard = ({ tags, photoName, title, photoID, userID, userAvatar, onSear
           }
           title={title}
         />
+
       </Link>)}
+      <p className="photo-card-self__desc">{photoDesc}</p>
       <div className="photo-card-self__badge-wrap">
         {tags.map((item, i) => (
             <Badge onClick={() => onSearchTagValue(item.title)} className="photo-card-self__badge" key={item.title} style={{ backgroundColor: "black"}} count={item.title} />))
@@ -38,6 +40,7 @@ const PhotoCard = ({ tags, photoName, title, photoID, userID, userAvatar, onSear
 
 PhotoCard.propTypes = {
   photoName: PropTypes.string,
+  photoDesc: PropTypes.string,
   title: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.object),
   userAvatar: PropTypes.string,
@@ -47,6 +50,7 @@ PhotoCard.propTypes = {
 };
 PhotoCard.defaultProps = {
   photoName: '',
+  photoDesc: '',
   title: 'Noname',
   tags: [], 
   userAvatar: '',

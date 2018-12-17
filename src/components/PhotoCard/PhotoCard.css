@@ -5,6 +5,14 @@
     max-width: 900px;
     margin: 0 auto;
 }
+.photo-card-self__desc {
+    text-align: center;
+    padding: 0 15px;
+
+}
+.photo-card-self__desc::first-letter {
+    text-transform: uppercase;
+}
 div.photo-card-self .photo-card-self__link-ava {
     display: flex;
     justify-content: center;
