@@ -54,7 +54,8 @@
 }
 
 .user-tabs {
-    width: 100vw;
+    width: 100%;
+    max-width: 1024px;
 }
 
 .user-tabs__pane {

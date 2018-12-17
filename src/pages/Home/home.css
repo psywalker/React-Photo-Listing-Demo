@@ -21,7 +21,9 @@
   color: #61dafb;
 }
 .pagination {
-  
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 40px;
 }
 @keyframes App-logo-spin {
   from {
