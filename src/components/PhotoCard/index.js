@@ -2,7 +2,7 @@ import React from 'react';
 import './PhotoCard.css';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Badge, Card, Avatar } from "antd";
+import { Card, Avatar, Tag } from "antd";
 const { Meta } = Card;
 
 const PhotoCard = ({ tags, photoName, photoDesc, title, photoID, userID, userAvatar, onSearchTagValue }) => (
@@ -32,7 +32,9 @@ const PhotoCard = ({ tags, photoName, photoDesc, title, photoID, userID, userAva
       <p className="photo-card-self__desc">{photoDesc}</p>
       <div className="photo-card-self__badge-wrap">
         {tags.map((item, i) => (
-            <Badge onClick={() => onSearchTagValue(item.title)} className="photo-card-self__badge" key={item.title} style={{ backgroundColor: "black"}} count={item.title} />))
+            <Tag onClick={() => onSearchTagValue(item.title)} className="photo-card-self__badge" key={item.title}>
+              {item.title}
+            </Tag>))
           }
       </div>
     </Card>
