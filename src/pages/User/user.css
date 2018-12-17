@@ -54,10 +54,17 @@
 }
 
 .user-tabs {
-    width: 100%;
+    width: 100vw;
     max-width: 1024px;
+    padding: 0 16px;
 }
 
+.user-tabs .ant-tabs-nav .ant-tabs-tab {
+    margin: 0;
+}
+.user-tabs .ant-tabs-nav-container {
+    text-align: center;
+}
 .user-tabs__pane {
     width: 100%;
 }
