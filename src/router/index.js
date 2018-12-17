@@ -19,12 +19,9 @@ const Main = () => (
             <Row style={{margin: '0px 0 30px'}}>
             <Col>
                 <Layout className="user-layout">
-                    <Header className="user-layout__header">
-                        <Link to={`/`}>
-                            <Icon component={() => <img className="user__icon-home" alt="pixabay.com" src="https://www.vectorlogo.zone/logos/pixabay/pixabay-card.png"/>} />
-                        </Link>
-                        <ButtonBack />
-                    </Header>
+                <Header className="user-layout__header"> 
+                    <Link to={`/`}> <Icon component={() => <img className="user__icon-home" alt="pixabay.com" src="https://www.vectorlogo.zone/logos/pixabay/pixabay-card.png"/>} /> </Link> <Route exact path="/" component={() => <ButtonBack />} /> 
+                </Header>
                 </Layout>
             </Col>
         </Row>
@@ -33,7 +30,6 @@ const Main = () => (
             <Route path="/users/:id/photos" component={UserPhotoListing}/>
             <Route path="/photo/:id" component={Photo}/>
             <Route path="/users/:id" component={User}/>
-            <Redirect push to="/" />
         </Switch>
         </div>
       </LastLocationProvider>
