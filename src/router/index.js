@@ -1,6 +1,6 @@
 import React from 'react';
 import { LastLocationProvider } from 'react-router-last-location';
-import { Switch, Route, Redirect, BrowserRouter as Router, Link} from 'react-router-dom';
+import { Switch, Route, BrowserRouter, Link} from 'react-router-dom';
 import { Row, Col, Layout, Icon  } from "antd";
 import Home from '../pages/Home/Home';
 import Photo from '../pages/Photo';
@@ -13,7 +13,7 @@ const {
 } = Layout;
 
 const Main = () => (
-    <Router>
+    <BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
         <LastLocationProvider>
         <div>
             <Row style={{margin: '0px 0 30px'}}>
@@ -34,6 +34,6 @@ const Main = () => (
         </Switch>
         </div>
       </LastLocationProvider>
-    </Router>)
+    </BrowserRouter>)
 
   export default Main;
