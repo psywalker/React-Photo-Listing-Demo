@@ -4,12 +4,13 @@ import { withRouter } from 'react-router-dom'
 import { withLastLocation } from 'react-router-last-location';
 
 const ButtonBack = withRouter(({ history, lastLocation }) => {
-  console.log('1111:::', history, lastLocation)
-  if (history.action === 'POP' || history.location.pathname === '/' ) return false;
+  console.log('111:::', lastLocation)
+  if (!lastLocation) return false;
+  console.log('222:::', lastLocation)
   return (<Button
       type='default'
       onClick={() => {
-        history.push(history.goBack()) 
+        history.push(lastLocation.pathname) 
       }}
     >
       <Icon type="left" /> Go back
