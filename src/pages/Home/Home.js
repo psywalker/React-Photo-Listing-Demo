@@ -60,7 +60,6 @@ class Home extends Component {
         client_id: process.env.REACT_APP_UNSPLASH_API_KEY
       },
     }).then((res) => {
-        console.log('111:::', res)
         const cards = res.data.results;
         const totalCards = res.data.total;
         

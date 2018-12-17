@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormInline,
-  Fa,
-} from 'mdbreact';
+import { Input } from 'antd';
+import './index.css';
+const InputSearch = Input.Search;
 
 class Search extends Component {
   constructor(...args) {
@@ -20,29 +19,30 @@ class Search extends Component {
     }
   };
 
-  submitSearch = (e) => {
-    if(e.charCode === 13) {
-      e.preventDefault();
-      if(this.state.inputValue) this.props.onSearchInputValue(this.state.inputValue);
-    } 
+  submitSearch = () => {
+    if(this.state.inputValue) this.props.onSearchInputValue(this.state.inputValue);
   }
 
   changeInputValue = (e) => {
     this.setState({
-      inputValue: e.target.value
+      inputValue: e.target.value,
     }, () => {
       this.props.onChangeInputValue(this.state.inputValue);
     });
   };
 
   render() {
-
+    const { inputValue } = this.state
     return (
-      <div className="flex-container">
-        <FormInline className="md-form ml-3">
-          <Fa icon="search" onClick={this.submitSearch} />
-          <input onChange={this.changeInputValue} onInput={this.changeInputValue} onKeyPress={this.submitSearch} className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" value={this.state.inputValue} />
-        </FormInline>
+      <div className="search">
+        <InputSearch
+          value={inputValue}
+          placeholder="Wallpapers"
+          onChange={value => this.changeInputValue(value)}
+          onPressEnter={this.submitSearch}
+          onSearch={this.submitSearch}
+          style={{ width: '100%' }}
+        />
       </div>
     );
   }
