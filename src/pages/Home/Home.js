@@ -54,7 +54,6 @@ class Home extends Component {
   handleCardsPhotos = () => {
     const { cardsData } = this.state;
     this.setState({ isListingLoading: true });
-    console.log('333', process.env.REACT_APP_PATH)
     axios.get('https://api.unsplash.com/search/photos?', {
       params: {
         ...cardsData, 

@@ -7,7 +7,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.page {
+  max-width: 1024px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  margin:  0 auto;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

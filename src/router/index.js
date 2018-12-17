@@ -15,7 +15,7 @@ const {
 const Main = () => (
     <BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
         <LastLocationProvider>
-        <div>
+        <div className="page">
             <Row style={{margin: '0px 0 30px'}}>
             <Col>
                 <Layout className="user-layout">
