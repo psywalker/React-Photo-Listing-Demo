@@ -9,6 +9,16 @@
     height: 415px;
 }
 
+.user-photos .ant-card {
+    height: auto;
+}
+.user-photos .ant-card-body {
+    display: none;
+}
+
+.user-photos .photo-list__item {
+    margin-bottom: 40px;
+}
 .photo-card-self .ant-card-meta {
     display: flex;
     align-items: center;
@@ -29,6 +39,10 @@ div.photo-card-self .photo-card-self__link-ava {
     margin: 40px 0 20px;
 }
 div.photo-card-self .photo-card-self__badge-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     margin: 0 20px 20px;
 }
 div.photo-card-self .photo-card-self__badge {

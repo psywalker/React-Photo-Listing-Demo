@@ -68,7 +68,7 @@ class UserPhotoListing extends Component {
                     <Row justify="center" style={{margin: '20px 0'}}>
                         <Col span={24}>
                             {!isListingLoading && (
-                                <ul className="photo-list">
+                                <ul className="photo-list user-photos ">
                                 {
                                 cards.map((item, index) => (
                                     <li key={item.id} className="photo-list__item pl-3">
