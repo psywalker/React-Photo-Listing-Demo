@@ -5,10 +5,20 @@
     max-width: 900px;
     margin: 0 auto;
 }
+.photo-card-self .ant-card {
+    height: 415px;
+}
+
+.photo-card-self .ant-card-meta {
+    display: flex;
+    align-items: center;
+}
 .photo-card-self__desc {
     text-align: center;
     padding: 0 15px;
-
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .photo-card-self__desc::first-letter {
     text-transform: uppercase;
@@ -22,8 +32,17 @@ div.photo-card-self .photo-card-self__badge-wrap {
     margin: 0 20px 20px;
 }
 div.photo-card-self .photo-card-self__badge {
-    margin: 5px 3px;
+    margin: 5px 5px 5px 0;
     cursor: pointer;
+}
+
+.photo-card-self__badge:hover,
+.photo-card-self__badge:focus,
+.nav-top__btn_active {
+    color: #722ed1;
+    background: #f9f0ff;
+    border-color: #d3adf7;
+    outline: none;
 }
 div.photo-card-self .photo-card__photo-link {
     position: relative;

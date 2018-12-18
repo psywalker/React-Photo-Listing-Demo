@@ -87,9 +87,10 @@ class Home extends Component {
     }, this.handleCardsPhotos);
   };
 
-  handleSearchText = (text) => {
-    const { cardsData } = this.state;
+  handleSearchText = (text, tags) => {
+    const { cardsData, navTopItemActive } = this.state;
     this.setState({
+      navTopItemActive: tags ? -2 : navTopItemActive,
       cardsData: {
         ...cardsData,
         query: text,

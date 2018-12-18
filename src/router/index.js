@@ -18,7 +18,6 @@ const Main = () => (
             <Row style={{margin: '0px 0 30px'}}>
             <Col>
                 <Layout className="user-layout">
-                    
                     <Header className="user-layout__header"> 
                         <div className="page">
                             <Link to={`/`}> <Icon component={() => <img className="user__icon-home" alt="pixabay.com" src="https://www.vectorlogo.zone/logos/pixabay/pixabay-card.png"/>} /> </Link> 
