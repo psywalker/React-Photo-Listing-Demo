@@ -4,7 +4,7 @@ import { Tag } from "antd";
 import './index.css';
 
 const NavTop = ({ onFilterItemValue, label, filterValue, itemId, navTopItemActive }) => (
-    <Tag className="nav-top__btn" color={`${itemId === navTopItemActive ? 'purple': ''}`} onClick={() => onFilterItemValue(filterValue, itemId)}>{label}</Tag>
+    <Tag color={`${itemId === navTopItemActive ? 'purple': ''}`} onClick={() => onFilterItemValue(filterValue, itemId)}>{label}</Tag>
   )
 
   NavTop.propTypes = {

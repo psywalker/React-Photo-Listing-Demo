@@ -53,10 +53,7 @@ div.photo-card-self .photo-card-self__badge {
 .photo-card-self__badge:hover,
 .photo-card-self__badge:focus,
 .nav-top__btn_active {
-    color: #722ed1;
-    background: #f9f0ff;
-    border-color: #d3adf7;
-    outline: none;
+
 }
 div.photo-card-self .photo-card__photo-link {
     position: relative;
