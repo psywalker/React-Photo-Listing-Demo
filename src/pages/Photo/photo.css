@@ -4,6 +4,13 @@
 .photo .ant-card-body {
     text-align: center;
 }
+.photo__desc .ant-card-meta-title {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.photo__desc .ant-card-meta-title::first-letter {
+    text-transform: uppercase;
+}
     .photo__img {
         width: 100%;
         max-height: 400px;

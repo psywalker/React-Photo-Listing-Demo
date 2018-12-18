@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ButtonBack from '../../components/ButtonBack';
 import Spinner from '../../components/Spinner';
 import { Card } from "antd";
 import axios from 'axios';
 import './photo.css';
+const { Meta } = Card;
 
 class Photo extends Component {
     constructor(...args) {
@@ -19,6 +19,7 @@ class Photo extends Component {
         userLastName: '',
         userPortfolioUrl: '',
         photoCreated: '',
+        photoDesc: '',
       }
     }
 
@@ -33,6 +34,7 @@ class Photo extends Component {
 
         axios.get(API_URL)
         .then((res) => {
+            console.log('111:::', res)
             const photoSrc = res.data.urls.full;
             const userId = res.data.user.id;
             const userName = res.data.user.first_name;
@@ -40,6 +42,7 @@ class Photo extends Component {
             const userLastName = res.data.user.last_name;
             const userPortfolioUrl = res.data.user.portfolio_url;
             const photoCreated = res.data.created_at;
+            const photoDesc = res.data.description;
   
             this.setState({
                 isListingLoading: false,
@@ -50,6 +53,7 @@ class Photo extends Component {
                 userPortfolioUrl,
                 photoCreated,
                 userNic,
+                photoDesc,
             });
         })
         .catch((err, error) => {
@@ -61,10 +65,9 @@ class Photo extends Component {
         const { 
             isListingLoading,
             photoSrc,
-            userName,
-            userLastName,
             userPortfolioUrl,
             userNic,
+            photoDesc,
          } = this.state;
 
         return (
@@ -79,13 +82,11 @@ class Photo extends Component {
                     />
                 }
             >
+                <Meta className="photo__desc" title={`${photoDesc ? photoDesc : 'No title'}`} />
                 <Link to={`/users/${userNic}`}>
-                    <h2>Autor: {userName} {userLastName}</h2>
+                    <p>Autor's page link</p>
                 </Link>
                 <a className="photo__autor-link" href={userPortfolioUrl}>Autor's portfolio link</a>
-                <div className="photo__btn-go-back">
-                    <ButtonBack />
-                </div>
             </Card>
         </div>
         );
