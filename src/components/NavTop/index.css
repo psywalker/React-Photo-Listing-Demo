@@ -7,6 +7,7 @@
 }
 .nav-top__item {
     margin-right: 12px;
+    margin-bottom: 10px;
 }
 .nav-top__item_border-right {
     border-right: 1px solid #ddd;
