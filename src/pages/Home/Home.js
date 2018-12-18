@@ -173,7 +173,15 @@ class Home extends Component {
         </div>
         <div className="row">
           <div className="col-12 pagination">
-            <Pagination className="ml-3" showSizeChanger onChange={this.handlePaginationChange} current={cardsData.page} defaultCurrent={1} total={totalCards} />
+
+            {totalCards > cardsData.per_page && (<Pagination 
+                className="ml-3" 
+                showSizeChanger 
+                onChange={this.handlePaginationChange} 
+                current={cardsData.page} 
+                defaultCurrent={1} 
+                total={totalCards} 
+              />)}
           </div>
         </div>
       </div>

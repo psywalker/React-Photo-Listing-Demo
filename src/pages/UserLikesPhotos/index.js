@@ -60,6 +60,7 @@ class UserLikesPhotos extends Component {
             cards,
             totalCards,
             page,
+            per_page,
         } = this.state;
         return (
             <div>
@@ -89,7 +90,14 @@ class UserLikesPhotos extends Component {
                     </Row>
                     <Row justify="center" style={{display: 'flex', justifyContent: 'center'}}>
                         <Col  style={{display: 'flex', justifyContent: 'center'}}>
-                            <Pagination className="ml-3 mb-5" onChange={this.handlePaginationChange} showSizeChanger current={page} defaultCurrent={1} total={totalCards} />
+
+                            {totalCards > per_page && ( <Pagination 
+                                className="ml-3 mb-5" 
+                                onChange={this.handlePaginationChange} 
+                                showSizeChanger current={page} 
+                                defaultCurrent={1} 
+                                total={totalCards} 
+                            />)}
                         </Col>
                     </Row>
                 </div>
