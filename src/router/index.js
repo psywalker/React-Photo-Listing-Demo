@@ -15,23 +15,27 @@ const {
 const Main = () => (
     <BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
         <LastLocationProvider>
-        <div className="page">
             <Row style={{margin: '0px 0 30px'}}>
             <Col>
                 <Layout className="user-layout">
-                <Header className="user-layout__header"> 
-                    <Link to={`/`}> <Icon component={() => <img className="user__icon-home" alt="pixabay.com" src="https://www.vectorlogo.zone/logos/pixabay/pixabay-card.png"/>} /> </Link> 
-                    <Route path="/:id" component={() => <ButtonBack />} /> 
-                </Header>
+                    
+                    <Header className="user-layout__header"> 
+                        <div className="page">
+                            <Link to={`/`}> <Icon component={() => <img className="user__icon-home" alt="pixabay.com" src="https://www.vectorlogo.zone/logos/pixabay/pixabay-card.png"/>} /> </Link> 
+                            <Route path="/:id" component={() => <ButtonBack />} /> 
+                        </div>
+                    </Header>
+                
                 </Layout>
             </Col>
         </Row>
-        <Switch>
-            <Route path="/" exact component={Home}/>
-            <Route path="/users/:id/photos" component={UserPhotoListing}/>
-            <Route path="/photo/:id" component={Photo}/>
-            <Route path="/users/:id" component={User}/>
-        </Switch>
+        <div className="page">
+            <Switch>
+                <Route path="/" exact component={Home}/>
+                <Route path="/users/:id/photos" component={UserPhotoListing}/>
+                <Route path="/photo/:id" component={Photo}/>
+                <Route path="/users/:id" component={User}/>
+            </Switch>
         </div>
       </LastLocationProvider>
     </BrowserRouter>)
