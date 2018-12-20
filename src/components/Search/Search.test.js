@@ -11,7 +11,6 @@ describe('Test of component of Search', () => {
 
         const search = shallow(<Search />);
         expect(search.find('.search__input').prop('placeholder')).toEqual('Wallpapers');
-        //console.log(search.debug())
 
     });  
 
