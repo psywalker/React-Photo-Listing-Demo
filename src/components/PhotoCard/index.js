@@ -13,10 +13,6 @@ class PhotoCard extends Component {
     };
   }
 
-  componentDidMount = () => {
-   
-  };
-
   showModal = () => {
     this.setState({
       visible: true,
@@ -70,7 +66,7 @@ class PhotoCard extends Component {
           <div className="photo-card-self__badge-wrap">
             {tags.map((item, i) => {
                 if(i < 3) {
-                  return <Tag onClick={() => onSearchTagValue(item.title, 'tags')} className="photo-card-self__badge" key={item.title}>
+                  return <Tag key={item.title} onClick={() => onSearchTagValue(item.title, 'tags')} className="photo-card-self__badge" key={item.title}>
                       {item.title}
                     </Tag>
                   }else {
@@ -86,7 +82,7 @@ class PhotoCard extends Component {
                                       <div>
                                           {tags.map((item, i) => {
                                             if(i > 2) {
-                                              return <Tag onClick={() => onSearchTagValue(item.title, 'tags')} className="photo-card-self__badge" key={item.title}>
+                                              return <Tag key={item.title} onClick={() => onSearchTagValue(item.title, 'tags')} className="photo-card-self__badge" key={item.title}>
                                                   {item.title}
                                                 </Tag>
                                               }else {
