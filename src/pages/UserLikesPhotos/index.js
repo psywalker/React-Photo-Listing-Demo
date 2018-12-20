@@ -71,7 +71,7 @@ class UserLikesPhotos extends Component {
                             {!isListingLoading && (
                                 <ul className="photo-list user-photos">
                                 {
-                                cards.map((item, index) => (
+                                cards.map((item) => (
                                     <li key={item.id} className="photo-list__item pl-3">
                                         <PhotoCard 
                                             photoName={item.urls.regular} 

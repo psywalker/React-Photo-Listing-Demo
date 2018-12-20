@@ -25,7 +25,6 @@ describe('Test of component of UserPhotoListing', () => {
           }); 
 
         expect(userPhotoListing.find('Pagination').length).toEqual(0);
-        //expect(userStatistic.find('.user-statistic__chart').at(1).prop('config')).toEqual(undefined);
     });  
 
     it('Test Spinner', () => { 
