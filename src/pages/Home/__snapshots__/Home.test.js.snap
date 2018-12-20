@@ -1,0 +1,3155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test of component of Home Test Snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Home />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Spinner
+          className="spinner"
+        />,
+        <div
+          className="row"
+        >
+          <div
+            className="col-12"
+          >
+            <Search
+              getSearchInputValue={[Function]}
+              onChangeInputValue={[Function]}
+              onSearchInputValue={[Function]}
+              queryText="wallpapers"
+            />
+          </div>
+        </div>,
+        <div
+          className="row"
+        >
+          <div
+            className="col-12"
+          >
+            <ul
+              className="nav-top"
+            >
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="editorial"
+                  itemId={0}
+                  label="Editorial"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item nav-top__item_border-right"
+              >
+                <NavTop
+                  filterValue="following"
+                  itemId={1}
+                  label="Following"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="wallpapers"
+                  itemId={2}
+                  label="Wallpapers"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="textures"
+                  itemId={3}
+                  label="Textures & Patterns"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="nature"
+                  itemId={4}
+                  label="Nature"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="events"
+                  itemId={5}
+                  label="Current Events"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="architecture"
+                  itemId={6}
+                  label="Architecture"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="business"
+                  itemId={7}
+                  label="Business & Work"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="animals"
+                  itemId={8}
+                  label="Animals"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="travel"
+                  itemId={9}
+                  label="Travel"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="fashion"
+                  itemId={10}
+                  label="Fashion"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="food-drink"
+                  itemId={11}
+                  label="Food & Drink"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="spirituality"
+                  itemId={12}
+                  label="Spirituality"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="experimental"
+                  itemId={13}
+                  label="Experimental"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="people"
+                  itemId={14}
+                  label="People"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="health"
+                  itemId={15}
+                  label="Health"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="arts-culture"
+                  itemId={16}
+                  label="Arts & Culture"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+            </ul>
+          </div>
+        </div>,
+        <div
+          className="row"
+        >
+          <div
+            className="col-12"
+          />
+        </div>,
+        <div
+          className="row"
+        >
+          <div
+            className="col-12 pagination"
+          >
+            <Pagination
+              className="ml-3"
+              current={1}
+              defaultCurrent={1}
+              onChange={[Function]}
+              prefixCls="ant-pagination"
+              selectPrefixCls="ant-select"
+              showSizeChanger={true}
+              total={10}
+            />
+          </div>
+        </div>,
+      ],
+      "className": "App",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "className": "spinner",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="col-12"
+          >
+            <Search
+              getSearchInputValue={[Function]}
+              onChangeInputValue={[Function]}
+              onSearchInputValue={[Function]}
+              queryText="wallpapers"
+            />
+          </div>,
+          "className": "row",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <Search
+              getSearchInputValue={[Function]}
+              onChangeInputValue={[Function]}
+              onSearchInputValue={[Function]}
+              queryText="wallpapers"
+            />,
+            "className": "col-12",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "getSearchInputValue": [Function],
+              "onChangeInputValue": [Function],
+              "onSearchInputValue": [Function],
+              "queryText": "wallpapers",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "div",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="col-12"
+          >
+            <ul
+              className="nav-top"
+            >
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="editorial"
+                  itemId={0}
+                  label="Editorial"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item nav-top__item_border-right"
+              >
+                <NavTop
+                  filterValue="following"
+                  itemId={1}
+                  label="Following"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="wallpapers"
+                  itemId={2}
+                  label="Wallpapers"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="textures"
+                  itemId={3}
+                  label="Textures & Patterns"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="nature"
+                  itemId={4}
+                  label="Nature"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="events"
+                  itemId={5}
+                  label="Current Events"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="architecture"
+                  itemId={6}
+                  label="Architecture"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="business"
+                  itemId={7}
+                  label="Business & Work"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="animals"
+                  itemId={8}
+                  label="Animals"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="travel"
+                  itemId={9}
+                  label="Travel"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="fashion"
+                  itemId={10}
+                  label="Fashion"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="food-drink"
+                  itemId={11}
+                  label="Food & Drink"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="spirituality"
+                  itemId={12}
+                  label="Spirituality"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="experimental"
+                  itemId={13}
+                  label="Experimental"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="people"
+                  itemId={14}
+                  label="People"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="health"
+                  itemId={15}
+                  label="Health"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="arts-culture"
+                  itemId={16}
+                  label="Arts & Culture"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+            </ul>
+          </div>,
+          "className": "row",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <ul
+              className="nav-top"
+            >
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="editorial"
+                  itemId={0}
+                  label="Editorial"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item nav-top__item_border-right"
+              >
+                <NavTop
+                  filterValue="following"
+                  itemId={1}
+                  label="Following"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="wallpapers"
+                  itemId={2}
+                  label="Wallpapers"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="textures"
+                  itemId={3}
+                  label="Textures & Patterns"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="nature"
+                  itemId={4}
+                  label="Nature"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="events"
+                  itemId={5}
+                  label="Current Events"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="architecture"
+                  itemId={6}
+                  label="Architecture"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="business"
+                  itemId={7}
+                  label="Business & Work"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="animals"
+                  itemId={8}
+                  label="Animals"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="travel"
+                  itemId={9}
+                  label="Travel"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="fashion"
+                  itemId={10}
+                  label="Fashion"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="food-drink"
+                  itemId={11}
+                  label="Food & Drink"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="spirituality"
+                  itemId={12}
+                  label="Spirituality"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="experimental"
+                  itemId={13}
+                  label="Experimental"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="people"
+                  itemId={14}
+                  label="People"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="health"
+                  itemId={15}
+                  label="Health"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+              <li
+                className="nav-top__item "
+              >
+                <NavTop
+                  filterValue="arts-culture"
+                  itemId={16}
+                  label="Arts & Culture"
+                  navTopItemActive={2}
+                  onFilterItemValue={[Function]}
+                />
+              </li>
+            </ul>,
+            "className": "col-12",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="editorial"
+                    itemId={0}
+                    label="Editorial"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item nav-top__item_border-right"
+                >
+                  <NavTop
+                    filterValue="following"
+                    itemId={1}
+                    label="Following"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="wallpapers"
+                    itemId={2}
+                    label="Wallpapers"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="textures"
+                    itemId={3}
+                    label="Textures & Patterns"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="nature"
+                    itemId={4}
+                    label="Nature"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="events"
+                    itemId={5}
+                    label="Current Events"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="architecture"
+                    itemId={6}
+                    label="Architecture"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="business"
+                    itemId={7}
+                    label="Business & Work"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="animals"
+                    itemId={8}
+                    label="Animals"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="travel"
+                    itemId={9}
+                    label="Travel"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="fashion"
+                    itemId={10}
+                    label="Fashion"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="food-drink"
+                    itemId={11}
+                    label="Food & Drink"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="spirituality"
+                    itemId={12}
+                    label="Spirituality"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="experimental"
+                    itemId={13}
+                    label="Experimental"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="people"
+                    itemId={14}
+                    label="People"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="health"
+                    itemId={15}
+                    label="Health"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="arts-culture"
+                    itemId={16}
+                    label="Arts & Culture"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>,
+              ],
+              "className": "nav-top",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": "0",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="editorial"
+                    itemId={0}
+                    label="Editorial"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "0",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "editorial",
+                    "itemId": 0,
+                    "label": "Editorial",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "1",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="following"
+                    itemId={1}
+                    label="Following"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item nav-top__item_border-right",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "1",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "following",
+                    "itemId": 1,
+                    "label": "Following",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "2",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="wallpapers"
+                    itemId={2}
+                    label="Wallpapers"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "2",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "wallpapers",
+                    "itemId": 2,
+                    "label": "Wallpapers",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "3",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="textures"
+                    itemId={3}
+                    label="Textures & Patterns"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "3",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "textures",
+                    "itemId": 3,
+                    "label": "Textures & Patterns",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "4",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="nature"
+                    itemId={4}
+                    label="Nature"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "4",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "nature",
+                    "itemId": 4,
+                    "label": "Nature",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "5",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="events"
+                    itemId={5}
+                    label="Current Events"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "5",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "events",
+                    "itemId": 5,
+                    "label": "Current Events",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "6",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="architecture"
+                    itemId={6}
+                    label="Architecture"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "6",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "architecture",
+                    "itemId": 6,
+                    "label": "Architecture",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "7",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="business"
+                    itemId={7}
+                    label="Business & Work"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "7",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "business",
+                    "itemId": 7,
+                    "label": "Business & Work",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "8",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="animals"
+                    itemId={8}
+                    label="Animals"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "8",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "animals",
+                    "itemId": 8,
+                    "label": "Animals",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "9",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="travel"
+                    itemId={9}
+                    label="Travel"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "9",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "travel",
+                    "itemId": 9,
+                    "label": "Travel",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "10",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="fashion"
+                    itemId={10}
+                    label="Fashion"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "10",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "fashion",
+                    "itemId": 10,
+                    "label": "Fashion",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "11",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="food-drink"
+                    itemId={11}
+                    label="Food & Drink"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "11",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "food-drink",
+                    "itemId": 11,
+                    "label": "Food & Drink",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "12",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="spirituality"
+                    itemId={12}
+                    label="Spirituality"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "12",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "spirituality",
+                    "itemId": 12,
+                    "label": "Spirituality",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "13",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="experimental"
+                    itemId={13}
+                    label="Experimental"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "13",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "experimental",
+                    "itemId": 13,
+                    "label": "Experimental",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "14",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="people"
+                    itemId={14}
+                    label="People"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "14",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "people",
+                    "itemId": 14,
+                    "label": "People",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "15",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="health"
+                    itemId={15}
+                    label="Health"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "15",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "health",
+                    "itemId": 15,
+                    "label": "Health",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": "16",
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavTop
+                    filterValue="arts-culture"
+                    itemId={16}
+                    label="Arts & Culture"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />,
+                  "className": "nav-top__item ",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": "16",
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterValue": "arts-culture",
+                    "itemId": 16,
+                    "label": "Arts & Culture",
+                    "navTopItemActive": 2,
+                    "onFilterItemValue": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "li",
+              },
+            ],
+            "type": "ul",
+          },
+          "type": "div",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="col-12"
+          />,
+          "className": "row",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              false,
+              false,
+            ],
+            "className": "col-12",
+          },
+          "ref": null,
+          "rendered": Array [
+            false,
+            false,
+          ],
+          "type": "div",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="col-12 pagination"
+          >
+            <Pagination
+              className="ml-3"
+              current={1}
+              defaultCurrent={1}
+              onChange={[Function]}
+              prefixCls="ant-pagination"
+              selectPrefixCls="ant-select"
+              showSizeChanger={true}
+              total={10}
+            />
+          </div>,
+          "className": "row",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <Pagination
+              className="ml-3"
+              current={1}
+              defaultCurrent={1}
+              onChange={[Function]}
+              prefixCls="ant-pagination"
+              selectPrefixCls="ant-select"
+              showSizeChanger={true}
+              total={10}
+            />,
+            "className": "col-12 pagination",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "className": "ml-3",
+              "current": 1,
+              "defaultCurrent": 1,
+              "onChange": [Function],
+              "prefixCls": "ant-pagination",
+              "selectPrefixCls": "ant-select",
+              "showSizeChanger": true,
+              "total": 10,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "div",
+        },
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Spinner
+            className="spinner"
+          />,
+          <div
+            className="row"
+          >
+            <div
+              className="col-12"
+            >
+              <Search
+                getSearchInputValue={[Function]}
+                onChangeInputValue={[Function]}
+                onSearchInputValue={[Function]}
+                queryText="wallpapers"
+              />
+            </div>
+          </div>,
+          <div
+            className="row"
+          >
+            <div
+              className="col-12"
+            >
+              <ul
+                className="nav-top"
+              >
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="editorial"
+                    itemId={0}
+                    label="Editorial"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item nav-top__item_border-right"
+                >
+                  <NavTop
+                    filterValue="following"
+                    itemId={1}
+                    label="Following"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="wallpapers"
+                    itemId={2}
+                    label="Wallpapers"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="textures"
+                    itemId={3}
+                    label="Textures & Patterns"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="nature"
+                    itemId={4}
+                    label="Nature"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="events"
+                    itemId={5}
+                    label="Current Events"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="architecture"
+                    itemId={6}
+                    label="Architecture"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="business"
+                    itemId={7}
+                    label="Business & Work"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="animals"
+                    itemId={8}
+                    label="Animals"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="travel"
+                    itemId={9}
+                    label="Travel"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="fashion"
+                    itemId={10}
+                    label="Fashion"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="food-drink"
+                    itemId={11}
+                    label="Food & Drink"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="spirituality"
+                    itemId={12}
+                    label="Spirituality"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="experimental"
+                    itemId={13}
+                    label="Experimental"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="people"
+                    itemId={14}
+                    label="People"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="health"
+                    itemId={15}
+                    label="Health"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="arts-culture"
+                    itemId={16}
+                    label="Arts & Culture"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>,
+          <div
+            className="row"
+          >
+            <div
+              className="col-12"
+            />
+          </div>,
+          <div
+            className="row"
+          >
+            <div
+              className="col-12 pagination"
+            >
+              <Pagination
+                className="ml-3"
+                current={1}
+                defaultCurrent={1}
+                onChange={[Function]}
+                prefixCls="ant-pagination"
+                selectPrefixCls="ant-select"
+                showSizeChanger={true}
+                total={10}
+              />
+            </div>
+          </div>,
+        ],
+        "className": "App",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "className": "spinner",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="col-12"
+            >
+              <Search
+                getSearchInputValue={[Function]}
+                onChangeInputValue={[Function]}
+                onSearchInputValue={[Function]}
+                queryText="wallpapers"
+              />
+            </div>,
+            "className": "row",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <Search
+                getSearchInputValue={[Function]}
+                onChangeInputValue={[Function]}
+                onSearchInputValue={[Function]}
+                queryText="wallpapers"
+              />,
+              "className": "col-12",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "getSearchInputValue": [Function],
+                "onChangeInputValue": [Function],
+                "onSearchInputValue": [Function],
+                "queryText": "wallpapers",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": "div",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="col-12"
+            >
+              <ul
+                className="nav-top"
+              >
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="editorial"
+                    itemId={0}
+                    label="Editorial"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item nav-top__item_border-right"
+                >
+                  <NavTop
+                    filterValue="following"
+                    itemId={1}
+                    label="Following"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="wallpapers"
+                    itemId={2}
+                    label="Wallpapers"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="textures"
+                    itemId={3}
+                    label="Textures & Patterns"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="nature"
+                    itemId={4}
+                    label="Nature"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="events"
+                    itemId={5}
+                    label="Current Events"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="architecture"
+                    itemId={6}
+                    label="Architecture"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="business"
+                    itemId={7}
+                    label="Business & Work"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="animals"
+                    itemId={8}
+                    label="Animals"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="travel"
+                    itemId={9}
+                    label="Travel"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="fashion"
+                    itemId={10}
+                    label="Fashion"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="food-drink"
+                    itemId={11}
+                    label="Food & Drink"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="spirituality"
+                    itemId={12}
+                    label="Spirituality"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="experimental"
+                    itemId={13}
+                    label="Experimental"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="people"
+                    itemId={14}
+                    label="People"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="health"
+                    itemId={15}
+                    label="Health"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="arts-culture"
+                    itemId={16}
+                    label="Arts & Culture"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+              </ul>
+            </div>,
+            "className": "row",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <ul
+                className="nav-top"
+              >
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="editorial"
+                    itemId={0}
+                    label="Editorial"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item nav-top__item_border-right"
+                >
+                  <NavTop
+                    filterValue="following"
+                    itemId={1}
+                    label="Following"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="wallpapers"
+                    itemId={2}
+                    label="Wallpapers"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="textures"
+                    itemId={3}
+                    label="Textures & Patterns"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="nature"
+                    itemId={4}
+                    label="Nature"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="events"
+                    itemId={5}
+                    label="Current Events"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="architecture"
+                    itemId={6}
+                    label="Architecture"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="business"
+                    itemId={7}
+                    label="Business & Work"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="animals"
+                    itemId={8}
+                    label="Animals"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="travel"
+                    itemId={9}
+                    label="Travel"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="fashion"
+                    itemId={10}
+                    label="Fashion"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="food-drink"
+                    itemId={11}
+                    label="Food & Drink"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="spirituality"
+                    itemId={12}
+                    label="Spirituality"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="experimental"
+                    itemId={13}
+                    label="Experimental"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="people"
+                    itemId={14}
+                    label="People"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="health"
+                    itemId={15}
+                    label="Health"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+                <li
+                  className="nav-top__item "
+                >
+                  <NavTop
+                    filterValue="arts-culture"
+                    itemId={16}
+                    label="Arts & Culture"
+                    navTopItemActive={2}
+                    onFilterItemValue={[Function]}
+                  />
+                </li>
+              </ul>,
+              "className": "col-12",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="editorial"
+                      itemId={0}
+                      label="Editorial"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item nav-top__item_border-right"
+                  >
+                    <NavTop
+                      filterValue="following"
+                      itemId={1}
+                      label="Following"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="wallpapers"
+                      itemId={2}
+                      label="Wallpapers"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="textures"
+                      itemId={3}
+                      label="Textures & Patterns"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="nature"
+                      itemId={4}
+                      label="Nature"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="events"
+                      itemId={5}
+                      label="Current Events"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="architecture"
+                      itemId={6}
+                      label="Architecture"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="business"
+                      itemId={7}
+                      label="Business & Work"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="animals"
+                      itemId={8}
+                      label="Animals"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="travel"
+                      itemId={9}
+                      label="Travel"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="fashion"
+                      itemId={10}
+                      label="Fashion"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="food-drink"
+                      itemId={11}
+                      label="Food & Drink"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="spirituality"
+                      itemId={12}
+                      label="Spirituality"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="experimental"
+                      itemId={13}
+                      label="Experimental"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="people"
+                      itemId={14}
+                      label="People"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="health"
+                      itemId={15}
+                      label="Health"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                  <li
+                    className="nav-top__item "
+                  >
+                    <NavTop
+                      filterValue="arts-culture"
+                      itemId={16}
+                      label="Arts & Culture"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />
+                  </li>,
+                ],
+                "className": "nav-top",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": "0",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="editorial"
+                      itemId={0}
+                      label="Editorial"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "0",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "editorial",
+                      "itemId": 0,
+                      "label": "Editorial",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "1",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="following"
+                      itemId={1}
+                      label="Following"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item nav-top__item_border-right",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "1",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "following",
+                      "itemId": 1,
+                      "label": "Following",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "2",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="wallpapers"
+                      itemId={2}
+                      label="Wallpapers"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "2",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "wallpapers",
+                      "itemId": 2,
+                      "label": "Wallpapers",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "3",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="textures"
+                      itemId={3}
+                      label="Textures & Patterns"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "3",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "textures",
+                      "itemId": 3,
+                      "label": "Textures & Patterns",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "4",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="nature"
+                      itemId={4}
+                      label="Nature"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "4",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "nature",
+                      "itemId": 4,
+                      "label": "Nature",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "5",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="events"
+                      itemId={5}
+                      label="Current Events"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "5",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "events",
+                      "itemId": 5,
+                      "label": "Current Events",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "6",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="architecture"
+                      itemId={6}
+                      label="Architecture"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "6",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "architecture",
+                      "itemId": 6,
+                      "label": "Architecture",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "7",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="business"
+                      itemId={7}
+                      label="Business & Work"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "7",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "business",
+                      "itemId": 7,
+                      "label": "Business & Work",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "8",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="animals"
+                      itemId={8}
+                      label="Animals"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "8",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "animals",
+                      "itemId": 8,
+                      "label": "Animals",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "9",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="travel"
+                      itemId={9}
+                      label="Travel"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "9",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "travel",
+                      "itemId": 9,
+                      "label": "Travel",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "10",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="fashion"
+                      itemId={10}
+                      label="Fashion"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "10",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "fashion",
+                      "itemId": 10,
+                      "label": "Fashion",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "11",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="food-drink"
+                      itemId={11}
+                      label="Food & Drink"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "11",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "food-drink",
+                      "itemId": 11,
+                      "label": "Food & Drink",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "12",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="spirituality"
+                      itemId={12}
+                      label="Spirituality"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "12",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "spirituality",
+                      "itemId": 12,
+                      "label": "Spirituality",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "13",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="experimental"
+                      itemId={13}
+                      label="Experimental"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "13",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "experimental",
+                      "itemId": 13,
+                      "label": "Experimental",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "14",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="people"
+                      itemId={14}
+                      label="People"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "14",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "people",
+                      "itemId": 14,
+                      "label": "People",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "15",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="health"
+                      itemId={15}
+                      label="Health"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "15",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "health",
+                      "itemId": 15,
+                      "label": "Health",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": "16",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <NavTop
+                      filterValue="arts-culture"
+                      itemId={16}
+                      label="Arts & Culture"
+                      navTopItemActive={2}
+                      onFilterItemValue={[Function]}
+                    />,
+                    "className": "nav-top__item ",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": "16",
+                    "nodeType": "function",
+                    "props": Object {
+                      "filterValue": "arts-culture",
+                      "itemId": 16,
+                      "label": "Arts & Culture",
+                      "navTopItemActive": 2,
+                      "onFilterItemValue": [Function],
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "li",
+                },
+              ],
+              "type": "ul",
+            },
+            "type": "div",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="col-12"
+            />,
+            "className": "row",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                false,
+                false,
+              ],
+              "className": "col-12",
+            },
+            "ref": null,
+            "rendered": Array [
+              false,
+              false,
+            ],
+            "type": "div",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="col-12 pagination"
+            >
+              <Pagination
+                className="ml-3"
+                current={1}
+                defaultCurrent={1}
+                onChange={[Function]}
+                prefixCls="ant-pagination"
+                selectPrefixCls="ant-select"
+                showSizeChanger={true}
+                total={10}
+              />
+            </div>,
+            "className": "row",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <Pagination
+                className="ml-3"
+                current={1}
+                defaultCurrent={1}
+                onChange={[Function]}
+                prefixCls="ant-pagination"
+                selectPrefixCls="ant-select"
+                showSizeChanger={true}
+                total={10}
+              />,
+              "className": "col-12 pagination",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "className": "ml-3",
+                "current": 1,
+                "defaultCurrent": 1,
+                "onChange": [Function],
+                "prefixCls": "ant-pagination",
+                "selectPrefixCls": "ant-select",
+                "showSizeChanger": true,
+                "total": 10,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": "div",
+          },
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

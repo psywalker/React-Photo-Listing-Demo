@@ -120,7 +120,7 @@ class Home extends Component {
     } = this.state;
     return (
       <div className="App">
-        { isListingLoading && (<Spinner />)}
+        { isListingLoading && (<Spinner className="spinner" />)}
         <div className="row">
           <div className="col-12">
             <Search onSearchInputValue={this.handleSearchText} onChangeInputValue={this.handleChangeInputValue} queryText={cardsData.query} />
@@ -138,7 +138,6 @@ class Home extends Component {
                     onFilterItemValue={this.handleFilterItemValue} 
                     key={item.id} label={item.label} 
                     filterValue={item.filterValue}
-                    
                   />
                 </li>))
               }
@@ -151,7 +150,7 @@ class Home extends Component {
             {!isListingLoading && (
               <ul className="photo-list">
                 {
-                cards.map((item, index) => (
+                cards.map((item) => (
                   <li key={item.id} className="photo-list__item pl-3">
                       <PhotoCard 
                         photoName={item.urls.regular} 
