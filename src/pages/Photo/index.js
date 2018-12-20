@@ -34,7 +34,6 @@ class Photo extends Component {
 
         axios.get(API_URL)
         .then((res) => {
-            console.log('111:::', res)
             const photoSrc = res.data.urls.full;
             const userId = res.data.user.id;
             const userName = res.data.user.first_name;
@@ -72,7 +71,7 @@ class Photo extends Component {
 
         return (
         <div className="photo-container photo">
-            { isListingLoading && (<Spinner />)}
+            { isListingLoading && (<Spinner className="spinner" />)}
             <Card
                 style={{ width: '100%' }}
                 cover={<img
@@ -84,7 +83,7 @@ class Photo extends Component {
             >
                 <Meta className="photo__desc" title={`${photoDesc ? photoDesc : 'No title'}`} />
                 <Link to={`/users/${userNic}`}>
-                    <p>Autor's page link</p>
+                    <p className="photo__autor-page-link">Autor's page link</p>
                 </Link>
                 <a className="photo__autor-link" href={userPortfolioUrl}>Autor's portfolio link</a>
             </Card>

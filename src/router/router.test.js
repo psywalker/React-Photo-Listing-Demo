@@ -10,9 +10,6 @@ describe('Test of component of Router', () => {
   it('Initial', () => { 
 
     const router = shallow(<Router />);
-
-    console.log(router.debug())
-
-
+    expect(router).toMatchSnapshot();
   });
 });

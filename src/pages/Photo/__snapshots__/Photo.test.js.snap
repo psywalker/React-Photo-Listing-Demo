@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test of component of Photo Initial 1`] = `
+exports[`Test of component of Photo Test Snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Photo
@@ -25,104 +25,214 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": <t
-        className="photo-card"
-        tag="div"
-      >
-        <t
-          cascade={false}
-          className="img-fluid photo-card__img"
-          hover={false}
-          overlay="white-slight"
-          src={null}
-          tag="img"
-          waves={true}
-        />
-        <t
-          tag="div"
+      "children": Array [
+        <Spinner
+          className="spinner"
+        />,
+        <Card
+          cover={
+            <img
+              alt="example"
+              className="photo__img"
+              src={null}
+            />
+          }
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
         >
+          <Unknown
+            className="photo__desc"
+            title="No title"
+          />
           <Link
             replace={false}
-            to="/users/url"
+            to="/users/UserNic"
           >
-            <h2>
-              Autor: 
-              User111
-               
-              
-            </h2>
+            <p
+              className="photo__autor-page-link"
+            >
+              Autor's page link
+            </p>
           </Link>
           <a
-            className="photo-card__autor-link"
-            href="linkUrl"
+            className="photo__autor-link"
+            href=""
           >
             Autor's portfolio link
           </a>
-          <div>
-            <withRouter(WithLastLocation(withRouter())) />
-          </div>
-        </t>
-      </t>,
-      "className": "photo",
+        </Card>,
+      ],
+      "className": "photo-container photo",
     },
     "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": Array [
-          <t
-            cascade={false}
-            className="img-fluid photo-card__img"
-            hover={false}
-            overlay="white-slight"
-            src={null}
-            tag="img"
-            waves={true}
-          />,
-          <t
-            tag="div"
-          >
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "className": "spinner",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Unknown
+              className="photo__desc"
+              title="No title"
+            />,
             <Link
               replace={false}
-              to="/users/url"
+              to="/users/UserNic"
             >
-              <h2>
-                Autor: 
-                User111
-                 
-                
-              </h2>
+              <p
+                className="photo__autor-page-link"
+              >
+                Autor's page link
+              </p>
+            </Link>,
+            <a
+              className="photo__autor-link"
+              href=""
+            >
+              Autor's portfolio link
+            </a>,
+          ],
+          "cover": <img
+            alt="example"
+            className="photo__img"
+            src={null}
+          />,
+          "style": Object {
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "photo__desc",
+              "title": "No title",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <p
+                className="photo__autor-page-link"
+              >
+                Autor's page link
+              </p>,
+              "replace": false,
+              "to": "/users/UserNic",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Autor's page link",
+                "className": "photo__autor-page-link",
+              },
+              "ref": null,
+              "rendered": "Autor's page link",
+              "type": "p",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Autor's portfolio link",
+              "className": "photo__autor-link",
+              "href": "",
+            },
+            "ref": null,
+            "rendered": "Autor's portfolio link",
+            "type": "a",
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Spinner
+            className="spinner"
+          />,
+          <Card
+            cover={
+              <img
+                alt="example"
+                className="photo__img"
+                src={null}
+              />
+            }
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            <Unknown
+              className="photo__desc"
+              title="No title"
+            />
+            <Link
+              replace={false}
+              to="/users/UserNic"
+            >
+              <p
+                className="photo__autor-page-link"
+              >
+                Autor's page link
+              </p>
             </Link>
             <a
-              className="photo-card__autor-link"
-              href="linkUrl"
+              className="photo__autor-link"
+              href=""
             >
               Autor's portfolio link
             </a>
-            <div>
-              <withRouter(WithLastLocation(withRouter())) />
-            </div>
-          </t>,
+          </Card>,
         ],
-        "className": "photo-card",
-        "tag": "div",
+        "className": "photo-container photo",
       },
       "ref": null,
       "rendered": Array [
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "cascade": false,
-            "className": "img-fluid photo-card__img",
-            "hover": false,
-            "overlay": "white-slight",
-            "src": null,
-            "tag": "img",
-            "waves": true,
+            "className": "spinner",
           },
           "ref": null,
           "rendered": null,
@@ -134,44 +244,62 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
+              <Unknown
+                className="photo__desc"
+                title="No title"
+              />,
               <Link
                 replace={false}
-                to="/users/url"
+                to="/users/UserNic"
               >
-                <h2>
-                  Autor: 
-                  User111
-                   
-                  
-                </h2>
+                <p
+                  className="photo__autor-page-link"
+                >
+                  Autor's page link
+                </p>
               </Link>,
               <a
-                className="photo-card__autor-link"
-                href="linkUrl"
+                className="photo__autor-link"
+                href=""
               >
                 Autor's portfolio link
               </a>,
-              <div>
-                <withRouter(WithLastLocation(withRouter())) />
-              </div>,
             ],
-            "tag": "div",
+            "cover": <img
+              alt="example"
+              className="photo__img"
+              src={null}
+            />,
+            "style": Object {
+              "width": "100%",
+            },
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
               "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "photo__desc",
+                "title": "No title",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <h2>
-                  Autor: 
-                  User111
-                   
-                  
-                </h2>,
+                "children": <p
+                  className="photo__autor-page-link"
+                >
+                  Autor's page link
+                </p>,
                 "replace": false,
-                "to": "/users/url",
+                "to": "/users/UserNic",
               },
               "ref": null,
               "rendered": Object {
@@ -179,21 +307,12 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": Array [
-                    "Autor: ",
-                    "User111",
-                    " ",
-                    "",
-                  ],
+                  "children": "Autor's page link",
+                  "className": "photo__autor-page-link",
                 },
                 "ref": null,
-                "rendered": Array [
-                  "Autor: ",
-                  "User111",
-                  " ",
-                  "",
-                ],
-                "type": "h2",
+                "rendered": "Autor's page link",
+                "type": "p",
               },
               "type": [Function],
             },
@@ -203,256 +322,17 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": "Autor's portfolio link",
-                "className": "photo-card__autor-link",
-                "href": "linkUrl",
+                "className": "photo__autor-link",
+                "href": "",
               },
               "ref": null,
               "rendered": "Autor's portfolio link",
               "type": "a",
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": <withRouter(WithLastLocation(withRouter())) />,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {},
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": "div",
-            },
           ],
           "type": [Function],
         },
       ],
-      "type": [Function],
-    },
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <t
-          className="photo-card"
-          tag="div"
-        >
-          <t
-            cascade={false}
-            className="img-fluid photo-card__img"
-            hover={false}
-            overlay="white-slight"
-            src={null}
-            tag="img"
-            waves={true}
-          />
-          <t
-            tag="div"
-          >
-            <Link
-              replace={false}
-              to="/users/url"
-            >
-              <h2>
-                Autor: 
-                User111
-                 
-                
-              </h2>
-            </Link>
-            <a
-              className="photo-card__autor-link"
-              href="linkUrl"
-            >
-              Autor's portfolio link
-            </a>
-            <div>
-              <withRouter(WithLastLocation(withRouter())) />
-            </div>
-          </t>
-        </t>,
-        "className": "photo",
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <t
-              cascade={false}
-              className="img-fluid photo-card__img"
-              hover={false}
-              overlay="white-slight"
-              src={null}
-              tag="img"
-              waves={true}
-            />,
-            <t
-              tag="div"
-            >
-              <Link
-                replace={false}
-                to="/users/url"
-              >
-                <h2>
-                  Autor: 
-                  User111
-                   
-                  
-                </h2>
-              </Link>
-              <a
-                className="photo-card__autor-link"
-                href="linkUrl"
-              >
-                Autor's portfolio link
-              </a>
-              <div>
-                <withRouter(WithLastLocation(withRouter())) />
-              </div>
-            </t>,
-          ],
-          "className": "photo-card",
-          "tag": "div",
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "cascade": false,
-              "className": "img-fluid photo-card__img",
-              "hover": false,
-              "overlay": "white-slight",
-              "src": null,
-              "tag": "img",
-              "waves": true,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": Array [
-                <Link
-                  replace={false}
-                  to="/users/url"
-                >
-                  <h2>
-                    Autor: 
-                    User111
-                     
-                    
-                  </h2>
-                </Link>,
-                <a
-                  className="photo-card__autor-link"
-                  href="linkUrl"
-                >
-                  Autor's portfolio link
-                </a>,
-                <div>
-                  <withRouter(WithLastLocation(withRouter())) />
-                </div>,
-              ],
-              "tag": "div",
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <h2>
-                    Autor: 
-                    User111
-                     
-                    
-                  </h2>,
-                  "replace": false,
-                  "to": "/users/url",
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": Array [
-                      "Autor: ",
-                      "User111",
-                      " ",
-                      "",
-                    ],
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    "Autor: ",
-                    "User111",
-                    " ",
-                    "",
-                  ],
-                  "type": "h2",
-                },
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "Autor's portfolio link",
-                  "className": "photo-card__autor-link",
-                  "href": "linkUrl",
-                },
-                "ref": null,
-                "rendered": "Autor's portfolio link",
-                "type": "a",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": <withRouter(WithLastLocation(withRouter())) />,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {},
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": "div",
-              },
-            ],
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
       "type": "div",
     },
   ],

@@ -23,8 +23,7 @@ const Main = () => (
                             <Link to={`/`}> <Icon component={() => <img className="user__icon-home" alt="pixabay.com" src="https://www.vectorlogo.zone/logos/pixabay/pixabay-card.png"/>} /> </Link> 
                             <Route path="/:id" component={() => <ButtonBack />} /> 
                         </div>
-                    </Header>
-                
+                    </Header>    
                 </Layout>
             </Col>
         </Row>
