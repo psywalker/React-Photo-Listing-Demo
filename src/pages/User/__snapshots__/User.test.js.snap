@@ -1,0 +1,997 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test of component of User Test User snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <User
+    match={
+      Object {
+        "params": Object {
+          "id": "sC-BXbi9ajw",
+        },
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Spinner />,
+        <Row
+          gutter={0}
+          style={
+            Object {
+              "display": "flex",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Col>
+            <img
+              alt="example"
+              className="user-card__first-img"
+              src=""
+            />
+            <div
+              className="user-card__photo-wrap"
+            >
+              <Avatar
+                prefixCls="ant-avatar"
+                shape="circle"
+                size={150}
+                src=""
+              />
+            </div>
+          </Col>
+        </Row>,
+        <Row
+          gutter={0}
+          style={
+            Object {
+              "display": "flex",
+              "justifyContent": "center",
+              "overflow": "hidden",
+            }
+          }
+        >
+          <Col>
+            <div
+              className="user-tabs"
+            >
+              <Tabs
+                className="user-tabs__item"
+                defaultActiveKey="1"
+                hideAdd={false}
+                prefixCls="ant-tabs"
+                tabPosition="top"
+              >
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My photos"
+                >
+                  <UserPhotoListing
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My likes photos"
+                >
+                  <UserLikesPhotos
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My statistic"
+                >
+                  <UserStatistic
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+              </Tabs>
+            </div>
+          </Col>
+        </Row>,
+      ],
+      "className": "user-container",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Col>
+            <img
+              alt="example"
+              className="user-card__first-img"
+              src=""
+            />
+            <div
+              className="user-card__photo-wrap"
+            >
+              <Avatar
+                prefixCls="ant-avatar"
+                shape="circle"
+                size={150}
+                src=""
+              />
+            </div>
+          </Col>,
+          "gutter": 0,
+          "style": Object {
+            "display": "flex",
+            "justifyContent": "center",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <img
+                alt="example"
+                className="user-card__first-img"
+                src=""
+              />,
+              <div
+                className="user-card__photo-wrap"
+              >
+                <Avatar
+                  prefixCls="ant-avatar"
+                  shape="circle"
+                  size={150}
+                  src=""
+                />
+              </div>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "alt": "example",
+                "className": "user-card__first-img",
+                "src": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "img",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <Avatar
+                  prefixCls="ant-avatar"
+                  shape="circle"
+                  size={150}
+                  src=""
+                />,
+                "className": "user-card__photo-wrap",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "prefixCls": "ant-avatar",
+                  "shape": "circle",
+                  "size": 150,
+                  "src": "",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "div",
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Col>
+            <div
+              className="user-tabs"
+            >
+              <Tabs
+                className="user-tabs__item"
+                defaultActiveKey="1"
+                hideAdd={false}
+                prefixCls="ant-tabs"
+                tabPosition="top"
+              >
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My photos"
+                >
+                  <UserPhotoListing
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My likes photos"
+                >
+                  <UserLikesPhotos
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My statistic"
+                >
+                  <UserStatistic
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+              </Tabs>
+            </div>
+          </Col>,
+          "gutter": 0,
+          "style": Object {
+            "display": "flex",
+            "justifyContent": "center",
+            "overflow": "hidden",
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <div
+              className="user-tabs"
+            >
+              <Tabs
+                className="user-tabs__item"
+                defaultActiveKey="1"
+                hideAdd={false}
+                prefixCls="ant-tabs"
+                tabPosition="top"
+              >
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My photos"
+                >
+                  <UserPhotoListing
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My likes photos"
+                >
+                  <UserLikesPhotos
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My statistic"
+                >
+                  <UserStatistic
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+              </Tabs>
+            </div>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <Tabs
+                className="user-tabs__item"
+                defaultActiveKey="1"
+                hideAdd={false}
+                prefixCls="ant-tabs"
+                tabPosition="top"
+              >
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My photos"
+                >
+                  <UserPhotoListing
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My likes photos"
+                >
+                  <UserLikesPhotos
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+                <TabPane
+                  className="user-tabs__pane"
+                  placeholder={null}
+                  tab="My statistic"
+                >
+                  <UserStatistic
+                    userId="sC-BXbi9ajw"
+                  />
+                </TabPane>
+              </Tabs>,
+              "className": "user-tabs",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My photos"
+                  >
+                    <UserPhotoListing
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>,
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My likes photos"
+                  >
+                    <UserLikesPhotos
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>,
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My statistic"
+                  >
+                    <UserStatistic
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>,
+                ],
+                "className": "user-tabs__item",
+                "defaultActiveKey": "1",
+                "hideAdd": false,
+                "prefixCls": "ant-tabs",
+                "tabPosition": "top",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": "1",
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <UserPhotoListing
+                      userId="sC-BXbi9ajw"
+                    />,
+                    "className": "user-tabs__pane",
+                    "placeholder": null,
+                    "tab": "My photos",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "userId": "sC-BXbi9ajw",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "2",
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <UserLikesPhotos
+                      userId="sC-BXbi9ajw"
+                    />,
+                    "className": "user-tabs__pane",
+                    "placeholder": null,
+                    "tab": "My likes photos",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "userId": "sC-BXbi9ajw",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "3",
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <UserStatistic
+                      userId="sC-BXbi9ajw"
+                    />,
+                    "className": "user-tabs__pane",
+                    "placeholder": null,
+                    "tab": "My statistic",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "userId": "sC-BXbi9ajw",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            "type": "div",
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Spinner />,
+          <Row
+            gutter={0}
+            style={
+              Object {
+                "display": "flex",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Col>
+              <img
+                alt="example"
+                className="user-card__first-img"
+                src=""
+              />
+              <div
+                className="user-card__photo-wrap"
+              >
+                <Avatar
+                  prefixCls="ant-avatar"
+                  shape="circle"
+                  size={150}
+                  src=""
+                />
+              </div>
+            </Col>
+          </Row>,
+          <Row
+            gutter={0}
+            style={
+              Object {
+                "display": "flex",
+                "justifyContent": "center",
+                "overflow": "hidden",
+              }
+            }
+          >
+            <Col>
+              <div
+                className="user-tabs"
+              >
+                <Tabs
+                  className="user-tabs__item"
+                  defaultActiveKey="1"
+                  hideAdd={false}
+                  prefixCls="ant-tabs"
+                  tabPosition="top"
+                >
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My photos"
+                  >
+                    <UserPhotoListing
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My likes photos"
+                  >
+                    <UserLikesPhotos
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My statistic"
+                  >
+                    <UserStatistic
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                </Tabs>
+              </div>
+            </Col>
+          </Row>,
+        ],
+        "className": "user-container",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Col>
+              <img
+                alt="example"
+                className="user-card__first-img"
+                src=""
+              />
+              <div
+                className="user-card__photo-wrap"
+              >
+                <Avatar
+                  prefixCls="ant-avatar"
+                  shape="circle"
+                  size={150}
+                  src=""
+                />
+              </div>
+            </Col>,
+            "gutter": 0,
+            "style": Object {
+              "display": "flex",
+              "justifyContent": "center",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <img
+                  alt="example"
+                  className="user-card__first-img"
+                  src=""
+                />,
+                <div
+                  className="user-card__photo-wrap"
+                >
+                  <Avatar
+                    prefixCls="ant-avatar"
+                    shape="circle"
+                    size={150}
+                    src=""
+                  />
+                </div>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "alt": "example",
+                  "className": "user-card__first-img",
+                  "src": "",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "img",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <Avatar
+                    prefixCls="ant-avatar"
+                    shape="circle"
+                    size={150}
+                    src=""
+                  />,
+                  "className": "user-card__photo-wrap",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "prefixCls": "ant-avatar",
+                    "shape": "circle",
+                    "size": 150,
+                    "src": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "div",
+              },
+            ],
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Col>
+              <div
+                className="user-tabs"
+              >
+                <Tabs
+                  className="user-tabs__item"
+                  defaultActiveKey="1"
+                  hideAdd={false}
+                  prefixCls="ant-tabs"
+                  tabPosition="top"
+                >
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My photos"
+                  >
+                    <UserPhotoListing
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My likes photos"
+                  >
+                    <UserLikesPhotos
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My statistic"
+                  >
+                    <UserStatistic
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                </Tabs>
+              </div>
+            </Col>,
+            "gutter": 0,
+            "style": Object {
+              "display": "flex",
+              "justifyContent": "center",
+              "overflow": "hidden",
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <div
+                className="user-tabs"
+              >
+                <Tabs
+                  className="user-tabs__item"
+                  defaultActiveKey="1"
+                  hideAdd={false}
+                  prefixCls="ant-tabs"
+                  tabPosition="top"
+                >
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My photos"
+                  >
+                    <UserPhotoListing
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My likes photos"
+                  >
+                    <UserLikesPhotos
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My statistic"
+                  >
+                    <UserStatistic
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                </Tabs>
+              </div>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <Tabs
+                  className="user-tabs__item"
+                  defaultActiveKey="1"
+                  hideAdd={false}
+                  prefixCls="ant-tabs"
+                  tabPosition="top"
+                >
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My photos"
+                  >
+                    <UserPhotoListing
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My likes photos"
+                  >
+                    <UserLikesPhotos
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                  <TabPane
+                    className="user-tabs__pane"
+                    placeholder={null}
+                    tab="My statistic"
+                  >
+                    <UserStatistic
+                      userId="sC-BXbi9ajw"
+                    />
+                  </TabPane>
+                </Tabs>,
+                "className": "user-tabs",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <TabPane
+                      className="user-tabs__pane"
+                      placeholder={null}
+                      tab="My photos"
+                    >
+                      <UserPhotoListing
+                        userId="sC-BXbi9ajw"
+                      />
+                    </TabPane>,
+                    <TabPane
+                      className="user-tabs__pane"
+                      placeholder={null}
+                      tab="My likes photos"
+                    >
+                      <UserLikesPhotos
+                        userId="sC-BXbi9ajw"
+                      />
+                    </TabPane>,
+                    <TabPane
+                      className="user-tabs__pane"
+                      placeholder={null}
+                      tab="My statistic"
+                    >
+                      <UserStatistic
+                        userId="sC-BXbi9ajw"
+                      />
+                    </TabPane>,
+                  ],
+                  "className": "user-tabs__item",
+                  "defaultActiveKey": "1",
+                  "hideAdd": false,
+                  "prefixCls": "ant-tabs",
+                  "tabPosition": "top",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": "1",
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <UserPhotoListing
+                        userId="sC-BXbi9ajw"
+                      />,
+                      "className": "user-tabs__pane",
+                      "placeholder": null,
+                      "tab": "My photos",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "userId": "sC-BXbi9ajw",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": "2",
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <UserLikesPhotos
+                        userId="sC-BXbi9ajw"
+                      />,
+                      "className": "user-tabs__pane",
+                      "placeholder": null,
+                      "tab": "My likes photos",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "userId": "sC-BXbi9ajw",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": "3",
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <UserStatistic
+                        userId="sC-BXbi9ajw"
+                      />,
+                      "className": "user-tabs__pane",
+                      "placeholder": null,
+                      "tab": "My statistic",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "userId": "sC-BXbi9ajw",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              "type": "div",
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
