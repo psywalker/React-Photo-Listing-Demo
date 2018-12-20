@@ -11,7 +11,7 @@ class Search extends Component {
       inputValue: this.props.queryText,
     };
   }
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate = (prevProps) => {
     if (prevProps.queryText !== this.props.queryText) {
       this.setState({
         inputValue: this.props.queryText,
@@ -36,6 +36,7 @@ class Search extends Component {
     return (
       <div className="search">
         <InputSearch
+          className="search__input"
           value={inputValue}
           placeholder="Wallpapers"
           onChange={value => this.changeInputValue(value)}
