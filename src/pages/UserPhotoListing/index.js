@@ -64,7 +64,7 @@ class UserPhotoListing extends Component {
         } = this.state;
         return (
             <div>
-                { isListingLoading && (<Spinner />)}
+                { isListingLoading && (<Spinner className="spinner" />)}
                 <div>
                     <Row justify="center" style={{margin: '20px 0'}}>
                         <Col span={24}>
