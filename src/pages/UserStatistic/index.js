@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as Highcharts from "react-highcharts"; 
+import Highcharts from "react-highcharts"; 
 import Spinner from '../../components/Spinner';
 import axios from 'axios';
 import './index.css';
@@ -188,18 +188,18 @@ class UserStatistic extends Component {
         } = this.state;
         return (
             <div className="user-statistic">
-                { isListingLoading && (<Spinner />)}
+                { isListingLoading && (<Spinner className="spinner" />)}
                 <div className="user-statistic__charts">
-                    <div className="user-statistic__chart-wrap">
-                        <Highcharts  className="user-statistic__chart" config = {highchartsConfigs.highchartsDownloadsConfig}></Highcharts>
+                <div className="user-statistic__chart-wrap">
+                        <Highcharts key="1"  className="user-statistic__chart" config = {highchartsConfigs.highchartsDownloadsConfig} />
                     </div>
 
                     <div className="user-statistic__chart-wrap">
-                        <Highcharts  className="user-statistic__chart" config = {highchartsConfigs.highchartsViewsConfig}></Highcharts>
+                        <Highcharts key="2"   className="user-statistic__chart" config = {highchartsConfigs.highchartsViewsConfig} />
                     </div>
 
                     <div className="user-statistic__chart-wrap">
-                        <Highcharts  className="user-statistic__chart user-statistic-chart" config = {highchartsConfigs.highchartsLikesConfig}></Highcharts>
+                        <Highcharts  key="3"  className="user-statistic__chart user-statistic-chart" config = {highchartsConfigs.highchartsLikesConfig} />
                     </div>
                 </div>
             </div>
