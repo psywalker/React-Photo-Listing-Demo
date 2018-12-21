@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link} from 'react-router-dom';
 import {Layout, Button, Icon  } from "antd";
 import ButtonBack from '../../components/ButtonBack';
+import axios from 'axios';
 
 const {
     Header,
@@ -16,7 +17,19 @@ class HeaderApp extends Component {
     }
     
     handleAuthorizationRequest = () => {
-        console.log(11)
+        axios.get('https://unsplash.com/oauth/authorize?', {
+            params: {
+              redirect_uri: '/', 
+              code: 'code',
+              client_id: process.env.REACT_APP_UNSPLASH_API_KEY
+            },
+          }).then((res) => {
+            console.log('111', res);
+          })
+          .catch(() => {
+            console.log('pixabay API not responding');
+            
+          });
     }
 
     render() {
