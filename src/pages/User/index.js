@@ -87,7 +87,7 @@ class User extends Component {
                             <TabPane tab="My photos" key="1"  className="user-tabs__pane" >
                                 <UserPhotoListing userId={match.params.id} />
                             </TabPane>
-                            <TabPane tab="My likes photos" key="2"  className="user-tabs__pane" >
+                            <TabPane tab="My likes" key="2"  className="user-tabs__pane" >
                                 <UserLikesPhotos userId={match.params.id} />
                             </TabPane>
                             <TabPane tab="My statistic" key="3"  className="user-tabs__pane" >

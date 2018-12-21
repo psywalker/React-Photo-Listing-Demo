@@ -11,18 +11,32 @@ class UserStatistic extends Component {
         isListingLoading: false,
         highchartsConfigs: {
             highchartsDownloadsConfig: {
+                chart: {
+                    type: 'area'
+                },
+                colors: ['rgba(255, 0, 255, .5)'],
                 title: {
                     text: 'My Downloads'
                 },
                 xAxis: {
                     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    className: 'highcharts1111',
+                },
+                plotOptions: {
+                    area: {
+                        stacking: 'normal',
+                        lineColor: 'rgba(255, 0, 255, .5)',
+                        lineWidth: 1,
+                        marker: {
+                            lineWidth: 6,
+                            lineColor: 'rgba(255, 0, 255, .5)'
+                        }
+                    }
                 },
                 series: [
                     {
                         name: 'Downloads',
                         data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4],
-                        className: 'user-statistic-chart__series_downloads',
+                        className: 'user-statistic-chart__series_downloads'
                         
                     },
                 ],
@@ -47,11 +61,26 @@ class UserStatistic extends Component {
                   }
             },
             highchartsViewsConfig: {
+                chart: {
+                    type: 'area'
+                },
                 title: {
                     text: 'My Views'
                 },
+                colors: ['rgba(255, 165, 0, .5)'],
                 xAxis: {
                     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                },
+                plotOptions: {
+                    area: {
+                        stacking: 'normal',
+                        lineColor: 'rgba(255, 165, 0, .5)',
+                        lineWidth: 1,
+                        marker: {
+                            lineWidth: 6,
+                            lineColor: 'rgba(255, 165, 0, .5)'
+                        }
+                    }
                 },
                 series: [
                     {
@@ -81,9 +110,13 @@ class UserStatistic extends Component {
                   }
             },
             highchartsLikesConfig: {
+                chart: {
+                    type: 'area'
+                },
                 title: {
                     text: 'My Likes'
                 },
+                colors: ['rgba(0, 255, 0, .5)'],
                 xAxis: {
                     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
                 },
@@ -94,6 +127,17 @@ class UserStatistic extends Component {
                         className: 'user-statistic-chart__series_likes',
                     },
                 ],
+                plotOptions: {
+                    area: {
+                        stacking: 'normal',
+                        lineColor: 'rgba(0, 255, 0, .5)',
+                        lineWidth: 1,
+                        marker: {
+                            lineWidth: 6,
+                            lineColor: 'rgba(0, 255, 0, .5)'
+                        }
+                    }
+                },
                 legend: {
                     layout: 'vertical',
                     align: 'right',

@@ -8,7 +8,6 @@ import User from '../pages/User';
 import UserPhotoListing from '../pages/UserPhotoListing';
 import HeaderApp from '../components/HeaderApp';
 
-
 const Main = () => (
     <BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
         <LastLocationProvider>

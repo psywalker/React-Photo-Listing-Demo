@@ -17,7 +17,13 @@ class HeaderApp extends Component {
     }
     
     handleAuthorizationRequest = () => {
+        axios.defaults.headers.common = {};
+        axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
         axios.get('https://unsplash.com/oauth/authorize?', {
+            headers: {
+                'Content-type': 'text/html',
+                'Access-Control-Allow-Origin': '*',
+            },
             params: {
               redirect_uri: '/', 
               code: 'code',
