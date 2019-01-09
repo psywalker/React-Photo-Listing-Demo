@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import moment from 'moment'
+import 'moment-timezone';
 import Highcharts from "react-highcharts"; 
 import Spinner from '../../components/Spinner';
 import axios from 'axios';
 import './index.css';
+
+
 
 class UserStatistic extends Component {
     constructor(...args) {
@@ -181,7 +185,7 @@ class UserStatistic extends Component {
                 highchartsDownloadsConfig: {
                     ...highchartsConfigs.highchartsDownloadsConfig,
                     xAxis: {
-                        categories: res.data.downloads.historical.values.map((item) => item.date),
+                        categories: res.data.downloads.historical.values.map((item) => moment(item.date).format("DD MMMM YYYY")),
                         
                     },
                     series: [
@@ -194,7 +198,7 @@ class UserStatistic extends Component {
                 highchartsViewsConfig: {
                     ...highchartsConfigs.highchartsViewsConfig,
                     xAxis: {
-                        categories: res.data.views.historical.values.map((item) => item.date),
+                        categories: res.data.views.historical.values.map((item) => moment(item.date).format("DD MMMM YYYY")),
                     },
                     series: [
                         {
@@ -206,7 +210,7 @@ class UserStatistic extends Component {
                 highchartsLikesConfig: {
                     ...highchartsConfigs.highchartsLikesConfig,
                     xAxis: {
-                        categories: res.data.likes.historical.values.map((item) => item.date),
+                        categories: res.data.likes.historical.values.map((item) => moment(item.date).format("DD MMMM YYYY")),
                     },
                     series: [
                         {
