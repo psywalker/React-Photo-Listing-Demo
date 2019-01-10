@@ -6,6 +6,7 @@ import Home from '../pages/Home/Home';
 import Photo from '../pages/Photo';
 import User from '../pages/User';
 import UserPhotoListing from '../pages/UserPhotoListing';
+import Profile from '../pages/Profile';
 import HeaderApp from '../components/HeaderApp';
 
 const Main = () => (
@@ -23,6 +24,7 @@ const Main = () => (
                 <Route path="/" exact component={Home}/>
                 <Route path="/users/:id/photos" component={UserPhotoListing}/>
                 <Route path="/photo/:id" component={Photo}/>
+                <Route path="/profile" component={Profile}/>
                 <Route path="/users/:id" component={User}/>
             </Switch>
         </div>
