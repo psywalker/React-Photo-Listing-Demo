@@ -11,7 +11,7 @@ class HeaderApp extends Component {
     constructor(...args) {
       super(...args);
       this.state = {
-        scopes: 'response_type=code&scope=public+read_user+write_user+read_photos+write_likes+write_photos+write_followers+read_collections+write_collections'
+        scopes: 'scope=public+read_user+write_user+read_photos+write_likes+write_photos+write_followers+read_collections+write_collections'
       };
     }
     
