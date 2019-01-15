@@ -1,0 +1,10 @@
+.profile-title {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+}
+
+.profile-ava {
+    border-radius: 100%;
+    margin-right: 10px;
+}
