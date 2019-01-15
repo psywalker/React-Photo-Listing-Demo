@@ -17,17 +17,17 @@ class Profile extends Component {
       let token = localStorage.getItem('token');
 
       if (token) {
-        console.log('111', token);
+        console.log('1: if с проверкой на токкен сработал::: ', token);
         let code = document.location.search.split('?code=')
         let headers = {
               'Authorization': 'Bearer ' + token, 
         }
         axios.get('https://unsplash.com/me', {headers: headers}).then((res) => {
-          console.log('222', res);
+          console.log('2: Запрос с токкеном удачный::: ', res);
         
         })
         .catch(() => {
-          console.log('222', 'pixabay API not responding');
+          console.log('2: Запрос с токкеном НЕудачный::: ', 'pixabay API not responding');
           
         });
       } else {
@@ -44,18 +44,18 @@ class Profile extends Component {
                 client_id: process.env.REACT_APP_UNSPLASH_API_KEY
           
             }).then((res) => {
-              console.log('333', res);
+              console.log('3: Запрос без токкена (начальный) удачный::: ', res);
               const token = res.data.access_token;
               localStorage.clear();
               localStorage.setItem('token', token);
-              console.log('333', token, localStorage.getItem('token'));
+              console.log('3: Проверка токкена и токкена в localStorage::: ', token, localStorage.getItem('token'));
             })
             .catch(() => {
-              console.log('333', 'pixabay API not responding');
+              console.log('3: Запрос без токкена (начальный) НЕудачный:::  ', 'pixabay API not responding');
               
             });
         } else {
-          console.log('Предложить авторизацию');
+          console.log('4: Предложить авторизацию');
           /* здесь позже код напишу, пока надо разобраться с кодом выше */
         }
       } 
