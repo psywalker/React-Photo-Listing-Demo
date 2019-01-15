@@ -23,7 +23,8 @@ class Profile extends Component {
         let headers = {
               'Authorization': 'Bearer ' + token, 
         }
-        axios.get(`${process.env.REACT_APP_PROFILE}`, {headers: headers}).then((res) => {
+
+        axios.get(`${process.env.REACT_APP_PROFILE}/me`, {headers: headers}).then((res) => {
           const profilePhotoUrl = res.data.profile_image.small;
           const profileName = res.data.name;
           const prifileEmail = res.data.email;
@@ -55,6 +56,29 @@ class Profile extends Component {
               const token = res.data.access_token;
               localStorage.clear();
               localStorage.setItem('token', token);
+
+              if (token) {
+                let headers = {
+                      'Authorization': 'Bearer ' + token, 
+                }
+        
+                axios.get(`${process.env.REACT_APP_PROFILE}/me`, {headers: headers}).then((res) => {
+                  const profilePhotoUrl = res.data.profile_image.small;
+                  const profileName = res.data.name;
+                  const prifileEmail = res.data.email;
+        
+                  this.setState({
+                    profilePhotoUrl,
+                    profileName,
+                    prifileEmail,
+                  });
+                })
+                .catch(() => {
+                  console.log('2: Запрос с токкеном НЕудачный::: ', 'pixabay API not responding');
+                });
+        
+              }
+
             })
             .catch(() => {
               console.log('3: Запрос без токкена (начальный) НЕудачный:::  ', 'pixabay API not responding');
@@ -67,6 +91,11 @@ class Profile extends Component {
       } 
     }
 
+    handleLoguot = () => {
+      const { history } = this.props;
+      localStorage.clear();
+      history.push('/') 
+    };
     render() {
       const { 
         profilePhotoUrl,
@@ -81,6 +110,7 @@ class Profile extends Component {
               {profileName}
             </h2>
             <p>Email: {prifileEmail}</p>
+            <button onClick={this.handleLoguot}>Logout</button>
         </div>
       );
     }
