@@ -22,7 +22,7 @@ class Profile extends Component {
         let headers = {
               'Authorization': 'Bearer ' + token, 
         }
-        axios.get('https://unsplash.com/me/psywalker', {headers: headers}).then((res) => {
+        axios.get('https://unsplash.com/me', {headers: headers}).then((res) => {
           console.log('222', res);
         
         })
@@ -37,7 +37,7 @@ class Profile extends Component {
         if(code) {
           axios.post('https://unsplash.com/oauth/token', {
               
-                redirect_uri: 'http://localhost:3000/profile/', 
+                redirect_uri: 'https://psywalker.github.io/React-Photo-Listing-Demo/profile', 
                 client_secret: '21b065299de3e2b21be2fec1090d4de4156c8d4c08c7174977c44c273f24842c',
                 code: code[1],
                 grant_type: 'authorization_code',
