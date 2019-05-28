@@ -46,11 +46,11 @@ class Profile extends Component {
         if(code) {
           axios.post('https://unsplash.com/oauth/token', {
               
-                redirect_uri: 'http://localhost:3000/profile', 
-                client_secret: '21b065299de3e2b21be2fec1090d4de4156c8d4c08c7174977c44c273f24842c',
+                redirect_uri: process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI,
+                client_secret: process.env.REACT_APP_UNSPLASH_API_CLIENT_SECRET,
                 code: code[1],
                 grant_type: 'authorization_code',
-                client_id: process.env.REACT_APP_UNSPLASH_API_KEY
+                client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
           
             }).then((res) => {
               const token = res.data.access_token;
