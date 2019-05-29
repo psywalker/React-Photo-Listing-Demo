@@ -1,9 +1,7 @@
 import React from 'react';
 
 const ComponentTest = () => (
-    <div>
-        Test Text
-    </div>
-  )
+  <div>Test Text</div>
+);
 
-  export default ComponentTest;
+export default ComponentTest;

@@ -18,28 +18,19 @@ class Home extends Component {
       cards: [],
       totalCards: 10,
       navTopItemActive: 2,
-      queryText: '',
       cardsData: {
         query: 'wallpapers',
         page: 1,
         per_page: 6,
       },
-      buttonsColor: [
-        'primary',
-        'warning',
-        'danger',
-        'success',
-        'elegant',
-        'ins',
-        'default',
-      ],
     };
   }
 
   componentDidMount = () => {
     this.handleCardsPhotos();
   };
-  handlePaginationChange = (current) => { 
+
+  handlePaginationChange = (current) => {
     const { cardsData } = this.state;
 
     this.setState({
@@ -48,7 +39,6 @@ class Home extends Component {
         page: current,
       },
     }, this.handleCardsPhotos);
-
   };
 
   handleCardsPhotos = () => {
@@ -56,19 +46,18 @@ class Home extends Component {
     this.setState({ isListingLoading: true });
     axios.get('https://api.unsplash.com/search/photos?', {
       params: {
-        ...cardsData, 
-        client_id: process.env.REACT_APP_UNSPLASH_API_KEY
+        ...cardsData,
+        client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
       },
     }).then((res) => {
-        const cards = res.data.results;
-        const totalCards = res.data.total;
-        
-        this.setState({
-          cards,
-          isListingLoading: false,
-          totalCards,
-        }); 
-      })
+      const cards = res.data.results;
+      const totalCards = res.data.total;
+      this.setState({
+        cards,
+        isListingLoading: false,
+        totalCards,
+      });
+    })
       .catch(() => {
         console.log('pixabay API not responding');
         this.setState({ isListingLoading: false });
@@ -123,20 +112,25 @@ class Home extends Component {
         { isListingLoading && (<Spinner className="spinner" />)}
         <div className="row">
           <div className="col-12">
-            <Search onSearchInputValue={this.handleSearchText} onChangeInputValue={this.handleChangeInputValue} queryText={cardsData.query} />
+            <Search
+              onSearchInputValue={this.handleSearchText}
+              onChangeInputValue={this.handleChangeInputValue}
+              queryText={cardsData.query}
+            />
           </div>
         </div>
 
         <div className="row">
           <div className="col-12">
             <ul className="nav-top">
-            {filts.map((item, i) => (
-                <li key={item.id} className={`nav-top__item ${item.border? 'nav-top__item_border-right': ''}`}>
-                  <NavTop 
+              {filts.map(item => (
+                <li key={item.id} className={`nav-top__item ${item.border ? 'nav-top__item_border-right' : ''}`}>
+                  <NavTop
                     navTopItemActive={navTopItemActive}
                     itemId={item.id}
-                    onFilterItemValue={this.handleFilterItemValue} 
-                    key={item.id} label={item.label} 
+                    onFilterItemValue={this.handleFilterItemValue}
+                    key={item.id}
+                    label={item.label}
                     filterValue={item.filterValue}
                   />
                 </li>))
@@ -150,18 +144,18 @@ class Home extends Component {
             {!isListingLoading && (
               <ul className="photo-list">
                 {
-                cards.map((item) => (
+                cards.map(item => (
                   <li key={item.id} className="photo-list__item pl-3">
-                      <PhotoCard 
-                        photoName={item.urls.regular} 
-                        photoDesc={item.description}
-                        title={item.user.first_name} 
-                        tags={item.photo_tags}  
-                        photoID={item.id}
-                        userID={item.user.username}
-                        userAvatar={item.user.profile_image.small}
-                        onSearchTagValue={this.handleSearchText}
-                      />
+                    <PhotoCard
+                      photoName={item.urls.regular}
+                      photoDesc={item.description}
+                      title={item.user.first_name}
+                      tags={item.photo_tags}
+                      photoID={item.id}
+                      userID={item.user.username}
+                      userAvatar={item.user.profile_image.small}
+                      onSearchTagValue={this.handleSearchText}
+                    />
                   </li>))
                 }
               </ul>
@@ -173,13 +167,14 @@ class Home extends Component {
         <div className="row">
           <div className="col-12 pagination">
 
-            {totalCards > cardsData.per_page && (<Pagination 
-                className="ml-3" 
-                showSizeChanger 
-                onChange={this.handlePaginationChange} 
-                current={cardsData.page} 
-                defaultCurrent={1} 
-                total={totalCards} 
+            {totalCards > cardsData.per_page && (
+              <Pagination
+                className="ml-3"
+                showSizeChanger
+                onChange={this.handlePaginationChange}
+                current={cardsData.page}
+                defaultCurrent={1}
+                total={totalCards}
               />)}
           </div>
         </div>

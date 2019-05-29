@@ -2,37 +2,45 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
 import './index.css';
+
 const InputSearch = Input.Search;
 
 class Search extends Component {
   constructor(...args) {
     super(...args);
+    const { queryText } = this.props;
     this.state = {
-      inputValue: this.props.queryText,
+      inputValue: queryText,
     };
   }
+
   componentDidUpdate = (prevProps) => {
-    if (prevProps.queryText !== this.props.queryText) {
+    const { queryText } = this.props;
+    if (prevProps.queryText !== queryText) {
       this.setState({
-        inputValue: this.props.queryText,
+        inputValue: queryText,
       });
     }
   };
 
   submitSearch = () => {
-    if(this.state.inputValue) this.props.onSearchInputValue(this.state.inputValue);
+    const { inputValue } = this.state;
+    const { onSearchInputValue } = this.props;
+    if (inputValue) onSearchInputValue(inputValue);
   }
 
   changeInputValue = (e) => {
+    const { onChangeInputValue } = this.props;
     this.setState({
       inputValue: e.target.value,
     }, () => {
-      this.props.onChangeInputValue(this.state.inputValue);
+      const { inputValue } = this.state;
+      onChangeInputValue(inputValue);
     });
   };
 
   render() {
-    const { inputValue } = this.state
+    const { inputValue } = this.state;
     return (
       <div className="search">
         <InputSearch
@@ -51,11 +59,13 @@ class Search extends Component {
 
 Search.propTypes = {
   queryText: PropTypes.string,
-  getSearchInputValue: PropTypes.func,
+  onSearchInputValue: PropTypes.func,
+  onChangeInputValue: PropTypes.func,
 };
 Search.defaultProps = {
   queryText: '',
-  getSearchInputValue: () => {},
+  onSearchInputValue: () => {},
+  onChangeInputValue: () => {},
 };
 
 export default Search;
