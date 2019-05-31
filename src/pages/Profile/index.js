@@ -14,10 +14,12 @@ class Profile extends Component {
   }
 
   componentDidMount = () => {
+    console.log("1: ", this.props)
     this.handleAuthorizationRequest();
   };
 
   handleAuthorizationRequest = () => {
+    const { handleLogin } = this.props;
     const tokenFirst = localStorage.getItem('token');
 
     if (tokenFirst) {
@@ -35,6 +37,8 @@ class Profile extends Component {
           profileName,
           prifileEmail,
         });
+
+        handleLogin();
       })
         .catch(() => {
           console.log('2: Запрос с токкеном НЕудачный::: ', 'pixabay API not responding');
@@ -69,6 +73,9 @@ class Profile extends Component {
                 profileName,
                 prifileEmail,
               });
+              
+              handleLogin();
+
             })
               .catch(() => {
                 console.log('2: Запрос с токкеном НЕудачный::: ', 'pixabay API not responding');
@@ -86,9 +93,11 @@ class Profile extends Component {
   }
 
   handleLoguot = () => {
-    const { history } = this.props;
+    const { history, handleLogin } = this.props;
     localStorage.clear();
+    handleLogin(false);
     history.push('/');
+    
   };
 
   render() {
@@ -110,11 +119,5 @@ class Profile extends Component {
     );
   }
 }
-Profile.propTypes = {
-  history: PropTypes.func,
-};
-Profile.defaultProps = {
-  history: () => {},
-};
 
 export default Profile;

@@ -7,15 +7,8 @@ const {
   Header,
 } = Layout;
 
-const HeaderApp = () => {
-  const [loginFlag, setLoginFlag] = useState(false);
-  function handleLogin() {
-    if (!loginFlag) setLoginFlag(true);
-    else {
-      localStorage.clear();
-      setLoginFlag(true);
-    }
-  }
+const HeaderApp = ({ loginFlag, handleLogin }) => {
+
   return (
     <div className="header-app">
       <Header className="user-layout__header">
@@ -26,7 +19,7 @@ const HeaderApp = () => {
           <Route path="/:id" component={() => <ButtonBack />} />
           { !loginFlag && (
             <Button
-              onClick={handleLogin}
+              onClick={() => handleLogin(true)}
               style={{ marginLeft: '10px' }}
               type="link"
               href={`https://unsplash.com/oauth/authorize?redirect_uri=${process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI}&response_type=code&scope=public+read_user+write_user+read_photos+write_likes+write_photos+write_followers+read_collections+write_collections&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`}
@@ -34,7 +27,7 @@ const HeaderApp = () => {
               Login
             </Button>
           )}
-          { loginFlag && <Button style={{ marginLeft: '10px' }} onClick={handleLogin} type="link">Logout</Button>}
+          { loginFlag && <Button style={{ marginLeft: '10px' }} onClick={() => handleLogin(false)} type="link">Logout</Button>}
         </div>
       </Header>
     </div>
