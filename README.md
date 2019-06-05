@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/psywalker/React-Photo-Listing-Demo.svg?branch=master)](https://travis-ci.org/psywalker/React-Photo-Listing-Demo)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/45122ec22ce24b6f9c90d856fb6a0bff)](https://app.codacy.com/app/psywalker/React-Photo-Listing-Demo?utm_source=github.com&utm_medium=referral&utm_content=psywalker/React-Photo-Listing-Demo&utm_campaign=Badge_Grade_Dashboard)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
