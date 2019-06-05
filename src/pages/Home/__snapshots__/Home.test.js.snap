@@ -28,7 +28,6 @@ ShallowWrapper {
             className="col-12"
           >
             <Search
-              getSearchInputValue={[Function]}
               onChangeInputValue={[Function]}
               onSearchInputValue={[Function]}
               queryText="wallpapers"
@@ -284,7 +283,6 @@ ShallowWrapper {
             className="col-12"
           >
             <Search
-              getSearchInputValue={[Function]}
               onChangeInputValue={[Function]}
               onSearchInputValue={[Function]}
               queryText="wallpapers"
@@ -299,7 +297,6 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": <Search
-              getSearchInputValue={[Function]}
               onChangeInputValue={[Function]}
               onSearchInputValue={[Function]}
               queryText="wallpapers"
@@ -312,7 +309,6 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "getSearchInputValue": [Function],
               "onChangeInputValue": [Function],
               "onSearchInputValue": [Function],
               "queryText": "wallpapers",
@@ -1589,7 +1585,6 @@ ShallowWrapper {
               className="col-12"
             >
               <Search
-                getSearchInputValue={[Function]}
                 onChangeInputValue={[Function]}
                 onSearchInputValue={[Function]}
                 queryText="wallpapers"
@@ -1845,7 +1840,6 @@ ShallowWrapper {
               className="col-12"
             >
               <Search
-                getSearchInputValue={[Function]}
                 onChangeInputValue={[Function]}
                 onSearchInputValue={[Function]}
                 queryText="wallpapers"
@@ -1860,7 +1854,6 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": <Search
-                getSearchInputValue={[Function]}
                 onChangeInputValue={[Function]}
                 onSearchInputValue={[Function]}
                 queryText="wallpapers"
@@ -1873,7 +1866,6 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "getSearchInputValue": [Function],
                 "onChangeInputValue": [Function],
                 "onSearchInputValue": [Function],
                 "queryText": "wallpapers",

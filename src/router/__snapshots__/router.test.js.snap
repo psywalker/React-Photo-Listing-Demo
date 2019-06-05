@@ -31,28 +31,7 @@ ShallowWrapper {
             <Adapter
               className="user-layout"
             >
-              <Adapter
-                className="user-layout__header"
-              >
-                <div
-                  className="page"
-                >
-                  <Link
-                    replace={false}
-                    to="/"
-                  >
-                     
-                    <Icon
-                      component={[Function]}
-                    />
-                     
-                  </Link>
-                  <Route
-                    component={[Function]}
-                    path="/:id"
-                  />
-                </div>
-              </Adapter>
+              <UNDEFINED />
             </Adapter>
           </Col>
         </Row>
@@ -72,6 +51,10 @@ ShallowWrapper {
             <Route
               component={[Function]}
               path="/photo/:id"
+            />
+            <Route
+              component={[Function]}
+              path="/profile"
             />
             <Route
               component={[Function]}
@@ -100,28 +83,7 @@ ShallowWrapper {
               <Adapter
                 className="user-layout"
               >
-                <Adapter
-                  className="user-layout__header"
-                >
-                  <div
-                    className="page"
-                  >
-                    <Link
-                      replace={false}
-                      to="/"
-                    >
-                       
-                      <Icon
-                        component={[Function]}
-                      />
-                       
-                    </Link>
-                    <Route
-                      component={[Function]}
-                      path="/:id"
-                    />
-                  </div>
-                </Adapter>
+                <UNDEFINED />
               </Adapter>
             </Col>
           </Row>,
@@ -144,6 +106,10 @@ ShallowWrapper {
               />
               <Route
                 component={[Function]}
+                path="/profile"
+              />
+              <Route
+                component={[Function]}
                 path="/users/:id"
               />
             </Switch>
@@ -161,28 +127,7 @@ ShallowWrapper {
               <Adapter
                 className="user-layout"
               >
-                <Adapter
-                  className="user-layout__header"
-                >
-                  <div
-                    className="page"
-                  >
-                    <Link
-                      replace={false}
-                      to="/"
-                    >
-                       
-                      <Icon
-                        component={[Function]}
-                      />
-                       
-                    </Link>
-                    <Route
-                      component={[Function]}
-                      path="/:id"
-                    />
-                  </div>
-                </Adapter>
+                <UNDEFINED />
               </Adapter>
             </Col>,
             "gutter": 0,
@@ -199,28 +144,7 @@ ShallowWrapper {
               "children": <Adapter
                 className="user-layout"
               >
-                <Adapter
-                  className="user-layout__header"
-                >
-                  <div
-                    className="page"
-                  >
-                    <Link
-                      replace={false}
-                      to="/"
-                    >
-                       
-                      <Icon
-                        component={[Function]}
-                      />
-                       
-                    </Link>
-                    <Route
-                      component={[Function]}
-                      path="/:id"
-                    />
-                  </div>
-                </Adapter>
+                <UNDEFINED />
               </Adapter>,
             },
             "ref": null,
@@ -229,131 +153,25 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <Adapter
-                  className="user-layout__header"
-                >
-                  <div
-                    className="page"
-                  >
-                    <Link
-                      replace={false}
-                      to="/"
-                    >
-                       
-                      <Icon
-                        component={[Function]}
-                      />
-                       
-                    </Link>
-                    <Route
-                      component={[Function]}
-                      path="/:id"
-                    />
-                  </div>
-                </Adapter>,
+                "children": <UNDEFINED />,
                 "className": "user-layout",
               },
               "ref": null,
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <div
-                    className="page"
-                  >
-                    <Link
-                      replace={false}
-                      to="/"
-                    >
-                       
-                      <Icon
-                        component={[Function]}
-                      />
-                       
-                    </Link>
-                    <Route
-                      component={[Function]}
-                      path="/:id"
-                    />
-                  </div>,
-                  "className": "user-layout__header",
-                },
+                "nodeType": "function",
+                "props": Object {},
                 "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": Array [
-                      <Link
-                        replace={false}
-                        to="/"
-                      >
-                         
-                        <Icon
-                          component={[Function]}
-                        />
-                         
-                      </Link>,
-                      <Route
-                        component={[Function]}
-                        path="/:id"
-                      />,
-                    ],
-                    "className": "page",
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": Array [
-                          " ",
-                          <Icon
-                            component={[Function]}
-                          />,
-                          " ",
-                        ],
-                        "replace": false,
-                        "to": "/",
-                      },
-                      "ref": null,
-                      "rendered": Array [
-                        " ",
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "function",
-                          "props": Object {
-                            "component": [Function],
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": [Function],
-                        },
-                        " ",
-                      ],
-                      "type": [Function],
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "component": [Function],
-                        "path": "/:id",
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
-                  ],
-                  "type": "div",
+                "rendered": null,
+                "type": Object {
+                  "$$typeof": Symbol(react.memo),
+                  "WrappedComponent": [Function],
+                  "compare": null,
+                  "displayName": "Connect(withRouter(WithLastLocation(withRouter())))",
+                  "type": [Function],
+                  Symbol(Symbol.hasInstance): [Function],
                 },
-                "type": [Function],
               },
               "type": [Function],
             },
@@ -382,6 +200,10 @@ ShallowWrapper {
               />
               <Route
                 component={[Function]}
+                path="/profile"
+              />
+              <Route
+                component={[Function]}
                 path="/users/:id"
               />
             </Switch>,
@@ -406,6 +228,10 @@ ShallowWrapper {
                 <Route
                   component={[Function]}
                   path="/photo/:id"
+                />,
+                <Route
+                  component={[Function]}
+                  path="/profile"
                 />,
                 <Route
                   component={[Function]}
@@ -458,6 +284,18 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "component": [Function],
+                  "path": "/profile",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
                   "path": "/users/:id",
                 },
                 "ref": null,
@@ -494,28 +332,7 @@ ShallowWrapper {
               <Adapter
                 className="user-layout"
               >
-                <Adapter
-                  className="user-layout__header"
-                >
-                  <div
-                    className="page"
-                  >
-                    <Link
-                      replace={false}
-                      to="/"
-                    >
-                       
-                      <Icon
-                        component={[Function]}
-                      />
-                       
-                    </Link>
-                    <Route
-                      component={[Function]}
-                      path="/:id"
-                    />
-                  </div>
-                </Adapter>
+                <UNDEFINED />
               </Adapter>
             </Col>
           </Row>
@@ -535,6 +352,10 @@ ShallowWrapper {
               <Route
                 component={[Function]}
                 path="/photo/:id"
+              />
+              <Route
+                component={[Function]}
+                path="/profile"
               />
               <Route
                 component={[Function]}
@@ -563,28 +384,7 @@ ShallowWrapper {
                 <Adapter
                   className="user-layout"
                 >
-                  <Adapter
-                    className="user-layout__header"
-                  >
-                    <div
-                      className="page"
-                    >
-                      <Link
-                        replace={false}
-                        to="/"
-                      >
-                         
-                        <Icon
-                          component={[Function]}
-                        />
-                         
-                      </Link>
-                      <Route
-                        component={[Function]}
-                        path="/:id"
-                      />
-                    </div>
-                  </Adapter>
+                  <UNDEFINED />
                 </Adapter>
               </Col>
             </Row>,
@@ -607,6 +407,10 @@ ShallowWrapper {
                 />
                 <Route
                   component={[Function]}
+                  path="/profile"
+                />
+                <Route
+                  component={[Function]}
                   path="/users/:id"
                 />
               </Switch>
@@ -624,28 +428,7 @@ ShallowWrapper {
                 <Adapter
                   className="user-layout"
                 >
-                  <Adapter
-                    className="user-layout__header"
-                  >
-                    <div
-                      className="page"
-                    >
-                      <Link
-                        replace={false}
-                        to="/"
-                      >
-                         
-                        <Icon
-                          component={[Function]}
-                        />
-                         
-                      </Link>
-                      <Route
-                        component={[Function]}
-                        path="/:id"
-                      />
-                    </div>
-                  </Adapter>
+                  <UNDEFINED />
                 </Adapter>
               </Col>,
               "gutter": 0,
@@ -662,28 +445,7 @@ ShallowWrapper {
                 "children": <Adapter
                   className="user-layout"
                 >
-                  <Adapter
-                    className="user-layout__header"
-                  >
-                    <div
-                      className="page"
-                    >
-                      <Link
-                        replace={false}
-                        to="/"
-                      >
-                         
-                        <Icon
-                          component={[Function]}
-                        />
-                         
-                      </Link>
-                      <Route
-                        component={[Function]}
-                        path="/:id"
-                      />
-                    </div>
-                  </Adapter>
+                  <UNDEFINED />
                 </Adapter>,
               },
               "ref": null,
@@ -692,131 +454,25 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <Adapter
-                    className="user-layout__header"
-                  >
-                    <div
-                      className="page"
-                    >
-                      <Link
-                        replace={false}
-                        to="/"
-                      >
-                         
-                        <Icon
-                          component={[Function]}
-                        />
-                         
-                      </Link>
-                      <Route
-                        component={[Function]}
-                        path="/:id"
-                      />
-                    </div>
-                  </Adapter>,
+                  "children": <UNDEFINED />,
                   "className": "user-layout",
                 },
                 "ref": null,
                 "rendered": Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <div
-                      className="page"
-                    >
-                      <Link
-                        replace={false}
-                        to="/"
-                      >
-                         
-                        <Icon
-                          component={[Function]}
-                        />
-                         
-                      </Link>
-                      <Route
-                        component={[Function]}
-                        path="/:id"
-                      />
-                    </div>,
-                    "className": "user-layout__header",
-                  },
+                  "nodeType": "function",
+                  "props": Object {},
                   "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": Array [
-                        <Link
-                          replace={false}
-                          to="/"
-                        >
-                           
-                          <Icon
-                            component={[Function]}
-                          />
-                           
-                        </Link>,
-                        <Route
-                          component={[Function]}
-                          path="/:id"
-                        />,
-                      ],
-                      "className": "page",
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "children": Array [
-                            " ",
-                            <Icon
-                              component={[Function]}
-                            />,
-                            " ",
-                          ],
-                          "replace": false,
-                          "to": "/",
-                        },
-                        "ref": null,
-                        "rendered": Array [
-                          " ",
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "function",
-                            "props": Object {
-                              "component": [Function],
-                            },
-                            "ref": null,
-                            "rendered": null,
-                            "type": [Function],
-                          },
-                          " ",
-                        ],
-                        "type": [Function],
-                      },
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "component": [Function],
-                          "path": "/:id",
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": [Function],
-                      },
-                    ],
-                    "type": "div",
+                  "rendered": null,
+                  "type": Object {
+                    "$$typeof": Symbol(react.memo),
+                    "WrappedComponent": [Function],
+                    "compare": null,
+                    "displayName": "Connect(withRouter(WithLastLocation(withRouter())))",
+                    "type": [Function],
+                    Symbol(Symbol.hasInstance): [Function],
                   },
-                  "type": [Function],
                 },
                 "type": [Function],
               },
@@ -845,6 +501,10 @@ ShallowWrapper {
                 />
                 <Route
                   component={[Function]}
+                  path="/profile"
+                />
+                <Route
+                  component={[Function]}
                   path="/users/:id"
                 />
               </Switch>,
@@ -869,6 +529,10 @@ ShallowWrapper {
                   <Route
                     component={[Function]}
                     path="/photo/:id"
+                  />,
+                  <Route
+                    component={[Function]}
+                    path="/profile"
                   />,
                   <Route
                     component={[Function]}
@@ -910,6 +574,18 @@ ShallowWrapper {
                   "props": Object {
                     "component": [Function],
                     "path": "/photo/:id",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "component": [Function],
+                    "path": "/profile",
                   },
                   "ref": null,
                   "rendered": null,
