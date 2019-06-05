@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/psywalker/React-Photo-Listing-Demo.svg?branch=masters)](https://travis-ci.org/final-form/react-final-form)
+[![Build Status](https://travis-ci.org/psywalker/React-Photo-Listing-Demo.svg?branch=master)](https://travis-ci.org/psywalker/React-Photo-Listing-Demo)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
