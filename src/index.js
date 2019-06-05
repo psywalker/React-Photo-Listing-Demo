@@ -1,21 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import "font-awesome/css/font-awesome.min.css";
-import "bootstrap-css-only/css/bootstrap.min.css";
-import "mdbreact/dist/css/mdb.css";
-import './index.css';
+import { createStore, applyMiddleware } from 'redux';
+import { createLogger } from "redux-logger";
+import createSagaMiddleware from "redux-saga";
 import Main from './router';
 import * as serviceWorker from './serviceWorker';
+import allRedusers from './reducers';
+import initialStore from './initialStore';
+import rootSaga from "./sagas";
+import './index.css';
 
-//const store = createStore(BoardsObj, initialStore);
+const sagaMiddleware = createSagaMiddleware();
+const middleware = [sagaMiddleware];
+if (process.env.NODE_ENV !== "production") {
+  middleware.push(createLogger());
+}
+
+const store = createStore(allRedusers, initialStore, applyMiddleware(...middleware));
+
+sagaMiddleware.run(rootSaga, [555]);
 
 render(
-  // <Provider store={store}>
-    <Main />,
-  //</Provider>,
+  <Provider store={store}>
+    <Main />
+  </Provider>,
   document.getElementById('root'),
 );
 

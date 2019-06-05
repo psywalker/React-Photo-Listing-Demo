@@ -6,6 +6,7 @@
   "dependencies": {
     "antd": "^3.11.2",
     "axios": "^0.18.0",
+    "font-awesome": "^4.7.0",
     "highcharts": "^7.0.0",
     "mdbreact": "^4.8.2",
     "moment": "^2.23.0",
@@ -21,6 +22,8 @@
     "react-router-last-location": "^1.1.0",
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.0.2",
     "unsplash-js": "^4.8.0"
   },
   "scripts": {
@@ -32,6 +35,9 @@
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
+    "globals": {
+      "window": true
+    },
     "extends": "airbnb",
     "rules": {
       "react/jsx-filename-extension": [

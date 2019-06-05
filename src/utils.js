@@ -6,7 +6,7 @@ export function generateNavItems(page, perPage, totalCards, itemNumbers) {
   let navigationItems = [];
   const i = getPageNumbers(page, perPage, totalCards);
   
-  if(i < 2) {
+  if (i < 2) {
     navigationItems = [];
   } else if (i === 2) {
     navigationItems.push(1);
