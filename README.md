@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/psywalker/React-Photo-Listing-Demo.svg?branch=gh-pages)](https://travis-ci.org/final-form/react-final-form)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
