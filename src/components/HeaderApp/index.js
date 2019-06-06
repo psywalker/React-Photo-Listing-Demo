@@ -12,7 +12,7 @@ import { withLastLocation } from 'react-router-last-location';
 import { connect } from 'react-redux';
 import { logoutAction } from '../../actions';
 import ButtonBack from '../ButtonBack';
-import './index.css';
+import './index.scss';
 
 const {
   Header,

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Button } from 'antd';
 import { loadingRequestAction, logoutAction } from '../../actions';
 import Spinner from '../../components/Spinner';
-import './index.css';
+import './index.scss';
 
 class Profile extends Component {
   componentDidMount = () => {
@@ -22,24 +24,37 @@ class Profile extends Component {
   };
 
   render() {
-    const { login, login: { fetching } } = this.props;
+    const { login, login: { fetching, loginError } } = this.props;
     return (
       <div className="profile">
         { fetching && (<Spinner className="spinner" />)}
-        { !fetching && (
-          <div className="profile__content">
-            <h2 className="profile-title">
-              <img className="profile-ava" src={login.profilePhotoUrl} alt="Profile avatar" />
-              {login.profileName}
-            </h2>
-            <p>
-              Email:
-              {
-                login.profileEmail
-              }
-            </p>
-            <button type="button" onClick={this.handleLoguotProfile}>Logout</button>
+        { !fetching && !loginError && (
+          <div className="profile__content profile-content">
+            <img className="profile-content__avatar" src={login.profilePhotoUrl} alt="Profile avatar" />
+            <div className="profile-content__title-wrap">
+              <h2 className="profile-content__title">
+                {login.profileFullName}
+                <Button className="profile-content__title-btn" type="link" onClick={this.handleLoguotProfile}>Logout</Button>
+              </h2>
+              <p>{login.profileEmail}</p>
+              <p className="profile-content__text">
+                Download free, beautiful high-quality photos curated by
+                {' '}
+                {
+                  login.profileName
+                }
+              </p>
+            </div>
           </div>
+        )}
+        { !fetching && loginError && (
+          <p>
+            При авторизации возникла ошибка. Попробуйте авторизоваться позже!
+            {' '}
+            <Link to="/">
+              Перейти на главную.
+            </Link>
+          </p>
         )}
       </div>
     );
@@ -51,9 +66,11 @@ Profile.propTypes = {
   loadingRequestAction: PropTypes.func,
   login: PropTypes.shape({
     profilePhotoUrl: PropTypes.string,
+    profileFullName: PropTypes.string,
     profileName: PropTypes.string,
     profileEmail: PropTypes.string,
     fetching: PropTypes.bool,
+    loginError: PropTypes.bool,
   }),
 };
 Profile.defaultProps = {
@@ -61,9 +78,11 @@ Profile.defaultProps = {
   loadingRequestAction: () => {},
   login: {
     profilePhotoUrl: '',
+    profileFullName: '',
     profileName: '',
     profileEmail: '',
     fetching: false,
+    loginError: false,
   },
 };
 

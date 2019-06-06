@@ -2,18 +2,18 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { createLogger } from "redux-logger";
-import createSagaMiddleware from "redux-saga";
+import { createLogger } from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
 import Main from './router';
 import * as serviceWorker from './serviceWorker';
 import allRedusers from './reducers';
 import initialStore from './initialStore';
-import rootSaga from "./sagas";
+import rootSaga from './sagas';
 import './index.css';
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger());
 }
 
@@ -25,7 +25,7 @@ render(
   <Provider store={store}>
     <Main />
   </Provider>,
-  document.getElementById('root'),
+  window.document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
