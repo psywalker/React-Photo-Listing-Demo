@@ -35,7 +35,7 @@ export function* loginSaga(action) {
           body: {
             redirect_uri: process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI,
             client_secret: process.env.REACT_APP_UNSPLASH_API_CLIENT_SECRET,
-            code: '',
+            code,
             grant_type: 'authorization_code',
             client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
           },
