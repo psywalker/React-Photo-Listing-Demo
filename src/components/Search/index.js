@@ -31,7 +31,6 @@ class Search extends Component {
 
   changeInputValue = (e) => {
     const { onChangeInputValue } = this.props;
-    console.log("1: ", e.target.value)
     this.setState({
       inputValue: e.target.value,
     }, () => {

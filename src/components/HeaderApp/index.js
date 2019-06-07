@@ -40,7 +40,7 @@ const HeaderApp = withRouter((props) => {
                   )}
                 />
               </Link>
-              <Route path="/:id" component={() => <ButtonBack />} />
+              <Route path="/:id" component={() => <ButtonBack style={{ marginLeft: '10px' }} />} />
 
               {!login.profileName && (
                 <Button

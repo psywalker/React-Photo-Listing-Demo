@@ -77,7 +77,7 @@ describe('components', () => {
         activeFilter: 'filter1',
         filterType: 'filter2',
         hasPadding: false,
-      }
+      };
       const dropdownItem2 = shallow(<DropdownItem {...props2} />);
 
       expect(dropdownItem2.find('i').length).toEqual(0);
@@ -98,7 +98,7 @@ describe('components', () => {
       function func2() {
         const props = {
           onFilterClick: jest.fn(),
-        }
+        };
         const enzymeWrapper = shallow(<DropdownItem {...props} />);
         return {
           props,

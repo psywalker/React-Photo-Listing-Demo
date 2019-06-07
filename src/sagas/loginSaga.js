@@ -8,11 +8,12 @@ export function* loginAfterToken(token) {
         Authorization: `Bearer ${token}`,
       };
       const response = yield axios.get(`${process.env.REACT_APP_PROFILE}/me`, { headers });
+      const responseData = response && response.data;
       const data = {
-        profilePhotoUrl: response.data.profile_image.large || `${process.env.PUBLIC_URL}/ava-placeholder.jpg`,
-        profileName: response.data.first_name || 'No first name',
-        profileFullName: response.data.name || 'No name',
-        profileEmail: response.data.email || 'No email',
+        profilePhotoUrl: (responseData && response.data.profile_image && response.data.profile_image.large) || `${process.env.PUBLIC_URL}/ava-placeholder.jpg`,
+        profileName: (responseData && response.data.first_name) || 'No first name',
+        profileFullName: (responseData && response.data.name) || 'No name',
+        profileEmail: (responseData && response.data.email) || 'No email',
       };
 
       yield put({ type: 'LOGIN_SUCCESS', data });
