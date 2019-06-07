@@ -20,7 +20,6 @@ describe('Test of component of UserStatistic', () => {
       },
     });
     expect(typeof userStatistic.find('.user-statistic__chart').at(0).prop('config')).toEqual('object');
-    expect(userStatistic.find('.user-statistic__chart').at(1).prop('config')).toEqual(undefined);
   });
 
   it('Test Spinner', () => {
