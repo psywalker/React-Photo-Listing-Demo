@@ -14,9 +14,7 @@ import { logoutAction } from '../../actions';
 import ButtonBack from '../ButtonBack';
 import './index.scss';
 
-const {
-  Header,
-} = Layout;
+const { Header } = Layout;
 
 const HeaderApp = withRouter((props) => {
   const { history, login, logoutAction } = props;
@@ -29,33 +27,59 @@ const HeaderApp = withRouter((props) => {
     <div className="header-app">
       <Header className="user-layout__header">
         <div className="page">
-          <Row type="flex" justify="justify">
-            <Col span={12}>
+          <Row type="flex" justify="space-between">
+            <Col span={10}>
               <Link to="/">
-                <Icon component={() => <img className="user__icon-home" alt="pixabay.com" src="http://www.biz4u.co.il/wp-content/uploads/2016/05/pixabay.png" />} />
+                <Icon
+                  component={() => (
+                    <img
+                      className="user__icon-home"
+                      alt="pixabay.com"
+                      src="http://www.biz4u.co.il/wp-content/uploads/2016/05/pixabay.png"
+                    />
+                  )}
+                />
               </Link>
               <Route path="/:id" component={() => <ButtonBack />} />
 
-              { !login.profileName && (
+              {!login.profileName && (
                 <Button
                   style={{ marginLeft: '10px' }}
                   type="link"
-                  href={`https://unsplash.com/oauth/authorize?redirect_uri=${process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI}&response_type=code&scope=public+read_user+write_user+read_photos+write_likes+write_photos+write_followers+read_collections+write_collections&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`}
+                  href={`https://unsplash.com/oauth/authorize?redirect_uri=${
+                    process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI
+                  }&response_type=code&scope=public+read_user+write_user+read_photos+write_likes+write_photos+write_followers+read_collections+write_collections&client_id=${
+                    process.env.REACT_APP_UNSPLASH_API_KEY
+                  }`}
                 >
                   Login
                 </Button>
-              )}  
-              { login.profileName && (
+              )}
+              {login.profileName && (
                 <span>
-                  <Button style={{ marginLeft: '10px' }} type="link" onClick={handleLoguotHeader}>Logout</Button>
+                  <Button
+                    style={{ marginLeft: '10px' }}
+                    type="link"
+                    onClick={handleLoguotHeader}
+                  >
+                    Logout
+                  </Button>
                 </span>
               )}
             </Col>
 
-            <Col span={1} push={11}>
-              { login.profileName && (
+            <Col span={2} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              {login.profileName && (
                 <Link to="/profile">
-                  <Icon component={() => <img className="user-avatar" alt="" src={`${login.profilePhotoUrl}`} />} />
+                  <Icon
+                    component={() => (
+                      <img
+                        className="user-avatar"
+                        alt=""
+                        src={`${login.profilePhotoUrl}`}
+                      />
+                    )}
+                  />
                 </Link>
               )}
             </Col>
@@ -82,20 +106,19 @@ HeaderApp.defaultProps = {
     profileName: '',
     profileEmail: '',
     fetching: false,
-  }
+  },
 };
-
 
 const mapStateToProps = (state) => {
   const { login } = state;
   return { login };
 };
 
-const mapDispatchToProps = ({
+const mapDispatchToProps = {
   logoutAction,
-});
+};
 
-export default connect(
+export default withLastLocation(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withLastLocation(HeaderApp));
+)(HeaderApp));

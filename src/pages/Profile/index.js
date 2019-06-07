@@ -11,16 +11,16 @@ class Profile extends Component {
   componentDidMount = () => {
     const { login } = this.props;
     if (!login.profilePhotoUrl) {
-      const { loadingRequestAction } = this.props;
-      loadingRequestAction(window.document.location);
+      const { loadingRequestAction: handleAction } = this.props;
+      handleAction(window.document.location);
     }
   }
 
   handleLoguotProfile = () => {
-    const { history, logoutAction } = this.props;
-    logoutAction();
+    const { history, logoutAction: handleAction } = this.props;
+    handleAction();
     window.localStorage.clear();
-    history.push('/');    
+    history.push('/');
   };
 
   render() {

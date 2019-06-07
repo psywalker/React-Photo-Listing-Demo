@@ -1,113 +1,68 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Pagination } from 'antd';
+import {
+  cardsPhotosRequestAction,
+  paginationChangeAction,
+  filterItemValueAction,
+  searchTextAction,
+  searchChangeInputValueAction,
+} from '../../actions';
 import Search from '../../components/Search';
 import PhotoCard from '../../components/PhotoCard';
 import NavTop from '../../components/NavTop';
 import Spinner from '../../components/Spinner';
-import filters from '../../filters';
 import './home.css';
 import 'antd/dist/antd.css';
 
 class Home extends Component {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      filts: filters,
-      isListingLoading: false,
-      cards: [],
-      totalCards: 10,
-      navTopItemActive: 2,
-      cardsData: {
-        query: 'wallpapers',
-        page: 1,
-        per_page: 6,
-      },
-    };
-  }
+
+  componentDidUpdate = (prevProps) => {
+    const { photolisting: { cardsData }, cardsPhotosRequestAction: handleAction } = this.props;
+    if (prevProps.photolisting.cardsData !== cardsData) handleAction(cardsData);
+  };
 
   componentDidMount = () => {
     this.handleCardsPhotos();
   };
 
-  handlePaginationChange = (current) => {
-    const { cardsData } = this.state;
-
-    this.setState({
-      cardsData: {
-        ...cardsData,
-        page: current,
-      },
-    }, this.handleCardsPhotos);
+  handleCardsPhotos = () => {
+    const { photolisting: { cardsData }, cardsPhotosRequestAction: handleAction } = this.props;
+    handleAction(cardsData);
   };
 
-  handleCardsPhotos = () => {
-    const { cardsData } = this.state;
-    this.setState({ isListingLoading: true });
-    axios.get('https://api.unsplash.com/search/photos?', {
-      params: {
-        ...cardsData,
-        client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
-      },
-    }).then((res) => {
-      const cards = res.data.results;
-      const totalCards = res.data.total;
-      this.setState({
-        cards,
-        isListingLoading: false,
-        totalCards,
-      });
-    })
-      .catch(() => {
-        console.log('pixabay API not responding');
-        this.setState({ isListingLoading: false });
-      });
+  handlePaginationChange = (currentPage) => {
+    const { paginationChangeAction: handleAction } = this.props;
+    handleAction(currentPage);
   };
 
   handleFilterItemValue = (itemText, itemId) => {
-    const { cardsData } = this.state;
-    this.setState({
-      navTopItemActive: itemId,
-      cardsData: {
-        ...cardsData,
-        page: 1,
-        query: itemText,
-      },
-    }, this.handleCardsPhotos);
+    const { filterItemValueAction: handleAction } = this.props;
+    handleAction(itemText, itemId);
   };
 
   handleSearchText = (text, tags) => {
-    const { cardsData, navTopItemActive } = this.state;
-    this.setState({
-      navTopItemActive: tags ? -2 : navTopItemActive,
-      cardsData: {
-        ...cardsData,
-        query: text,
-        page: 1,
-      },
-    }, this.handleCardsPhotos);
+    const { searchTextAction: handleAction } = this.props;
+    handleAction(text, tags);
   }
 
   handleChangeInputValue = (text) => {
-    const { cardsData } = this.state;
-    this.setState({
-      cardsData: {
-        ...cardsData,
-        query: text,
-      },
-    });
+    const { searchChangeInputValueAction: handleAction } = this.props;
+    handleAction(text);
   }
 
   render() {
     const {
-      filts,
-      cards,
-      isListingLoading,
-      totalCards,
-      cardsData,
-      navTopItemActive,
-    } = this.state;
+      photolisting: {
+        filters,
+        isListingLoading,
+        cards,
+        totalCards,
+        cardsData,
+        navTopItemActive,
+      },
+    } = this.props;
     return (
       <div className="App">
         { isListingLoading && (<Spinner className="spinner" />)}
@@ -124,7 +79,7 @@ class Home extends Component {
         <div className="row">
           <div className="col-12">
             <ul className="nav-top">
-              {filts.map(item => (
+              {filters.map(item => (
                 <li key={item.id} className={`nav-top__item ${item.border ? 'nav-top__item_border-right' : ''}`}>
                   <NavTop
                     navTopItemActive={navTopItemActive}
@@ -151,7 +106,7 @@ class Home extends Component {
                       photoName={item.urls.regular}
                       photoDesc={item.description}
                       title={item.user.first_name}
-                      tags={item.photo_tags}
+                      tags={item.tags}
                       photoID={item.id}
                       userID={item.user.username}
                       userAvatar={item.user.profile_image.small}
@@ -184,14 +139,38 @@ class Home extends Component {
   }
 }
 
+Home.propTypes = {
+  cardsPhotosRequestAction: PropTypes.func,
+  paginationChangeAction: PropTypes.func,
+  filterItemValueAction: PropTypes.func,
+  searchTextAction: PropTypes.func,
+  searchChangeInputValueAction: PropTypes.func,
+  photolisting: PropTypes.shape({
+    isListingLoading: PropTypes.bool,
+  }),
+};
+Home.defaultProps = {
+  cardsPhotosRequestAction: () => {},
+  paginationChangeAction: () => {},
+  filterItemValueAction: () => {},
+  searchTextAction: () => {},
+  searchChangeInputValueAction: () => {},
+  photolisting: {
+    isListingLoading: false,
+  },
+};
+
 const mapStateToProps = (state) => {
-  const { login } = state;
-  return { login };
+  const { photolisting } = state;
+  return { photolisting };
 };
 
 const mapDispatchToProps = ({
-  loadingRequestAction,
-  logoutAction,
+  cardsPhotosRequestAction,
+  paginationChangeAction,
+  filterItemValueAction,
+  searchTextAction,
+  searchChangeInputValueAction,
 });
 
 export default connect(
