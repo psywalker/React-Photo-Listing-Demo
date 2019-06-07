@@ -7,4 +7,3 @@ export const loadingRequestAction = location => ({
   fetching: true,
   location,
 });
-
