@@ -43,7 +43,6 @@ class Photo extends Component {
         });
       })
       .catch(() => {
-        console.log('api.unsplash not responding');
         history.push('/');
       });
   }

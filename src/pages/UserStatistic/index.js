@@ -277,9 +277,7 @@ class UserStatistic extends Component {
         isListingLoading: false,
       });
     })
-      .catch(() => {
-        console.log('api.unsplash not responding');
-      });
+      .catch(() => {});
   }
 
   render() {

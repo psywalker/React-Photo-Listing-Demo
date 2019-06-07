@@ -10,60 +10,59 @@ import Spinner from '../../components/Spinner';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Test of component of Photo', () => {
-  it('Test basis props in state', () => { 
+  it('Test basis props in state', () => {
     const props = {
       match: {
         params: {
           id: 'sC-BXbi9ajw',
-        }
-      }
-    }
+        },
+      },
+    };
 
     const photo = shallow(<Photo {...props} />);
-    photo.setState({ 
-      userName: 'User111', 
+    photo.setState({
+      userName: 'User111',
       userNic: 'url',
       userPortfolioUrl: 'linkUrl',
-    }); 
+    });
     expect(photo.find('.photo__autor-page-link').text()).toEqual("Autor's page link");
     expect(photo.find('Link').prop('to')).toEqual("/users/url");
     expect(photo.find('.photo__autor-link').prop('href')).toEqual("linkUrl");
-    
   });
 
-  it('Test Spinner', () => { 
+  it('Test Spinner', () => {
     const props = {
       match: {
         params: {
           id: 'sC-BXbi9ajw',
-        }
-      }
-    }
+        },
+      },
+    };
 
     const photo = shallow(<Photo {...props} />);
-    
-    
-    photo.setState({ 
+
+
+    photo.setState({
       isListingLoading: false,
-    }); 
+    });
     expect(photo.find(Spinner).length).toEqual(0);
 
-    photo.setState({ 
+    photo.setState({
       isListingLoading: true,
-    }); 
+    });
 
     expect(photo.find(Spinner).length).toEqual(1);
-    
+
   });
 
-  it('Test Snapshot', () => { 
+  it('Test Snapshot', () => {
     const props = {
       match: {
         params: {
           id: 'sC-BXbi9ajw',
-        }
-      }
-    }
+        },
+      },
+    };
 
     const photo = shallow(<Photo {...props} />);
     expect(photo).toMatchSnapshot();

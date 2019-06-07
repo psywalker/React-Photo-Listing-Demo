@@ -7,13 +7,12 @@ import filters from '../../filters';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Test of component of Filter.js', () => {
-  it('Initial filter\'s state showDropdown ', () => { 
-    const filter = shallow(<Filter />)
+  it('Initial filter\'s state showDropdown ', () => {
+    const filter = shallow(<Filter />);
     expect(filter.state().showDropdown).toEqual(false);
   });
 
   it('Test display DropdownMenu of Filters ', () => {
-
     const filtersWrapper = mount(
       <div className="filter-wrapper">
         {filters.map(item => (
@@ -23,7 +22,6 @@ describe('Test of component of Filter.js', () => {
         }
       </div>,
     );
-
 
     expect(filtersWrapper.find('.filter-1').find('button.filter__toggler').length).toBe(1);
     expect(filtersWrapper.find('.filter-1').find('.filter-dropDownMenu').length).toBe(0);
@@ -38,7 +36,6 @@ describe('Test of component of Filter.js', () => {
   });
 
   it('Test bug in Filters ', () => {
-
     const filtersWrapper = mount(
       <div>
         <ul className="filter-wrapper">
