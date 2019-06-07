@@ -28,7 +28,7 @@ const HeaderApp = withRouter((props) => {
       <Header className="user-layout__header">
         <div className="page">
           <Row type="flex" justify="space-between">
-            <Col span={10}>
+            <Col span={9} style={{ whiteSpace: 'nowrap' }}>
               <Link to="/">
                 <Icon
                   component={() => (
@@ -58,6 +58,7 @@ const HeaderApp = withRouter((props) => {
               {login.profileName && (
                 <span>
                   <Button
+                    className="btn-logout"
                     style={{ marginLeft: '10px' }}
                     type="link"
                     onClick={handleLoguotHeader}
@@ -68,7 +69,7 @@ const HeaderApp = withRouter((props) => {
               )}
             </Col>
 
-            <Col span={2} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Col span={3} style={{ display: 'flex', justifyContent: 'flex-end' }}>
               {login.profileName && (
                 <Link to="/profile">
                   <Icon
