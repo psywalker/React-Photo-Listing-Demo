@@ -10,7 +10,7 @@ function func() {
 }
 
 const Test = () => (
-  <div className="test" onClick={func}>
+  <div role="presentation" className="test" onClick={func} onKeyDown={func}>
     Text
   </div>
 );
@@ -26,26 +26,20 @@ describe('components', () => {
   describe('Test 1', () => {
     it('Test 2', () => {
       const { enzymeWrapper } = setup();
-
       expect(enzymeWrapper.find('div').hasClass('test')).toBe(true);
-
     });
 
     it('Test padding of div', () => {
-      //const { enzymeWrapper } = setup();
-      //const onClick = jest.fn(() => 1);
       const props = {
         onFilterClick: () => {},
         activeFilter: '',
         filterType: '',
         hasPadding: false,
-      }
-      const dropdownItem = shallow(<DropdownItem {...props} />)
+      };
+      const dropdownItem = shallow(<DropdownItem {...props} />);
 
-      expect(dropdownItem.find('div').prop('role')).toEqual('presentation')
-  
+      expect(dropdownItem.find('div').prop('role')).toEqual('presentation');
     });
-
 
     it('Test active of class of div', () => {
       const props1 = {
@@ -53,20 +47,17 @@ describe('components', () => {
         activeFilter: 'filter',
         filterType: 'filter',
         hasPadding: false,
-      }
-      const dropdownItem1 = shallow(<DropdownItem {...props1} />)
+      };
+      const dropdownItem1 = shallow(<DropdownItem {...props1} />);
 
       expect(dropdownItem1.find('div').hasClass('active')).toEqual(true);
-
-
       const props2 = {
         onFilterClick: () => {},
         activeFilter: 'filter1',
         filterType: 'filter2',
         hasPadding: false,
-      }
-      const dropdownItem2 = shallow(<DropdownItem {...props2} />)
-
+      };
+      const dropdownItem2 = shallow(<DropdownItem {...props2} />);
       expect(dropdownItem2.find('div').hasClass('active')).toEqual(false);
     });
 
@@ -77,11 +68,9 @@ describe('components', () => {
         activeFilter: 'filter',
         filterType: 'filter',
         hasPadding: false,
-      }
-      const dropdownItem1 = shallow(<DropdownItem {...props1} />)
-
+      };
+      const dropdownItem1 = shallow(<DropdownItem {...props1} />);
       expect(dropdownItem1.find('i').length).toEqual(1);
-
 
       const props2 = {
         onFilterClick: () => {},
@@ -89,7 +78,7 @@ describe('components', () => {
         filterType: 'filter2',
         hasPadding: false,
       }
-      const dropdownItem2 = shallow(<DropdownItem {...props2} />)
+      const dropdownItem2 = shallow(<DropdownItem {...props2} />);
 
       expect(dropdownItem2.find('i').length).toEqual(0);
     });
@@ -100,30 +89,27 @@ describe('components', () => {
         activeFilter: 'filter',
         filterType: 'filter',
         hasPadding: false,
-      }
-      const dropdownItem = shallow(<DropdownItem {...props} />)
-
-      expect(dropdownItem.find('div').text()).toEqual(props.filterType + '✓')
+      };
+      const dropdownItem = shallow(<DropdownItem {...props} />);
+      expect(dropdownItem.find('div').text()).toEqual(props.filterType + '✓');
     });
 
     it('Test method of div element', () => {
-
       function func2() {
         const props = {
           onFilterClick: jest.fn(),
         }
-        const enzymeWrapper = shallow(<DropdownItem {...props} />)
+        const enzymeWrapper = shallow(<DropdownItem {...props} />);
         return {
           props,
-          enzymeWrapper
-        }
+          enzymeWrapper,
+        };
       }
-      const { enzymeWrapper, props } = func2()
-
-      const div = enzymeWrapper.find('div')
-      div.props().onClick()
+      const { enzymeWrapper, props } = func2();
+      const div = enzymeWrapper.find('div');
+      div.props().onClick();
       expect(props.onFilterClick).toBeCalled();
-      expect(props.onFilterClick.mock.calls.length).toBe(1)
+      expect(props.onFilterClick.mock.calls.length).toBe(1);
     });
 
     it('Test method of div element', () => {
@@ -137,10 +123,8 @@ describe('components', () => {
       mock.mockReturnValue(1);
 
       const { enzymeWrapper } = funcTest();
-      const div = enzymeWrapper.find('div')
-
+      const div = enzymeWrapper.find('div');
       expect(mock(div.prop.onClick)).toBe(1);
-
     });
   });
 });
