@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { Pagination } from 'antd';
 import Search from '../../components/Search';
 import PhotoCard from '../../components/PhotoCard';
@@ -183,4 +184,17 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  const { login } = state;
+  return { login };
+};
+
+const mapDispatchToProps = ({
+  loadingRequestAction,
+  logoutAction,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Home);

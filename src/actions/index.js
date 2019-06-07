@@ -1,9 +1,3 @@
-export const loginAction = code => ({
-  type: 'LOGIN_SAGA',
-  code,
-  subType: 'LOGIN',
-});
-
 export const logoutAction = () => ({
   type: 'LOGOUT',
 });
@@ -13,3 +7,4 @@ export const loadingRequestAction = location => ({
   fetching: true,
   location,
 });
+
