@@ -8,11 +8,12 @@ import User from '../pages/User';
 import UserPhotoListing from '../pages/UserPhotoListing';
 import Profile from '../pages/Profile';
 import HeaderApp from '../components/HeaderApp';
+import './index.scss';
 
 const Main = () => (
   <BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
     <LastLocationProvider>
-      <Row style={{ margin: '0px 0 30px' }}>
+      <Row className="header-row" style={{ margin: '0px 0 30px' }}>
         <Col>
           <Layout className="user-layout">
             <HeaderApp />
