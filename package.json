@@ -6,9 +6,9 @@
   "dependencies": {
     "antd": "^3.11.2",
     "axios": "^0.18.0",
+    "babel-jest": "24.7.1",
     "font-awesome": "^4.7.0",
     "highcharts": "^7.0.0",
-    "jest": "^24.8.0",
     "mdbreact": "^4.8.2",
     "moment": "^2.23.0",
     "moment-timezone": "^0.5.23",
