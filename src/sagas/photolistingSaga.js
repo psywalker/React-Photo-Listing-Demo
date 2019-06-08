@@ -17,9 +17,9 @@ export default function* cardsPhotosRequestSaga(action) {
       });
 
       const responceObj = {
-        cards: response.data.results,
+        cards: response?.data?.results || [],
         isListingLoading: false,
-        totalCards: response.data.total,
+        totalCards: response?.data?.total || 10,
       };
 
       yield put({ type: 'CARDS_PHOTOS_REQUEST_SUCCESS', responceObj });
