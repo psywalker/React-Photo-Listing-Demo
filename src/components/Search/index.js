@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
+import debounce from 'lodash/debounce';
 import './index.css';
 
 const InputSearch = Input.Search;
@@ -23,19 +24,23 @@ class Search extends Component {
     }
   };
 
+  onChangeDebounced = debounce((value) => {
+    const { onChangeInputValue } = this.props;
+    onChangeInputValue(value);
+  }, 1000)
+
   submitSearch = () => {
     const { inputValue } = this.state;
     const { onSearchInputValue } = this.props;
     if (inputValue) onSearchInputValue(inputValue);
   }
 
-  changeInputValue = (e) => {
-    const { onChangeInputValue } = this.props;
+  handleInputChange = (event) => {
     this.setState({
-      inputValue: e.target.value,
+      inputValue: event.target.value,
     }, () => {
       const { inputValue } = this.state;
-      onChangeInputValue(inputValue);
+      this.onChangeDebounced(inputValue);
     });
   };
 
@@ -47,7 +52,7 @@ class Search extends Component {
           className="search__input"
           value={inputValue}
           placeholder="Wallpapers"
-          onChange={value => this.changeInputValue(value)}
+          onChange={this.handleInputChange}
           onPressEnter={this.submitSearch}
           onSearch={this.submitSearch}
           style={{ width: '100%' }}
