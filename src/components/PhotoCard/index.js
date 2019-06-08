@@ -79,7 +79,8 @@ const PhotoCard = ({
             trigger="click"
           >
             <Tag>more tags...</Tag>
-          </Popover>)}
+          </Popover>
+        )}
       </div>
     </Card>
   </div>

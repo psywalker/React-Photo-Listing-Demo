@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Button } from 'antd';
 import { loadingRequestAction, logoutAction } from '../../actions';
 import Spinner from '../../components/Spinner';
 import './index.scss';
@@ -34,7 +33,6 @@ class Profile extends Component {
             <div className="profile-content__title-wrap">
               <h2 className="profile-content__title">
                 {login.profileFullName}
-                <Button className="profile-content__title-btn" type="link" onClick={this.handleLoguotProfile}>Logout</Button>
               </h2>
               <p>{login.profileEmail}</p>
               <p className="profile-content__text">
@@ -72,6 +70,9 @@ Profile.propTypes = {
     fetching: PropTypes.bool,
     loginError: PropTypes.bool,
   }),
+  history: PropTypes.shape({
+    profilePhotoUrl: PropTypes.string,
+  }),
 };
 Profile.defaultProps = {
   logoutAction: () => {},
@@ -84,6 +85,7 @@ Profile.defaultProps = {
     fetching: false,
     loginError: false,
   },
+  history: {},
 };
 
 const mapStateToProps = (state) => {

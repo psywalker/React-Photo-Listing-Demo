@@ -17,9 +17,9 @@ import './index.scss';
 const { Header } = Layout;
 
 const HeaderApp = withRouter((props) => {
-  const { history, login, logoutAction } = props;
+  const { history, login, logoutAction: handleAction } = props;
   const handleLoguotHeader = () => {
-    logoutAction();
+    handleAction();
     window.localStorage.clear();
     history.push('/');
   };
@@ -45,7 +45,6 @@ const HeaderApp = withRouter((props) => {
               {!login.profileName && (
                 <Button
                   style={{ marginLeft: '10px' }}
-                  type="link"
                   href={`https://unsplash.com/oauth/authorize?redirect_uri=${
                     process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI
                   }&response_type=code&scope=public+read_user+write_user+read_photos+write_likes+write_photos+write_followers+read_collections+write_collections&client_id=${

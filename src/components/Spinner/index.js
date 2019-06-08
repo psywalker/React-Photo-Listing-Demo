@@ -9,6 +9,7 @@ const Spinner = () => (
       <div>&nbsp;</div>
       <div>&nbsp;</div>
     </div>
-  </div>);
+  </div>
+);
 
 export default Spinner;

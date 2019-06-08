@@ -17,7 +17,6 @@ import './home.css';
 import 'antd/dist/antd.css';
 
 class Home extends Component {
-
   componentDidUpdate = (prevProps) => {
     const { photolisting: { cardsData }, cardsPhotosRequestAction: handleAction } = this.props;
     if (prevProps.photolisting.cardsData !== cardsData) handleAction(cardsData);
@@ -89,7 +88,8 @@ class Home extends Component {
                     label={item.label}
                     filterValue={item.filterValue}
                   />
-                </li>))
+                </li>
+              ))
               }
             </ul>
           </div>
@@ -112,7 +112,8 @@ class Home extends Component {
                       userAvatar={item.user.profile_image.small}
                       onSearchTagValue={this.handleSearchText}
                     />
-                  </li>))
+                  </li>
+                ))
                 }
               </ul>
             )
@@ -131,7 +132,8 @@ class Home extends Component {
                 current={cardsData.page}
                 defaultCurrent={1}
                 total={totalCards}
-              />)}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -146,8 +148,14 @@ Home.propTypes = {
   searchTextAction: PropTypes.func,
   searchChangeInputValueAction: PropTypes.func,
   photolisting: PropTypes.shape({
+    cardsData: PropTypes.shape({
+      query: PropTypes.string,
+      page: PropTypes.number,
+      per_page: PropTypes.number,
+    }),
     isListingLoading: PropTypes.bool,
   }),
+
 };
 Home.defaultProps = {
   cardsPhotosRequestAction: () => {},
@@ -157,7 +165,13 @@ Home.defaultProps = {
   searchChangeInputValueAction: () => {},
   photolisting: {
     isListingLoading: false,
+    cardsData: {
+      query: 'wallpapers',
+      page: 1,
+      per_page: 6,
+    },
   },
+
 };
 
 const mapStateToProps = (state) => {

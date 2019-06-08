@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Row,
   Col,
@@ -94,4 +95,16 @@ class User extends Component {
   }
 }
 
+User.propTypes = {
+  history: PropTypes.shape({
+    prop: PropTypes.string,
+  }),
+  match: PropTypes.shape({
+    prop: PropTypes.string,
+  }),
+};
+User.defaultProps = {
+  history: {},
+  match: {},
+};
 export default User;

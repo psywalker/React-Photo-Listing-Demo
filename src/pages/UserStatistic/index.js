@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment-timezone';
 import Highcharts from 'react-highcharts';
@@ -304,5 +305,12 @@ class UserStatistic extends Component {
       </div>
     );
   }
-}    
+}
+
+UserStatistic.propTypes = {
+  userId: PropTypes.string,
+};
+UserStatistic.defaultProps = {
+  userId: '',
+};
 export default UserStatistic;

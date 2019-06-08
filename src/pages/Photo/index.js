@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import axios from 'axios';
@@ -71,13 +72,27 @@ class Photo extends Component {
         >
           <Meta className="photo__desc" title={`${photoDesc || 'No title'}`} />
           <Link to={`/users/${userNic}`}>
-            <p className="photo__autor-page-link">Autor's page link</p>
+            <p className="photo__autor-page-link">
+              { 'Autor\'s page link' }
+            </p>
           </Link>
-          <a className="photo__autor-link" href={userPortfolioUrl}>Autor's portfolio link</a>
+          <a className="photo__autor-link" href={userPortfolioUrl}>{ 'Autor\'s portfolio link' }</a>
         </Card>
       </div>
     );
   }
 }
 
+Photo.propTypes = {
+  match: PropTypes.shape({
+    prop: PropTypes.string,
+  }),
+  history: PropTypes.shape({
+    prop: PropTypes.string,
+  }),
+};
+Photo.defaultProps = {
+  match: {},
+  history: {},
+};
 export default Photo;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col, Pagination } from 'antd';
 import axios from 'axios';
 import Spinner from '../../components/Spinner';
@@ -30,12 +31,12 @@ class UserLikesPhotos extends Component {
 
   handleUserLikesPhotosQuery = () => {
     const { history, userId } = this.props;
-    const { page, per_page } = this.state;
+    const { page, per_page: perPage } = this.state;
     this.setState({ isListingLoading: true });
     axios.get(`${process.env.REACT_APP_UNSPLASH_API_NAME}users/${userId}/likes?`, {
       params: {
         page,
-        per_page,
+        perPage,
         client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
       },
     }).then((res) => {
@@ -58,7 +59,7 @@ class UserLikesPhotos extends Component {
       cards,
       totalCards,
       page,
-      per_page,
+      per_page: perPage,
     } = this.state;
     return (
       <div>
@@ -79,14 +80,16 @@ class UserLikesPhotos extends Component {
                         userAvatar={item.user.profile_image.small}
                         onSearchTagValue={this.handleSearchText}
                       />
-                    </li>))
+                    </li>
+                  ))
                   }
-                </ul>)}
+                </ul>
+              )}
             </Col>
           </Row>
           <Row justify="center" style={{ display: 'flex', justifyContent: 'center' }}>
             <Col style={{ display: 'flex', justifyContent: 'center' }}>
-              {totalCards > per_page && (
+              {totalCards > perPage && (
                 <Pagination
                   className="ml-3 mb-5"
                   onChange={this.handlePaginationChange}
@@ -94,7 +97,8 @@ class UserLikesPhotos extends Component {
                   current={page}
                   defaultCurrent={1}
                   total={totalCards}
-                />)}
+                />
+              )}
             </Col>
           </Row>
         </div>
@@ -102,4 +106,15 @@ class UserLikesPhotos extends Component {
     );
   }
 }
+
+UserLikesPhotos.propTypes = {
+  history: PropTypes.shape({
+    prop: PropTypes.string,
+  }),
+  userId: PropTypes.string,
+};
+UserLikesPhotos.defaultProps = {
+  history: {},
+  userId: '',
+};
 export default UserLikesPhotos;
