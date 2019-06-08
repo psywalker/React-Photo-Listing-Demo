@@ -86,5 +86,4 @@ const filters = [
     filterValue: 'arts-culture',
   },
 ];
-
 export default filters;
