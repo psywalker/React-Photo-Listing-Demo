@@ -27,7 +27,7 @@ class Search extends Component {
   onChangeDebounced = debounce((value) => {
     const { onChangeInputValue } = this.props;
     onChangeInputValue(value);
-  }, 1000)
+  }, 500)
 
   submitSearch = () => {
     const { inputValue } = this.state;

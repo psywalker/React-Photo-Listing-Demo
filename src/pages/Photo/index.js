@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import axios from 'axios';
 import Spinner from '../../components/Spinner';
+import { URL_FOR_PHOTO_QUERY } from '../../constants/urls';
 import './photo.css';
 
 const { Meta } = Card;
@@ -27,7 +28,7 @@ class Photo extends Component {
   handlePhotoQuery = () => {
     const { match, history } = this.props;
     this.setState({ isListingLoading: true });
-    const API_URL = `${process.env.REACT_APP_UNSPLASH_API_NAME}photos/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
+    const API_URL = URL_FOR_PHOTO_QUERY(match);
     axios.get(API_URL)
       .then((res) => {
         const photoSrc = res.data.urls.full;

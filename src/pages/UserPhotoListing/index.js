@@ -4,6 +4,7 @@ import { Row, Col, Pagination } from 'antd';
 import axios from 'axios';
 import Spinner from '../../components/Spinner';
 import PhotoCard from '../../components/PhotoCard';
+import { URL_FOR_USER_PHOTO_LISTING_QUERY } from '../../constants/urls';
 import './index.css';
 
 class UserPhotoListing extends Component {
@@ -33,7 +34,8 @@ class UserPhotoListing extends Component {
     const { history, userId } = this.props;
     const { page, per_page: perPage } = this.state;
     this.setState({ isListingLoading: true });
-    axios.get(`${process.env.REACT_APP_UNSPLASH_API_NAME}users/${userId}/photos?`, {
+    const API_URL = URL_FOR_USER_PHOTO_LISTING_QUERY(userId);
+    axios.get(API_URL, {
       params: {
         page,
         perPage,

@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { put } from 'redux-saga/effects';
+import { URL_FOR_CARDS_PHOTOS } from '../constants/urls';
 
 export default function* cardsPhotosRequestSaga(action) {
   const { cardsData } = action;
   if (cardsData) {
     try {
       const axiosRequestForcardsPhotos = {
-        url: 'https://api.unsplash.com/search/photos?',
+        url: URL_FOR_CARDS_PHOTOS,
         params: {
           ...cardsData,
           client_id: process.env.REACT_APP_UNSPLASH_API_KEY,

@@ -5,6 +5,7 @@ import 'moment-timezone';
 import Highcharts from 'react-highcharts';
 import axios from 'axios';
 import Spinner from '../../components/Spinner';
+import { URL_FOR_USER_STATISTIC } from '../../constants/urls';
 import './index.css';
 
 class UserStatistic extends Component {
@@ -228,8 +229,8 @@ class UserStatistic extends Component {
     const { userId } = this.props;
     const { highchartsConfigs } = this.state;
     this.setState({ isListingLoading: true });
-
-    axios.get(`${process.env.REACT_APP_UNSPLASH_API_NAME}users/${userId}/statistics?`, {
+    const API_URL = URL_FOR_USER_STATISTIC(userId);
+    axios.get(API_URL, {
       params: {
         client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
       },

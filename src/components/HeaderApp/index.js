@@ -10,6 +10,7 @@ import {
 } from 'antd';
 import { withLastLocation } from 'react-router-last-location';
 import { connect } from 'react-redux';
+import { URL_FOR_LOGIN } from '../../constants/urls';
 import { logoutAction } from '../../actions';
 import ButtonBack from '../ButtonBack';
 import './index.scss';
@@ -45,11 +46,7 @@ const HeaderApp = withRouter((props) => {
               {!login.profileName && (
                 <Button
                   style={{ marginLeft: '10px' }}
-                  href={`https://unsplash.com/oauth/authorize?redirect_uri=${
-                    process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI
-                  }&response_type=code&scope=public+read_user+write_user+read_photos+write_likes+write_photos+write_followers+read_collections+write_collections&client_id=${
-                    process.env.REACT_APP_UNSPLASH_API_KEY
-                  }`}
+                  href={URL_FOR_LOGIN}
                 >
                   Login
                 </Button>

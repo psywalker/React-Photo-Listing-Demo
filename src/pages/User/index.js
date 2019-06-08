@@ -11,6 +11,7 @@ import Spinner from '../../components/Spinner';
 import UserLikesPhotos from '../UserLikesPhotos';
 import UserStatistic from '../UserStatistic';
 import UserPhotoListing from '../UserPhotoListing';
+import { URL_FOR_USER_QUERY } from '../../constants/urls';
 import './user.css';
 
 const { TabPane } = Tabs;
@@ -32,7 +33,7 @@ class User extends Component {
   handleUserQuery = () => {
     const { match, history } = this.props;
     this.setState({ isListingLoading: true });
-    const API_URL = `${process.env.REACT_APP_UNSPLASH_API_NAME}users/${match.params.id}?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`;
+    const API_URL = URL_FOR_USER_QUERY(match);
     axios.get(API_URL)
       .then((res) => {
         const userPhoto = res.data.profile_image.large;
