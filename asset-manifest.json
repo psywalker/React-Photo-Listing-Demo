@@ -1,15 +1,17 @@
 {
-  "main.css": "/React-Photo-Listing-Demo/static/css/main.8c489fc3.chunk.css",
-  "main.js": "/React-Photo-Listing-Demo/static/js/main.126b7af4.chunk.js",
-  "main.js.map": "/React-Photo-Listing-Demo/static/js/main.126b7af4.chunk.js.map",
-  "static/css/1.3ccea175.chunk.css": "/React-Photo-Listing-Demo/static/css/1.3ccea175.chunk.css",
-  "static/js/1.b300f1d4.chunk.js": "/React-Photo-Listing-Demo/static/js/1.b300f1d4.chunk.js",
-  "static/js/1.b300f1d4.chunk.js.map": "/React-Photo-Listing-Demo/static/js/1.b300f1d4.chunk.js.map",
-  "runtime~main.js": "/React-Photo-Listing-Demo/static/js/runtime~main.06aa95e2.js",
-  "runtime~main.js.map": "/React-Photo-Listing-Demo/static/js/runtime~main.06aa95e2.js.map",
-  "static/css/main.8c489fc3.chunk.css.map": "/React-Photo-Listing-Demo/static/css/main.8c489fc3.chunk.css.map",
-  "static/css/1.3ccea175.chunk.css.map": "/React-Photo-Listing-Demo/static/css/1.3ccea175.chunk.css.map",
-  "index.html": "/React-Photo-Listing-Demo/index.html",
-  "precache-manifest.f013f7676107d0a2840df533ab69c423.js": "/React-Photo-Listing-Demo/precache-manifest.f013f7676107d0a2840df533ab69c423.js",
-  "service-worker.js": "/React-Photo-Listing-Demo/service-worker.js"
+  "files": {
+    "main.css": "/React-Photo-Listing-Demo/static/css/main.f295a623.chunk.css",
+    "main.js": "/React-Photo-Listing-Demo/static/js/main.8151421e.chunk.js",
+    "main.js.map": "/React-Photo-Listing-Demo/static/js/main.8151421e.chunk.js.map",
+    "runtime~main.js": "/React-Photo-Listing-Demo/static/js/runtime~main.d39bbc17.js",
+    "runtime~main.js.map": "/React-Photo-Listing-Demo/static/js/runtime~main.d39bbc17.js.map",
+    "static/css/2.33bbdc9a.chunk.css": "/React-Photo-Listing-Demo/static/css/2.33bbdc9a.chunk.css",
+    "static/js/2.1870ba38.chunk.js": "/React-Photo-Listing-Demo/static/js/2.1870ba38.chunk.js",
+    "static/js/2.1870ba38.chunk.js.map": "/React-Photo-Listing-Demo/static/js/2.1870ba38.chunk.js.map",
+    "index.html": "/React-Photo-Listing-Demo/index.html",
+    "precache-manifest.acfe980daf19b8da517f3fb61330c184.js": "/React-Photo-Listing-Demo/precache-manifest.acfe980daf19b8da517f3fb61330c184.js",
+    "service-worker.js": "/React-Photo-Listing-Demo/service-worker.js",
+    "static/css/2.33bbdc9a.chunk.css.map": "/React-Photo-Listing-Demo/static/css/2.33bbdc9a.chunk.css.map",
+    "static/css/main.f295a623.chunk.css.map": "/React-Photo-Listing-Demo/static/css/main.f295a623.chunk.css.map"
+  }
 }
