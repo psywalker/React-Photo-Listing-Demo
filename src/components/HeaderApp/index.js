@@ -59,7 +59,6 @@ const HeaderApp = withRouter((props) => {
                   <Button
                     className="btn-logout"
                     style={{ marginLeft: '10px' }}
-                    type="link"
                     onClick={handleLoguotHeader}
                   >
                     Logout
