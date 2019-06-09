@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import axios from 'axios';
+import get from 'lodash/get';
 import { Spinner } from '../../components';
 import { URL_FOR_PHOTO_QUERY } from '../../constants/urls';
 import './photo.css';
@@ -31,10 +32,10 @@ class Photo extends Component {
     const API_URL = URL_FOR_PHOTO_QUERY(match);
     axios.get(API_URL)
       .then((res) => {
-        const photoSrc = res.data.urls.full;
-        const userNic = res.data.user.username;
-        const userPortfolioUrl = res.data.user.portfolio_url;
-        const photoDesc = res.data.description;
+        const photoSrc = get(res, 'data.urls.full') || '';
+        const userNic = get(res, 'data.user.username') || 'No Name';
+        const userPortfolioUrl = get(res, 'data.user.portfolio_url') || '';
+        const photoDesc = get(res, 'data.description') || 'No Description';
 
         this.setState({
           isListingLoading: false,

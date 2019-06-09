@@ -7,6 +7,7 @@ import {
   Tabs,
 } from 'antd';
 import axios from 'axios';
+import get from 'lodash/get';
 import {
   Spinner,
   UserLikesPhotos,
@@ -38,8 +39,8 @@ class User extends Component {
     const API_URL = URL_FOR_USER_QUERY(match);
     axios.get(API_URL)
       .then((res) => {
-        const userPhoto = res.data.profile_image.large;
-        const userFirstPhoto = res.data.photos[0].urls.regular;
+        const userPhoto = get(res, 'data.profile_image.large') || 'No User Photo';
+        const userFirstPhoto = get(res, 'data.photos[0].urls.regular') || 'No Photo';
 
         this.setState({
           isListingLoading: false,

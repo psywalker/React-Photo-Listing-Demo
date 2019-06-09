@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Pagination } from 'antd';
 import axios from 'axios';
+import get from 'lodash/get';
 import { Spinner, PhotoCard } from '../../components';
 import { URL_FOR_USER_PHOTO_LISTING_QUERY } from '../../constants/urls';
 import './index.css';
@@ -41,8 +42,8 @@ class UserPhotoListing extends Component {
         client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
       },
     }).then((res) => {
-      const cards = res.data;
-      const totalCards = parseInt(res.headers['x-total'], 10);
+      const cards = get(res, 'data') || [];
+      const totalCards = parseInt(get(res, 'headers["x-total"]'), 10) || 10;
       this.setState({
         cards,
         isListingLoading: false,

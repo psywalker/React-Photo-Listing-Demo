@@ -20,8 +20,8 @@ import './home.css';
 
 class Home extends Component {
   componentDidUpdate = (prevProps) => {
-    const { photolisting: { cardsData }, cardsPhotosRequestAction: handleAction } = this.props;
-    if (prevProps.photolisting.cardsData !== cardsData) handleAction(cardsData);
+    const { cardsData, cardsPhotosRequestAction: handleAction } = this.props;
+    if (prevProps.cardsData !== cardsData) handleAction(cardsData);
   };
 
   componentDidMount = () => {
@@ -29,7 +29,7 @@ class Home extends Component {
   };
 
   handleCardsPhotos = () => {
-    const { photolisting: { cardsData }, cardsPhotosRequestAction: handleAction } = this.props;
+    const { cardsData, cardsPhotosRequestAction: handleAction } = this.props;
     handleAction(cardsData);
   };
 
@@ -55,14 +55,12 @@ class Home extends Component {
 
   render() {
     const {
-      photolisting: {
-        filters,
-        isListingLoading,
-        cards,
-        totalCards,
-        cardsData,
-        navTopItemActive,
-      },
+      filters,
+      isListingLoading,
+      cards,
+      totalCards,
+      cardsData,
+      navTopItemActive,
     } = this.props;
     return (
       <div className="App">
@@ -149,15 +147,20 @@ Home.propTypes = {
   filterItemValueAction: PropTypes.func,
   searchTextAction: PropTypes.func,
   searchChangeInputValueAction: PropTypes.func,
-  photolisting: PropTypes.shape({
-    cardsData: PropTypes.shape({
-      query: PropTypes.string,
-      page: PropTypes.number,
-      per_page: PropTypes.number,
-    }),
-    isListingLoading: PropTypes.bool,
+  filters: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    label: PropTypes.string,
+    filterValue: PropTypes.string,
+  })),
+  cardsData: PropTypes.shape({
+    query: PropTypes.string,
+    page: PropTypes.number,
+    per_page: PropTypes.number,
   }),
-
+  totalCards: PropTypes.number,
+  navTopItemActive: PropTypes.number,
+  cards: PropTypes.arrayOf(PropTypes.object),
+  isListingLoading: PropTypes.bool,
 };
 Home.defaultProps = {
   cardsPhotosRequestAction: () => {},
@@ -165,20 +168,21 @@ Home.defaultProps = {
   filterItemValueAction: () => {},
   searchTextAction: () => {},
   searchChangeInputValueAction: () => {},
-  photolisting: {
-    isListingLoading: false,
-    cardsData: {
-      query: 'wallpapers',
-      page: 1,
-      per_page: 6,
-    },
+  filters: [],
+  isListingLoading: false,
+  cards: [],
+  cardsData: {
+    query: 'wallpapers',
+    page: 1,
+    per_page: 6,
   },
-
+  totalCards: 10,
+  navTopItemActive: 2,
 };
 
 const mapStateToProps = (state) => {
   const { photolisting } = state;
-  return { photolisting };
+  return photolisting;
 };
 
 const mapDispatchToProps = ({

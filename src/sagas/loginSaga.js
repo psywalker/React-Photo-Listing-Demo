@@ -1,6 +1,6 @@
-/* eslint-disable camelcase */
 import axios from 'axios';
 import { put } from 'redux-saga/effects';
+import get from 'lodash/get';
 import { URL_FOR_PROFILE_ME, URL_FOR_TOKEN, URL_FOR_AVATAR_PLACEHOLDER } from '../constants/urls';
 
 export function* loginAfterToken(token) {
@@ -11,10 +11,10 @@ export function* loginAfterToken(token) {
       };
       const response = yield axios.get(URL_FOR_PROFILE_ME, { headers });
       const data = {
-        profilePhotoUrl: response?.data?.profile_image?.large || URL_FOR_AVATAR_PLACEHOLDER,
-        profileName: response?.data?.first_name || 'No first name',
-        profileFullName: response?.data?.name || 'No name',
-        profileEmail: response?.data?.email || 'No email',
+        profilePhotoUrl: get(response, 'data.profile_image.large') || URL_FOR_AVATAR_PLACEHOLDER,
+        profileName: get(response, 'data.first_name') || 'No first name',
+        profileFullName: get(response, 'data.name') || 'No name',
+        profileEmail: get(response, 'data.email') || 'No email',
       };
 
       yield put({ type: 'LOGIN_SUCCESS', data });
@@ -43,7 +43,7 @@ export function* loginSaga(action) {
         };
 
         const response = yield axios.post(axiosRequestForToken.url, axiosRequestForToken.body);
-        const token = response.data.access_token;
+        const token = get(response, 'data.access_token') || false;
         window.localStorage.clear();
         window.localStorage.setItem('token', token);
         yield loginAfterToken(token);

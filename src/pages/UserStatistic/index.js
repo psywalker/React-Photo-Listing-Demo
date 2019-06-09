@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'moment-timezone';
 import Highcharts from 'react-highcharts';
 import axios from 'axios';
+import get from 'lodash/get';
 import { Spinner } from '../../components';
 import { URL_FOR_USER_STATISTIC } from '../../constants/urls';
 import './index.css';
@@ -235,45 +236,47 @@ class UserStatistic extends Component {
         client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
       },
     }).then((res) => {
+      const highchartsDownloadsConfigData = get(res, 'data.downloads.historical.values') || [];
+      const highchartsViewsConfigData = get(res, 'data.views.historical.values') || [];
+      const highchartsLikesConfigData = get(res, 'data.likes.historical.values') || [];
       const highchartsConfigsObject = {
         highchartsDownloadsConfig: {
           ...highchartsConfigs.highchartsDownloadsConfig,
           xAxis: {
-            categories: res.data.downloads.historical.values.map(item => moment(item.date).format('DD MMMM YYYY')),
+            categories: highchartsDownloadsConfigData.map(item => moment(item.date).format('DD MMMM YYYY')),
           },
           series: [
             {
               ...highchartsConfigs.highchartsDownloadsConfig.series[0],
-              data: res.data.downloads.historical.values.map(item => item.value),
+              data: highchartsDownloadsConfigData.map(item => item.value),
             },
           ],
         },
         highchartsViewsConfig: {
           ...highchartsConfigs.highchartsViewsConfig,
           xAxis: {
-            categories: res.data.views.historical.values.map(item => moment(item.date).format('DD MMMM YYYY')),
+            categories: highchartsViewsConfigData.map(item => moment(item.date).format('DD MMMM YYYY')),
           },
           series: [
             {
               ...highchartsConfigs.highchartsViewsConfig.series[0],
-              data: res.data.views.historical.values.map(item => item.value),
+              data: highchartsViewsConfigData.map(item => item.value),
             },
           ],
         },
         highchartsLikesConfig: {
           ...highchartsConfigs.highchartsLikesConfig,
           xAxis: {
-            categories: res.data.likes.historical.values.map(item => moment(item.date).format('DD MMMM YYYY')),
+            categories: highchartsLikesConfigData.map(item => moment(item.date).format('DD MMMM YYYY')),
           },
           series: [
             {
               ...highchartsConfigs.highchartsLikesConfig.series[0],
-              data: res.data.likes.historical.values.map(item => item.value),
+              data: highchartsLikesConfigData.map(item => item.value),
             },
           ],
         },
       };
-
       this.setState({
         highchartsConfigs: highchartsConfigsObject,
         isListingLoading: false,
