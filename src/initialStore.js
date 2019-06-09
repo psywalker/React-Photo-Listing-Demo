@@ -20,6 +20,7 @@ const initialStore = {
       page: 1,
       per_page: 6,
     },
+    photolistingRequestError: false,
   },
 };
 export default initialStore;

@@ -61,7 +61,9 @@ class Home extends PureComponent {
       totalCards,
       cardsData,
       navTopItemActive,
+      photolistingRequestError,
     } = this.props;
+    if (photolistingRequestError) return <div>Error loading photolisting</div>;
     return (
       <div className="App">
         { isListingLoading && (<Spinner className="spinner" />)}
@@ -161,6 +163,7 @@ Home.propTypes = {
   navTopItemActive: PropTypes.number,
   cards: PropTypes.arrayOf(PropTypes.object),
   isListingLoading: PropTypes.bool,
+  photolistingRequestError: PropTypes.bool,
 };
 Home.defaultProps = {
   cardsPhotosRequestAction: () => {},
@@ -178,6 +181,7 @@ Home.defaultProps = {
   },
   totalCards: 10,
   navTopItemActive: 2,
+  photolistingRequestError: false,
 };
 
 const mapStateToProps = (state) => {

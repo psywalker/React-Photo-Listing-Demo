@@ -11,6 +11,7 @@ const photolisting = (state = initialStore, action) => {
       return {
         ...state,
         ...action.responceObj,
+        photolistingRequestError: false,
       };
     case 'PAGINATION_CHANGE':
       return {
@@ -52,6 +53,7 @@ const photolisting = (state = initialStore, action) => {
       return {
         ...state,
         isListingLoading: false,
+        photolistingRequestError: true,
       };
     default:
       return state;
