@@ -16,7 +16,7 @@ import {
   Spinner,
 } from '../../components';
 import 'antd/dist/antd.css';
-import './home.css';
+import './index.scss';
 
 class Home extends PureComponent {
   componentDidUpdate = (prevProps) => {

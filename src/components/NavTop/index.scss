@@ -9,6 +9,9 @@
 .nav-top__item {
     margin-right: 12px;
     margin-bottom: 10px;
+    & > div {
+        cursor: pointer;
+    }
 }
 .nav-top__item_border-right {
     border-right: 1px solid #ddd;

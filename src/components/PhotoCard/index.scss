@@ -45,9 +45,9 @@ div.photo-card-self .photo-card-self__badge-wrap {
     align-items: center;
     margin: 0 20px 20px;
 }
-div.photo-card-self .photo-card-self__badge {
-    margin: 5px 5px 5px 0;
-    cursor: pointer;
+.photo-card-self__badge {
+    margin: 5px 5px 5px 0 !important;
+    cursor: pointer !important;
 }
 
 .photo-card-self__badge:hover,

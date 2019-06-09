@@ -7,7 +7,7 @@ import {
   Tag,
   Popover,
 } from 'antd';
-import './PhotoCard.css';
+import './index.scss';
 
 const { Meta } = Card;
 
@@ -78,7 +78,7 @@ const PhotoCard = memo(({
             )}
             trigger="click"
           >
-            <Tag>more tags...</Tag>
+            <Tag className="photo-card-self__badge">more tags...</Tag>
           </Popover>
         )}
       </div>

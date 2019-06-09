@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Tag } from 'antd';
-import './index.css';
+import './index.scss';
 
 const NavTop = memo(({
   onFilterItemValue,
