@@ -14,7 +14,8 @@ const DropdownItem = ({
   >
     {filterType}
     {(activeFilter === filterType) && <i className="check">✓</i>}
-  </div>);
+  </div>
+);
 
 DropdownItem.propTypes = {
   onFilterClick: PropTypes.func,

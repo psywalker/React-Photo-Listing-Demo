@@ -9,12 +9,14 @@ import {
   searchTextAction,
   searchChangeInputValueAction,
 } from '../../actions';
-import Search from '../../components/Search';
-import PhotoCard from '../../components/PhotoCard';
-import NavTop from '../../components/NavTop';
-import Spinner from '../../components/Spinner';
-import './home.css';
+import {
+  Search,
+  PhotoCard,
+  NavTop,
+  Spinner,
+} from '../../components';
 import 'antd/dist/antd.css';
+import './home.css';
 
 class Home extends Component {
   componentDidUpdate = (prevProps) => {

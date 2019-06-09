@@ -2,12 +2,14 @@ import React from 'react';
 import { LastLocationProvider } from 'react-router-last-location';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { Row, Col, Layout } from 'antd';
-import Home from '../pages/Home/Home';
-import Photo from '../pages/Photo';
-import User from '../pages/User';
-import UserPhotoListing from '../pages/UserPhotoListing';
-import Profile from '../pages/Profile';
-import HeaderApp from '../components/HeaderApp';
+import {
+  Home,
+  Photo,
+  User,
+  UserPhotoListing,
+  Profile,
+  HeaderApp,
+} from '../components';
 import './index.scss';
 
 const Main = () => (

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loadingRequestAction, logoutAction } from '../../actions';
-import Spinner from '../../components/Spinner';
+import { Spinner } from '../../components';
 import './index.scss';
 
 class Profile extends Component {

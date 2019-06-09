@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Pagination } from 'antd';
 import axios from 'axios';
-import Spinner from '../../components/Spinner';
-import PhotoCard from '../../components/PhotoCard';
+import { Spinner, PhotoCard } from '../../components';
 import { URL_FOR_USER_LIKES_QUERY } from '../../constants/urls';
 import './index.css';
 

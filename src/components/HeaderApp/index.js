@@ -10,9 +10,9 @@ import {
 } from 'antd';
 import { withLastLocation } from 'react-router-last-location';
 import { connect } from 'react-redux';
+import { ButtonBack } from '../index';
 import { URL_FOR_LOGIN } from '../../constants/urls';
 import { logoutAction } from '../../actions';
-import ButtonBack from '../ButtonBack';
 import './index.scss';
 
 const { Header } = Layout;

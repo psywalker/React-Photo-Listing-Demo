@@ -4,7 +4,7 @@ import moment from 'moment';
 import 'moment-timezone';
 import Highcharts from 'react-highcharts';
 import axios from 'axios';
-import Spinner from '../../components/Spinner';
+import { Spinner } from '../../components';
 import { URL_FOR_USER_STATISTIC } from '../../constants/urls';
 import './index.css';
 

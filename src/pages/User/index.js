@@ -7,10 +7,12 @@ import {
   Tabs,
 } from 'antd';
 import axios from 'axios';
-import Spinner from '../../components/Spinner';
-import UserLikesPhotos from '../UserLikesPhotos';
-import UserStatistic from '../UserStatistic';
-import UserPhotoListing from '../UserPhotoListing';
+import {
+  Spinner,
+  UserLikesPhotos,
+  UserStatistic,
+  UserPhotoListing,
+} from '../../components';
 import { URL_FOR_USER_QUERY } from '../../constants/urls';
 import './user.css';
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import axios from 'axios';
-import Spinner from '../../components/Spinner';
+import { Spinner } from '../../components';
 import { URL_FOR_PHOTO_QUERY } from '../../constants/urls';
 import './photo.css';
 
