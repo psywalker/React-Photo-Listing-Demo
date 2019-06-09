@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment-timezone';
@@ -9,7 +9,7 @@ import { Spinner } from '../../components';
 import { URL_FOR_USER_STATISTIC } from '../../constants/urls';
 import './index.css';
 
-class UserStatistic extends Component {
+class UserStatistic extends PureComponent {
   constructor(...args) {
     super(...args);
     this.state = {

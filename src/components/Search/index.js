@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
 import debounce from 'lodash/debounce';
@@ -6,7 +6,7 @@ import './index.css';
 
 const InputSearch = Input.Search;
 
-class Search extends Component {
+class Search extends PureComponent {
   constructor(...args) {
     super(...args);
     const { queryText } = this.props;

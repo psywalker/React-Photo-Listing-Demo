@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
@@ -10,7 +10,7 @@ import './photo.css';
 
 const { Meta } = Card;
 
-class Photo extends Component {
+class Photo extends PureComponent {
   constructor(...args) {
     super(...args);
     this.state = {

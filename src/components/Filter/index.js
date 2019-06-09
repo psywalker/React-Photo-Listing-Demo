@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ClickOutside from 'react-click-outside';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'mdbreact';
 import { DropdownItem } from '../index';
 
-class Filter extends Component {
+class Filter extends PureComponent {
   constructor(...args) {
     super(...args);
     const { activeFilter } = this.props;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Pagination } from 'antd';
@@ -18,7 +18,7 @@ import {
 import 'antd/dist/antd.css';
 import './home.css';
 
-class Home extends Component {
+class Home extends PureComponent {
   componentDidUpdate = (prevProps) => {
     const { cardsData, cardsPhotosRequestAction: handleAction } = this.props;
     if (prevProps.cardsData !== cardsData) handleAction(cardsData);

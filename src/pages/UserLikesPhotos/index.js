@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Pagination } from 'antd';
 import axios from 'axios';
@@ -7,7 +7,7 @@ import { Spinner, PhotoCard } from '../../components';
 import { URL_FOR_USER_LIKES_QUERY } from '../../constants/urls';
 import './index.css';
 
-class UserLikesPhotos extends Component {
+class UserLikesPhotos extends PureComponent {
   constructor(...args) {
     super(...args);
     this.state = {

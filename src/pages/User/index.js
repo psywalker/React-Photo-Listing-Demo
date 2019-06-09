@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
   Row,
@@ -19,7 +19,7 @@ import './user.css';
 
 const { TabPane } = Tabs;
 
-class User extends Component {
+class User extends PureComponent {
   constructor(...args) {
     super(...args);
     this.state = {
