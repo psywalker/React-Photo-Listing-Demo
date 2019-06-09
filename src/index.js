@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import allRedusers from './reducers';
 import initialStore from './initialStore';
 import rootSaga from './sagas';
-import './index.css';
+import './index.scss';
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];

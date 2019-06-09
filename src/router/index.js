@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { LastLocationProvider } from 'react-router-last-location';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { Row, Col, Layout } from 'antd';
@@ -12,7 +12,7 @@ import {
 } from '../components';
 import './index.scss';
 
-const Main = () => (
+const Main = memo(() => (
   <BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
     <LastLocationProvider>
       <Row className="header-row" style={{ margin: '0px 0 30px' }}>
@@ -33,6 +33,6 @@ const Main = () => (
       </div>
     </LastLocationProvider>
   </BrowserRouter>
-);
+));
 
 export default Main;

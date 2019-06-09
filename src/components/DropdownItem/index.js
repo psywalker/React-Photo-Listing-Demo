@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
-const DropdownItem = ({
+const DropdownItem = memo(({
   onFilterClick,
   activeFilter,
   filterType,
@@ -15,7 +15,7 @@ const DropdownItem = ({
     {filterType}
     {(activeFilter === filterType) && <i className="check">✓</i>}
   </div>
-);
+));
 
 DropdownItem.propTypes = {
   onFilterClick: PropTypes.func,

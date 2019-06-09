@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
@@ -11,7 +11,7 @@ import './PhotoCard.css';
 
 const { Meta } = Card;
 
-const PhotoCard = ({
+const PhotoCard = memo(({
   tags,
   photoName,
   photoDesc,
@@ -84,7 +84,7 @@ const PhotoCard = ({
       </div>
     </Card>
   </div>
-);
+));
 
 PhotoCard.propTypes = {
   photoName: PropTypes.string,

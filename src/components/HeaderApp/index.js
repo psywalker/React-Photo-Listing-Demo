@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Link, withRouter } from 'react-router-dom';
 import {
@@ -17,7 +17,7 @@ import './index.scss';
 
 const { Header } = Layout;
 
-const HeaderApp = withRouter((props) => {
+const HeaderApp = memo(withRouter((props) => {
   const { history, login, logoutAction: handleAction } = props;
   const handleLoguotHeader = () => {
     handleAction();
@@ -84,7 +84,7 @@ const HeaderApp = withRouter((props) => {
       </Header>
     </div>
   );
-});
+}));
 
 HeaderApp.propTypes = {
   logoutAction: PropTypes.func,

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Tag } from 'antd';
 import './index.css';
 
-const NavTop = ({
+const NavTop = memo(({
   onFilterItemValue,
   label,
   filterValue,
@@ -11,7 +11,7 @@ const NavTop = ({
   navTopItemActive,
 }) => (
   <Tag color={`${itemId === navTopItemActive ? 'purple' : ''}`} onClick={() => onFilterItemValue(filterValue, itemId)}>{label}</Tag>
-);
+));
 
 NavTop.propTypes = {
   label: PropTypes.string,
