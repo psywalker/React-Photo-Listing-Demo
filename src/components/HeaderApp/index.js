@@ -17,7 +17,7 @@ import './index.scss';
 
 const { Header } = Layout;
 
-const HeaderApp = memo(withRouter((props) => {
+const HeaderApp = withRouter(memo((props) => {
   const { history, login, logoutAction: handleAction } = props;
   const handleLoguotHeader = () => {
     handleAction();
