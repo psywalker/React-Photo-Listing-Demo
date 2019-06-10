@@ -1,6 +1,5 @@
 import ButtonBack from './ButtonBack';
 import DropdownItem from './DropdownItem';
-import Filter from './Filter';
 import HeaderApp from './HeaderApp';
 import NavTop from './NavTop';
 import PhotoCard from './PhotoCard';
@@ -17,7 +16,6 @@ import UserStatistic from '../pages/UserStatistic';
 export {
   ButtonBack,
   DropdownItem,
-  Filter,
   HeaderApp,
   NavTop,
   PhotoCard,

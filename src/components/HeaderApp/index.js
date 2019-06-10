@@ -18,7 +18,12 @@ import './index.scss';
 const { Header } = Layout;
 
 const HeaderApp = withRouter(memo((props) => {
-  const { history, login, logoutAction: handleAction } = props;
+  const {
+    history,
+    profileName,
+    profilePhotoUrl,
+    logoutAction: handleAction,
+  } = props;
   const handleLoguotHeader = () => {
     handleAction();
     window.localStorage.clear();
@@ -43,7 +48,7 @@ const HeaderApp = withRouter(memo((props) => {
               </Link>
               <Route path="/:id" component={() => <ButtonBack style={{ marginLeft: '10px' }} />} />
 
-              {!login.profileName && (
+              {!profileName && (
                 <Button
                   style={{ marginLeft: '10px' }}
                   href={URL_FOR_LOGIN}
@@ -51,7 +56,7 @@ const HeaderApp = withRouter(memo((props) => {
                   Login
                 </Button>
               )}
-              {login.profileName && (
+              {profileName && (
                 <span>
                   <Button
                     className="btn-logout"
@@ -65,14 +70,14 @@ const HeaderApp = withRouter(memo((props) => {
             </Col>
 
             <Col span={3} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              {login.profileName && (
+              {profileName && (
                 <Link to="/profile">
                   <Icon
                     component={() => (
                       <img
                         className="user-avatar"
                         alt=""
-                        src={`${login.profilePhotoUrl}`}
+                        src={`${profilePhotoUrl}`}
                       />
                     )}
                   />
@@ -87,27 +92,27 @@ const HeaderApp = withRouter(memo((props) => {
 }));
 
 HeaderApp.propTypes = {
-  logoutAction: PropTypes.func,
-  login: PropTypes.shape({
-    profilePhotoUrl: PropTypes.string,
-    profileName: PropTypes.string,
-    profileEmail: PropTypes.string,
-    fetching: PropTypes.bool,
+  history: PropTypes.shape({
+    prop: PropTypes.string,
   }),
+  logoutAction: PropTypes.func,
+  profilePhotoUrl: PropTypes.string,
+  profileName: PropTypes.string,
+  profileEmail: PropTypes.string,
+  fetching: PropTypes.bool,
 };
 HeaderApp.defaultProps = {
+  history: {},
   logoutAction: () => {},
-  login: {
-    profilePhotoUrl: '',
-    profileName: '',
-    profileEmail: '',
-    fetching: false,
-  },
+  profilePhotoUrl: '',
+  profileName: '',
+  profileEmail: '',
+  fetching: false,
 };
 
 const mapStateToProps = (state) => {
   const { login } = state;
-  return { login };
+  return login;
 };
 
 const mapDispatchToProps = {
