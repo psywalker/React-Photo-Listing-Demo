@@ -15,215 +15,93 @@ class UserStatistic extends PureComponent {
     this.state = {
       isListingLoading: false,
       highchartsConfigs: {
-        highchartsDownloadsConfig: {
-          chart: {
-            type: 'area',
-          },
-          colors: ['rgba(255, 0, 255, .5)'],
-          title: {
-            text: 'My Downloads',
-          },
-          xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          },
-          plotOptions: {
-            area: {
-              stacking: 'normal',
-              lineColor: 'rgba(255, 0, 255, .5)',
-              lineWidth: 1,
-              marker: {
-                lineWidth: 6,
-                lineColor: 'rgba(255, 0, 255, .5)',
-              },
-            },
-          },
-          series: [
-            {
-              name: 'Downloads',
-              data: [
-                29.9,
-                71.5,
-                106.4,
-                129.2,
-                144.0,
-                176.0,
-                135.6,
-                148.5,
-                216.4,
-                194.1,
-                295.6,
-                454.4,
-              ],
-              className: 'user-statistic-chart__series_downloads',
-            },
-          ],
-          legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-          },
-          responsive: {
-            rules: [{
-              condition: {
-                maxWidth: 700,
-              },
-              chartOptions: {
-                legend: {
-                  layout: 'horizontal',
-                  align: 'center',
-                  verticalAlign: 'bottom',
-                },
-              },
-            }],
-          },
-        },
-        highchartsViewsConfig: {
-          chart: {
-            type: 'area',
-          },
-          title: {
-            text: 'My Views',
-          },
-          colors: ['rgba(255, 165, 0, .5)'],
-          xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          },
-          plotOptions: {
-            area: {
-              stacking: 'normal',
-              lineColor: 'rgba(255, 165, 0, .5)',
-              lineWidth: 1,
-              marker: {
-                lineWidth: 6,
-                lineColor: 'rgba(255, 165, 0, .5)',
-              },
-            },
-          },
-          series: [
-            {
-              name: 'Views',
-              data: [
-                29.9,
-                71.5,
-                106.4,
-                129.2,
-                144.0,
-                176.0,
-                135.6,
-                148.5,
-                216.4,
-                194.1,
-                295.6,
-                454.4,
-              ],
-              className: 'user-statistic-chart__series_views',
-            },
-          ],
-          legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-          },
-          responsive: {
-            rules: [
-              {
-                condition: {
-                  maxWidth: 700,
-                },
-                chartOptions: {
-                  legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom',
-                  },
-                },
-              },
-            ],
-          },
-        },
-        highchartsLikesConfig: {
-          chart: {
-            type: 'area',
-          },
-          title: {
-            text: 'My Likes',
-          },
-          colors: ['rgba(0, 255, 0, .5)'],
-          xAxis: {
-            categories: [
-              'Jan',
-              'Feb',
-              'Mar',
-              'Apr',
-              'May',
-              'Jun',
-              'Jul',
-              'Aug',
-              'Sep',
-              'Oct',
-              'Nov',
-              'Dec',
-            ],
-          },
-          series: [
-            {
-              name: 'Likes',
-              data: [
-                29.9,
-                71.5,
-                106.4,
-                129.2,
-                144.0,
-                176.0,
-                135.6,
-                148.5,
-                216.4,
-                194.1,
-                295.6,
-                454.4,
-              ],
-              className: 'user-statistic-chart__series_likes',
-            },
-          ],
-          plotOptions: {
-            area: {
-              stacking: 'normal',
-              lineColor: 'rgba(0, 255, 0, .5)',
-              lineWidth: 1,
-              marker: {
-                lineWidth: 6,
-                lineColor: 'rgba(0, 255, 0, .5)',
-              },
-            },
-          },
-          legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-          },
-          responsive: {
-            rules: [
-              {
-                condition: {
-                  maxWidth: 700,
-                },
-                chartOptions: {
-                  legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom',
-                  },
-                },
-              },
-            ],
-          },
-        },
+        highchartsDownloadsConfig: {},
+        highchartsViewsConfig: {},
+        highchartsLikesConfig: {},
       },
     };
   }
 
   componentDidMount = () => {
-    this.handleUserPhotoListingQuery();
+    const highchartsConfigs = {
+      highchartsDownloadsConfig: {
+        title: 'My Downloads',
+        seriesName: 'Downloads',
+        colors: 'rgba(255, 0, 255, .5)',
+      },
+      highchartsViewsConfig: {
+        title: 'My Views',
+        seriesName: 'Views',
+        colors: 'rgba(255, 165, 0, .5)',
+      },
+      highchartsLikesConfig: {
+        title: 'My Likes',
+        seriesName: 'Likes',
+        colors: 'rgba(0, 255, 0, .5)',
+      },
+    };
+    this.createCharts(highchartsConfigs);
+  };
+
+  createCharts = (config) => {
+    const configArr = Object.entries(config);
+    const newObj = {};
+
+    configArr.forEach((item) => {
+      newObj[item[0]] = {
+        chart: {
+          type: 'area',
+        },
+        colors: [item[1].colors],
+        title: {
+          text: item[1].title,
+        },
+        xAxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        },
+        plotOptions: {
+          area: {
+            stacking: 'normal',
+            lineColor: item[1].colors,
+            lineWidth: 1,
+            marker: {
+              lineWidth: 6,
+              lineColor: item[1].colors,
+            },
+          },
+        },
+        series: [
+          {
+            name: item[1].seriesName,
+          },
+        ],
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+        },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 700,
+            },
+            chartOptions: {
+              legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom',
+              },
+            },
+          }],
+        },
+      };
+    });
+
+    this.setState({
+      highchartsConfigs: newObj,
+    }, () => {
+      this.handleUserPhotoListingQuery();
+    });
   };
 
   handleUserPhotoListingQuery = () => {
