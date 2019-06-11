@@ -2,6 +2,12 @@ export const logoutAction = () => ({
   type: 'LOGOUT',
 });
 
+export const userStatistingRequestAction = userId => ({
+  type: 'USER_STATISTIC_FETCHING',
+  isListingLoading: true,
+  userId,
+});
+
 export const loadingRequestAction = location => ({
   type: 'LOGIN_FETCHING',
   fetching: true,

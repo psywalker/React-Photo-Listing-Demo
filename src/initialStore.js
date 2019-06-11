@@ -22,5 +22,14 @@ const initialStore = {
     },
     photolistingRequestError: false,
   },
+  userstatistic: {
+    isListingLoading: false,
+    highchartsConfigs: {
+      highchartsDownloadsConfig: {},
+      highchartsViewsConfig: {},
+      highchartsLikesConfig: {},
+    },
+    requestError: false,
+  },
 };
 export default initialStore;
