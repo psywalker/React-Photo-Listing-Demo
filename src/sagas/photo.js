@@ -15,7 +15,7 @@ export default function* photoRequestSaga(action) {
         photoDesc: get(res, 'data.description') || 'No Description',
       };
       yield put({ type: 'PHOTO_REQUEST_SUCCESS', responceObj });
-      yield delay(50);
+      yield delay(500);
       yield put({ type: 'PHOTO_IMAGE_LOAD' });
     } catch (error) {
       yield put({ type: 'PHOTO_REQUEST_ERROR', error });
