@@ -41,7 +41,7 @@ const HeaderApp = withRouter(memo((props) => {
                     <img
                       className="user__icon-home"
                       alt="/unsplash.com"
-                      src="../logo.svg"
+                      src={`${process.env.PUBLIC_URL}/logo.svg` || './logo.svg'}
                     />
                   )}
                 />
