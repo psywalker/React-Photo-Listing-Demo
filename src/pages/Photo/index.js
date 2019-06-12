@@ -1,91 +1,75 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
-import axios from 'axios';
-import get from 'lodash/get';
 import { Spinner } from '../../components';
-import { URL_FOR_PHOTO_QUERY } from '../../constants';
+import { photoRequestAction } from '../../actions';
 import './photo.css';
 
 const { Meta } = Card;
 
 class Photo extends PureComponent {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      isListingLoading: false,
-      photoSrc: null,
-      userNic: 'UserNic',
-      userPortfolioUrl: '',
-      photoDesc: '',
-    };
-  }
-
   componentDidMount = () => {
-    this.handlePhotoQuery();
+    const { match, photoRequestAction: handleAction } = this.props;
+    handleAction(match);
   };
-
-  handlePhotoQuery = () => {
-    const { match, history } = this.props;
-    this.setState({ isListingLoading: true });
-    const API_URL = URL_FOR_PHOTO_QUERY(match);
-    axios.get(API_URL)
-      .then((res) => {
-        const photoSrc = get(res, 'data.urls.full') || '';
-        const userNic = get(res, 'data.user.username') || 'No Name';
-        const userPortfolioUrl = get(res, 'data.user.portfolio_url') || '';
-        const photoDesc = get(res, 'data.description') || 'No Description';
-
-        this.setState({
-          isListingLoading: false,
-          photoSrc,
-          userPortfolioUrl,
-          userNic,
-          photoDesc,
-        });
-      })
-      .catch(() => {
-        history.push('/');
-      });
-  }
 
   render() {
     const {
-      isListingLoading,
+      isPhotoLoading,
       photoSrc,
       userPortfolioUrl,
       userNic,
       photoDesc,
-    } = this.state;
+      requestError,
+    } = this.props;
 
     return (
       <div className="photo-container photo">
-        { isListingLoading && (<Spinner className="spinner" />)}
-        <Card
-          style={{ width: '100%' }}
-          cover={(
-            <img
-              className="photo__img"
-              alt="example"
-              src={photoSrc}
-            />
-          )}
-        >
-          <Meta className="photo__desc" title={`${photoDesc || 'No title'}`} />
-          <Link to={`/users/${userNic}`}>
-            <p className="photo__autor-page-link">
-              { 'Autor\'s page link' }
-            </p>
-          </Link>
-          <a className="photo__autor-link" href={userPortfolioUrl}>{ 'Autor\'s portfolio link' }</a>
-        </Card>
+        { isPhotoLoading && (<Spinner className="spinner" />)}
+        { !isPhotoLoading && !requestError && (
+          <Card
+            style={{ width: '100%' }}
+            cover={(
+              <img
+                className="photo__img"
+                alt="example"
+                src={photoSrc}
+              />
+            )}
+          >
+            <Meta className="photo__desc" title={`${photoDesc || 'No title'}`} />
+            <Link to={`/users/${userNic}`}>
+              <p className="photo__autor-page-link">
+                { 'Autor\'s page link' }
+              </p>
+            </Link>
+            <a className="photo__autor-link" href={userPortfolioUrl}>{ 'Autor\'s portfolio link' }</a>
+          </Card>
+        )}
+        { !isPhotoLoading && requestError && (
+          <p>
+            Такое фото не найдено.
+            {' '}
+            <Link to="/">
+              Перейти на главную.
+            </Link>
+          </p>
+        )}
       </div>
     );
   }
 }
 
 Photo.propTypes = {
+  photoRequestAction: PropTypes.func,
+  isPhotoLoading: PropTypes.bool,
+  photoSrc: PropTypes.string,
+  userPortfolioUrl: PropTypes.string,
+  userNic: PropTypes.string,
+  photoDesc: PropTypes.string,
+  requestError: PropTypes.bool,
   match: PropTypes.shape({
     prop: PropTypes.string,
   }),
@@ -94,7 +78,27 @@ Photo.propTypes = {
   }),
 };
 Photo.defaultProps = {
+  photoRequestAction: () => {},
+  isPhotoLoading: true,
+  photoSrc: null,
+  userNic: 'UserNic',
+  userPortfolioUrl: '',
+  photoDesc: '',
+  requestError: false,
   match: {},
   history: {},
 };
-export default Photo;
+
+const mapStateToProps = (state) => {
+  const { photo } = state;
+  return photo;
+};
+
+const mapDispatchToProps = ({
+  photoRequestAction,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Photo);

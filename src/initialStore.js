@@ -31,5 +31,13 @@ const initialStore = {
     },
     requestError: false,
   },
+  photo: {
+    isPhotoLoading: true,
+    photoSrc: null,
+    userNic: 'UserNic',
+    userPortfolioUrl: '',
+    photoDesc: '',
+    requestError: false,
+  },
 };
 export default initialStore;

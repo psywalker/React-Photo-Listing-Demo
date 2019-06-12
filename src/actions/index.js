@@ -2,6 +2,12 @@ export const logoutAction = () => ({
   type: 'LOGOUT',
 });
 
+export const photoRequestAction = match => ({
+  type: 'PHOTO_FETCHING',
+  isPhotoLoading: true,
+  match,
+});
+
 export const userStatistingRequestAction = userId => ({
   type: 'USER_STATISTIC_FETCHING',
   isListingLoading: true,
