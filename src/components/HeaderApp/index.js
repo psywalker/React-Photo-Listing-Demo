@@ -35,13 +35,13 @@ const HeaderApp = withRouter(memo((props) => {
         <div className="page">
           <Row type="flex" justify="space-between">
             <Col span={9} style={{ whiteSpace: 'nowrap' }}>
-              <Link to="/">
+              <Link to="/" style={{ display: 'inline-block' }}>
                 <Icon
                   component={() => (
                     <img
                       className="user__icon-home"
-                      alt="pixabay.com"
-                      src="http://www.biz4u.co.il/wp-content/uploads/2016/05/pixabay.png"
+                      alt="/unsplash.com"
+                      src="../logo.svg"
                     />
                   )}
                 />
