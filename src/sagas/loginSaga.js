@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put } from 'redux-saga/effects';
 import get from 'lodash/get';
-import { URL_FOR_PROFILE_ME, URL_FOR_TOKEN, URL_FOR_AVATAR_PLACEHOLDER } from '../constants/urls';
+import { URL_FOR_PROFILE_ME, URL_FOR_TOKEN, URL_FOR_AVATAR_PLACEHOLDER } from '../constants';
 
 export function* loginAfterToken(token) {
   if (token) {

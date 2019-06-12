@@ -4,7 +4,7 @@ import { Row, Col, Pagination } from 'antd';
 import axios from 'axios';
 import get from 'lodash/get';
 import { Spinner, PhotoCard } from '../../components';
-import { URL_FOR_USER_LIKES_QUERY } from '../../constants/urls';
+import { URL_FOR_USER_LIKES_QUERY } from '../../constants';
 import './index.css';
 
 class UserLikesPhotos extends PureComponent {

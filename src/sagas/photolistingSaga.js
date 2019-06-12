@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put } from 'redux-saga/effects';
 import get from 'lodash/get';
-import { URL_FOR_CARDS_PHOTOS } from '../constants/urls';
+import { URL_FOR_CARDS_PHOTOS } from '../constants';
 
 export default function* cardsPhotosRequestSaga(action) {
   const { cardsData } = action;

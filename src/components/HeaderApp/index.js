@@ -11,7 +11,7 @@ import {
 import { withLastLocation } from 'react-router-last-location';
 import { connect } from 'react-redux';
 import { ButtonBack } from '../index';
-import { URL_FOR_LOGIN } from '../../constants/urls';
+import { URL_FOR_LOGIN } from '../../constants';
 import { logoutAction } from '../../actions';
 import './index.scss';
 

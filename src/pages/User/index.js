@@ -14,7 +14,7 @@ import {
   UserStatistic,
   UserPhotoListing,
 } from '../../components';
-import { URL_FOR_USER_QUERY } from '../../constants/urls';
+import { URL_FOR_USER_QUERY } from '../../constants';
 import './user.css';
 
 const { TabPane } = Tabs;

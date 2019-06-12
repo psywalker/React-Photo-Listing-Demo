@@ -5,7 +5,7 @@ import { Card } from 'antd';
 import axios from 'axios';
 import get from 'lodash/get';
 import { Spinner } from '../../components';
-import { URL_FOR_PHOTO_QUERY } from '../../constants/urls';
+import { URL_FOR_PHOTO_QUERY } from '../../constants';
 import './photo.css';
 
 const { Meta } = Card;

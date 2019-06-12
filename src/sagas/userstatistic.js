@@ -3,28 +3,12 @@ import moment from 'moment';
 import 'moment-timezone';
 import { put } from 'redux-saga/effects';
 import get from 'lodash/get';
-import { URL_FOR_USER_STATISTIC } from '../constants/urls';
-
-const getInitialChartsConfigs = () => {
-  const chartsConfigs = {
-    highchartsDownloadsConfig: {
-      title: 'My Downloads',
-      seriesName: 'Downloads',
-      colors: 'rgba(255, 0, 255, .5)',
-    },
-    highchartsViewsConfig: {
-      title: 'My Views',
-      seriesName: 'Views',
-      colors: 'rgba(255, 165, 0, .5)',
-    },
-    highchartsLikesConfig: {
-      title: 'My Likes',
-      seriesName: 'Likes',
-      colors: 'rgba(0, 255, 0, .5)',
-    },
-  };
-  return chartsConfigs;
-};
+import {
+  URL_FOR_USER_STATISTIC,
+  INITIONAL_CHARTS_CONFIGS,
+  CHARTS_CATEGORIES,
+  CHART_CONFIG,
+} from '../constants';
 
 const createCharts = (config) => {
   const configArr = Object.entries(config);
@@ -40,7 +24,7 @@ const createCharts = (config) => {
         text: item[1].title,
       },
       xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        categories: CHARTS_CATEGORIES,
       },
       plotOptions: {
         area: {
@@ -58,25 +42,7 @@ const createCharts = (config) => {
           name: item[1].seriesName,
         },
       ],
-      legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-      },
-      responsive: {
-        rules: [{
-          condition: {
-            maxWidth: 700,
-          },
-          chartOptions: {
-            legend: {
-              layout: 'horizontal',
-              align: 'center',
-              verticalAlign: 'bottom',
-            },
-          },
-        }],
-      },
+      ...CHART_CONFIG,
     };
   });
   return newObj;
@@ -86,8 +52,7 @@ export default function* userStatisticRequestSaga(action) {
   const { userId } = action;
   if (userId) {
     try {
-      const chartsConfigs = getInitialChartsConfigs();
-      const highchartsConfigs = createCharts(chartsConfigs);
+      const highchartsConfigs = createCharts(INITIONAL_CHARTS_CONFIGS);
 
       const axiosRequestUserStatistic = {
         url: URL_FOR_USER_STATISTIC(userId),
