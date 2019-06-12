@@ -1,18 +1,19 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import { Spinner } from '../../components';
-import { photoRequestAction } from '../../actions';
+import { photoRequestAction, photoImageLoadAction } from '../../actions';
 import './photo.css';
 
 const { Meta } = Card;
 
-class Photo extends PureComponent {
+class Photo extends Component {
+
   componentDidMount = () => {
-    const { match, photoRequestAction: handleAction } = this.props;
-    handleAction(match);
+    const { match, photoRequestAction: requestAction } = this.props;
+    requestAction(match); 
   };
 
   render() {
@@ -24,13 +25,12 @@ class Photo extends PureComponent {
       photoDesc,
       requestError,
     } = this.props;
-
     return (
       <div className="photo-container photo">
         { isPhotoLoading && (<Spinner className="spinner" />)}
-        { !isPhotoLoading && !requestError && (
+        { !requestError && (
           <Card
-            style={{ width: '100%' }}
+            style={{ width: '100%', opacity: isPhotoLoading ? 0 : 1 }}
             cover={(
               <img
                 className="photo__img"
@@ -64,6 +64,7 @@ class Photo extends PureComponent {
 
 Photo.propTypes = {
   photoRequestAction: PropTypes.func,
+  photoImageLoadAction: PropTypes.func,
   isPhotoLoading: PropTypes.bool,
   photoSrc: PropTypes.string,
   userPortfolioUrl: PropTypes.string,
@@ -78,6 +79,7 @@ Photo.propTypes = {
   }),
 };
 Photo.defaultProps = {
+  photoImageLoadAction: () => {},
   photoRequestAction: () => {},
   isPhotoLoading: true,
   photoSrc: null,
@@ -96,6 +98,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = ({
   photoRequestAction,
+  photoImageLoadAction,
 });
 
 export default connect(

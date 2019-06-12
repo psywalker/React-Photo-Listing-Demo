@@ -7,6 +7,9 @@ export const photoRequestAction = match => ({
   isPhotoLoading: true,
   match,
 });
+export const photoImageLoadAction = () => ({
+  type: 'PHOTO_IMAGE_LOAD',
+});
 
 export const userStatistingRequestAction = userId => ({
   type: 'USER_STATISTIC_FETCHING',

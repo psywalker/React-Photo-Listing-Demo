@@ -11,7 +11,7 @@ const photo = (state = initialStore, action) => {
       return {
         ...state,
         ...action.responceObj,
-        isPhotoLoading: false,
+        isPhotoLoading: true,
         requestError: false,
       };
     case 'PHOTO_REQUEST_ERROR':
@@ -19,6 +19,12 @@ const photo = (state = initialStore, action) => {
         ...state,
         isPhotoLoading: false,
         requestError: true,
+      };
+    case 'PHOTO_IMAGE_LOAD':
+      return {
+        ...state,
+        isPhotoLoading: false,
+        requestError: false,
       };
     default:
       return state;
