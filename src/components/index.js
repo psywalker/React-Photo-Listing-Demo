@@ -4,6 +4,7 @@ import NavTop from './NavTop';
 import PhotoCard from './PhotoCard';
 import Search from './Search';
 import Spinner from './Spinner';
+import SpinnerPhoto from './SpinnerPhoto';
 import Home from '../pages/Home';
 import Photo from '../pages/Photo';
 import Profile from '../pages/Profile';
@@ -19,6 +20,7 @@ export {
   PhotoCard,
   Search,
   Spinner,
+  SpinnerPhoto,
   Home,
   Photo,
   Profile,

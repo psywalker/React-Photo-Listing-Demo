@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
-import { Spinner } from '../../components';
+import { SpinnerPhoto } from '../../components';
 import { photoRequestAction, photoImageLoadAction } from '../../actions';
 import './photo.css';
 
 const { Meta } = Card;
 
 class Photo extends Component {
-
   componentDidMount = () => {
     const { match, photoRequestAction: requestAction } = this.props;
     requestAction(match);
@@ -33,17 +32,24 @@ class Photo extends Component {
     } = this.props;
     return (
       <div className="photo-container photo">
-        { (isPhotoLoading || isSuccessPhotoRequest) && (<Spinner className="spinner" />)}
         { !isSuccessPhotoRequest && !requestError && (
           <Card
-            style={{ width: '100%', opacity: isPhotoLoading ? 0 : 1 }}
             cover={(
-              <img
-                className="photo__img"
-                alt="example"
-                src={photoSrc}
-                onLoad={this.photoLoad}
-              />
+              <div className="photo__changed">
+                <div
+                  className="photo__spinner-wrap"
+                  style={{ display: isPhotoLoading ? 'block' : 'none' }}
+                >
+                  <SpinnerPhoto className="spinner-photo" />
+                </div>
+
+                <img
+                  className="photo__img"
+                  alt="example"
+                  src={photoSrc}
+                  onLoad={this.photoLoad}
+                />
+              </div>
             )}
           >
             <Meta className="photo__desc" title={`${photoDesc || 'No title'}`} />

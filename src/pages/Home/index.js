@@ -105,7 +105,7 @@ class Home extends PureComponent {
                 cards.map(item => (
                   <li key={item.id} className="photo-list__item pl-3">
                     <PhotoCard
-                      photoName={item.urls.regular}
+                      photoName={item.urls.thumb}
                       photoDesc={item.description}
                       title={item.user.first_name}
                       tags={item.tags}
