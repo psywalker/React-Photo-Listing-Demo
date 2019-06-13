@@ -61,7 +61,6 @@ class User extends PureComponent {
     } = this.state;
 
     const { match } = this.props;
-    console.log("6: ", this.props)
     return (
       <div className="user-container">
         { isListingLoading && (<Spinner />)}

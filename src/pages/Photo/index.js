@@ -13,8 +13,13 @@ class Photo extends Component {
 
   componentDidMount = () => {
     const { match, photoRequestAction: requestAction } = this.props;
-    requestAction(match); 
+    requestAction(match);
   };
+
+  photoLoad = () => {
+    const { photoImageLoadAction: photoLoadAction } = this.props;
+    photoLoadAction();
+  }
 
   render() {
     const {
@@ -24,11 +29,12 @@ class Photo extends Component {
       userNic,
       photoDesc,
       requestError,
+      isSuccessPhotoRequest,
     } = this.props;
     return (
       <div className="photo-container photo">
-        { isPhotoLoading && (<Spinner className="spinner" />)}
-        { !requestError && (
+        { (isPhotoLoading || isSuccessPhotoRequest) && (<Spinner className="spinner" />)}
+        { !isSuccessPhotoRequest && !requestError && (
           <Card
             style={{ width: '100%', opacity: isPhotoLoading ? 0 : 1 }}
             cover={(
@@ -36,6 +42,7 @@ class Photo extends Component {
                 className="photo__img"
                 alt="example"
                 src={photoSrc}
+                onLoad={this.photoLoad}
               />
             )}
           >
@@ -48,7 +55,7 @@ class Photo extends Component {
             <a className="photo__autor-link" href={userPortfolioUrl}>{ 'Autor\'s portfolio link' }</a>
           </Card>
         )}
-        { !isPhotoLoading && requestError && (
+        { !isPhotoLoading && !isSuccessPhotoRequest && requestError && (
           <p>
             Такое фото не найдено.
             {' '}
@@ -66,6 +73,7 @@ Photo.propTypes = {
   photoRequestAction: PropTypes.func,
   photoImageLoadAction: PropTypes.func,
   isPhotoLoading: PropTypes.bool,
+  isSuccessPhotoRequest: PropTypes.bool,
   photoSrc: PropTypes.string,
   userPortfolioUrl: PropTypes.string,
   userNic: PropTypes.string,
@@ -82,6 +90,7 @@ Photo.defaultProps = {
   photoImageLoadAction: () => {},
   photoRequestAction: () => {},
   isPhotoLoading: true,
+  isSuccessPhotoRequest: true,
   photoSrc: null,
   userNic: 'UserNic',
   userPortfolioUrl: '',

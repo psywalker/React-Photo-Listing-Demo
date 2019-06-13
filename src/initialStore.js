@@ -33,6 +33,7 @@ const initialStore = {
   },
   photo: {
     isPhotoLoading: true,
+    isSuccessPhotoRequest: true,
     photoSrc: null,
     userNic: 'UserNic',
     userPortfolioUrl: '',
