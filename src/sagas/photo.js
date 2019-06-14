@@ -17,7 +17,7 @@ export default function* photoRequestSaga(action) {
           focalLength: get(res, 'data.exif.focal_length') || '',
           aperture: get(res, 'data.exif.aperture') || '',
           shutterspeed: get(res, 'data.exif.exposure_time') || '',
-          iso: get(res, 'data.exif.iso') || '',
+          iso: get(res, 'data.exif.iso') || 0,
           cameraModel: get(res, 'data.exif.model') || '',
           width: get(res, 'data.width') || '300',
           height: get(res, 'data.height') || '300',
@@ -29,6 +29,7 @@ export default function* photoRequestSaga(action) {
         photoSrc: get(res, 'data.urls.regular') || '',
         photoDesc: get(res, 'data.description') || '',
       };
+      console.log("1: ", res.data)
       yield put({ type: 'PHOTO_REQUEST_SUCCESS', responceObj });
     } catch (error) {
       yield put({ type: 'PHOTO_REQUEST_ERROR', error });
