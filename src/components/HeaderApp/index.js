@@ -36,15 +36,7 @@ const HeaderApp = withRouter(memo((props) => {
           <Row type="flex" justify="space-between">
             <Col span={9} style={{ whiteSpace: 'nowrap' }}>
               <Link to="/" style={{ display: 'inline-block' }}>
-                <Icon
-                  component={() => (
-                    <img
-                      className="user__icon-home"
-                      alt="/unsplash.com"
-                      src={`${process.env.PUBLIC_URL}/logo.svg` || './logo.svg'}
-                    />
-                  )}
-                />
+                <h1 className="site-logo">PHOTOLISTING</h1>
               </Link>
               <Route path="/:id" component={() => <ButtonBack style={{ marginLeft: '10px' }} />} />
 

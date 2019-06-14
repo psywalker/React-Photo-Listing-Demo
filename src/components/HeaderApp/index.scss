@@ -16,3 +16,13 @@
   }
 }
 
+.site-logo {
+  font-family: 'Fjalla One', sans-serif;
+  position: relative;
+  bottom: -4px;
+
+  &:hover {
+    opacity: .7;
+  }
+}
+
