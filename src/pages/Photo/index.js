@@ -22,11 +22,26 @@ class Photo extends Component {
 
   render() {
     const {
-      isPhotoLoading,
+      info: {
+        views,
+        downloads,
+        likes,
+        cameraMake,
+        focalLength,
+        aperture,
+        shutterspeed,
+        iso,
+        cameraModel,
+        width,
+        height,
+      },
+      userName,
+      twitterName,
+      tags,
+      altDescriprion,
       photoSrc,
-      userPortfolioUrl,
-      userNic,
       photoDesc,
+      isPhotoLoading,
       requestError,
       isSuccessPhotoRequest,
     } = this.props;
@@ -53,12 +68,11 @@ class Photo extends Component {
             )}
           >
             <Meta className="photo__desc" title={`${photoDesc || 'No title'}`} />
-            <Link to={`/users/${userNic}`}>
+            <Link to={`/users/${userName}`}>
               <p className="photo__autor-page-link">
                 { 'Autor\'s page link' }
               </p>
             </Link>
-            <a className="photo__autor-link" href={userPortfolioUrl}>{ 'Autor\'s portfolio link' }</a>
           </Card>
         )}
         { !isPhotoLoading && !isSuccessPhotoRequest && requestError && (
@@ -76,14 +90,31 @@ class Photo extends Component {
 }
 
 Photo.propTypes = {
+  info: PropTypes.shape({
+    views: PropTypes.number,
+    downloads: PropTypes.number,
+    likes: PropTypes.number,
+    cameraMake: PropTypes.string,
+    focalLength: PropTypes.string,
+    aperture: PropTypes.string,
+    shutterspeed: PropTypes.string,
+    iso: PropTypes.string,
+    cameraModel: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }),
+  userName: PropTypes.string,
+  twitterName: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+  })),
+  altDescriprion: PropTypes.string,
+  photoSrc: PropTypes.string,
+  photoDesc: PropTypes.string,
   photoRequestAction: PropTypes.func,
   photoImageLoadAction: PropTypes.func,
   isPhotoLoading: PropTypes.bool,
   isSuccessPhotoRequest: PropTypes.bool,
-  photoSrc: PropTypes.string,
-  userPortfolioUrl: PropTypes.string,
-  userNic: PropTypes.string,
-  photoDesc: PropTypes.string,
   requestError: PropTypes.bool,
   match: PropTypes.shape({
     prop: PropTypes.string,
@@ -93,14 +124,29 @@ Photo.propTypes = {
   }),
 };
 Photo.defaultProps = {
+  info: {
+    views: 0,
+    downloads: 0,
+    likes: 0,
+    cameraMake: '',
+    focalLength: '',
+    aperture: '',
+    shutterspeed: '',
+    iso: '',
+    cameraModel: '',
+    width: 0,
+    height: 0,
+  },
+  userName: '',
+  twitterName: '',
+  tags: [],
+  altDescriprion: '',
+  photoSrc: '',
+  photoDesc: '',
   photoImageLoadAction: () => {},
   photoRequestAction: () => {},
   isPhotoLoading: true,
   isSuccessPhotoRequest: true,
-  photoSrc: null,
-  userNic: 'UserNic',
-  userPortfolioUrl: '',
-  photoDesc: '',
   requestError: false,
   match: {},
   history: {},

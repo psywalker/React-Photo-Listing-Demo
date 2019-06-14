@@ -9,20 +9,26 @@ export default function* photoRequestSaga(action) {
     try {
       const res = yield axios.get(URL_FOR_PHOTO_QUERY(match));
       const responceObj = {
-        exif: get(res, 'data.exif') || {},
-        likes: get(res, 'data.likes') || 0,
+        info: {
+          views: get(res, 'data.views') || 0,
+          downloads: get(res, 'data.downloads') || 0,
+          likes: get(res, 'data.likes') || 0,
+          cameraMake: get(res, 'data.exif.make') || '',
+          focalLength: get(res, 'data.exif.focal_length') || '',
+          aperture: get(res, 'data.exif.aperture') || '',
+          shutterspeed: get(res, 'data.exif.exposure_time') || '',
+          iso: get(res, 'data.exif.iso') || '',
+          cameraModel: get(res, 'data.exif.model') || '',
+          width: get(res, 'data.width') || '300',
+          height: get(res, 'data.height') || '300',
+        },
+        userName: get(res, 'data.user.username') || 'No Name',
+        twitterName: get(res, 'data.user.instagram_username') || '',
         tags: get(res, 'data.tags') || [],
         altDescriprion: get(res, 'data.alt_description') || '',
         photoSrc: get(res, 'data.urls.regular') || '',
-        userNic: get(res, 'data.user.username') || 'No Name',
-        userPortfolioUrl: get(res, 'data.user.portfolio_url') || '',
-        photoDesc: get(res, 'data.description') || 'No Description',
-        width: get(res, 'data.width') || '300',
-        height: get(res, 'data.height') || '300',
+        photoDesc: get(res, 'data.description') || '',
       };
-
-      console.log("1: ", res.data.urls)
-      console.log("2: ", res.data)
       yield put({ type: 'PHOTO_REQUEST_SUCCESS', responceObj });
     } catch (error) {
       yield put({ type: 'PHOTO_REQUEST_ERROR', error });
