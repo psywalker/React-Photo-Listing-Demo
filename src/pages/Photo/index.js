@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Card } from 'antd';
+import { Card, Button, Icon } from 'antd';
 import { SpinnerPhoto } from '../../components';
 import { photoRequestAction, photoImageLoadAction } from '../../actions';
 import './photo.css';
@@ -37,6 +37,7 @@ class Photo extends Component {
       },
       userName,
       twitterName,
+      photoProfile,
       tags,
       altDescriprion,
       photoSrc,
@@ -46,34 +47,93 @@ class Photo extends Component {
       isSuccessPhotoRequest,
     } = this.props;
     return (
-      <div className="photo-container photo">
+      <div className="photo-container photo" id="photo-container">
         { !isSuccessPhotoRequest && !requestError && (
-          <Card
-            cover={(
-              <div className="photo__changed">
-                <div
-                  className="photo__spinner-wrap"
-                  style={{ display: isPhotoLoading ? 'block' : 'none' }}
-                >
-                  <SpinnerPhoto className="spinner-photo" />
-                </div>
 
+          <Card
+            title={(
+              <div className="photo__twitter photo-twitter">
                 <img
-                  className="photo__img"
-                  alt="example"
-                  src={photoSrc}
-                  onLoad={this.photoLoad}
+                  src={photoProfile}
+                  alt=""
+                  className="photo-twitter__ava"
                 />
+                <div className="photo-twitter__content">
+                  <Link to={`/users/${userName}`}>
+                    <p className="photo-twitter__user-name">{userName}</p>
+                    <p className="photo-twitter__twitter-name">
+                      @
+                      {twitterName}
+                    </p>
+                  </Link>
+                </div>
               </div>
             )}
+            extra={(
+              <div className="photo-header">
+                <Button
+                  style={{ marginLeft: '10px' }}
+                  href="#"
+                >
+                  Download
+                </Button>
+              </div>
+            )}
+            style={{ width: '100%', height: '100%', padding: 0 }}
+            bodyStyle={{ padding: 0 }}
+            headStyle={{ padding: '0 10px' }}
           >
-            <Meta className="photo__desc" title={`${photoDesc || 'No title'}`} />
-            <Link to={`/users/${userName}`}>
-              <p className="photo__autor-page-link">
-                { 'Autor\'s page link' }
-              </p>
-            </Link>
+            <div className="photo__content photo-content">
+              <img
+                className="photo-content__img"
+                alt="example"
+                src={photoSrc}
+                onLoad={this.photoLoad}
+              />
+              <div className="photo-content__body">
+                <Button
+                  style={{ marginLeft: '10px' }}
+                  href="#"
+                >
+                  <Icon type="info-circle" />
+                  Info
+                </Button>
+                <Button
+                  style={{ marginLeft: '10px' }}
+                  href="#"
+                >
+                  <Icon type="share-alt" />
+                  Share
+                </Button>
+              </div>
+            </div>
           </Card>
+          // <Card
+          //   cover={(
+          //     <div className="photo__changed">
+          //       <div
+          //         className="photo__spinner-wrap"
+          //         style={{ display: isPhotoLoading ? 'block' : 'none' }}
+          //       >
+          //         <SpinnerPhoto className="spinner-photo" />
+          //       </div>
+
+          //       <img
+          //         className="photo__img"
+          //         alt="example"
+          //         src={photoSrc}
+          //         onLoad={this.photoLoad}
+          //       />
+          //     </div>
+          //   )}
+          // >
+          //   <Meta className="photo__desc" title={`${photoDesc || 'No title'}`} />
+          //   <Link to={`/users/${userName}`}>
+          //     <p className="photo__autor-page-link">
+          //       { 'Autor\'s page link' }
+          //     </p>
+          //   </Link>
+          // </Card>
         )}
         { !isPhotoLoading && !isSuccessPhotoRequest && requestError && (
           <p>
@@ -105,6 +165,7 @@ Photo.propTypes = {
   }),
   userName: PropTypes.string,
   twitterName: PropTypes.string,
+  photoProfile: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
   })),
@@ -139,6 +200,7 @@ Photo.defaultProps = {
   },
   userName: '',
   twitterName: '',
+  photoProfile: '',
   tags: [],
   altDescriprion: '',
   photoSrc: '',

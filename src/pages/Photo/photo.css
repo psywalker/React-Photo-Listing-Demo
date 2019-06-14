@@ -1,6 +1,7 @@
 .photo {
-    margin: 50px auto;
+    margin: 0px auto;
     position: relative;
+
 }
 .photo__changed {
     position: relative;

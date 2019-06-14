@@ -24,6 +24,7 @@ export default function* photoRequestSaga(action) {
         },
         userName: get(res, 'data.user.username') || 'No Name',
         twitterName: get(res, 'data.user.instagram_username') || '',
+        photoProfile: get(res, 'data.user.profile_image.small') || '',
         tags: get(res, 'data.tags') || [],
         altDescriprion: get(res, 'data.alt_description') || '',
         photoSrc: get(res, 'data.urls.regular') || '',
