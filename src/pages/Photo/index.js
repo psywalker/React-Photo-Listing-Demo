@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Card, Button, Icon } from 'antd';
+import {
+  Card,
+  Button,
+  Icon,
+  Tag,
+  Popover,
+} from 'antd';
 import { SpinnerPhoto } from '../../components';
 import { photoRequestAction, photoImageLoadAction } from '../../actions';
 import getPhotoSize from './getPhotoSize';
@@ -112,21 +118,54 @@ class Photo extends Component {
                 style={photoSize}
                 onLoad={photoLoadAction}
               />
-              <div className="photo-content__footer">
-                <Button
-                  style={{ marginLeft: '10px' }}
-                  href="#"
-                >
-                  <Icon type="info-circle" />
-                  Info
-                </Button>
-                <Button
-                  style={{ marginLeft: '10px' }}
-                  href="#"
-                >
-                  <Icon type="share-alt" />
-                  Share
-                </Button>
+              <div className="photo-content__footer photo-footer">
+                <div className="photo-footer__tags">
+                  { tags.length > 2 && (
+                    <Popover
+                      placement="top"
+                      title="Remaining tags"
+                      content={(
+                        <div>
+                          {tags.map((item, i) => {
+                            if (i > 2) {
+                              return (
+                                <Tag key={item.title}>
+                                  {item.title}
+                                </Tag>
+                              );
+                            }
+                            return null;
+                          })}
+                        </div>
+                      )}
+                      trigger="click"
+                    >
+                      <Button
+                        style={{ marginLeft: '10px' }}
+                        href="#"
+                      >
+                        <Icon type="tag" />
+                        Show all tags
+                      </Button>
+                    </Popover>
+                  )}
+                </div>
+                <div className="photo-footer__btns">
+                  <Button
+                    style={{ marginLeft: '10px' }}
+                    href="#"
+                  >
+                    <Icon type="share-alt" />
+                    Share
+                  </Button>
+                  <Button
+                    style={{ marginLeft: '10px' }}
+                    href="#"
+                  >
+                    <Icon type="info-circle" />
+                    Info
+                  </Button>
+                </div>
               </div>
             </div>
           </Card>

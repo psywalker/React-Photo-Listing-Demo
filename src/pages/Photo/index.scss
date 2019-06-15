@@ -63,16 +63,49 @@
 			display: block;
 			margin: 0 auto;
 			width: 300px;
-			max-height: calc(100vh - 200px);
+			max-height: calc(100vh - 210px);
 			max-width: 100%;
 			min-width: 200px;
 			min-height: 200px;
 		}
 		&__footer {
 			display: flex;
-			justify-content: flex-end;
+			justify-content: space-between;
 			padding: 10px 10px;
+
+			@media screen and ( min-width: 0px ) and ( max-width: 400px ) {
+				padding: 10px 5px;
+
+				& .ant-btn {
+					margin-left: 5px;
+					padding: 0 5px;
+				}
+			}
 		}
 	}
+
+	&-footer {
+
+		&__btns {
+			display: flex;
+		}
+
+		&__tags {
+			position: relative;
+			& .ant-btn {
+				margin-left: 0px !important;
+			}
+			@media screen and ( min-width: 0px ) and ( max-width: 400px ) {
+				& .ant-btn {
+					margin-left: 3px !important;
+				}
+			}
+		}
+	}
+}
+
+.ant-popover {
+	margin: 0 16px !important;
+	left: 0px !important;
 }
 
