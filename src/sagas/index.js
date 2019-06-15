@@ -1,6 +1,6 @@
 import { takeEvery, all } from 'redux-saga/effects';
-import { loginSaga } from './loginSaga';
-import cardsPhotosRequestSaga from './photolistingSaga';
+import { loginSaga } from './login';
+import cardsPhotosRequestSaga from './photolisting';
 import userStatisticRequestSaga from './userstatistic';
 import photoRequestSaga from './photo';
 

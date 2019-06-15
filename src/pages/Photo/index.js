@@ -5,22 +5,38 @@ import { Link } from 'react-router-dom';
 import { Card, Button, Icon } from 'antd';
 import { SpinnerPhoto } from '../../components';
 import { photoRequestAction, photoImageLoadAction } from '../../actions';
-import './photo.css';
-
-const { Meta } = Card;
+import getPhotoSize from './getPhotoSize';
+import './index.scss';
 
 class Photo extends Component {
+  state = {
+    photoWidth: null,
+    photoHeight: null,
+  }
+
   componentDidMount = () => {
     const { match, photoRequestAction: requestAction } = this.props;
     requestAction(match);
+    this.setPhotoSize();
+    window.addEventListener('resize', this.setPhotoSize);
   };
 
-  photoLoad = () => {
-    const { photoImageLoadAction: photoLoadAction } = this.props;
-    photoLoadAction();
+  componentDidUpdate = (prevProps) => {
+    const { widthPhoto } = this.props;
+    if (prevProps.widthPhoto !== widthPhoto) this.setPhotoSize();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setPhotoSize);
+  }
+
+  setPhotoSize = () => {
+    const photoSize = getPhotoSize(this.props);
+    this.setState({ photoWidth: photoSize.photoWidth, photoHeight: photoSize.photoHeight });
   }
 
   render() {
+    const { photoWidth, photoHeight } = this.state;
     const {
       info: {
         views,
@@ -32,9 +48,9 @@ class Photo extends Component {
         shutterspeed,
         iso,
         cameraModel,
-        width,
-        height,
       },
+      userFirstName,
+      userLastName,
       userName,
       twitterName,
       photoProfile,
@@ -45,29 +61,32 @@ class Photo extends Component {
       isPhotoLoading,
       requestError,
       isSuccessPhotoRequest,
+      photoImageLoadAction: photoLoadAction,
     } = this.props;
+
+    const photoSize = { width: photoWidth, height: photoHeight };
     return (
       <div className="photo-container photo" id="photo-container">
         { !isSuccessPhotoRequest && !requestError && (
-
           <Card
             title={(
-              <div className="photo__twitter photo-twitter">
-                <img
-                  src={photoProfile}
-                  alt=""
-                  className="photo-twitter__ava"
-                />
-                <div className="photo-twitter__content">
-                  <Link to={`/users/${userName}`}>
-                    <p className="photo-twitter__user-name">{userName}</p>
+              <Link to={`/users/${userName}`}>
+                <div className="photo__twitter photo-twitter">
+                  <img
+                    src={photoProfile}
+                    alt="Avatar"
+                    className="photo-twitter__ava"
+
+                  />
+                  <div className="photo-twitter__content">
+                    <p className="photo-twitter__user-name">{`${userFirstName} ${userLastName}`}</p>
                     <p className="photo-twitter__twitter-name">
                       @
                       {twitterName}
                     </p>
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             )}
             extra={(
               <div className="photo-header">
@@ -75,6 +94,7 @@ class Photo extends Component {
                   style={{ marginLeft: '10px' }}
                   href="#"
                 >
+                  <Icon type="download" />
                   Download
                 </Button>
               </div>
@@ -84,13 +104,15 @@ class Photo extends Component {
             headStyle={{ padding: '0 10px' }}
           >
             <div className="photo__content photo-content">
+              { isPhotoLoading && <SpinnerPhoto /> }
               <img
-                className="photo-content__img"
-                alt="example"
+                className="photo-content__photo"
+                alt={altDescriprion}
                 src={photoSrc}
-                onLoad={this.photoLoad}
+                style={photoSize}
+                onLoad={photoLoadAction}
               />
-              <div className="photo-content__body">
+              <div className="photo-content__footer">
                 <Button
                   style={{ marginLeft: '10px' }}
                   href="#"
@@ -108,32 +130,6 @@ class Photo extends Component {
               </div>
             </div>
           </Card>
-          // <Card
-          //   cover={(
-          //     <div className="photo__changed">
-          //       <div
-          //         className="photo__spinner-wrap"
-          //         style={{ display: isPhotoLoading ? 'block' : 'none' }}
-          //       >
-          //         <SpinnerPhoto className="spinner-photo" />
-          //       </div>
-
-          //       <img
-          //         className="photo__img"
-          //         alt="example"
-          //         src={photoSrc}
-          //         onLoad={this.photoLoad}
-          //       />
-          //     </div>
-          //   )}
-          // >
-          //   <Meta className="photo__desc" title={`${photoDesc || 'No title'}`} />
-          //   <Link to={`/users/${userName}`}>
-          //     <p className="photo__autor-page-link">
-          //       { 'Autor\'s page link' }
-          //     </p>
-          //   </Link>
-          // </Card>
         )}
         { !isPhotoLoading && !isSuccessPhotoRequest && requestError && (
           <p>
@@ -160,9 +156,9 @@ Photo.propTypes = {
     shutterspeed: PropTypes.string,
     iso: PropTypes.number,
     cameraModel: PropTypes.string,
-    width: PropTypes.number,
-    height: PropTypes.number,
   }),
+  userFirstName: PropTypes.string,
+  userLastName: PropTypes.string,
   userName: PropTypes.string,
   twitterName: PropTypes.string,
   photoProfile: PropTypes.string,
@@ -172,6 +168,8 @@ Photo.propTypes = {
   altDescriprion: PropTypes.string,
   photoSrc: PropTypes.string,
   photoDesc: PropTypes.string,
+  widthPhoto: PropTypes.number,
+  heightPhoto: PropTypes.number,
   photoRequestAction: PropTypes.func,
   photoImageLoadAction: PropTypes.func,
   isPhotoLoading: PropTypes.bool,
@@ -198,6 +196,8 @@ Photo.defaultProps = {
     width: 0,
     height: 0,
   },
+  userFirstName: '',
+  userLastName: '',
   userName: '',
   twitterName: '',
   photoProfile: '',
@@ -205,6 +205,8 @@ Photo.defaultProps = {
   altDescriprion: '',
   photoSrc: '',
   photoDesc: '',
+  widthPhoto: 300,
+  heightPhoto: 300,
   photoImageLoadAction: () => {},
   photoRequestAction: () => {},
   isPhotoLoading: true,

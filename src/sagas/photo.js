@@ -19,18 +19,19 @@ export default function* photoRequestSaga(action) {
           shutterspeed: get(res, 'data.exif.exposure_time') || '',
           iso: get(res, 'data.exif.iso') || 0,
           cameraModel: get(res, 'data.exif.model') || '',
-          width: get(res, 'data.width') || '300',
-          height: get(res, 'data.height') || '300',
         },
-        userName: get(res, 'data.user.username') || 'No Name',
+        userFirstName: get(res, 'data.user.first_name') || '',
+        userLastName: get(res, 'data.user.last_name') || '',
+        userName: get(res, 'data.user.username') || '',
         twitterName: get(res, 'data.user.instagram_username') || '',
         photoProfile: get(res, 'data.user.profile_image.small') || '',
         tags: get(res, 'data.tags') || [],
         altDescriprion: get(res, 'data.alt_description') || '',
         photoSrc: get(res, 'data.urls.regular') || '',
         photoDesc: get(res, 'data.description') || '',
+        widthPhoto: get(res, 'data.width') || 300,
+        heightPhoto: get(res, 'data.height') || 300,
       };
-      console.log("1: ", res.data)
       yield put({ type: 'PHOTO_REQUEST_SUCCESS', responceObj });
     } catch (error) {
       yield put({ type: 'PHOTO_REQUEST_ERROR', error });

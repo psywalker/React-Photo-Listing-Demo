@@ -1,0 +1,78 @@
+.photo {
+	margin: 0px auto;
+	position: relative;
+
+	&__twitter {
+		display: flex;
+		align-items: center;
+	}
+
+	& .ant-card-extra,
+	& .ant-card-head-title {
+		padding: 10px 0 !important;
+	}
+
+	&-twitter {
+		&__ava {
+			display: block;
+			width: 32px;
+			height: 32px;
+			border-radius: 100%;
+			transition: all .3s;
+
+			&:hover {
+				opacity: .8;
+			}
+		}
+
+		&__content {
+			position: relative;
+			margin-left: 5px;
+			line-height: 15px;
+		}
+
+		&__user-name {
+			padding: 0;
+			margin: 0;
+			color: #111;
+			font-size: 15px;
+			transition: all .3s;
+
+			&:hover {
+				opacity: .8;
+			}
+		}
+
+		&__twitter-name {
+			padding: 0;
+			margin: 0;
+			font-size: 11px;
+			color: #999;
+			transition: all .3s;
+
+			&:hover {
+				color: #111;
+			}
+		}
+	}
+
+	&-content {
+		&__photo {
+			position: relative;
+			z-index: 1;
+			display: block;
+			margin: 0 auto;
+			width: 300px;
+			max-height: calc(100vh - 200px);
+			max-width: 100%;
+			min-width: 200px;
+			min-height: 200px;
+		}
+		&__footer {
+			display: flex;
+			justify-content: flex-end;
+			padding: 10px 10px;
+		}
+	}
+}
+
