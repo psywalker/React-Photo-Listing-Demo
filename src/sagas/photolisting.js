@@ -23,7 +23,6 @@ export default function* cardsPhotosRequestSaga(action) {
         isListingLoading: false,
         totalCards: get(response, 'data.total') || 10,
       };
-
       yield put({ type: 'CARDS_PHOTOS_REQUEST_SUCCESS', responceObj });
     } catch (error) {
       yield put({ type: 'CARDS_PHOTOS_REQUEST_ERROR', error });

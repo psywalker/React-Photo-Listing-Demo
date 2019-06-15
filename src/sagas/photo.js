@@ -24,7 +24,7 @@ export default function* photoRequestSaga(action) {
         userLastName: get(res, 'data.user.last_name') || '',
         userName: get(res, 'data.user.username') || '',
         twitterName: get(res, 'data.user.instagram_username') || '',
-        photoProfile: get(res, 'data.user.profile_image.small') || '',
+        photoProfile: get(res, 'data.user.profile_image.large') || '',
         tags: get(res, 'data.tags') || [],
         altDescriprion: get(res, 'data.alt_description') || '',
         photoSrc: get(res, 'data.urls.regular') || '',
@@ -32,6 +32,7 @@ export default function* photoRequestSaga(action) {
         widthPhoto: get(res, 'data.width') || 300,
         heightPhoto: get(res, 'data.height') || 300,
       };
+      console.log("1: ", res)
       yield put({ type: 'PHOTO_REQUEST_SUCCESS', responceObj });
     } catch (error) {
       yield put({ type: 'PHOTO_REQUEST_ERROR', error });

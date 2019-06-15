@@ -25,7 +25,12 @@ class Home extends PureComponent {
   };
 
   componentDidMount = () => {
-    this.handleCardsPhotos();
+    const { match: { params: { tag } }, searchTextAction: handleAction } = this.props;
+    if (tag) {
+      handleAction(tag, 'tags');
+    } else {
+      this.handleCardsPhotos();
+    }
   };
 
   handleCardsPhotos = () => {
@@ -111,7 +116,7 @@ class Home extends PureComponent {
                       tags={item.tags}
                       photoID={item.id}
                       userID={item.user.username}
-                      userAvatar={item.user.profile_image.small}
+                      userAvatar={item.user.profile_image.large}
                       onSearchTagValue={this.handleSearchText}
                     />
                   </li>
@@ -164,6 +169,9 @@ Home.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.object),
   isListingLoading: PropTypes.bool,
   photolistingRequestError: PropTypes.bool,
+  match: PropTypes.shape({
+    prop: PropTypes.string,
+  }),
 };
 Home.defaultProps = {
   cardsPhotosRequestAction: () => {},
@@ -182,6 +190,7 @@ Home.defaultProps = {
   totalCards: 10,
   navTopItemActive: 2,
   photolistingRequestError: false,
+  match: {},
 };
 
 const mapStateToProps = (state) => {

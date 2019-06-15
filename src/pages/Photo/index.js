@@ -123,15 +123,17 @@ class Photo extends Component {
                   { tags.length > 2 && (
                     <Popover
                       placement="top"
-                      title="Remaining tags"
+                      title="All tags"
                       content={(
                         <div>
                           {tags.map((item, i) => {
                             if (i > 2) {
                               return (
-                                <Tag key={item.title}>
-                                  {item.title}
-                                </Tag>
+                                <Link to={`/${item.title}`} key={item.title}>
+                                  <Tag key={item.title}>
+                                    {item.title}
+                                  </Tag>
+                                </Link>
                               );
                             }
                             return null;
