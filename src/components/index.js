@@ -5,6 +5,7 @@ import PhotoCard from './PhotoCard';
 import Search from './Search';
 import Spinner from './Spinner';
 import SpinnerPhoto from './SpinnerPhoto';
+import InfoPhotoModal from './InfoPhotoModal';
 import Home from '../pages/Home';
 import Photo from '../pages/Photo';
 import Profile from '../pages/Profile';
@@ -21,6 +22,7 @@ export {
   Search,
   Spinner,
   SpinnerPhoto,
+  InfoPhotoModal,
   Home,
   Photo,
   Profile,

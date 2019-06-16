@@ -80,7 +80,7 @@ class UserPhotoListing extends PureComponent {
                           tags={item.photo_tags}
                           photoID={item.id}
                           userID={item.user.username}
-                          userAvatar={item.user.profile_image.small}
+                          userAvatar={item.user.profile_image.large}
                           onSearchTagValue={this.handleSearchText}
                         />
                       </li>

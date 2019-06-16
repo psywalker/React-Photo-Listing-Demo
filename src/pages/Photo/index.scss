@@ -105,9 +105,10 @@
 }
 
 .ant-popover {
-	margin: 0 16px !important;
-	left: 0px !important;
-
+	max-width: 980px;
+	.ant-popover-content {
+		margin: 0 16px;
+	}
 	.ant-tag {
 		margin-bottom: 8px !important;
 		cursor: pointer;

@@ -1,0 +1,101 @@
+.photo-info-wrap > div > div {
+  position: absolute !important;
+  top: -50px !important;
+}
+.photo-info {
+  padding: 15px;
+  min-width: 300px;
+  max-width: 400px;
+  &__header {
+    margin-bottom: 15px;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: 'Fjalla One', sans-serif;
+  }
+
+  &__desc {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__date {
+    font-size: 12px;
+    font-family: 'Fjalla One', sans-serif;
+  }
+
+  &__list-head,
+  &__list-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between ;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Fjalla One', sans-serif;
+  }
+}
+
+.photo-info-list-head {
+
+  &__item {
+    width: 30%;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0;
+
+    & .anticon {
+      margin-right: 5px;
+      font-size: 20px;
+    }
+  }
+
+  &__text-main {
+    font-weight: 400;
+    font-size: 21px;
+    color: #111;
+    margin: 0;
+  }
+
+  &__text {
+    font-size: 12px;
+    color: #999;
+    margin: 0;
+  }
+}
+
+
+.photo-info-list {
+
+  &__item {
+    width: 30%;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    font-size: 12px;
+    color: #999;
+    margin: 0;
+    padding: 0;
+    font-family: 'Fjalla One', sans-serif;
+  }
+
+  &__text {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    text-transform: uppercase;
+    font-family: 'Fjalla One', sans-serif;
+    color: #111;
+    margin: 0;
+    padding: 0;
+  }
+}

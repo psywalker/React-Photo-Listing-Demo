@@ -9,7 +9,7 @@ import {
   Tag,
   Popover,
 } from 'antd';
-import { SpinnerPhoto } from '../../components';
+import { SpinnerPhoto, InfoPhotoModal } from '../../components';
 import { photoRequestAction, photoImageLoadAction } from '../../actions';
 import getPhotoSize from './getPhotoSize';
 import './index.scss';
@@ -44,17 +44,7 @@ class Photo extends Component {
   render() {
     const { photoWidth, photoHeight } = this.state;
     const {
-      info: {
-        views,
-        downloads,
-        likes,
-        cameraMake,
-        focalLength,
-        aperture,
-        shutterspeed,
-        iso,
-        cameraModel,
-      },
+      info,
       userFirstName,
       userLastName,
       userName,
@@ -63,7 +53,6 @@ class Photo extends Component {
       tags,
       altDescriprion,
       photoSrc,
-      photoDesc,
       isPhotoLoading,
       requestError,
       isSuccessPhotoRequest,
@@ -122,7 +111,7 @@ class Photo extends Component {
                 <div className="photo-footer__tags">
                   { tags.length > 2 && (
                     <Popover
-                      placement="top"
+                      placement="topLeft"
                       title="All tags"
                       content={(
                         <div>
@@ -160,13 +149,7 @@ class Photo extends Component {
                     <Icon type="share-alt" />
                     Share
                   </Button>
-                  <Button
-                    style={{ marginLeft: '10px' }}
-                    href="#"
-                  >
-                    <Icon type="info-circle" />
-                    Info
-                  </Button>
+                  <InfoPhotoModal {...info} />
                 </div>
               </div>
             </div>
@@ -187,17 +170,7 @@ class Photo extends Component {
 }
 
 Photo.propTypes = {
-  info: PropTypes.shape({
-    views: PropTypes.number,
-    downloads: PropTypes.number,
-    likes: PropTypes.number,
-    cameraMake: PropTypes.string,
-    focalLength: PropTypes.string,
-    aperture: PropTypes.string,
-    shutterspeed: PropTypes.string,
-    iso: PropTypes.number,
-    cameraModel: PropTypes.string,
-  }),
+  info: PropTypes.shape({}),
   userFirstName: PropTypes.string,
   userLastName: PropTypes.string,
   userName: PropTypes.string,
@@ -208,7 +181,6 @@ Photo.propTypes = {
   })),
   altDescriprion: PropTypes.string,
   photoSrc: PropTypes.string,
-  photoDesc: PropTypes.string,
   widthPhoto: PropTypes.number,
   heightPhoto: PropTypes.number,
   photoRequestAction: PropTypes.func,
@@ -224,19 +196,7 @@ Photo.propTypes = {
   }),
 };
 Photo.defaultProps = {
-  info: {
-    views: 0,
-    downloads: 0,
-    likes: 0,
-    cameraMake: '',
-    focalLength: '',
-    aperture: '',
-    shutterspeed: '',
-    iso: 0,
-    cameraModel: '',
-    width: 0,
-    height: 0,
-  },
+  info: {},
   userFirstName: '',
   userLastName: '',
   userName: '',
@@ -245,7 +205,6 @@ Photo.defaultProps = {
   tags: [],
   altDescriprion: '',
   photoSrc: '',
-  photoDesc: '',
   widthPhoto: 300,
   heightPhoto: 300,
   photoImageLoadAction: () => {},
