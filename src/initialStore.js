@@ -33,6 +33,8 @@ const initialStore = {
   },
   photo: {
     info: {
+      lastUpdateInfo: '',
+      photoDesc: '',
       views: 0,
       downloads: 0,
       likes: 0,
@@ -42,6 +44,8 @@ const initialStore = {
       shutterspeed: '',
       iso: 0,
       cameraModel: '',
+      width: '',
+      height: '',
     },
     userFirstName: '',
     userLastName: '',
@@ -51,7 +55,6 @@ const initialStore = {
     tags: [],
     altDescriprion: '',
     photoSrc: '',
-    photoDesc: '',
     widthPhoto: 300,
     heightPhoto: 300,
     isPhotoLoading: true,

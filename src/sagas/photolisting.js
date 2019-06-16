@@ -18,12 +18,12 @@ export default function* cardsPhotosRequestSaga(action) {
         params: axiosRequestForcardsPhotos.params,
       });
 
-      const responceObj = {
-        cards: get(response, 'data.results') || [],
+      const responceProps = {
+        cards: get(response, 'data.results', []),
         isListingLoading: false,
-        totalCards: get(response, 'data.total') || 10,
+        totalCards: get(response, 'data.total', 10),
       };
-      yield put({ type: 'CARDS_PHOTOS_REQUEST_SUCCESS', responceObj });
+      yield put({ type: 'CARDS_PHOTOS_REQUEST_SUCCESS', responceProps });
     } catch (error) {
       yield put({ type: 'CARDS_PHOTOS_REQUEST_ERROR', error });
     }

@@ -21,7 +21,6 @@ const InfoPhotoModal = memo(({ ...props }) => {
       </Button>
       <Modal
         visible={modalVisible}
-        height="365px"
         effect="fadeInDown"
         onClickAway={closeModal}
         className="modal"

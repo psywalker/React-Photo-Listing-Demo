@@ -60,13 +60,13 @@ export default function* userStatisticRequestSaga(action) {
           client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
         },
       };
-      const res = yield axios.get(axiosRequestUserStatistic.url, {
+      const responce = yield axios.get(axiosRequestUserStatistic.url, {
         params: axiosRequestUserStatistic.params,
       });
 
-      const highchartsDownloadsConfigData = get(res, 'data.downloads.historical.values') || [];
-      const highchartsViewsConfigData = get(res, 'data.views.historical.values') || [];
-      const highchartsLikesConfigData = get(res, 'data.likes.historical.values') || [];
+      const highchartsDownloadsConfigData = get(responce, 'data.downloads.historical.values', []);
+      const highchartsViewsConfigData = get(responce, 'data.views.historical.values', []);
+      const highchartsLikesConfigData = get(responce, 'data.likes.historical.values', []);
 
       const highchartsConfigsObject = {
         highchartsDownloadsConfig: {

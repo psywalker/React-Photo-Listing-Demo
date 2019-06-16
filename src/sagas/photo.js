@@ -7,35 +7,35 @@ export default function* photoRequestSaga(action) {
   const { match } = action;
   if (match) {
     try {
-      const res = yield axios.get(URL_FOR_PHOTO_QUERY(match));
-      const responceObj = {
+      const responce = yield axios.get(URL_FOR_PHOTO_QUERY(match));
+      const responceProps = {
         info: {
-          lastUpdateInfo: get(res, 'data.updated_at') || '',
-          photoDesc: get(res, 'data.description') || '',
-          views: get(res, 'data.views') || 0,
-          downloads: get(res, 'data.downloads') || 0,
-          likes: get(res, 'data.likes') || 0,
-          cameraMake: get(res, 'data.exif.make') || '',
-          focalLength: get(res, 'data.exif.focal_length') || '',
-          aperture: get(res, 'data.exif.aperture') || '',
-          shutterspeed: get(res, 'data.exif.exposure_time') || '',
-          iso: get(res, 'data.exif.iso') || 0,
-          cameraModel: get(res, 'data.exif.model') || '',
-          width: get(res, 'data.width') || 300,
-          height: get(res, 'data.height') || 300,
+          lastUpdateInfo: get(responce, 'data.updated_at', ''),
+          photoDesc: get(responce, 'data.description', ''),
+          views: get(responce, 'data.views', 0),
+          downloads: get(responce, 'data.downloads', 0),
+          likes: get(responce, 'data.likes', 0),
+          cameraMake: get(responce, 'data.exif.make', ''),
+          focalLength: get(responce, 'data.exif.focal_length', ''),
+          aperture: get(responce, 'data.exif.aperture', ''),
+          shutterspeed: get(responce, 'data.exif.exposure_time', ''),
+          iso: get(responce, 'data.exif.iso', 0),
+          cameraModel: get(responce, 'data.exif.model', ''),
+          width: get(responce, 'data.width', 300),
+          height: get(responce, 'data.height', 300),
         },
-        userFirstName: get(res, 'data.user.first_name') || '',
-        userLastName: get(res, 'data.user.last_name') || '',
-        userName: get(res, 'data.user.username') || '',
-        twitterName: get(res, 'data.user.instagram_username') || '',
-        photoProfile: get(res, 'data.user.profile_image.large') || '',
-        tags: get(res, 'data.tags') || [],
-        altDescriprion: get(res, 'data.alt_description') || '',
-        photoSrc: get(res, 'data.urls.regular') || '',
-        widthPhoto: get(res, 'data.width') || 300,
-        heightPhoto: get(res, 'data.height') || 300,
+        userFirstName: get(responce, 'data.user.first_name', ''),
+        userLastName: get(responce, 'data.user.last_name', ''),
+        userName: get(responce, 'data.user.username', ''),
+        twitterName: get(responce, 'data.user.instagram_username', ''),
+        photoProfile: get(responce, 'data.user.profile_image.large', ''),
+        tags: get(responce, 'data.tags', []),
+        altDescriprion: get(responce, 'data.alt_description', ''),
+        photoSrc: get(responce, 'data.urls.regular', ''),
+        widthPhoto: get(responce, 'data.width', 300),
+        heightPhoto: get(responce, 'data.height', 300),
       };
-      yield put({ type: 'PHOTO_REQUEST_SUCCESS', responceObj });
+      yield put({ type: 'PHOTO_REQUEST_SUCCESS', responceProps });
     } catch (error) {
       yield put({ type: 'PHOTO_REQUEST_ERROR', error });
     }

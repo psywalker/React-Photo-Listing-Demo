@@ -11,7 +11,7 @@ const photo = (state = initialStore, action) => {
     case 'PHOTO_REQUEST_SUCCESS':
       return {
         ...state,
-        ...action.responceObj,
+        ...action.responceProps,
         isPhotoLoading: true,
         isSuccessPhotoRequest: false,
         requestError: false,

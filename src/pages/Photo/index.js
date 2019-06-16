@@ -119,13 +119,6 @@ class Photo extends Component {
                   alt: altDescriprion,
                 }}
               />
-              {/* <img
-                className="photo-content__photo"
-                alt={altDescriprion}
-                src={photoSrc}
-                style={photoSize}
-                onLoad={photoLoadAction}
-              /> */}
               <div className="photo-content__footer photo-footer">
                 <div className="photo-footer__tags">
                   { tags.length > 2 && (
