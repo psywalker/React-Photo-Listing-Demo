@@ -10,14 +10,14 @@ export function* loginAfterToken(token) {
         Authorization: `Bearer ${token}`,
       };
       const response = yield axios.get(URL_FOR_PROFILE_ME, { headers });
-      const data = {
+      const dataForProps = {
         profilePhotoUrl: get(response, 'data.profile_image.large', URL_FOR_AVATAR_PLACEHOLDER),
         profileName: get(response, 'data.first_name', ''),
         profileFullName: get(response, 'data.name', ''),
         profileEmail: get(response, 'data.email', ''),
       };
 
-      yield put({ type: 'LOGIN_SUCCESS', data });
+      yield put({ type: 'LOGIN_SUCCESS', dataForProps });
     } catch (error) {
       yield put({ type: 'LOGIN_ERROR' });
     }

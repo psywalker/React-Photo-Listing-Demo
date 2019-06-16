@@ -8,7 +8,7 @@ export default function* photoRequestSaga(action) {
   if (match) {
     try {
       const responce = yield axios.get(URL_FOR_PHOTO_QUERY(match));
-      const responceProps = {
+      const dataForProps = {
         info: {
           lastUpdateInfo: get(responce, 'data.updated_at', ''),
           photoDesc: get(responce, 'data.description', ''),
@@ -35,7 +35,7 @@ export default function* photoRequestSaga(action) {
         widthPhoto: get(responce, 'data.width', 300),
         heightPhoto: get(responce, 'data.height', 300),
       };
-      yield put({ type: 'PHOTO_REQUEST_SUCCESS', responceProps });
+      yield put({ type: 'PHOTO_REQUEST_SUCCESS', dataForProps });
     } catch (error) {
       yield put({ type: 'PHOTO_REQUEST_ERROR', error });
     }

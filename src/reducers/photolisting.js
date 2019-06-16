@@ -10,7 +10,7 @@ const photolisting = (state = initialStore, action) => {
     case 'CARDS_PHOTOS_REQUEST_SUCCESS':
       return {
         ...state,
-        ...action.responceProps,
+        ...action.dataForProps,
         photolistingRequestError: false,
       };
     case 'PAGINATION_CHANGE':

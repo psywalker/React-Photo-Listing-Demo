@@ -105,15 +105,15 @@ class Home extends PureComponent {
               <ul className="photo-list">
                 {
                 cards.map(item => (
-                  <li key={item.id} className="photo-list__item pl-3">
+                  <li key={item.photoID} className="photo-list__item pl-3">
                     <PhotoCard
-                      photoName={item.urls.regular}
-                      photoDesc={item.description}
-                      title={item.user.first_name}
+                      photoName={item.photoName}
+                      photoDesc={item.photoDesc}
+                      title={item.title}
                       tags={item.tags}
-                      photoID={item.id}
-                      userID={item.user.username}
-                      userAvatar={item.user.profile_image.large}
+                      photoID={item.photoID}
+                      userID={item.userID}
+                      userAvatar={item.userAvatar}
                       onSearchTagValue={this.getSearchText}
                     />
                   </li>

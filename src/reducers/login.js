@@ -11,7 +11,7 @@ const login = (state = initialStore, action) => {
     case 'LOGIN_SUCCESS':
       return {
         ...state,
-        ...action.data,
+        ...action.dataForProps,
         fetching: false,
         loginError: false,
       };
