@@ -26,34 +26,31 @@ class Home extends PureComponent {
 
   componentDidMount = () => {
     const { match: { params: { tag } }, searchTextAction: handleAction } = this.props;
-    if (tag) {
-      handleAction(tag, 'tags');
-    } else {
-      this.handleCardsPhotos();
-    }
+    if (tag) handleAction(tag, 'tags');
+    else this.getCardsPhotos();
   };
 
-  handleCardsPhotos = () => {
+  getCardsPhotos = () => {
     const { cardsData, cardsPhotosRequestAction: handleAction } = this.props;
     handleAction(cardsData);
   };
 
-  handlePaginationChange = (currentPage) => {
+  getPaginationChange = (currentPage) => {
     const { paginationChangeAction: handleAction } = this.props;
     handleAction(currentPage);
   };
 
-  handleFilterItemValue = (itemText, itemId) => {
+  getFilterItemValue = (itemText, itemId) => {
     const { filterItemValueAction: handleAction } = this.props;
     handleAction(itemText, itemId);
   };
 
-  handleSearchText = (text, tags) => {
+  getSearchText = (text, tags) => {
     const { searchTextAction: handleAction } = this.props;
     handleAction(text, tags);
   }
 
-  handleChangeInputValue = (text) => {
+  getChangeInputValue = (text) => {
     const { searchChangeInputValueAction: handleAction } = this.props;
     handleAction(text);
   }
@@ -75,8 +72,8 @@ class Home extends PureComponent {
         <div className="row">
           <div className="col-12">
             <Search
-              onSearchInputValue={this.handleSearchText}
-              onChangeInputValue={this.handleChangeInputValue}
+              onSearchInputValue={this.getSearchText}
+              onChangeInputValue={this.getChangeInputValue}
               queryText={cardsData.query}
             />
           </div>
@@ -90,7 +87,7 @@ class Home extends PureComponent {
                   <NavTop
                     navTopItemActive={navTopItemActive}
                     itemId={item.id}
-                    onFilterItemValue={this.handleFilterItemValue}
+                    onFilterItemValue={this.getFilterItemValue}
                     key={item.id}
                     label={item.label}
                     filterValue={item.filterValue}
@@ -117,7 +114,7 @@ class Home extends PureComponent {
                       photoID={item.id}
                       userID={item.user.username}
                       userAvatar={item.user.profile_image.large}
-                      onSearchTagValue={this.handleSearchText}
+                      onSearchTagValue={this.getSearchText}
                     />
                   </li>
                 ))
@@ -135,7 +132,7 @@ class Home extends PureComponent {
               <Pagination
                 className="ml-3"
                 showSizeChanger
-                onChange={this.handlePaginationChange}
+                onChange={this.getPaginationChange}
                 current={cardsData.page}
                 defaultCurrent={1}
                 total={totalCards}
