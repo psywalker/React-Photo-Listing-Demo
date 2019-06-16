@@ -14,7 +14,6 @@ const InfoPhotoModal = memo(({ ...props }) => {
     <div className="photo-info-wrap">
       <Button
         style={{ marginLeft: '10px' }}
-        href="#"
         onClick={openModal}
       >
         <Icon type="info-circle" />

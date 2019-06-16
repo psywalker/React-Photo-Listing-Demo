@@ -9,6 +9,7 @@ import {
   Tag,
   Popover,
 } from 'antd';
+import ImageZoom from 'react-medium-image-zoom'
 import { SpinnerPhoto, InfoPhotoModal } from '../../components';
 import { photoRequestAction, photoImageLoadAction } from '../../actions';
 import getPhotoSize from './getPhotoSize';
@@ -100,13 +101,31 @@ class Photo extends Component {
           >
             <div className="photo__content photo-content">
               { isPhotoLoading && <SpinnerPhoto /> }
-              <img
+              <ImageZoom
+                defaultStyles={{
+                  overlay: {
+                    background: 'rgba(0, 0, 0, .8)',
+                  },
+                }}
+                image={{
+                  src: photoSrc,
+                  alt: altDescriprion,
+                  className: 'photo-content__photo',
+                  style: photoSize,
+                  onLoad: photoLoadAction,
+                }}
+                zoomImage={{
+                  src: photoSrc,
+                  alt: altDescriprion,
+                }}
+              />
+              {/* <img
                 className="photo-content__photo"
                 alt={altDescriprion}
                 src={photoSrc}
                 style={photoSize}
                 onLoad={photoLoadAction}
-              />
+              /> */}
               <div className="photo-content__footer photo-footer">
                 <div className="photo-footer__tags">
                   { tags.length > 2 && (
