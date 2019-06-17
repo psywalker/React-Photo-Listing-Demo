@@ -25,7 +25,10 @@ const PhotoCard = memo(({
     <Card
       style={{ width: '100%' }}
       cover={(
-        <Link className="photo-card__photo-link" to={`/photo/${photoID}`}>
+        <Link
+          className="photo-card__photo-link"
+          to={`/photo/${photoID}`}
+        >
           <img
             className="photo-card__img"
             alt="example"
@@ -35,7 +38,10 @@ const PhotoCard = memo(({
         )}
     >
       { title && (
-        <Link className="photo-card-self__link-ava" to={`/users/${userID}`}>
+        <Link
+          className="photo-card-self__link-ava"
+          to={`/users/${userID}`}
+        >
           <Meta
             avatar={
               <Avatar src={userAvatar} />
@@ -51,7 +57,11 @@ const PhotoCard = memo(({
         {tags.map((item, i) => {
           if (i < 3) {
             return (
-              <Tag key={item.title} onClick={() => onSearchTagValue(item.title, 'tags')} className="photo-card-self__badge">
+              <Tag
+                key={item.title}
+                onClick={() => onSearchTagValue(item.title, 'tags')}
+                className="photo-card-self__badge"
+              >
                 {item.title}
               </Tag>
             );
@@ -67,7 +77,11 @@ const PhotoCard = memo(({
                 {tags.map((item, i) => {
                   if (i > 2) {
                     return (
-                      <Tag key={item.title} onClick={() => onSearchTagValue(item.title, 'tags')} className="photo-card-self__badge">
+                      <Tag
+                        key={item.title}
+                        onClick={() => onSearchTagValue(item.title, 'tags')}
+                        className="photo-card-self__badge"
+                      >
                         {item.title}
                       </Tag>
                     );

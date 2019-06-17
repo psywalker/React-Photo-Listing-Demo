@@ -67,13 +67,19 @@ class UserPhotoListing extends PureComponent {
       <div>
         { isListingLoading && (<Spinner className="spinner" />)}
         <div>
-          <Row justify="center" style={{ margin: '20px 0' }}>
+          <Row
+            justify="center"
+            style={{ margin: '20px 0' }}
+          >
             <Col span={24}>
               {!isListingLoading && (
                 <ul className="photo-list user-photos ">
                   {
                     cards.map(item => (
-                      <li key={item.id} className="photo-list__item pl-3">
+                      <li
+                        key={item.id}
+                        className="photo-list__item pl-3"
+                      >
                         <PhotoCard
                           photoName={item.urls.regular}
                           title=""
@@ -90,8 +96,19 @@ class UserPhotoListing extends PureComponent {
               )}
             </Col>
           </Row>
-          <Row justify="center" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Col style={{ display: 'flex', justifyContent: 'center' }}>
+          <Row
+            justify="center"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <Col
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
               {totalCards > perPage && (
                 <Pagination
                   className="ml-3 mb-5"

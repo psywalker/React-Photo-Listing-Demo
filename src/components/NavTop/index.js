@@ -10,7 +10,12 @@ const NavTop = memo(({
   itemId,
   navTopItemActive,
 }) => (
-  <Tag color={`${itemId === navTopItemActive ? 'purple' : ''}`} onClick={() => onFilterItemValue(filterValue, itemId)}>{label}</Tag>
+  <Tag
+    color={`${itemId === navTopItemActive ? 'purple' : ''}`}
+    onClick={() => onFilterItemValue(filterValue, itemId)}
+  >
+    {label}
+  </Tag>
 ));
 
 NavTop.propTypes = {

@@ -38,7 +38,10 @@ const HeaderApp = withRouter(memo((props) => {
               <Link to="/" style={{ display: 'inline-block' }}>
                 <h1 className="site-logo">PHOTOLISTING</h1>
               </Link>
-              <Route path="/:id" component={() => <ButtonBack style={{ marginLeft: '10px' }} />} />
+              <Route
+                path="/:id"
+                component={() => <ButtonBack style={{ marginLeft: '10px' }} />}
+              />
 
               {!profileName && (
                 <Button
@@ -61,7 +64,10 @@ const HeaderApp = withRouter(memo((props) => {
               )}
             </Col>
 
-            <Col span={3} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Col
+              span={3}
+              style={{ display: 'flex', justifyContent: 'flex-end' }}
+            >
               {profileName && (
                 <Link to="/profile">
                   <Icon

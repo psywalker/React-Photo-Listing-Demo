@@ -83,7 +83,10 @@ class Home extends PureComponent {
           <div className="col-12">
             <ul className="nav-top">
               {filters.map(item => (
-                <li key={item.id} className={`nav-top__item ${item.border ? 'nav-top__item_border-right' : ''}`}>
+                <li
+                  key={item.id}
+                  className={`nav-top__item ${item.border ? 'nav-top__item_border-right' : ''}`}
+                >
                   <NavTop
                     navTopItemActive={navTopItemActive}
                     itemId={item.id}
@@ -105,7 +108,10 @@ class Home extends PureComponent {
               <ul className="photo-list">
                 {
                 cards.map(item => (
-                  <li key={item.photoID} className="photo-list__item pl-3">
+                  <li
+                    key={item.photoID}
+                    className="photo-list__item pl-3"
+                  >
                     <PhotoCard
                       photoName={item.photoName}
                       photoDesc={item.photoDesc}
@@ -120,9 +126,12 @@ class Home extends PureComponent {
                 ))
                 }
               </ul>
-            )
-            }
-            {!totalCards && (<h2 className="cards__text-empty pl-3">No images were found for your request. Try to find more.</h2>)}
+            )}
+            {!totalCards && (
+              <h2 className="cards__text-empty pl-3">
+                No images were found for your request. Try to find more.
+              </h2>
+            )}
           </div>
         </div>
         <div className="row">

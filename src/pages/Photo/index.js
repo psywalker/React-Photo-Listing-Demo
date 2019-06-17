@@ -39,7 +39,10 @@ class Photo extends Component {
 
   setPhotoSize = () => {
     const photoSize = getPhotoSize(this.props);
-    this.setState({ photoWidth: photoSize.photoWidth, photoHeight: photoSize.photoHeight });
+    this.setState({
+      photoWidth: photoSize.photoWidth,
+      photoHeight: photoSize.photoHeight,
+    });
   }
 
   render() {
@@ -62,7 +65,10 @@ class Photo extends Component {
 
     const photoSize = { width: photoWidth, height: photoHeight };
     return (
-      <div className="photo-container photo" id="photo-container">
+      <div
+        className="photo-container photo"
+        id="photo-container"
+      >
         { !isSuccessPhotoRequest && !requestError && (
           <Card
             title={(
@@ -75,7 +81,11 @@ class Photo extends Component {
 
                   />
                   <div className="photo-twitter__content">
-                    <p className="photo-twitter__user-name">{`${userFirstName} ${userLastName}`}</p>
+                    <p
+                      className="photo-twitter__user-name"
+                    >
+                      {`${userFirstName} ${userLastName}`}
+                    </p>
                     <p className="photo-twitter__twitter-name">
                       @
                       {twitterName}
@@ -95,7 +105,11 @@ class Photo extends Component {
                 </Button>
               </div>
             )}
-            style={{ width: '100%', height: '100%', padding: 0 }}
+            style={{
+              width: '100%',
+              height: '100%',
+              padding: 0,
+            }}
             bodyStyle={{ padding: 0 }}
             headStyle={{ padding: '0 10px' }}
           >
@@ -119,7 +133,9 @@ class Photo extends Component {
                   alt: altDescriprion,
                 }}
               />
-              <div className="photo-content__footer photo-footer">
+              <div
+                className="photo-content__footer photo-footer"
+              >
                 <div className="photo-footer__tags">
                   { tags.length > 2 && (
                     <Popover
@@ -130,7 +146,10 @@ class Photo extends Component {
                           {tags.map((item, i) => {
                             if (i > 2) {
                               return (
-                                <Link to={`/${item.title}`} key={item.title}>
+                                <Link
+                                  to={`/${item.title}`}
+                                  key={item.title}
+                                >
                                   <Tag key={item.title}>
                                     {item.title}
                                   </Tag>

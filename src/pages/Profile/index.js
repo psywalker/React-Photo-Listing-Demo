@@ -36,7 +36,11 @@ class Profile extends PureComponent {
         { fetching && (<Spinner className="spinner" />)}
         { !fetching && !loginError && (
           <div className="profile__content profile-content">
-            <img className="profile-content__avatar" src={profilePhotoUrl} alt="Profile avatar" />
+            <img
+              className="profile-content__avatar"
+              src={profilePhotoUrl}
+              alt="Profile avatar"
+            />
             <div className="profile-content__title-wrap">
               <h2 className="profile-content__title">
                 {profileFullName}

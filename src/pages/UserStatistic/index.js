@@ -15,22 +15,38 @@ class UserStatistic extends PureComponent {
   }
 
   render() {
-    const { isListingLoading, highchartsConfigs, requestError } = this.props;
+    const {
+      isListingLoading,
+      highchartsConfigs,
+      requestError,
+    } = this.props;
     return (
       <div className="user-statistic">
         { isListingLoading && (<Spinner className="spinner" />)}
         { !isListingLoading && !requestError && (
         <div className="user-statistic__charts">
           <div className="user-statistic__chart-wrap">
-            <Highcharts key="1" className="user-statistic__chart" config={highchartsConfigs.highchartsDownloadsConfig} />
+            <Highcharts
+              key="1"
+              className="user-statistic__chart"
+              config={highchartsConfigs.highchartsDownloadsConfig}
+            />
           </div>
 
           <div className="user-statistic__chart-wrap">
-            <Highcharts key="2" className="user-statistic__chart" config={highchartsConfigs.highchartsViewsConfig} />
+            <Highcharts
+              key="2"
+              className="user-statistic__chart"
+              config={highchartsConfigs.highchartsViewsConfig}
+            />
           </div>
 
           <div className="user-statistic__chart-wrap">
-            <Highcharts key="3" className="user-statistic__chart user-statistic-chart" config={highchartsConfigs.highchartsLikesConfig} />
+            <Highcharts
+              key="3"
+              className="user-statistic__chart user-statistic-chart"
+              config={highchartsConfigs.highchartsLikesConfig}
+            />
           </div>
         </div>
         )}

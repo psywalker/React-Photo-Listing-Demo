@@ -72,7 +72,10 @@ class UserLikesPhotos extends PureComponent {
               {!isListingLoading && (
                 <ul className="photo-list user-photos">
                   {cards.map(item => (
-                    <li key={item.id} className="photo-list__item pl-3">
+                    <li
+                      key={item.id}
+                      className="photo-list__item pl-3"
+                    >
                       <PhotoCard
                         photoName={item.urls.regular}
                         title=""
@@ -89,8 +92,18 @@ class UserLikesPhotos extends PureComponent {
               )}
             </Col>
           </Row>
-          <Row justify="center" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Col style={{ display: 'flex', justifyContent: 'center' }}>
+          <Row
+            justify="center"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <Col style={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+            >
               {totalCards > perPage && (
                 <Pagination
                   className="ml-3 mb-5"

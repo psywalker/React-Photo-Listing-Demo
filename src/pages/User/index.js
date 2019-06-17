@@ -77,17 +77,38 @@ class User extends PureComponent {
             </div>
           </Col>
         </Row>
-        <Row style={{ display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+        <Row
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            overflow: 'hidden',
+          }}
+        >
           <Col>
             <div className="user-tabs">
-              <Tabs className="user-tabs__item" defaultActiveKey="1">
-                <TabPane tab="My photos" key="1" className="user-tabs__pane">
+              <Tabs
+                className="user-tabs__item"
+                defaultActiveKey="1"
+              >
+                <TabPane
+                  tab="My photos"
+                  key="1"
+                  className="user-tabs__pane"
+                >
                   <UserPhotoListing userId={match.params.id} />
                 </TabPane>
-                <TabPane tab="My likes" key="2" className="user-tabs__pane">
+                <TabPane
+                  tab="My likes"
+                  key="2"
+                  className="user-tabs__pane"
+                >
                   <UserLikesPhotos userId={match.params.id} />
                 </TabPane>
-                <TabPane tab="My statistic" key="3" className="user-tabs__pane">
+                <TabPane
+                  tab="My statistic"
+                  key="3"
+                  className="user-tabs__pane"
+                >
                   <UserStatistic userId={match.params.id} />
                 </TabPane>
               </Tabs>

@@ -17,14 +17,12 @@ export default function* cardsPhotosRequestSaga(action) {
       const response = yield axios.get(axiosRequestForcardsPhotos.url, {
         params: axiosRequestForcardsPhotos.params,
       });
-      
+
       const cards = get(response, 'data.results', []);
       const newCards = [];
       if (cards.length) {
-        console.log("0: ", response);
-        cards.forEach((item, i) => {
-          console.log("01: ", item, i);
-          let newCardsItem = {
+        cards.forEach((item) => {
+          const newCardsItem = {
             photoName: get(item, 'urls.regular', ''),
             photoDesc: get(item, 'description', ''),
             title: get(item, 'user.first_name', ''),
@@ -33,9 +31,7 @@ export default function* cardsPhotosRequestSaga(action) {
             userID: get(item, 'user.username', ''),
             userAvatar: get(item, 'user.profile_image.large', ''),
           };
-          console.log("02: ", newCardsItem);
-          newCards.push(newCardsItem)
-          console.log("03: ", newCards);
+          newCards.push(newCardsItem);
         });
       }
       const dataForProps = {
@@ -43,7 +39,6 @@ export default function* cardsPhotosRequestSaga(action) {
         isListingLoading: false,
         totalCards: get(response, 'data.total', 10),
       };
-      console.log("1: ", dataForProps);
       yield put({ type: 'CARDS_PHOTOS_REQUEST_SUCCESS', dataForProps });
     } catch (error) {
       yield put({ type: 'CARDS_PHOTOS_REQUEST_ERROR', error });
