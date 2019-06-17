@@ -6,6 +6,7 @@ import Search from './Search';
 import Spinner from './Spinner';
 import SpinnerPhoto from './SpinnerPhoto';
 import InfoPhotoModal from './InfoPhotoModal';
+import Error from './Error';
 import Home from '../pages/Home';
 import Photo from '../pages/Photo';
 import Profile from '../pages/Profile';
@@ -13,6 +14,7 @@ import User from '../pages/User';
 import UserLikesPhotos from '../pages/UserLikesPhotos';
 import UserPhotoListing from '../pages/UserPhotoListing';
 import UserStatistic from '../pages/UserStatistic';
+
 
 export {
   ButtonBack,
@@ -23,6 +25,7 @@ export {
   Spinner,
   SpinnerPhoto,
   InfoPhotoModal,
+  Error,
   Home,
   Photo,
   Profile,

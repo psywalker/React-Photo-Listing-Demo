@@ -7,7 +7,7 @@ export default function* photoRequestSaga(action) {
   const { match } = action;
   if (match) {
     try {
-      const responce = yield axios.get(URL_FOR_PHOTO_QUERY(match));
+      const responce = yield axios.get(URL_FOR_PHOTO_QUERY("match"));
       const dataForProps = {
         info: {
           lastUpdateInfo: get(responce, 'data.updated_at', ''),

@@ -33,8 +33,7 @@ const setInfoPhotoModalContent = ({
         <p className="photo-info__desc">
           <i>
             <b>
-              {'Photo Title: '}
-              {`«${photoDesc}»`}
+              {photoDesc}
             </b>
           </i>
         </p>

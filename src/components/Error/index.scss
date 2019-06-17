@@ -1,0 +1,55 @@
+.error {
+  font-family: 'Fjalla One', sans-serif;
+
+  & .ant-btn {
+    background: transparent !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+    font-size: 25px;
+    padding: 25px !important;
+    line-height: 0;
+
+    &:hover {
+      opacity: .8 !important;
+      color: #fff !important;
+      border: 1px solid #fff !important;
+    }
+  }
+
+  &__title {
+    font-size: 50px;
+    font-weight: 400;
+    color: #000;
+  }
+
+  &__subtitle {
+    font-size: 60px;
+    font-weight: 400;
+    color: #000;
+  }
+  &__bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    object-fit: cover;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
+
+  &__content-inner {
+    text-align: center;
+  }
+}

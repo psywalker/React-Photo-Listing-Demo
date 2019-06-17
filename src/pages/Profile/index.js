@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { loadingRequestAction, logoutAction } from '../../actions';
-import { Spinner } from '../../components';
+import { Spinner, Error } from '../../components';
 import './index.scss';
 
 class Profile extends PureComponent {
@@ -57,13 +56,7 @@ class Profile extends PureComponent {
           </div>
         )}
         { !fetching && loginError && (
-          <p>
-            При авторизации возникла ошибка. Попробуйте авторизоваться позже!
-            {' '}
-            <Link to="/">
-              Перейти на главную.
-            </Link>
-          </p>
+          <Error text="An authorization failed. Try logging in later!" />
         )}
       </div>
     );

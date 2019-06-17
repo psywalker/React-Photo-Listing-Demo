@@ -9,8 +9,8 @@ import {
   Tag,
   Popover,
 } from 'antd';
-import ImageZoom from 'react-medium-image-zoom'
-import { SpinnerPhoto, InfoPhotoModal } from '../../components';
+import ImageZoom from 'react-medium-image-zoom';
+import { SpinnerPhoto, InfoPhotoModal, Error } from '../../components';
 import { photoRequestAction, photoImageLoadAction } from '../../actions';
 import getPhotoSize from './getPhotoSize';
 import './index.scss';
@@ -62,7 +62,6 @@ class Photo extends Component {
       isSuccessPhotoRequest,
       photoImageLoadAction: photoLoadAction,
     } = this.props;
-
     const photoSize = { width: photoWidth, height: photoHeight };
     return (
       <div
@@ -187,13 +186,7 @@ class Photo extends Component {
           </Card>
         )}
         { !isPhotoLoading && !isSuccessPhotoRequest && requestError && (
-          <p>
-            Такое фото не найдено.
-            {' '}
-            <Link to="/">
-              Перейти на главную.
-            </Link>
-          </p>
+        <Error text="Sorry, no photo found" />
         )}
       </div>
     );
