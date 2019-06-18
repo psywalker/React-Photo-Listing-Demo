@@ -66,5 +66,12 @@ const initialStore = {
     userPhoto: '',
     userFirstPhoto: '',
   },
+  userlikesphotos: {
+    isUserLikesFetching: false,
+    cards: [],
+    totalCards: 10,
+    page: 1,
+    perPage: 6,
+  },
 };
 export default initialStore;

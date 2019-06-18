@@ -1,88 +1,63 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Row, Col, Pagination } from 'antd';
-import axios from 'axios';
-import get from 'lodash/get';
+import { userLikesRequestAction } from '../../actions';
 import { Spinner, PhotoCard } from '../../components';
-import { URL_FOR_USER_LIKES_QUERY } from '../../constants';
 import './index.css';
 
 class UserLikesPhotos extends PureComponent {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      isListingLoading: false,
-      cards: [],
-      totalCards: 10,
-      page: 1,
-      per_page: 6,
-    };
-  }
 
   componentDidMount = () => {
-    this.handleUserLikesPhotosQuery();
+    const {
+      userId,
+      page,
+      perPage,
+      userLikesRequestAction: requestAction,
+    } = this.props;
+
+    requestAction(userId, page, perPage);
   };
 
   handlePaginationChange = (current) => {
-    this.setState({
-      page: current,
-      per_page: 6,
-    }, this.handleUserLikesPhotosQuery);
-  };
+    const {
+      userId,
+      perPage,
+      userLikesRequestAction: requestAction,
+    } = this.props;
 
-  handleUserLikesPhotosQuery = () => {
-    const { history, userId } = this.props;
-    const { page, per_page: perPage } = this.state;
-    this.setState({ isListingLoading: true });
-    const API_URL = URL_FOR_USER_LIKES_QUERY(userId);
-    axios.get(API_URL, {
-      params: {
-        page,
-        perPage,
-        client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
-      },
-    }).then((res) => {
-      const cards = get(res, 'data') || [];
-      const totalCards = parseInt(get(res, 'headers["x-total"]'), 10) || 10;
-      this.setState({
-        cards,
-        isListingLoading: false,
-        totalCards,
-      });
-    })
-      .catch(() => {
-        history.push('/');
-      });
-  }
+    requestAction(userId, current, perPage);
+  };
 
   render() {
     const {
-      isListingLoading,
+      isUserLikesFetching,
       cards,
       totalCards,
       page,
-      per_page: perPage,
-    } = this.state;
+      perPage,
+    } = this.props;
+
     return (
       <div>
-        { isListingLoading && (<Spinner />)}
+        { isUserLikesFetching && (<Spinner />)}
         <div>
           <Row justify="center" style={{ margin: '20px 0' }}>
             <Col span={24}>
-              {!isListingLoading && (
+              {!isUserLikesFetching && (
                 <ul className="photo-list user-photos">
                   {cards.map(item => (
                     <li
-                      key={item.id}
+                      key={item.photoID}
                       className="photo-list__item pl-3"
                     >
                       <PhotoCard
-                        photoName={item.urls.regular}
-                        title=""
-                        tags={item.photo_tags}
-                        photoID={item.id}
-                        userID={item.user.username}
-                        userAvatar={item.user.profile_image.small}
+                        photoName={item.photoName}
+                        title={item.title}
+                        tags={item.tags}
+                        photoID={item.photoID}
+                        userID={item.userID}
+                        userAvatar={item.userAvatar}
                         onSearchTagValue={this.handleSearchText}
                       />
                     </li>
@@ -123,13 +98,37 @@ class UserLikesPhotos extends PureComponent {
 }
 
 UserLikesPhotos.propTypes = {
+  isUserLikesFetching: PropTypes.bool,
+  cards: PropTypes.arrayOf(PropTypes.shape({})),
+  totalCards: PropTypes.number,
+  page: PropTypes.number,
+  perPage: PropTypes.number,
+  userLikesRequestAction: PropTypes.func,
   history: PropTypes.shape({
     prop: PropTypes.string,
   }),
   userId: PropTypes.string,
 };
 UserLikesPhotos.defaultProps = {
+  isUserLikesFetching: true,
+  cards: [],
+  totalCards: 10,
+  page: 1,
+  perPage: 6,
+  userLikesRequestAction: () => {},
   history: {},
   userId: '',
 };
-export default UserLikesPhotos;
+const mapStateToProps = (state) => {
+  const { userlikesphotos } = state;
+  return userlikesphotos;
+};
+
+const mapDispatchToProps = ({
+  userLikesRequestAction,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UserLikesPhotos);

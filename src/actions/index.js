@@ -8,6 +8,14 @@ export const userRequestAction = match => ({
   match,
 });
 
+export const userLikesRequestAction = (userId, page, perPage) => ({
+  type: 'USER_LIKES_FETCHING',
+  isUserLikesFetching: true,
+  userId,
+  page,
+  perPage,
+});
+
 export const photoRequestAction = match => ({
   type: 'PHOTO_FETCHING',
   isPhotoLoading: true,

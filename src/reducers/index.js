@@ -4,6 +4,7 @@ import photolisting from './photolisting';
 import userstatistic from './userstatistic';
 import photo from './photo';
 import user from './user';
+import userlikesphotos from './userlikesphotos';
 
 const allRedusers = combineReducers({
   login,
@@ -11,6 +12,7 @@ const allRedusers = combineReducers({
   userstatistic,
   photo,
   user,
+  userlikesphotos,
 });
 
 export default allRedusers;
