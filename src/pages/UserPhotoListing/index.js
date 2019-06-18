@@ -1,92 +1,65 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Pagination } from 'antd';
-import axios from 'axios';
-import get from 'lodash/get';
+import { connect } from 'react-redux';
 import { Spinner, PhotoCard } from '../../components';
-import { URL_FOR_USER_PHOTO_LISTING_QUERY } from '../../constants';
+import { userPhotoListingRequestAction } from '../../actions';
 import './index.css';
 
 class UserPhotoListing extends PureComponent {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      isListingLoading: false,
-      cards: [],
-      totalCards: 10,
-      page: 1,
-      per_page: 6,
-    };
-  }
-
   componentDidMount = () => {
-    this.handleUserPhotoListingQuery();
+    const {
+      userId,
+      page,
+      perPage,
+      userPhotoListingRequestAction: requestAction,
+    } = this.props;
+
+    requestAction(userId, page, perPage);
   };
 
   handlePaginationChange = (current) => {
-    this.setState({
-      page: current,
-      per_page: 6,
-    }, this.handleUserPhotoListingQuery);
-  };
+    const {
+      userId,
+      perPage,
+      userPhotoListingRequestAction: requestAction,
+    } = this.props;
 
-  handleUserPhotoListingQuery = () => {
-    const { history, userId } = this.props;
-    const { page, per_page: perPage } = this.state;
-    this.setState({ isListingLoading: true });
-    const API_URL = URL_FOR_USER_PHOTO_LISTING_QUERY(userId);
-    axios.get(API_URL, {
-      params: {
-        page,
-        perPage,
-        client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
-      },
-    }).then((res) => {
-      const cards = get(res, 'data') || [];
-      const totalCards = parseInt(get(res, 'headers["x-total"]'), 10) || 10;
-      this.setState({
-        cards,
-        isListingLoading: false,
-        totalCards,
-      });
-    })
-      .catch(() => {
-        history.push('/');
-      });
-  }
+    requestAction(userId, current, perPage);
+  };
 
   render() {
     const {
-      isListingLoading,
+      isUserPhotoListingFetching,
       cards,
       totalCards,
       page,
-      per_page: perPage,
-    } = this.state;
+      perPage,
+    } = this.props;
     return (
       <div>
-        { isListingLoading && (<Spinner className="spinner" />)}
+        { isUserPhotoListingFetching && (<Spinner className="spinner" />)}
         <div>
           <Row
             justify="center"
             style={{ margin: '20px 0' }}
           >
             <Col span={24}>
-              {!isListingLoading && (
+              {!isUserPhotoListingFetching && (
                 <ul className="photo-list user-photos ">
                   {
                     cards.map(item => (
                       <li
-                        key={item.id}
+                        key={item.photoID}
                         className="photo-list__item pl-3"
                       >
                         <PhotoCard
-                          photoName={item.urls.regular}
-                          title=""
-                          tags={item.photo_tags}
-                          photoID={item.id}
-                          userID={item.user.username}
-                          userAvatar={item.user.profile_image.large}
+                          photoName={item.photoName}
+                          title={item.title}
+                          tags={item.tags}
+                          photoID={item.photoID}
+                          userID={item.userID}
+                          userAvatar={item.userAvatar}
                           onSearchTagValue={this.handleSearchText}
                         />
                       </li>
@@ -128,13 +101,37 @@ class UserPhotoListing extends PureComponent {
 }
 
 UserPhotoListing.propTypes = {
+  isUserPhotoListingFetching: PropTypes.bool,
+  cards: PropTypes.arrayOf(PropTypes.shape({})),
+  totalCards: PropTypes.number,
+  page: PropTypes.number,
+  perPage: PropTypes.number,
+  userPhotoListingRequestAction: PropTypes.func,
   history: PropTypes.shape({
     prop: PropTypes.string,
   }),
   userId: PropTypes.string,
 };
 UserPhotoListing.defaultProps = {
+  isUserPhotoListingFetching: true,
+  cards: [],
+  totalCards: 10,
+  page: 1,
+  perPage: 6,
+  userPhotoListingRequestAction: () => {},
   history: {},
   userId: '',
 };
-export default UserPhotoListing;
+const mapStateToProps = (state) => {
+  const { userphotolisting } = state;
+  return userphotolisting;
+};
+
+const mapDispatchToProps = ({
+  userPhotoListingRequestAction,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UserPhotoListing);

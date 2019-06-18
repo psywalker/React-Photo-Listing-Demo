@@ -16,6 +16,14 @@ export const userLikesRequestAction = (userId, page, perPage) => ({
   perPage,
 });
 
+export const userPhotoListingRequestAction = (userId, page, perPage) => ({
+  type: 'USER_PHOTO_LISTING_FETCHING',
+  isUserPhotoListingFetching: true,
+  userId,
+  page,
+  perPage,
+});
+
 export const photoRequestAction = match => ({
   type: 'PHOTO_FETCHING',
   isPhotoLoading: true,
