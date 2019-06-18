@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Highcharts from 'react-highcharts';
-import { Spinner } from '../../components';
+import { Spinner, Error } from '../../components';
 import { userStatistingRequestAction } from '../../actions';
 import './index.css';
 
@@ -51,13 +50,7 @@ class UserStatistic extends PureComponent {
         </div>
         )}
         { !isListingLoading && requestError && (
-          <p>
-            При запросе возникла ошибка. Попробуйте сделать запрос позже!
-            {' '}
-            <Link to="/">
-              Перейти на главную.
-            </Link>
-          </p>
+          <Error text="Failed to get user statistics. Try later again" />
         )}
       </div>
     );

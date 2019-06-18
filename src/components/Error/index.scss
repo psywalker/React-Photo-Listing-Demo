@@ -3,27 +3,27 @@
 
   & .ant-btn {
     background: transparent !important;
-    color: #000 !important;
-    border: 1px solid #000 !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
     font-size: 25px;
     padding: 25px !important;
     line-height: 0;
 
     &:hover {
       opacity: .8 !important;
-      color: #fff !important;
-      border: 1px solid #fff !important;
+      //color: #000 !important;
+      //border: 1px solid #000 !important;
     }
   }
 
   &__title {
-    font-size: 50px;
+    font-size: calc(1em + 4vw);
     font-weight: 400;
     color: #000;
   }
 
   &__subtitle {
-    font-size: 60px;
+    font-size: calc(1em + 6vw);
     font-weight: 400;
     color: #000;
   }
@@ -41,7 +41,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: calc(100vw - 30px);
     height: 100vh;
     position: fixed;
     left: 0;
