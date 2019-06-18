@@ -144,6 +144,7 @@ class Home extends PureComponent {
               <Pagination
                 className="ml-3"
                 showSizeChanger
+                hideOnSinglePage
                 onChange={this.getPaginationChange}
                 current={cardsData.page}
                 defaultCurrent={1}

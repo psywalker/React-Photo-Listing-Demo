@@ -36,6 +36,8 @@ class UserPhotoListing extends PureComponent {
       page,
       perPage,
     } = this.props;
+
+    console.log("2:: ", this.props)
     return (
       <div>
         { isUserPhotoListingFetching && (<Spinner className="spinner" />)}
@@ -86,10 +88,11 @@ class UserPhotoListing extends PureComponent {
                 <Pagination
                   className="ml-3 mb-5"
                   onChange={this.handlePaginationChange}
-                  showSizeChanger
+                  hideOnSinglePage
                   current={page}
                   defaultCurrent={1}
                   total={totalCards}
+                  pageSize={6}
                 />
               )}
             </Col>

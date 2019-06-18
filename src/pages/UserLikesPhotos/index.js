@@ -84,9 +84,11 @@ class UserLikesPhotos extends PureComponent {
                   className="ml-3 mb-5"
                   onChange={this.handlePaginationChange}
                   showSizeChanger
+                  hideOnSinglePage
                   current={page}
                   defaultCurrent={1}
                   total={totalCards}
+                  pageSize={6}
                 />
               )}
             </Col>
