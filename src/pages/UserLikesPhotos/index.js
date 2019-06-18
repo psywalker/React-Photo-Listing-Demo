@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Row, Col, Pagination } from 'antd';
 import { userLikesRequestAction } from '../../actions';
-import { Spinner, PhotoCard } from '../../components';
+import { Spinner, PhotoCard, Error } from '../../components';
 import './index.css';
 
 class UserLikesPhotos extends PureComponent {
@@ -36,11 +36,13 @@ class UserLikesPhotos extends PureComponent {
       totalCards,
       page,
       perPage,
+      requestError,
     } = this.props;
 
     return (
       <div>
         { isUserLikesFetching && (<Spinner />)}
+        { !isUserLikesFetching && !requestError && (
         <div>
           <Row justify="center" style={{ margin: '20px 0' }}>
             <Col span={24}>
@@ -83,7 +85,6 @@ class UserLikesPhotos extends PureComponent {
                 <Pagination
                   className="ml-3 mb-5"
                   onChange={this.handlePaginationChange}
-                  showSizeChanger
                   hideOnSinglePage
                   current={page}
                   defaultCurrent={1}
@@ -94,6 +95,10 @@ class UserLikesPhotos extends PureComponent {
             </Col>
           </Row>
         </div>
+        )}
+        { !isUserLikesFetching && requestError && (
+        <Error text="Sorry, an error occurred during the request. Try again later." />
+        )}
       </div>
     );
   }
@@ -106,6 +111,7 @@ UserLikesPhotos.propTypes = {
   page: PropTypes.number,
   perPage: PropTypes.number,
   userLikesRequestAction: PropTypes.func,
+  requestError: PropTypes.bool,
   history: PropTypes.shape({
     prop: PropTypes.string,
   }),
@@ -118,6 +124,7 @@ UserLikesPhotos.defaultProps = {
   page: 1,
   perPage: 6,
   userLikesRequestAction: () => {},
+  requestError: false,
   history: {},
   userId: '',
 };

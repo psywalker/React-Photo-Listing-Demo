@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Pagination } from 'antd';
 import { connect } from 'react-redux';
-import { Spinner, PhotoCard } from '../../components';
+import { Spinner, PhotoCard, Error } from '../../components';
 import { userPhotoListingRequestAction } from '../../actions';
 import './index.css';
 
@@ -35,12 +35,12 @@ class UserPhotoListing extends PureComponent {
       totalCards,
       page,
       perPage,
+      requestError,
     } = this.props;
-
-    console.log("2:: ", this.props)
     return (
       <div>
         { isUserPhotoListingFetching && (<Spinner className="spinner" />)}
+        { !isUserPhotoListingFetching && !requestError && (
         <div>
           <Row
             justify="center"
@@ -98,6 +98,10 @@ class UserPhotoListing extends PureComponent {
             </Col>
           </Row>
         </div>
+        )}
+        { !isUserPhotoListingFetching && requestError && (
+        <Error text="Sorry, an error occurred during the request. Try again later." />
+        )}
       </div>
     );
   }
@@ -110,6 +114,7 @@ UserPhotoListing.propTypes = {
   page: PropTypes.number,
   perPage: PropTypes.number,
   userPhotoListingRequestAction: PropTypes.func,
+  requestError: PropTypes.bool,
   history: PropTypes.shape({
     prop: PropTypes.string,
   }),
@@ -122,6 +127,7 @@ UserPhotoListing.defaultProps = {
   page: 1,
   perPage: 6,
   userPhotoListingRequestAction: () => {},
+  requestError: false,
   history: {},
   userId: '',
 };

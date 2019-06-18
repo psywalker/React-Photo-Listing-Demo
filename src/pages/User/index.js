@@ -13,6 +13,7 @@ import {
   UserLikesPhotos,
   UserStatistic,
   UserPhotoListing,
+  Error,
 } from '../../components';
 import './user.css';
 
@@ -30,61 +31,68 @@ class User extends PureComponent {
       isUserFetching,
       userPhoto,
       userFirstPhoto,
+      requestError,
     } = this.props;
     return (
       <div className="user-container">
         { isUserFetching && (<Spinner />)}
-
-        <Row style={{ display: 'flex', justifyContent: 'center' }}>
-          <Col>
-            <img
-              className="user-card__first-img"
-              alt="example"
-              src={userFirstPhoto}
-            />
-            <div className="user-card__photo-wrap">
-              <Avatar size={150} src={userPhoto} />
-            </div>
-          </Col>
-        </Row>
-        <Row
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            overflow: 'hidden',
-          }}
-        >
-          <Col>
-            <div className="user-tabs">
-              <Tabs
-                className="user-tabs__item"
-                defaultActiveKey="1"
-              >
-                <TabPane
-                  tab="My photos"
-                  key="1"
-                  className="user-tabs__pane"
-                >
-                  <UserPhotoListing userId={match.params.id} />
-                </TabPane>
-                <TabPane
-                  tab="My likes"
-                  key="2"
-                  className="user-tabs__pane"
-                >
-                  <UserLikesPhotos userId={match.params.id} />
-                </TabPane>
-                <TabPane
-                  tab="My statistic"
-                  key="3"
-                  className="user-tabs__pane"
-                >
-                  <UserStatistic userId={match.params.id} />
-                </TabPane>
-              </Tabs>
-            </div>
-          </Col>
-        </Row>
+        { !isUserFetching && !requestError && (
+          <div>
+            <Row style={{ display: 'flex', justifyContent: 'center' }}>
+              <Col>
+                <img
+                  className="user-card__first-img"
+                  alt="example"
+                  src={userFirstPhoto}
+                />
+                <div className="user-card__photo-wrap">
+                  <Avatar size={150} src={userPhoto} />
+                </div>
+              </Col>
+            </Row>
+            <Row
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                overflow: 'hidden',
+              }}
+            >
+              <Col>
+                <div className="user-tabs">
+                  <Tabs
+                    className="user-tabs__item"
+                    defaultActiveKey="1"
+                  >
+                    <TabPane
+                      tab="My photos"
+                      key="1"
+                      className="user-tabs__pane"
+                    >
+                      <UserPhotoListing userId={match.params.id} />
+                    </TabPane>
+                    <TabPane
+                      tab="My likes"
+                      key="2"
+                      className="user-tabs__pane"
+                    >
+                      <UserLikesPhotos userId={match.params.id} />
+                    </TabPane>
+                    <TabPane
+                      tab="My statistic"
+                      key="3"
+                      className="user-tabs__pane"
+                    >
+                      <UserStatistic userId={match.params.id} />
+                    </TabPane>
+                  </Tabs>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        )}
+        { !isUserFetching && requestError && (
+        <Error text="Sorry, user is not found" />
+        )}
       </div>
     );
   }
@@ -95,6 +103,7 @@ User.propTypes = {
   userPhoto: PropTypes.string,
   userFirstPhoto: PropTypes.string,
   userRequestAction: PropTypes.func,
+  requestError: PropTypes.bool,
   history: PropTypes.shape({
     prop: PropTypes.string,
   }),
@@ -107,6 +116,7 @@ User.defaultProps = {
   userPhoto: '',
   userFirstPhoto: '',
   userRequestAction: () => {},
+  requestError: false,
   history: {},
   match: {},
 };
