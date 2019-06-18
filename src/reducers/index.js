@@ -3,12 +3,14 @@ import login from './login';
 import photolisting from './photolisting';
 import userstatistic from './userstatistic';
 import photo from './photo';
+import user from './user';
 
 const allRedusers = combineReducers({
   login,
   photolisting,
   userstatistic,
   photo,
+  user,
 });
 
 export default allRedusers;

@@ -61,5 +61,10 @@ const initialStore = {
     isSuccessPhotoRequest: true,
     requestError: false,
   },
+  user: {
+    isUserFetching: false,
+    userPhoto: '',
+    userFirstPhoto: '',
+  },
 };
 export default initialStore;

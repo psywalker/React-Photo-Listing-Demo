@@ -1,69 +1,39 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
   Row,
   Col,
   Avatar,
   Tabs,
 } from 'antd';
-import axios from 'axios';
-import get from 'lodash/get';
+import { userRequestAction } from '../../actions';
 import {
   Spinner,
   UserLikesPhotos,
   UserStatistic,
   UserPhotoListing,
 } from '../../components';
-import { URL_FOR_USER_QUERY } from '../../constants';
 import './user.css';
 
 const { TabPane } = Tabs;
 
 class User extends PureComponent {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      isListingLoading: false,
-      userPhoto: '',
-      userFirstPhoto: '',
-    };
-  }
-
   componentDidMount = () => {
-    this.handleUserQuery();
+    const { match, userRequestAction: requestAction } = this.props;
+    requestAction(match);
   };
-
-  handleUserQuery = () => {
-    const { match, history } = this.props;
-    this.setState({ isListingLoading: true });
-    const API_URL = URL_FOR_USER_QUERY(match);
-    axios.get(API_URL)
-      .then((res) => {
-        const userPhoto = get(res, 'data.profile_image.large') || 'No User Photo';
-        const userFirstPhoto = get(res, 'data.photos[0].urls.regular') || 'No Photo';
-
-        this.setState({
-          isListingLoading: false,
-          userPhoto,
-          userFirstPhoto,
-        });
-      })
-      .catch(() => {
-        history.push('/');
-      });
-  }
 
   render() {
     const {
-      isListingLoading,
+      match,
+      isUserFetching,
       userPhoto,
       userFirstPhoto,
-    } = this.state;
-
-    const { match } = this.props;
+    } = this.props;
     return (
       <div className="user-container">
-        { isListingLoading && (<Spinner />)}
+        { isUserFetching && (<Spinner />)}
 
         <Row style={{ display: 'flex', justifyContent: 'center' }}>
           <Col>
@@ -121,6 +91,10 @@ class User extends PureComponent {
 }
 
 User.propTypes = {
+  isUserFetching: PropTypes.bool,
+  userPhoto: PropTypes.string,
+  userFirstPhoto: PropTypes.string,
+  userRequestAction: PropTypes.func,
   history: PropTypes.shape({
     prop: PropTypes.string,
   }),
@@ -129,7 +103,24 @@ User.propTypes = {
   }),
 };
 User.defaultProps = {
+  isUserFetching: true,
+  userPhoto: '',
+  userFirstPhoto: '',
+  userRequestAction: () => {},
   history: {},
   match: {},
 };
-export default User;
+
+const mapStateToProps = (state) => {
+  const { user } = state;
+  return user;
+};
+
+const mapDispatchToProps = ({
+  userRequestAction,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(User);
