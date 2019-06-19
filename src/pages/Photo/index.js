@@ -10,9 +10,11 @@ import {
   Popover,
 } from 'antd';
 import ImageZoom from 'react-medium-image-zoom';
+import { saveAs } from 'file-saver';
 import { SpinnerPhoto, InfoPhotoModal, Error } from '../../components';
 import { photoRequestAction, photoImageLoadAction } from '../../actions';
 import getPhotoSize from './getPhotoSize';
+import handleDowloadPhoto from './handleDowloadPhoto';
 import './index.scss';
 
 class Photo extends Component {
@@ -33,8 +35,14 @@ class Photo extends Component {
     if (prevProps.widthPhoto !== widthPhoto) this.setPhotoSize();
   }
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     window.removeEventListener('resize', this.setPhotoSize);
+  }
+
+  downLoadPhoto = () => {
+    const { info: { photoDesc }, altDescriprion, photoSrc } = this.props;
+    const photoName = handleDowloadPhoto(altDescriprion, photoDesc);
+    saveAs(photoSrc, photoName);
   }
 
   setPhotoSize = () => {
@@ -98,6 +106,7 @@ class Photo extends Component {
                 <Button
                   style={{ marginLeft: '10px' }}
                   href="#"
+                  onClick={this.downLoadPhoto}
                 >
                   <Icon type="download" />
                   Download
