@@ -18,24 +18,18 @@ export default function* cardsPhotosRequestSaga(action) {
         params: axiosRequestForcardsPhotos.params,
       });
 
-      const cards = get(response, 'data.results', []);
-      const newCards = [];
-      if (cards.length) {
-        cards.forEach((item) => {
-          const newCardsItem = {
-            photoName: get(item, 'urls.regular', ''),
-            photoDesc: get(item, 'description', ''),
-            title: get(item, 'user.first_name', ''),
-            tags: get(item, 'tags', []),
-            photoID: get(item, 'id', ''),
-            userID: get(item, 'user.username', ''),
-            userAvatar: get(item, 'user.profile_image.large', ''),
-          };
-          newCards.push(newCardsItem);
-        });
-      }
+      const cards = get(response, 'data.results', []).map(item => ({
+        photoName: get(item, 'urls.regular', ''),
+        photoDesc: get(item, 'description', ''),
+        title: get(item, 'user.first_name', ''),
+        tags: get(item, 'tags', []),
+        photoID: get(item, 'id', ''),
+        userID: get(item, 'user.username', ''),
+        userAvatar: get(item, 'user.profile_image.large', ''),
+      }));
+
       const dataForProps = {
-        cards: newCards,
+        cards,
         isListingLoading: false,
         totalCards: get(response, 'data.total', 10),
       };

@@ -18,26 +18,20 @@ export default function* userPhotoListingRequestSaga(action) {
       const response = yield axios.get(axiosRequestForcardsPhotos.url, {
         params: axiosRequestForcardsPhotos.params,
       });
-      const cards = get(response, 'data', []);
-      const newCards = [];
-      if (cards.length) {
-        cards.forEach((item) => {
-          const newCardsItem = {
-            photoName: get(item, 'urls.regular', ''),
-            photoDesc: get(item, 'description', ''),
-            title: get(item, 'user.first_name', ''),
-            tags: get(item, 'tags', []),
-            photoID: get(item, 'id', ''),
-            userID: get(item, 'user.username', ''),
-            userAvatar: get(item, 'user.profile_image.large', ''),
-          };
-          newCards.push(newCardsItem);
-        });
-      }
+      const cards = get(response, 'data', []).map(item => ({
+        photoName: get(item, 'urls.regular', ''),
+        photoDesc: get(item, 'description', ''),
+        title: get(item, 'user.first_name', ''),
+        tags: get(item, 'tags', []),
+        photoID: get(item, 'id', ''),
+        userID: get(item, 'user.username', ''),
+        userAvatar: get(item, 'user.profile_image.large', ''),
+      }));
+
       const dataForProps = {
         page,
         perPage,
-        cards: newCards,
+        cards,
         totalCards: parseInt(get(response, 'headers["x-total"]', 10), 10),
       };
       yield put({ type: 'USER_PHOTO_LISTING_SUCCESS', dataForProps });
