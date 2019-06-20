@@ -10,7 +10,7 @@ const userstatistic = (state = initialStore, action) => {
     case 'USER_STATISTIC_REQUEST_SUCCESS':
       return {
         ...state,
-        highchartsConfigs: action.highchartsConfigsObject,
+        chartData: action.chartData,
         isListingLoading: false,
         requestError: false,
       };

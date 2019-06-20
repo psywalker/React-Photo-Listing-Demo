@@ -14,7 +14,7 @@ import User from '../pages/User';
 import UserLikesPhotos from '../pages/UserLikesPhotos';
 import UserPhotoListing from '../pages/UserPhotoListing';
 import UserStatistic from '../pages/UserStatistic';
-
+import HighchartsHOC from './HighchartsHOC';
 
 export {
   ButtonBack,
@@ -33,4 +33,5 @@ export {
   UserLikesPhotos,
   UserPhotoListing,
   UserStatistic,
+  HighchartsHOC,
 };

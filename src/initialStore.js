@@ -24,11 +24,7 @@ const initialStore = {
   },
   userstatistic: {
     isListingLoading: false,
-    highchartsConfigs: {
-      highchartsDownloadsConfig: {},
-      highchartsViewsConfig: {},
-      highchartsLikesConfig: {},
-    },
+    chartData: [],
     requestError: false,
   },
   photo: {

@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Highcharts from 'react-highcharts';
-import { Spinner, Error } from '../../components';
+import { Spinner, Error, HighchartsHOC } from '../../components';
 import { userStatistingRequestAction } from '../../actions';
 import './index.css';
 
@@ -16,37 +15,15 @@ class UserStatistic extends PureComponent {
   render() {
     const {
       isListingLoading,
-      highchartsConfigs,
       requestError,
+      chartData,
     } = this.props;
     return (
       <div className="user-statistic">
         { isListingLoading && (<Spinner className="spinner" />)}
         { !isListingLoading && !requestError && (
         <div className="user-statistic__charts">
-          <div className="user-statistic__chart-wrap">
-            <Highcharts
-              key="1"
-              className="user-statistic__chart"
-              config={highchartsConfigs.highchartsDownloadsConfig}
-            />
-          </div>
-
-          <div className="user-statistic__chart-wrap">
-            <Highcharts
-              key="2"
-              className="user-statistic__chart"
-              config={highchartsConfigs.highchartsViewsConfig}
-            />
-          </div>
-
-          <div className="user-statistic__chart-wrap">
-            <Highcharts
-              key="3"
-              className="user-statistic__chart user-statistic-chart"
-              config={highchartsConfigs.highchartsLikesConfig}
-            />
-          </div>
+          { chartData.map((item, i) => <HighchartsHOC config={item} configNum={i} key={i} />) }
         </div>
         )}
         { !isListingLoading && requestError && (
@@ -61,22 +38,14 @@ UserStatistic.propTypes = {
   userStatistingRequestAction: PropTypes.func,
   isListingLoading: PropTypes.bool,
   userId: PropTypes.string,
-  highchartsConfigs: PropTypes.shape({
-    highchartsDownloadsConfig: PropTypes.shape({}),
-    highchartsViewsConfig: PropTypes.shape({}),
-    highchartsLikesConfig: PropTypes.shape({}),
-  }),
+  chartData: PropTypes.arrayOf(PropTypes.shape({})),
   requestError: PropTypes.bool,
 };
 UserStatistic.defaultProps = {
   userStatistingRequestAction: () => {},
   isListingLoading: false,
   userId: '',
-  highchartsConfigs: {
-    highchartsDownloadsConfig: {},
-    highchartsViewsConfig: {},
-    highchartsLikesConfig: {},
-  },
+  chartData: [],
   requestError: false,
 };
 
