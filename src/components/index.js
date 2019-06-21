@@ -7,6 +7,8 @@ import Spinner from './Spinner';
 import SpinnerPhoto from './SpinnerPhoto';
 import InfoPhotoModal from './InfoPhotoModal';
 import Error from './Error';
+import HighchartsHOC from './HighchartsHOC';
+import SmallPhotoListing from './SmallPhotoListing';
 import Home from '../pages/Home';
 import Photo from '../pages/Photo';
 import Profile from '../pages/Profile';
@@ -14,7 +16,7 @@ import User from '../pages/User';
 import UserLikesPhotos from '../pages/UserLikesPhotos';
 import UserPhotoListing from '../pages/UserPhotoListing';
 import UserStatistic from '../pages/UserStatistic';
-import HighchartsHOC from './HighchartsHOC';
+
 
 export {
   ButtonBack,
@@ -34,4 +36,5 @@ export {
   UserPhotoListing,
   UserStatistic,
   HighchartsHOC,
+  SmallPhotoListing,
 };

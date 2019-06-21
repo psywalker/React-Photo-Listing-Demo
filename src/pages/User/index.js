@@ -7,7 +7,7 @@ import {
   Avatar,
   Tabs,
 } from 'antd';
-import { userRequestAction } from '../../actions';
+import { userRequestAction, userLikesRequestAction } from '../../actions';
 import {
   Spinner,
   UserLikesPhotos,
