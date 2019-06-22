@@ -51,7 +51,7 @@ class UserLikesPhotos extends PureComponent {
                   {cards.map(item => (
                     <li
                       key={item.photoID}
-                      className="photo-list__item pl-3"
+                      className="photo-list__item"
                     >
                       <PhotoCard
                         photoName={item.photoName}
@@ -63,8 +63,7 @@ class UserLikesPhotos extends PureComponent {
                         onSearchTagValue={this.handleSearchText}
                       />
                     </li>
-                  ))
-                  }
+                  ))}
                 </ul>
               )}
             </Col>

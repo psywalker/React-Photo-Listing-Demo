@@ -70,88 +70,72 @@ class Home extends PureComponent {
     return (
       <div className="App">
         { isListingLoading && (<Spinner className="spinner" />)}
-        <div className="row">
-          <div className="col-12">
-            <Search
-              onSearchInputValue={this.getSearchText}
-              onChangeInputValue={this.getChangeInputValue}
-              queryText={cardsData.query}
+
+        <Search
+          onSearchInputValue={this.getSearchText}
+          onChangeInputValue={this.getChangeInputValue}
+          queryText={cardsData.query}
+        />
+
+        <ul className="nav-top">
+          {filters.map(item => (
+            <li
+              key={item.id}
+              className={`nav-top__item ${item.border ? 'nav-top__item_border-right' : ''}`}
+            >
+              <NavTop
+                navTopItemActive={navTopItemActive}
+                itemId={item.id}
+                onFilterItemValue={this.getFilterItemValue}
+                key={item.id}
+                label={item.label}
+                filterValue={item.filterValue}
+              />
+            </li>
+          ))}
+        </ul>
+
+        {!isListingLoading && (
+          <ul className="photo-list">
+            {
+            cards.map(item => (
+              <li
+                key={item.photoID}
+                className="photo-list__item"
+              >
+                <PhotoCard
+                  photoName={item.photoName}
+                  photoDesc={item.photoDesc}
+                  title={item.title}
+                  tags={item.tags}
+                  photoID={item.photoID}
+                  userID={item.userID}
+                  userAvatar={item.userAvatar}
+                  onSearchTagValue={this.getSearchText}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
+        {!totalCards && (
+          <div className="cards__text-empty">
+            <Error
+              text="No images were found for your request. Try to find more."
             />
           </div>
-        </div>
+        )}
 
-        <div className="row">
-          <div className="col-12">
-            <ul className="nav-top">
-              {filters.map(item => (
-                <li
-                  key={item.id}
-                  className={`nav-top__item ${item.border ? 'nav-top__item_border-right' : ''}`}
-                >
-                  <NavTop
-                    navTopItemActive={navTopItemActive}
-                    itemId={item.id}
-                    onFilterItemValue={this.getFilterItemValue}
-                    key={item.id}
-                    label={item.label}
-                    filterValue={item.filterValue}
-                  />
-                </li>
-              ))
-              }
-            </ul>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-12">
-            {!isListingLoading && (
-              <ul className="photo-list">
-                {
-                cards.map(item => (
-                  <li
-                    key={item.photoID}
-                    className="photo-list__item pl-3"
-                  >
-                    <PhotoCard
-                      photoName={item.photoName}
-                      photoDesc={item.photoDesc}
-                      title={item.title}
-                      tags={item.tags}
-                      photoID={item.photoID}
-                      userID={item.userID}
-                      userAvatar={item.userAvatar}
-                      onSearchTagValue={this.getSearchText}
-                    />
-                  </li>
-                ))
-                }
-              </ul>
-            )}
-            {!totalCards && (
-              <div className="cards__text-empty pl-3">
-                <Error
-                  text="No images were found for your request. Try to find more."
-                />
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12 pagination">
-
-            {totalCards > cardsData.per_page && (
-              <Pagination
-                className="ml-3"
-                showSizeChanger
-                hideOnSinglePage
-                onChange={this.getPaginationChange}
-                current={cardsData.page}
-                defaultCurrent={1}
-                total={totalCards}
-              />
-            )}
-          </div>
+        <div className="pagination">
+          {totalCards > cardsData.per_page && (
+            <Pagination
+              showSizeChanger
+              hideOnSinglePage
+              onChange={this.getPaginationChange}
+              current={cardsData.page}
+              defaultCurrent={1}
+              total={totalCards}
+            />
+          )}
         </div>
       </div>
     );
