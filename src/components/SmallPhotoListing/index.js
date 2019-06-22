@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Masonry from 'react-masonry-component';
 import { Pagination } from 'antd';
 import { smallPhotoListingRequestAction } from '../../actions';
 import { Spinner, Error } from '..';
@@ -41,27 +42,33 @@ class SmallPhotoListing extends PureComponent {
       cards,
       requestError,
     } = this.props;
+    const childElements = cards.map(item => (
+      <li className="small-photo-listing-list__item" key={item.photoID}>
+        <Link
+          className="small-photo-listing-list__link-photo"
+          to={`/photo/${item.photoID}`}
+        >
+          <img
+            className="small-photo-listing-list__photo"
+            alt="example"
+            src={item.photoUrl}
+          />
+        </Link>
+      </li>
+    ));
     return (
       <div className="small-photo-listing-container">
         { isSmallPhotoListingFetching && (<Spinner />)}
         { !isSmallPhotoListingFetching && !requestError && (
         <div className="small-photo-listing">
-          <ul className="small-photo-listing__list small-photo-listing-list">
-            {cards.map(item => (
-              <li className="small-photo-listing-list__item" key={item.photoID}>
-                <Link
-                  className="small-photo-listing__photo"
-                  to={`/photo/${item.photoID}`}
-                >
-                  <img
-                    className="small-photo-listing-list__photo"
-                    alt="example"
-                    src={item.photoUrl}
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <Masonry
+            className="small-photo-listing-list"
+            elementType="ul"
+            disableImagesLoaded={false}
+            updateOnEachImageLoad={false}
+          >
+            {childElements}
+          </Masonry>
           <div className="small-photo-listing__pagination">
             {totalCards > perPage && (
               <Pagination

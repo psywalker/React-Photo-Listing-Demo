@@ -4,7 +4,7 @@
 }
 
 .small-photo-listing {
-
+  width: 100%;
   &__list {
     display: flex;
     flex-wrap: wrap;
@@ -25,12 +25,26 @@
 }
 
 .small-photo-listing-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   margin-left: -10px;
+  display: flex;
+
   &__item {
     width: calc(100%/3 - 10px);
     margin: 0 0 10px 10px;
+    @media screen and ( min-width: 481px ) and ( max-width: 768px ) {
+      width: calc(100%/2 - 10px);
+    }
+    @media screen and ( min-width: 0px ) and ( max-width: 480px) {
+      width: 100%;
+    }
   }
 
+  &__link-photo {
+    display: block;
+  }
   &__photo {
     width: 100%;
     height: auto;
