@@ -7,13 +7,12 @@ import {
   Avatar,
   Tabs,
 } from 'antd';
-import { userRequestAction, userLikesRequestAction } from '../../actions';
+import { userRequestAction } from '../../actions';
 import {
   Spinner,
-  UserLikesPhotos,
   UserStatistic,
-  UserPhotoListing,
   Error,
+  SmallPhotoListing,
 } from '../../components';
 import './user.css';
 
@@ -68,14 +67,22 @@ class User extends PureComponent {
                       key="1"
                       className="user-tabs__pane"
                     >
-                      <UserPhotoListing userId={match.params.id} />
+                      <SmallPhotoListing
+                        userId={match.params.id}
+                        itemNum={0}
+                        name="photos"
+                      />
                     </TabPane>
                     <TabPane
                       tab="My likes"
                       key="2"
                       className="user-tabs__pane"
                     >
-                      <UserLikesPhotos userId={match.params.id} />
+                      <SmallPhotoListing
+                        userId={match.params.id}
+                        itemNum={1}
+                        name="likes"
+                      />
                     </TabPane>
                     <TabPane
                       tab="My statistic"

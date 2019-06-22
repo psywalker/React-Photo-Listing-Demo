@@ -5,8 +5,10 @@ import { Button } from 'antd';
 import { URL_FOR_ERROR_IMAGE } from '../../constants';
 import './index.scss';
 
-const Error = memo(({ text, error }) => (
-  <div className="error">
+const Error = memo(({ text, smallErrorFlag }) => (
+  <div
+    className={`${smallErrorFlag ? 'error error_small-list' : 'error '}`}
+  >
     <div className="error__content">
       <div className="error__content-inner">
         <h3 className="error__title">OOPS</h3>
@@ -27,10 +29,12 @@ const Error = memo(({ text, error }) => (
 
 Error.propTypes = {
   text: PropTypes.string,
+  smallErrorFlag: PropTypes.bool,
 };
 
 Error.defaultProps = {
   text: '',
+  smallErrorFlag: false,
 };
 
 export default Error;

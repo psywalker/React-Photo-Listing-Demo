@@ -1,54 +1,130 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Row, Col, Pagination } from 'antd';
-import { userLikesRequestAction, userPhotoListingRequestAction } from '../../actions';
-import { Spinner, PhotoCard, Error } from '../../components';
-import './index.css';
+import { Link } from 'react-router-dom';
+import { Pagination } from 'antd';
+import { smallPhotoListingRequestAction } from '../../actions';
+import { Spinner, Error } from '..';
+import './index.scss';
 
-class SmallPhotoListingHOC extends PureComponent {
+class SmallPhotoListing extends PureComponent {
   componentDidMount = () => {
     const {
       userId,
       page,
       perPage,
-      userPhotoListingRequestAction: requestAction,
+      name,
+      itemNum,
+      smallPhotoListingRequestAction: requestAction,
     } = this.props;
-
-    requestAction(userId, page, perPage);
+    requestAction(userId, page, perPage, name, itemNum);
   };
 
   handlePaginationChange = (current) => {
     const {
       userId,
       perPage,
-      userPhotoListingRequestAction: requestAction,
+      smallPhotoListingRequestAction: requestAction,
+      name,
+      itemNum,
     } = this.props;
 
-    requestAction(userId, current, perPage);
+    requestAction(userId, current, perPage, name, itemNum);
   };
 
   render() {
-    console.log("1: ", this.props)
+    const {
+      isSmallPhotoListingFetching,
+      totalCards,
+      page,
+      perPage,
+      cards,
+      requestError,
+    } = this.props;
     return (
-      <div className="small-photo-listing">
-        3333
+      <div className="small-photo-listing-container">
+        { isSmallPhotoListingFetching && (<Spinner />)}
+        { !isSmallPhotoListingFetching && !requestError && (
+        <div className="small-photo-listing">
+          <ul className="small-photo-listing__list small-photo-listing-list">
+            {cards.map(item => (
+              <li className="small-photo-listing-list__item" key={item.photoID}>
+                <Link
+                  className="small-photo-listing__photo"
+                  to={`/photo/${item.photoID}`}
+                >
+                  <img
+                    className="small-photo-listing-list__photo"
+                    alt="example"
+                    src={item.photoUrl}
+                  />
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="small-photo-listing__pagination">
+            {totalCards > perPage && (
+              <Pagination
+                className="ml-3 mb-5"
+                onChange={this.handlePaginationChange}
+                hideOnSinglePage
+                current={page}
+                defaultCurrent={1}
+                total={totalCards}
+                pageSize={6}
+              />
+            )}
+          </div>
+        </div>
+        )}
+        { !isSmallPhotoListingFetching && requestError && (
+        <Error
+          smallErrorFlag
+          text="Sorry, an error occurred during the request. Try again later."
+        />
+        )}
       </div>
     );
   }
-};
+}
 
-const mapStateToProps = (state) => {
-  const { userlikesphotos, userphotolisting } = state;
-  return { ...userlikesphotos, ...userphotolisting };
+SmallPhotoListing.propTypes = {
+  isSmallPhotoListingFetching: PropTypes.bool,
+  cards: PropTypes.arrayOf(PropTypes.shape({})),
+  itemNum: PropTypes.number,
+  totalCards: PropTypes.number,
+  page: PropTypes.number,
+  perPage: PropTypes.number,
+  name: PropTypes.string,
+  smallPhotoListingRequestAction: PropTypes.func,
+  requestError: PropTypes.bool,
+  history: PropTypes.shape({
+    prop: PropTypes.string,
+  }),
+  userId: PropTypes.string,
+};
+SmallPhotoListing.defaultProps = {
+  isSmallPhotoListingFetching: true,
+  cards: [],
+  itemNum: 0,
+  totalCards: 10,
+  page: 1,
+  perPage: 6,
+  name: 'photos',
+  smallPhotoListingRequestAction: () => {},
+  requestError: false,
+  history: {},
+  userId: '',
+};
+const mapStateToProps = (state, props) => {
+  return state.smallphotolisting[props.itemNum];
 };
 
 const mapDispatchToProps = ({
-  userLikesRequestAction,
-  userPhotoListingRequestAction,
+  smallPhotoListingRequestAction,
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SmallPhotoListingHOC);
+)(SmallPhotoListing);

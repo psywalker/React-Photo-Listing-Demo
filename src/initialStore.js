@@ -62,19 +62,21 @@ const initialStore = {
     userPhoto: '',
     userFirstPhoto: '',
   },
-  userlikesphotos: {
-    isUserLikesFetching: false,
-    cards: [],
-    totalCards: 10,
-    page: 1,
-    perPage: 6,
-  },
-  userphotolisting: {
-    isUserPhotoListingFetching: false,
-    cards: [],
-    totalCards: 10,
-    page: 1,
-    perPage: 6,
-  },
+  smallphotolisting: [
+    {
+      isSmallPhotoListingFetching: false,
+      cards: [],
+      totalCards: 10,
+      page: 1,
+      perPage: 6,
+    },
+    {
+      isSmallPhotoListingFetching: false,
+      cards: [],
+      totalCards: 10,
+      page: 1,
+      perPage: 6,
+    },
+  ],
 };
 export default initialStore;

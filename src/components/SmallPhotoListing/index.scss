@@ -1,0 +1,38 @@
+.small-photo-listing-container {
+  display: flex;
+  justify-content: center;
+}
+
+.small-photo-listing {
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__pagination {
+    margin: 20px 0 30px;
+  }
+}
+
+.small-photo-listing-list {
+  margin-left: -10px;
+  &__item {
+    width: calc(100%/3 - 10px);
+    margin: 0 0 10px 10px;
+  }
+
+  &__photo {
+    width: 100%;
+    height: auto;
+  }
+}

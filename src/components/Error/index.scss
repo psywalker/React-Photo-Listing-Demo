@@ -1,5 +1,6 @@
 .error {
   font-family: 'Fjalla One', sans-serif;
+  position: relative;
 
   & .ant-btn {
     background: transparent !important;
@@ -11,8 +12,6 @@
 
     &:hover {
       opacity: .8 !important;
-      //color: #000 !important;
-      //border: 1px solid #000 !important;
     }
   }
 
@@ -51,5 +50,25 @@
 
   &__content-inner {
     text-align: center;
+  }
+}
+
+.error.error_small-list {
+  & .error__bg {
+    display: none;
+  }
+
+  & .error__content {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0 20px;
+  }
+
+  & .error__title {
+    font-size: 16px;
+  }
+  & .error__subtitle {
+    font-size: 22px;
   }
 }
