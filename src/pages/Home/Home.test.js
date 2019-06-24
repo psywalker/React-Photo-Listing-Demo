@@ -2,9 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Home from './Home';
+import Home from '.';
 
 Enzyme.configure({ adapter: new Adapter() });
+
+describe('Test of component of Home', () => {
+
+  it('renders without crashing', () => {
+    const props = {
+      match: {
+        params: {
+          id: 'sC-BXbi9ajw',
+        },
+      },
+    };
+      
+    const home = shallow(<Home />);
+  });
+});
+
+
 // describe('Test of component of Home', () => {
 
 //   it('renders without crashing', () => {
