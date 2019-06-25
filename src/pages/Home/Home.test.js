@@ -2,22 +2,42 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Home from '.';
+import { Home } from '.';
+import filters from '../../filters';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Test of component of Home', () => {
-
-  it('renders without crashing', () => {
-    const props = {
-      match: {
-        params: {
-          id: 'sC-BXbi9ajw',
-        },
+  const initialProps = {
+    cardsPhotosRequestAction: () => {},
+    paginationChangeAction: () => {},
+    filterItemValueAction: () => {},
+    searchTextAction: () => {},
+    searchChangeInputValueAction: () => {},
+    filters: [],
+    isListingLoading: false,
+    cards: [],
+    cardsData: {
+      query: 'wallpapers',
+      page: 1,
+      per_page: 6,
+    },
+    totalCards: 10,
+    navTopItemActive: 2,
+    photolistingRequestError: false,
+    match: {
+      params: {
+        tag: {},
       },
-    };
-      
-    const home = shallow(<Home />);
+    },
+  };
+
+  describe('Home component initial', () => {
+    it('renders with initial props', () => {
+      const home = shallow(<Home {...initialProps} />);
+
+      expect(home.find('.nav-top__item')).toHaveLength(0);
+    });
   });
 });
 

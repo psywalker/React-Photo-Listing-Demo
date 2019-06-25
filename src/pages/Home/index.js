@@ -19,7 +19,7 @@ import {
 import 'antd/dist/antd.css';
 import './index.scss';
 
-class Home extends PureComponent {
+export class Home extends PureComponent {
   componentDidUpdate = (prevProps) => {
     const { cardsData, cardsPhotosRequestAction: handleAction } = this.props;
     if (prevProps.cardsData !== cardsData) handleAction(cardsData);
