@@ -1,15 +1,21 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Spinner, Error, HighchartsHOC } from '../../components';
 import { userStatistingRequestAction } from '../../actions';
 import './index.css';
 
-class UserStatistic extends PureComponent {
+class UserStatistic extends Component {
   componentDidMount = () => {
     const { userId } = this.props;
     const { userStatistingRequestAction: handleAction } = this.props;
     handleAction(userId);
+  }
+
+  shouldComponentUpdate = (nextProps) => {
+    const { chartData: charDataPrev } = this.props;
+    const { chartData: charDataNext } = nextProps;
+    return JSON.stringify(charDataPrev) !== JSON.stringify(charDataNext);
   }
 
   render() {
@@ -18,6 +24,7 @@ class UserStatistic extends PureComponent {
       requestError,
       chartData,
     } = this.props;
+
     return (
       <div className="user-statistic">
         { isListingLoading && (<Spinner className="spinner" />)}
