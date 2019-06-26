@@ -66,7 +66,7 @@ export class Home extends PureComponent {
       navTopItemActive,
       photolistingRequestError,
     } = this.props;
-    if (photolistingRequestError) return <div>Error loading photolisting</div>;
+    if (photolistingRequestError) return <div className="error-text">Error loading photolisting</div>;
     return (
       <div className="App">
         { isListingLoading && (<Spinner className="spinner" />)}
