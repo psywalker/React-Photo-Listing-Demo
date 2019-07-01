@@ -1,5 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test of component of Home Home component initial dispatches the \`cardsPhotosRequestAction()\` method it receives from props 1`] = `
+<div
+  className="App"
+>
+  <Search
+    onChangeInputValue={[Function]}
+    onSearchInputValue={[Function]}
+    queryText="wallpapers"
+  />
+  <ul
+    className="nav-top"
+  />
+  <ul
+    className="photo-list"
+  />
+  <div
+    className="cards__text-empty"
+  >
+    <Memo()
+      smallErrorFlag={false}
+      text="No images were found for your request. Try to find more."
+    />
+  </div>
+  <div
+    className="pagination"
+  />
+</div>
+`;
+
+exports[`Test of component of Home Home component initial dispatches the \`getPaginationChange()\` method it receives from props 1`] = `
+<div
+  className="App"
+>
+  <Search
+    onChangeInputValue={[Function]}
+    onSearchInputValue={[Function]}
+    queryText="wallpapers"
+  />
+  <ul
+    className="nav-top"
+  />
+  <ul
+    className="photo-list"
+  />
+  <div
+    className="cards__text-empty"
+  >
+    <Memo()
+      smallErrorFlag={false}
+      text="No images were found for your request. Try to find more."
+    />
+  </div>
+  <div
+    className="pagination"
+  />
+</div>
+`;
+
 exports[`Test of component of Home Home component initial renders with error 1`] = `
 <div
   className="error-text"

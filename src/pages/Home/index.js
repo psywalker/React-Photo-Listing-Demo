@@ -20,6 +20,11 @@ import 'antd/dist/antd.css';
 import './index.scss';
 
 export class Home extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.getFilterItemValue = this.getFilterItemValue.bind(this);
+  }
+
   componentDidUpdate = (prevProps) => {
     const { cardsData, cardsPhotosRequestAction: handleAction } = this.props;
     if (prevProps.cardsData !== cardsData) handleAction(cardsData);
@@ -41,10 +46,10 @@ export class Home extends PureComponent {
     handleAction(currentPage);
   };
 
-  getFilterItemValue = (itemText, itemId) => {
+  getFilterItemValue(itemText, itemId) {
     const { filterItemValueAction: handleAction } = this.props;
     handleAction(itemText, itemId);
-  };
+  }
 
   getSearchText = (text, tags) => {
     const { searchTextAction: handleAction } = this.props;

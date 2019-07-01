@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { BrowserRouter } from 'react-router-dom';
+import { shape } from 'prop-types';
 import { createSerializer } from 'enzyme-to-json';
 import { Home } from '.';
 import filters from '../../filters';
@@ -33,6 +35,22 @@ describe('Test of component of Home', () => {
       },
     },
   };
+  const router = {
+    history: new BrowserRouter().history,
+    route: {
+      location: {},
+      match: {},
+    },
+  };
+
+  const createContext = () => ({
+    context: { router },
+    childContextTypes: { router: shape({}) },
+  });
+
+  function mountWrap(node) {
+    return mount(node, createContext());
+  }
 
   describe('Home component initial', () => {
     it('renders with initial props', () => {
@@ -80,7 +98,34 @@ describe('Test of component of Home', () => {
       };
 
       const home = shallow(<Home {...props} />);
-      expect(mockFetchRequestAction).toHaveBeenCalled();
+      home.setProps({
+        cardsData: {
+          query: 'wallpapers',
+          page: 1,
+          per_page: 2,
+        },
+      });
+      expect(mockFetchRequestAction).toHaveBeenCalledTimes(1);
+      expect(home).toMatchSnapshot();
+    });
+
+    it('dispatches the `getPaginationChange()` method it receives from props', () => {
+      const mockFetchRequestAction = jest.fn();
+      const props = {
+        ...initialProps,
+        paginationChangeAction: mockFetchRequestAction,
+      };
+
+      const home = shallow(<Home {...props} />);
+      home.setProps({
+        cardsData: {
+          query: 'wallpapers',
+          page: 1,
+          per_page: 2,
+        },
+      });
+      home.instance().getPaginationChange();
+      expect(mockFetchRequestAction).toHaveBeenCalledTimes(1);
       expect(home).toMatchSnapshot();
     });
   });
@@ -105,79 +150,20 @@ describe('Test of component of Home', () => {
       expect(home).toMatchSnapshot();
     });
   });
+
+  describe('Mount tests', () => {
+    it('Test method of tags', () => {
+      const { id, filterValue } = filters[0];
+      const props = {
+        ...initialProps,
+        filters,
+      };
+
+      const home = mountWrap(<Home {...props} />);
+      home.instance().getFilterItemValue = jest.fn();
+      home.find('.ant-tag').first().simulate('click');
+      expect(home.instance().getFilterItemValue).toHaveBeenCalledTimes(1);
+      expect(home.instance().getFilterItemValue).toHaveBeenCalledWith(filterValue, id);
+    });
+  });
 });
-
-
-// describe('Test of component of Home', () => {
-
-//   it('renders without crashing', () => {
-//     const div = document.createElement('div');
-//   });
-// });
-// // describe('Test of component of Home', () => {
-
-// //   it('renders without crashing', () => {
-// //     const div = document.createElement('div');
-// //     ReactDOM.render(<Home />, div);
-// //     ReactDOM.unmountComponentAtNode(div);
-// //   });
-
-// //   it('Test Spinner', () => {
-
-// //     const home = shallow(<Home />);
-
-// //     home.setState({
-// //       isListingLoading: false,
-// //     });
-
-// //     expect(home.find('.spinner').length).toEqual(0);
-
-// //     home.setState({
-// //       isListingLoading: true,
-// //     });
-
-// //     expect(home.find('.spinner').length).toEqual(1);
-
-// //   });
-
-// //   it('Test display Pagination', () => {
-
-// //     const home = shallow(<Home />);
-
-// //     home.setState({
-// //       totalCards: 7,
-// //     });
-
-// //     expect(home.find('Pagination').length).toEqual(1);
-
-// //     home.setState({
-// //       totalCards: 5,
-// //     });
-
-// //     expect(home.find('Pagination').length).toEqual(0);
-// //   });
-
-// //   it('Test h2 while empty', () => {
-
-// //     const home = shallow(<Home />);
-
-// //     home.setState({
-// //       totalCards: 1,
-// //     });
-
-// //     expect(home.find('.cards__text-empty').length).toEqual(0);
-
-// //     home.setState({
-// //       totalCards: null,
-// //     });
-
-// //     expect(home.find('.cards__text-empty').length).toEqual(1);
-
-// //   });
-
-// //   it('Test Snapshot', () => {
-
-// //     const home = shallow(<Home />);
-// //     expect(home).toMatchSnapshot();
-// //   });
-// // });
