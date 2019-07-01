@@ -14,9 +14,11 @@ exports[`Test of component of Home Home component initial dispatches the \`cards
   />
   <ul
     className="photo-list"
+    data-test="PhotoList"
   />
   <div
     className="cards__text-empty"
+    data-test="CardsTextEmpty"
   >
     <Memo()
       smallErrorFlag={false}
@@ -25,6 +27,7 @@ exports[`Test of component of Home Home component initial dispatches the \`cards
   </div>
   <div
     className="pagination"
+    data-test="pagination"
   />
 </div>
 `;
@@ -43,9 +46,11 @@ exports[`Test of component of Home Home component initial dispatches the \`getPa
   />
   <ul
     className="photo-list"
+    data-test="PhotoList"
   />
   <div
     className="cards__text-empty"
+    data-test="CardsTextEmpty"
   >
     <Memo()
       smallErrorFlag={false}
@@ -54,122 +59,12 @@ exports[`Test of component of Home Home component initial dispatches the \`getPa
   </div>
   <div
     className="pagination"
+    data-test="pagination"
   />
 </div>
 `;
 
-exports[`Test of component of Home Home component initial renders with error 1`] = `
-<div
-  className="error-text"
->
-  Error loading photolisting
-</div>
-`;
-
-exports[`Test of component of Home Home component initial renders with initial props 1`] = `
-<div
-  className="App"
->
-  <Search
-    onChangeInputValue={[Function]}
-    onSearchInputValue={[Function]}
-    queryText="wallpapers"
-  />
-  <ul
-    className="nav-top"
-  />
-  <ul
-    className="photo-list"
-  />
-  <div
-    className="cards__text-empty"
-  >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
-  </div>
-  <div
-    className="pagination"
-  />
-</div>
-`;
-
-exports[`Test of component of Home Home component initial renders with loading 1`] = `
-<div
-  className="App"
->
-  <Memo()
-    className="spinner"
-  />
-  <Search
-    onChangeInputValue={[Function]}
-    onSearchInputValue={[Function]}
-    queryText="wallpapers"
-  />
-  <ul
-    className="nav-top"
-  />
-  <div
-    className="cards__text-empty"
-  >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
-  </div>
-  <div
-    className="pagination"
-  />
-</div>
-`;
-
-exports[`Test of component of Home Home component with content renders with cards 1`] = `
-<div
-  className="App"
->
-  <Search
-    onChangeInputValue={[Function]}
-    onSearchInputValue={[Function]}
-    queryText="wallpapers"
-  />
-  <ul
-    className="nav-top"
-  />
-  <ul
-    className="photo-list"
-  >
-    <li
-      className="photo-list__item"
-      key="kdGstD3te3M"
-    >
-      <Memo()
-        onSearchTagValue={[Function]}
-        photoDesc={null}
-        photoID="kdGstD3te3M"
-        photoName="https://images.unsplash.com/photo-1558981408-db0ecd8a1ee4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ"
-        tags={Array []}
-        title="Harley-Davidson"
-        userAvatar="https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128"
-        userID="harleydavidson"
-      />
-    </li>
-  </ul>
-  <div
-    className="cards__text-empty"
-  >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
-  </div>
-  <div
-    className="pagination"
-  />
-</div>
-`;
-
-exports[`Test of component of Home Mount tests renders with cards 1`] = `
+exports[`Test of component of Home Home component initial renders Error if \`totalCards\` > \`cardsData.per_page\` 1`] = `
 <div
   className="App"
 >
@@ -228,141 +123,325 @@ exports[`Test of component of Home Mount tests renders with cards 1`] = `
   />
   <ul
     className="photo-list"
+    data-test="PhotoList"
+  />
+  <div
+    className="pagination"
+    data-test="pagination"
+  />
+</div>
+`;
+
+exports[`Test of component of Home Home component initial renders with error 1`] = `
+<div
+  className="error-text"
+  data-test="errorText"
+>
+  Error loading photolisting
+</div>
+`;
+
+exports[`Test of component of Home Home component initial renders with initial props 1`] = `
+<div
+  className="App"
+>
+  <Search
+    onChangeInputValue={[Function]}
+    onSearchInputValue={[Function]}
+    queryText="wallpapers"
+  />
+  <ul
+    className="nav-top"
+  />
+  <ul
+    className="photo-list"
+    data-test="PhotoList"
+  />
+  <div
+    className="cards__text-empty"
+    data-test="CardsTextEmpty"
+  >
+    <Memo()
+      smallErrorFlag={false}
+      text="No images were found for your request. Try to find more."
+    />
+  </div>
+  <div
+    className="pagination"
+    data-test="pagination"
+  />
+</div>
+`;
+
+exports[`Test of component of Home Home component initial renders with loading 1`] = `
+<div
+  className="App"
+>
+  <Memo()
+    className="spinner"
+    data-test="spinner"
+  />
+  <Search
+    onChangeInputValue={[Function]}
+    onSearchInputValue={[Function]}
+    queryText="wallpapers"
+  />
+  <ul
+    className="nav-top"
+  />
+  <div
+    className="cards__text-empty"
+    data-test="CardsTextEmpty"
+  >
+    <Memo()
+      smallErrorFlag={false}
+      text="No images were found for your request. Try to find more."
+    />
+  </div>
+  <div
+    className="pagination"
+    data-test="pagination"
+  />
+</div>
+`;
+
+exports[`Test of component of Home Home component initial renders without loading 1`] = `
+<div
+  className="App"
+>
+  <Search
+    onChangeInputValue={[Function]}
+    onSearchInputValue={[Function]}
+    queryText="wallpapers"
+  />
+  <ul
+    className="nav-top"
+  />
+  <ul
+    className="photo-list"
+    data-test="PhotoList"
+  />
+  <div
+    className="cards__text-empty"
+    data-test="CardsTextEmpty"
+  >
+    <Memo()
+      smallErrorFlag={false}
+      text="No images were found for your request. Try to find more."
+    />
+  </div>
+  <div
+    className="pagination"
+    data-test="pagination"
+  />
+</div>
+`;
+
+exports[`Test of component of Home Home component with content renders with one cards 1`] = `
+<div
+  className="App"
+>
+  <Search
+    onChangeInputValue={[Function]}
+    onSearchInputValue={[Function]}
+    queryText="wallpapers"
+  />
+  <ul
+    className="nav-top"
+  />
+  <ul
+    className="photo-list"
+    data-test="PhotoList"
   >
     <li
       className="photo-list__item"
+      data-test="PhotoListItem"
       key="kdGstD3te3M"
     >
-      <div
-        className="photo-card-self"
-      >
-        <div
-          className="ant-card ant-card-bordered"
-          style={
-            Object {
-              "width": "100%",
-            }
-          }
-        >
-          <div
-            className="ant-card-cover"
-          >
-            <a
-              className="photo-card__photo-link"
-              href="/photo/kdGstD3te3M"
-              onClick={[Function]}
-            >
-              <img
-                alt="example"
-                className="photo-card__img"
-                src="https://images.unsplash.com/photo-1558981408-db0ecd8a1ee4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ"
-              />
-            </a>
-          </div>
-          <div
-            className="ant-card-body"
-            style={Object {}}
-          >
-            <a
-              className="photo-card-self__link-ava"
-              href="/users/harleydavidson"
-              onClick={[Function]}
-            >
-              <div
-                className="ant-card-meta"
-              >
-                <div
-                  className="ant-card-meta-avatar"
-                >
-                  <span
-                    className="ant-avatar ant-avatar-circle ant-avatar-image"
-                    style={Object {}}
-                  >
-                    <img
-                      onError={[Function]}
-                      src="https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128"
-                    />
-                  </span>
-                </div>
-                <div
-                  className="ant-card-meta-detail"
-                >
-                  <div
-                    className="ant-card-meta-title"
-                  >
-                    Harley-Davidson
-                  </div>
-                </div>
-              </div>
-            </a>
-            <p
-              className="photo-card-self__desc"
-            >
-              No Description
-            </p>
-            <div
-              className="photo-card-self__badge-wrap"
-            />
-          </div>
-        </div>
-      </div>
+      <Memo()
+        onSearchTagValue={[Function]}
+        photoDesc={null}
+        photoID="kdGstD3te3M"
+        photoName="https://id1"
+        tags={Array []}
+        title="Harley-Davidson"
+        userAvatar="https://images.unsplash"
+        userID="harleydavidson"
+      />
     </li>
   </ul>
   <div
     className="cards__text-empty"
+    data-test="CardsTextEmpty"
   >
-    <div
-      className="error "
-    >
-      <div
-        className="error__content"
-      >
-        <div
-          className="error__content-inner"
-        >
-          <h3
-            className="error__title"
-          >
-            OOPS
-          </h3>
-          <h2
-            className="error__subtitle"
-          >
-            No images were found for your request. Try to find more.
-          </h2>
-           
-          <a
-            href="/"
-            onClick={[Function]}
-          >
-            <button
-              className="ant-btn"
-              onClick={[Function]}
-              style={
-                Object {
-                  "marginLeft": "10px",
-                }
-              }
-              type="button"
-            >
-              <span
-                key=".0"
-              >
-                BACK TO HOME
-              </span>
-            </button>
-          </a>
-        </div>
-      </div>
-      <img
-        alt="No images were found for your request. Try to find more."
-        className="error__bg"
-        src="http://localhost:3000/error-image.jpg"
-      />
-    </div>
+    <Memo()
+      smallErrorFlag={false}
+      text="No images were found for your request. Try to find more."
+    />
   </div>
   <div
     className="pagination"
+    data-test="pagination"
+  />
+</div>
+`;
+
+exports[`Test of component of Home Home component with content renders with one cards 2`] = `
+<div
+  className="App"
+>
+  <Search
+    onChangeInputValue={[Function]}
+    onSearchInputValue={[Function]}
+    queryText="wallpapers"
+  />
+  <ul
+    className="nav-top"
+  />
+  <ul
+    className="photo-list"
+    data-test="PhotoList"
+  >
+    <li
+      className="photo-list__item"
+      data-test="PhotoListItem"
+      key="kdGstD3te3M"
+    >
+      <Memo()
+        onSearchTagValue={[Function]}
+        photoDesc={null}
+        photoID="kdGstD3te3M"
+        photoName="https://id1"
+        tags={Array []}
+        title="Harley-Davidson"
+        userAvatar="https://images.unsplash"
+        userID="harleydavidson"
+      />
+    </li>
+    <li
+      className="photo-list__item"
+      data-test="PhotoListItem"
+      key="kdGstD3te3M"
+    >
+      <Memo()
+        onSearchTagValue={[Function]}
+        photoDesc={null}
+        photoID="kdGstD3te3M"
+        photoName="https://id1"
+        tags={Array []}
+        title="Harley-Davidson"
+        userAvatar="https://images.unsplash"
+        userID="harleydavidson"
+      />
+    </li>
+    <li
+      className="photo-list__item"
+      data-test="PhotoListItem"
+      key="kdGstD3te3M"
+    >
+      <Memo()
+        onSearchTagValue={[Function]}
+        photoDesc={null}
+        photoID="kdGstD3te3M"
+        photoName="https://id1"
+        tags={Array []}
+        title="Harley-Davidson"
+        userAvatar="https://images.unsplash"
+        userID="harleydavidson"
+      />
+    </li>
+  </ul>
+  <div
+    className="cards__text-empty"
+    data-test="CardsTextEmpty"
+  >
+    <Memo()
+      smallErrorFlag={false}
+      text="No images were found for your request. Try to find more."
+    />
+  </div>
+  <div
+    className="pagination"
+    data-test="pagination"
+  />
+</div>
+`;
+
+exports[`Test of component of Home Home component with content renders with one filters for NavTop 1`] = `
+<div
+  className="App"
+>
+  <Search
+    onChangeInputValue={[Function]}
+    onSearchInputValue={[Function]}
+    queryText="wallpapers"
+  />
+  <ul
+    className="nav-top"
+  >
+    <li
+      className="nav-top__item "
+      data-test="navTopItem"
+      key="0"
+    >
+      <Memo()
+        filterValue="editorial"
+        itemId={0}
+        key="0"
+        label="Editorial"
+        navTopItemActive={2}
+        onFilterItemValue={[Function]}
+      />
+    </li>
+  </ul>
+  <ul
+    className="photo-list"
+    data-test="PhotoList"
+  />
+  <div
+    className="cards__text-empty"
+    data-test="CardsTextEmpty"
+  >
+    <Memo()
+      smallErrorFlag={false}
+      text="No images were found for your request. Try to find more."
+    />
+  </div>
+  <div
+    className="pagination"
+    data-test="pagination"
+  />
+</div>
+`;
+
+exports[`Test of component of Home Home component with content renders without filters for NavTop 1`] = `
+<div
+  className="App"
+>
+  <Search
+    onChangeInputValue={[Function]}
+    onSearchInputValue={[Function]}
+    queryText="wallpapers"
+  />
+  <ul
+    className="nav-top"
+  />
+  <ul
+    className="photo-list"
+    data-test="PhotoList"
+  />
+  <div
+    className="cards__text-empty"
+    data-test="CardsTextEmpty"
+  >
+    <Memo()
+      smallErrorFlag={false}
+      text="No images were found for your request. Try to find more."
+    />
+  </div>
+  <div
+    className="pagination"
+    data-test="pagination"
   />
 </div>
 `;

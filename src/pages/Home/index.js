@@ -20,11 +20,6 @@ import 'antd/dist/antd.css';
 import './index.scss';
 
 export class Home extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.getFilterItemValue = this.getFilterItemValue.bind(this);
-  }
-
   componentDidUpdate = (prevProps) => {
     const { cardsData, cardsPhotosRequestAction: handleAction } = this.props;
     if (prevProps.cardsData !== cardsData) handleAction(cardsData);
@@ -46,10 +41,10 @@ export class Home extends PureComponent {
     handleAction(currentPage);
   };
 
-  getFilterItemValue(itemText, itemId) {
+  getFilterItemValue = (itemText, itemId) => {
     const { filterItemValueAction: handleAction } = this.props;
     handleAction(itemText, itemId);
-  }
+  };
 
   getSearchText = (text, tags) => {
     const { searchTextAction: handleAction } = this.props;
@@ -71,10 +66,10 @@ export class Home extends PureComponent {
       navTopItemActive,
       photolistingRequestError,
     } = this.props;
-    if (photolistingRequestError) return <div className="error-text">Error loading photolisting</div>;
+    if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
     return (
       <div className="App">
-        { isListingLoading && (<Spinner className="spinner" />)}
+        { isListingLoading && (<Spinner className="spinner" data-test="spinner" />)}
 
         <Search
           onSearchInputValue={this.getSearchText}
@@ -86,6 +81,7 @@ export class Home extends PureComponent {
           {filters.map(item => (
             <li
               key={item.id}
+              data-test="navTopItem"
               className={`nav-top__item ${item.border ? 'nav-top__item_border-right' : ''}`}
             >
               <NavTop
@@ -101,10 +97,11 @@ export class Home extends PureComponent {
         </ul>
 
         {!isListingLoading && (
-          <ul className="photo-list">
+          <ul className="photo-list" data-test="PhotoList">
             {
             cards.map(item => (
               <li
+                data-test="PhotoListItem"
                 key={item.photoID}
                 className="photo-list__item"
               >
@@ -123,16 +120,17 @@ export class Home extends PureComponent {
           </ul>
         )}
         {!totalCards && (
-          <div className="cards__text-empty">
+          <div className="cards__text-empty" data-test="CardsTextEmpty">
             <Error
               text="No images were found for your request. Try to find more."
             />
           </div>
         )}
 
-        <div className="pagination">
+        <div className="pagination" data-test="pagination">
           {totalCards > cardsData.per_page && (
             <Pagination
+              data-test-id-pagination="pagination"
               showSizeChanger
               hideOnSinglePage
               onChange={this.getPaginationChange}
