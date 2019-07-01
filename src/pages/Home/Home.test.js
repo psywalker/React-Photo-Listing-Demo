@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 import { createSerializer } from 'enzyme-to-json';
 import { Home } from '.';
-import { Search } from '../../components';
+import { Search, Photo } from '../../components';
 import filters from '../../filters';
 
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
