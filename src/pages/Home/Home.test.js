@@ -124,7 +124,7 @@ describe('Test of component of Home', () => {
           per_page: 2,
         },
       });
-      home.instance().getPaginationChange();
+      home.instance().getPaginationChange()
       expect(mockFetchRequestAction).toHaveBeenCalledTimes(1);
       expect(home).toMatchSnapshot();
     });

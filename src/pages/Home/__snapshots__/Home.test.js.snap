@@ -168,3 +168,201 @@ exports[`Test of component of Home Home component with content renders with card
   />
 </div>
 `;
+
+exports[`Test of component of Home Mount tests renders with cards 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="search"
+  >
+    <span
+      className="ant-input-search search__input ant-input-affix-wrapper"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <input
+        className="ant-input"
+        disabled={false}
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Wallpapers"
+        style={null}
+        type="text"
+        value="wallpapers"
+      />
+      <span
+        className="ant-input-suffix"
+      >
+        <i
+          aria-label="icon: search"
+          className="anticon anticon-search ant-input-search-icon"
+          onClick={[Function]}
+          tabIndex={-1}
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="search"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            key="svg-search"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
+              key="svg-search-svg-0"
+            />
+          </svg>
+        </i>
+      </span>
+    </span>
+  </div>
+  <ul
+    className="nav-top"
+  />
+  <ul
+    className="photo-list"
+  >
+    <li
+      className="photo-list__item"
+      key="kdGstD3te3M"
+    >
+      <div
+        className="photo-card-self"
+      >
+        <div
+          className="ant-card ant-card-bordered"
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            className="ant-card-cover"
+          >
+            <a
+              className="photo-card__photo-link"
+              href="/photo/kdGstD3te3M"
+              onClick={[Function]}
+            >
+              <img
+                alt="example"
+                className="photo-card__img"
+                src="https://images.unsplash.com/photo-1558981408-db0ecd8a1ee4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ"
+              />
+            </a>
+          </div>
+          <div
+            className="ant-card-body"
+            style={Object {}}
+          >
+            <a
+              className="photo-card-self__link-ava"
+              href="/users/harleydavidson"
+              onClick={[Function]}
+            >
+              <div
+                className="ant-card-meta"
+              >
+                <div
+                  className="ant-card-meta-avatar"
+                >
+                  <span
+                    className="ant-avatar ant-avatar-circle ant-avatar-image"
+                    style={Object {}}
+                  >
+                    <img
+                      onError={[Function]}
+                      src="https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128"
+                    />
+                  </span>
+                </div>
+                <div
+                  className="ant-card-meta-detail"
+                >
+                  <div
+                    className="ant-card-meta-title"
+                  >
+                    Harley-Davidson
+                  </div>
+                </div>
+              </div>
+            </a>
+            <p
+              className="photo-card-self__desc"
+            >
+              No Description
+            </p>
+            <div
+              className="photo-card-self__badge-wrap"
+            />
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div
+    className="cards__text-empty"
+  >
+    <div
+      className="error "
+    >
+      <div
+        className="error__content"
+      >
+        <div
+          className="error__content-inner"
+        >
+          <h3
+            className="error__title"
+          >
+            OOPS
+          </h3>
+          <h2
+            className="error__subtitle"
+          >
+            No images were found for your request. Try to find more.
+          </h2>
+           
+          <a
+            href="/"
+            onClick={[Function]}
+          >
+            <button
+              className="ant-btn"
+              onClick={[Function]}
+              style={
+                Object {
+                  "marginLeft": "10px",
+                }
+              }
+              type="button"
+            >
+              <span
+                key=".0"
+              >
+                BACK TO HOME
+              </span>
+            </button>
+          </a>
+        </div>
+      </div>
+      <img
+        alt="No images were found for your request. Try to find more."
+        className="error__bg"
+        src="http://localhost:3000/error-image.jpg"
+      />
+    </div>
+  </div>
+  <div
+    className="pagination"
+  />
+</div>
+`;
