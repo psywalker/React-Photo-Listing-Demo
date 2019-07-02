@@ -5,14 +5,19 @@ import Adapter from 'enzyme-adapter-react-16';
 import { BrowserRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 import { createSerializer } from 'enzyme-to-json';
-import * as t from '.'
-import filters from '../../filters';
+import * as t from '../constants/actionTypes';
+import {
+  logoutAction,
+} from './';
 
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Test of actions', () => {
-   it('Test `logoutAction`', () => {
-     
-   });
+  it('Test `logoutAction`', () => {
+    const expectedAction = {
+      type: t.LOGOUT,
+    };
+    expect(logoutAction()).toEqual(expectedAction);
+  });
 });
