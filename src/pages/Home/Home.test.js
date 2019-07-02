@@ -159,26 +159,6 @@ describe('Test of component of Home', () => {
     });
   });
 
-  // describe('Test Search', () => {
-  //   it('Search ...', () => {
-  //     const mockFetchRequestAction = jest.fn();
-  //     const props = {
-  //       ...initialProps,
-  //       searchChangeInputValueAction: mockFetchRequestAction,
-  //     };
-
-  //     const home = mountWrap(<Home {...props} />);
-  //     const homeInstance = home.instance();
-  //     const searchInstance = home.find(Search).instance();
-  //     searchInstance.handleInputChange()
-  //     expect(mockFetchRequestAction).toHaveBeenCalledTimes(1);
-  //     // console.log(home.find(Search).instance());
-  //     // console.log(home.find(Search));
-  //     expect(home).toMatchSnapshot();
-
-  //   });
-  // });
-
   describe('Home component with content', () => {
     it('renders with one cards', () => {
       const props = {
@@ -264,17 +244,18 @@ describe('Test of component of Home', () => {
 
   describe('Mount tests', () => {
     it('Test method of tags', () => {
-      // const { id, filterValue } = filters[0];
-      // const props = {
-      //   ...initialProps,
-      //   filters,
-      // };
+      const { id, filterValue } = filters[0];
+      const props = {
+        ...initialProps,
+        filters,
+      };
 
-      // const home = mountWrap(<Home {...props} />);
-      // home.instance().getFilterItemValue = jest.fn();
-      // home.find('.ant-tag').first().simulate('click');
-      // expect(home.instance().getFilterItemValue).toHaveBeenCalledTimes(1);
-      // expect(home.instance().getFilterItemValue).toHaveBeenCalledWith(filterValue, id);
+      const home = mountWrap(<Home {...props} />);
+      home.instance().getFilterItemValue = jest.fn();
+      home.instance().forceUpdate();
+      home.find('.ant-tag').first().simulate('click');
+      expect(home.instance().getFilterItemValue).toHaveBeenCalledTimes(1);
+      expect(home.instance().getFilterItemValue).toHaveBeenCalledWith(filterValue, id);
     });
   });
 });
