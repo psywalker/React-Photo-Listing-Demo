@@ -1,28 +1,30 @@
 import axios from 'axios';
-import { put } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 import get from 'lodash/get';
 import { URL_FOR_PROFILE_ME, URL_FOR_TOKEN, URL_FOR_AVATAR_PLACEHOLDER } from '../constants';
+
+let headers = {};
+export const fetchLoginData = () => axios.get(URL_FOR_PROFILE_ME, { headers }).then(response => ({
+  profilePhotoUrl: get(response, 'data.profile_image.large', URL_FOR_AVATAR_PLACEHOLDER),
+  profileName: get(response, 'data.first_name', ''),
+  profileFullName: get(response, 'data.name', ''),
+  profileEmail: get(response, 'data.email', ''),
+}));
 
 export function* loginAfterToken(token) {
   if (token) {
     try {
-      const headers = {
+      headers = {
         Authorization: `Bearer ${token}`,
       };
-      const response = yield axios.get(URL_FOR_PROFILE_ME, { headers });
-      const dataForProps = {
-        profilePhotoUrl: get(response, 'data.profile_image.large', URL_FOR_AVATAR_PLACEHOLDER),
-        profileName: get(response, 'data.first_name', ''),
-        profileFullName: get(response, 'data.name', ''),
-        profileEmail: get(response, 'data.email', ''),
-      };
-
+      const dataForProps = yield call(fetchLoginData);
       yield put({ type: 'LOGIN_SUCCESS', dataForProps });
     } catch (error) {
       yield put({ type: 'LOGIN_ERROR' });
     }
   }
 }
+
 export function* loginSaga(action) {
   const tokenFirst = window.localStorage.getItem('token');
   if (tokenFirst) {
