@@ -15,10 +15,19 @@ const initStore = initialStore.login;
 
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
 Enzyme.configure({ adapter: new Adapter() });
-const assert = require('assert');
+
 
 describe('Test of saga `login`', () => {
-
+  const axiosRequestForToken = {
+    url: URL_FOR_TOKEN,
+    body: {
+      redirect_uri: process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI,
+      client_secret: process.env.REACT_APP_UNSPLASH_API_CLIENT_SECRET,
+      code: 'd3b75c4fdb173c3058a8f1aa80dff6b89b59bf4231cb4183a178edd0c4275c0d',
+      grant_type: 'authorization_code',
+      client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
+    },
+  };
   describe('loginAfterToken Saga test`', () => {
     it('loginAfterToken Saga test Passed', () => {
       const mockResponse = { profileEmail: 'email@email.com' };
@@ -65,19 +74,25 @@ describe('Test of saga `login`', () => {
 
     });
 
-    it('loginSaga Saga test if tokenFirst when `yield loginAfterToken(tokenFirst)`', () => {
-      // const mockResponse = '34uukj4349834983';
-      // const tokenFirst = '34uukj4349834983';
-      // const action = {
-      //   location: {
-      //     search: '?code=d3b75c4fdb173c3058a8f1aa80dff6b89b59bf4231cb4183a178edd0c4275c0d',
-      //   },
-      // };
-      // const gen = loginSaga(action);
-      // expect(gen.next().value).toEqual(call(fetchLoginForTokenData));
-      // expect(gen.next(mockResponse).value).toEqual(loginAfterToken(mockResponse));
-
+    it('loginSaga Saga test tokenFirst and `call(loginAfterToken, tokenFirst)`: Passed', () => {
+      const token = '34uukj4349834983';
+      window.localStorage.setItem('token', token);
+      const action = {
+        location: {
+          search: '?code=d3b75c4fdb173c3058a8f1aa80dff6b89b59bf4231cb4183a178edd0c4275c0d',
+        },
+      };
+      const gen = loginSaga(action);
+      expect(gen.next().value).toEqual(call(loginAfterToken, token));
     });
   });
 
+  describe('fetchLoginForTokenData Saga test`', () => {
+    it('fetchLoginForTokenData Saga test', () => {
+      const gen = fetchLoginForTokenData();
+      const token = '34uukj4349834983';
+      expect(gen.next().value).toEqual(call(axios.post, axiosRequestForToken.url, axiosRequestForToken.body));
+      expect(gen.next(token).value).toEqual(call(get, token, 'data.access_token', false));
+    });
+  });
 });

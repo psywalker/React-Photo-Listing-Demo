@@ -12,10 +12,11 @@ export const fetchLoginData = () => axios.get(URL_FOR_PROFILE_ME, { headers }).t
   profileEmail: get(response, 'data.email', ''),
 }));
 
-export const fetchLoginForTokenData = () => (
-  axios.post(axiosRequestForToken.url, axiosRequestForToken.body).then(response => (
-    get(response, 'data.access_token', false)
-  )));
+// export const fetchLoginForTokenData = () => (
+//   axios.post(axiosRequestForToken.url, axiosRequestForToken.body)
+//     .then(response => (
+//       get(response, 'data.access_token', false)
+//     )));
 
 export function* loginAfterToken(token) {
   if (token) {
@@ -33,10 +34,20 @@ export function* loginAfterToken(token) {
   }
 }
 
+export function* fetchLoginForTokenData() {
+  const response = yield call(axios.post, axiosRequestForToken.url, axiosRequestForToken.body);
+  const token = yield call(get, response, 'data.access_token', false);
+  // yield token;
+  // return get(response, 'data.access_token', false);
+  window.localStorage.clear();
+  window.localStorage.setItem('token', token);
+  yield call(loginAfterToken, token);
+}
+
 export function* loginSaga(action) {
   const tokenFirst = window.localStorage.getItem('token');
-  if (tokenFirst) {
-    yield loginAfterToken(tokenFirst);
+  if (tokenFirst && tokenFirst !== 'undefined') {
+    yield call(loginAfterToken, tokenFirst);
   } else {
     const code = action.location.search.split('?code=')[1];
     if (code) {
@@ -51,13 +62,11 @@ export function* loginSaga(action) {
             client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
           },
         };
-
-        // const response = yield axios.post(axiosRequestForToken.url, axiosRequestForToken.body);
-        // const token = get(response, 'data.access_token', false);
-        const token = yield call(fetchLoginForTokenData);
-        window.localStorage.clear();
-        window.localStorage.setItem('token', token);
-        yield call(loginAfterToken, token);
+        yield call(fetchLoginForTokenData);
+        // const token = yield call(fetchLoginForTokenData);
+        // window.localStorage.clear();
+        // window.localStorage.setItem('token', token);
+        // yield call(loginAfterToken, token);
       } catch (error) {
         yield put({ type: 'LOGIN_ERROR' });
       }
