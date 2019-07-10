@@ -3,7 +3,23 @@ import { put, call } from 'redux-saga/effects';
 import get from 'lodash/get';
 import { URL_FOR_USER_LIKES_QUERY, URL_FOR_USER_PHOTO_LISTING_QUERY } from '../constants';
 
-export default function* smallPhotoListingRequestSaga(action) {
+export const api = {
+  getSmallPhotoListing: (url, page, perPage) => {
+    const axiosRequestForcardsPhotos = {
+      url,
+      params: {
+        page,
+        per_page: perPage,
+        client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
+      },
+    };
+    return axios.get(axiosRequestForcardsPhotos.url, {
+      params: axiosRequestForcardsPhotos.params,
+    });
+  },
+};
+
+export function* smallPhotoListingRequestSaga(action) {
   const {
     userId,
     page,
@@ -16,19 +32,7 @@ export default function* smallPhotoListingRequestSaga(action) {
     try {
       let url = URL_FOR_USER_LIKES_QUERY(userId);
       if (name === 'photos') url = URL_FOR_USER_PHOTO_LISTING_QUERY(userId);
-      const axiosRequestForcardsPhotos = {
-        url,
-        params: {
-          page,
-          per_page: perPage,
-          client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
-        },
-      };
-
-      const response = yield call(axios.get, axiosRequestForcardsPhotos.url, {
-        params: axiosRequestForcardsPhotos.params,
-      });
-
+      const response = yield call(api.getSmallPhotoListing, url, page, perPage);
       const cards = get(response, 'data', []).map(item => ({
         photoUrl: get(item, 'urls.regular', ''),
         photoID: get(item, 'id', ''),
