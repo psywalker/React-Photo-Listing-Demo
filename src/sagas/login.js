@@ -7,12 +7,18 @@ import {
   URL_FOR_AVATAR_PLACEHOLDER,
 } from '../constants';
 
-export function* fetchLoginData(token) {
-  try {
+export const api = {
+  getProfile: (token) => {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    const response = yield call(axios.get, URL_FOR_PROFILE_ME, { headers });
+    return axios.get(URL_FOR_PROFILE_ME, { headers });
+  },
+};
+
+export function* fetchLoginData(token) {
+  try {
+    const response = yield call(api.getProfile, token);
     const dataForProps = {
       profilePhotoUrl: get(response, 'data.profile_image.large', URL_FOR_AVATAR_PLACEHOLDER),
       profileName: get(response, 'data.first_name', ''),

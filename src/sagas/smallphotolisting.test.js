@@ -5,12 +5,15 @@ import get from 'lodash/get';
 import { put, call } from 'redux-saga/effects';
 import axios from 'axios';
 import mockAxios from "axios";
+import sinon from 'sinon';
+import { runSaga } from 'redux-saga'
 import smallPhotoListingRequestSaga from './smallphotolisting';
 import {
   URL_FOR_USER_LIKES_QUERY,
   URL_FOR_USER_PHOTO_LISTING_QUERY,
 } from '../constants';
 
+var assert = require('assert');
 describe('Test `smallphotolisting` saga', () => {
   // Default Setting Data
   let action = {
@@ -88,45 +91,66 @@ describe('Test `smallphotolisting` saga', () => {
   // Mock
   describe('Test `smallPhotoListingRequestSaga` saga: mock request axios.get', () => {
     it('`smallPhotoListingRequestSaga`: Mock axios.get', async () => {
-      axios.get = jest.fn(() => Promise.resolve({ response }));
-      const request = async (url) => {
-        const res = await axios.get(`https://api.unsplash.com/users/harleydavidson/${url}`, {
-          params: {
-            params: axiosRequestForcardsPhotos.params,
-          },
-        });
-        return res;
-      };
-      mockAxios.get.mockImplementationOnce(() => Promise.resolve({
-        response,
-      }));
-      let res = response;
 
-      // request with `photos`
-      request('photos').then((r) => {
-        res = r.response;
-      });
-      expect(res).toEqual(response);
-      expect(mockAxios.get).toHaveBeenCalledTimes(1);
-      expect(mockAxios.get).toHaveBeenCalledWith(
-        'https://api.unsplash.com/users/harleydavidson/photos',
-        {
-          params: { params: axiosRequestForcardsPhotos.params },
-        },
-      );
+      // const request = async (url) => {
+      //   const res = await axios.get(`https://api.unsplash.com/users/harleydavidson/${url}`, {
+      //     params: {
+      //       params: axiosRequestForcardsPhotos.params,
+      //     },
+      //   });
+      //   return res;
+      // };
+      // const axiosGet = sinon.stub(axios, 'get').callsFake(() => {
+      //   return response;
+      // });
 
-      // request with `likes`
-      request('likes').then((r) => {
-        res = r.response;
-      });
-      expect(res).toEqual(response);
-      expect(mockAxios.get).toHaveBeenCalledTimes(2);
-      expect(mockAxios.get).toHaveBeenCalledWith(
-        'https://api.unsplash.com/users/harleydavidson/likes',
-        {
-          params: { params: axiosRequestForcardsPhotos.params },
-        },
-      );
+      // request('photos', () => {} );
+      // axiosGet.restore();
+      // sinon.assert.calledWith(axiosGet, axiosRequestForcardsPhotos.url, {
+      //   params: { params: axiosRequestForcardsPhotos.params },
+      // });
+      // sinon.assert.calledOnce(axiosGet);
+      // axiosGet.returns(54)
+
+      // axios.get = jest.fn(() => Promise.resolve({ response }));
+      // const request = async (url) => {
+      //   const res = await axios.get(`https://api.unsplash.com/users/harleydavidson/${url}`, {
+      //     params: {
+      //       params: axiosRequestForcardsPhotos.params,
+      //     },
+      //   });
+      //   return res;
+      // };
+      // mockAxios.get.mockImplementationOnce(() => Promise.resolve({
+      //   response,
+      // }));
+      // let res = response;
+
+      // // request with `photos`
+      // request('photos').then((r) => {
+      //   res = r.response;
+      // });
+      // expect(res).toEqual(response);
+      // expect(mockAxios.get).toHaveBeenCalledTimes(1);
+      // expect(mockAxios.get).toHaveBeenCalledWith(
+      //   'https://api.unsplash.com/users/harleydavidson/photos',
+      //   {
+      //     params: { params: axiosRequestForcardsPhotos.params },
+      //   },
+      // );
+
+      // // request with `likes`
+      // request('likes').then((r) => {
+      //   res = r.response;
+      // });
+      // expect(res).toEqual(response);
+      // expect(mockAxios.get).toHaveBeenCalledTimes(2);
+      // expect(mockAxios.get).toHaveBeenCalledWith(
+      //   'https://api.unsplash.com/users/harleydavidson/likes',
+      //   {
+      //     params: { params: axiosRequestForcardsPhotos.params },
+      //   },
+      // );
     });
   });
 });

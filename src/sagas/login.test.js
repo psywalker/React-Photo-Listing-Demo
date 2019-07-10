@@ -2,12 +2,15 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { createSerializer } from 'enzyme-to-json';
 import get from 'lodash/get';
+import { runSaga } from 'redux-saga';
 import { put, call } from 'redux-saga/effects';
 import axios from 'axios';
+import sinon from 'sinon';
 import {
   fetchLoginData,
   fetchGetToken,
   loginSaga,
+  api,
 } from './login';
 import {
   URL_FOR_PROFILE_ME,
@@ -53,21 +56,15 @@ describe('Test of saga `login`', () => {
   describe('`fetchLoginData` saga test', () => {
     it('`fetchLoginData` with Login Success', () => {
       const gen = fetchLoginData(token);
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      expect(gen.next().value).toEqual(call(axios.get, URL_FOR_PROFILE_ME, { headers }));
+      expect(gen.next().value).toEqual(call(api.getProfile, token));
       expect(gen.next(dataForProps).value).toEqual(put({ type: 'LOGIN_SUCCESS', dataForProps }));
       expect(gen.next()).toEqual({ done: true, value: undefined });
     });
-    it('`fetchLoginData` with Login Error', () => { 
+    it('`fetchLoginData` with Login Error', () => {
       const func = () => new Error('Login Error');
-      const gen = fetchLoginData();
+      const gen = fetchLoginData(token);
       const tokenEmpty = 'undefined';
-      const headers = {
-        Authorization: `Bearer ${tokenEmpty}`,
-      };
-      expect(gen.next().value).toEqual(call(axios.get, URL_FOR_PROFILE_ME, { headers }));
+      expect(gen.next().value).toEqual(call(api.getProfile, token));
       gen.next(func());
       expect(gen.throw('LOGIN_ERROR').value).toEqual(put({ type: 'LOGIN_ERROR' }));
       expect(gen.next()).toEqual({ done: true, value: undefined });
@@ -120,6 +117,29 @@ describe('Test of saga `login`', () => {
       const gen = loginSaga(action);
       expect(gen.next(code).value).toEqual(put({ type: 'LOGIN_ERROR' }));
       expect(gen.next()).toEqual({ done: true, value: undefined });
+    });
+
+    it('test acync', async () => {
+      const tokken = 'tokken';
+      const dispatched = [];
+      const stub = sinon.stub(api, 'getProfile');
+      stub.returns({ data: { email: 'test' } });
+
+      const result = await runSaga({
+        dispatch: a => dispatched.push(a),
+        getState: () => ({ state: 'test' }),
+      }, fetchLoginData, tokken).toPromise();
+
+      expect(stub.calledWith(tokken)).toBe(true);
+      expect(dispatched).toEqual([{
+        dataForProps: {
+          profileEmail: 'test',
+          profileFullName: '',
+          profileName: '',
+          profilePhotoUrl: 'http://localhost:3000/ava-placeholder.jpg',
+        },
+        type: 'LOGIN_SUCCESS',
+      }]);
     });
   });
 });
