@@ -6,7 +6,7 @@ import { put, call } from 'redux-saga/effects';
 import axios from 'axios';
 import mockAxios from "axios";
 import sinon from 'sinon';
-import { runSaga } from 'redux-saga'
+import { runSaga } from 'redux-saga';
 import { smallPhotoListingRequestSaga, api } from './smallphotolisting';
 import {
   URL_FOR_USER_LIKES_QUERY,
@@ -64,12 +64,7 @@ describe('Test `smallphotolisting` saga', () => {
   describe('Test `smallPhotoListingRequestSaga` saga', () => {
     it('`smallPhotoListingRequestSaga` with full `action` and `userId` parametr', () => {
       const gen = smallPhotoListingRequestSaga(action);
-      expect(gen.next().value).toEqual(call(
-        api.getSmallPhotoListing,
-        axiosRequestForcardsPhotos.url,
-        action.page,
-        action.perPage,
-      ));
+      expect(gen.next().value).toEqual(call(api.getSmallPhotoListing, action));
       expect(gen.next(dataForProps).value).toEqual(put({ type: 'SMALL_PHOTO_LISTING_SUCCESS', dataForProps }));
     });
 
@@ -77,12 +72,7 @@ describe('Test `smallphotolisting` saga', () => {
       const func = () => new Error('Request Error');
       const error = 'Request Error';
       const gen = smallPhotoListingRequestSaga(action);
-      expect(gen.next().value).toEqual(call(
-        api.getSmallPhotoListing,
-        axiosRequestForcardsPhotos.url,
-        action.page,
-        action.perPage,
-      ));
+      expect(gen.next().value).toEqual(call(api.getSmallPhotoListing, action));
       gen.next(func());
       expect(gen.throw('Request Error').value).toEqual(put({ type: 'SMALL_PHOTO_LISTING_REQUEST_ERROR', error, itemNum: action.itemNum }));
       expect(gen.next()).toEqual({ done: true, value: undefined });
@@ -111,22 +101,21 @@ describe('Test `smallphotolisting` saga', () => {
         type: 'SMALL_PHOTO_LISTING_FETCHING',
         userId: 'harleydavidson',
       };
-       
       const dispatched = [];
       const stub = sinon.stub(api, 'getSmallPhotoListing');
-      stub.returns({ data: response.data[0] });
+      stub.returns({ ...dataForProps, page: 5 });
 
       const result = await runSaga({
         dispatch: a => dispatched.push(a),
       }, smallPhotoListingRequestSaga, action).toPromise();
 
-      expect(stub.calledWith(
-        axiosRequestForcardsPhotos.url,
-        action.page,
-        action.perPage,
-      )).toBe(true);
+      expect(stub.calledWith(action)).toBe(true);
       expect(dispatched).toEqual([{
-        dataForProps, type: 'SMALL_PHOTO_LISTING_SUCCESS',
+        dataForProps: {
+          ...dataForProps,
+          page: 5,
+        },
+        type: 'SMALL_PHOTO_LISTING_SUCCESS',
       }]);
       // const request = async (url) => {
       //   const res = await axios.get(`https://api.unsplash.com/users/harleydavidson/${url}`, {

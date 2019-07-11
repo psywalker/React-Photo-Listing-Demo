@@ -12,19 +12,18 @@ export const api = {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    return axios.get(URL_FOR_PROFILE_ME, { headers });
+    return axios.get(URL_FOR_PROFILE_ME, { headers }).then(response => ({
+      profilePhotoUrl: get(response, 'data.profile_image.large', URL_FOR_AVATAR_PLACEHOLDER),
+      profileName: get(response, 'data.first_name', ''),
+      profileFullName: get(response, 'data.name', ''),
+      profileEmail: get(response, 'data.email', ''),
+    }));
   },
 };
 
 export function* fetchLoginData(token) {
   try {
-    const response = yield call(api.getProfile, token);
-    const dataForProps = {
-      profilePhotoUrl: get(response, 'data.profile_image.large', URL_FOR_AVATAR_PLACEHOLDER),
-      profileName: get(response, 'data.first_name', ''),
-      profileFullName: get(response, 'data.name', ''),
-      profileEmail: get(response, 'data.email', ''),
-    };
+    const dataForProps = yield call(api.getProfile, token);
     yield put({ type: 'LOGIN_SUCCESS', dataForProps });
   } catch {
     yield put({ type: 'LOGIN_ERROR' });

@@ -4,7 +4,15 @@ import get from 'lodash/get';
 import { URL_FOR_USER_LIKES_QUERY, URL_FOR_USER_PHOTO_LISTING_QUERY } from '../constants';
 
 export const api = {
-  getSmallPhotoListing: (url, page, perPage) => {
+  getSmallPhotoListing: ({
+    page,
+    perPage,
+    itemNum,
+    userId,
+    name,
+  }) => {
+    let url = URL_FOR_USER_LIKES_QUERY(userId);
+    if (name === 'photos') url = URL_FOR_USER_PHOTO_LISTING_QUERY(userId);
     const axiosRequestForcardsPhotos = {
       url,
       params: {
@@ -15,6 +23,19 @@ export const api = {
     };
     return axios.get(axiosRequestForcardsPhotos.url, {
       params: axiosRequestForcardsPhotos.params,
+    }).then((response) => {
+      const cards = get(response, 'data', []).map(item => ({
+        photoUrl: get(item, 'urls.regular', ''),
+        photoID: get(item, 'id', ''),
+      }));
+
+      return {
+        page,
+        perPage,
+        cards,
+        totalCards: parseInt(get(response, 'headers["x-total"]', 10), 10),
+        itemNum,
+      };
     });
   },
 };
@@ -22,30 +43,11 @@ export const api = {
 export function* smallPhotoListingRequestSaga(action) {
   const {
     userId,
-    page,
-    perPage,
-    name,
     itemNum,
   } = action;
-
   if (userId) {
     try {
-      let url = URL_FOR_USER_LIKES_QUERY(userId);
-      if (name === 'photos') url = URL_FOR_USER_PHOTO_LISTING_QUERY(userId);
-      const response = yield call(api.getSmallPhotoListing, url, page, perPage);
-      const cards = get(response, 'data', []).map(item => ({
-        photoUrl: get(item, 'urls.regular', ''),
-        photoID: get(item, 'id', ''),
-      }));
-
-      const dataForProps = {
-        page,
-        perPage,
-        cards,
-        totalCards: parseInt(get(response, 'headers["x-total"]', 10), 10),
-        itemNum,
-      };
-
+      const dataForProps = yield call(api.getSmallPhotoListing, action);
       yield put({ type: 'SMALL_PHOTO_LISTING_SUCCESS', dataForProps });
     } catch (error) {
       yield put({ type: 'SMALL_PHOTO_LISTING_REQUEST_ERROR', error, itemNum });

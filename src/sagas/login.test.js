@@ -123,7 +123,7 @@ describe('Test of saga `login`', () => {
       const tokken = 'tokken';
       const dispatched = [];
       const stub = sinon.stub(api, 'getProfile');
-      stub.returns({ data: { email: 'test' } });
+      stub.returns({ ...dataForProps, profileEmail: 'test' });
 
       const result = await runSaga({
         dispatch: a => dispatched.push(a),
