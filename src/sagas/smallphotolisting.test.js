@@ -7,11 +7,17 @@ import axios from 'axios';
 import mockAxios from "axios";
 import sinon from 'sinon';
 import { runSaga } from 'redux-saga';
-import { smallPhotoListingRequestSaga, api } from './smallphotolisting';
+import {
+  smallPhotoListingRequestSaga,
+  api,
+  processResponse,
+  getParamsRequest,
+} from './smallphotolisting';
 import {
   URL_FOR_USER_LIKES_QUERY,
   URL_FOR_USER_PHOTO_LISTING_QUERY,
 } from '../constants';
+import { async } from 'q';
 
 var assert = require('assert');
 describe('Test `smallphotolisting` saga', () => {
@@ -26,6 +32,7 @@ describe('Test `smallphotolisting` saga', () => {
     userId: 'harleydavidson',
   };
   const axiosRequestForcardsPhotos = {
+    method: 'get',
     params: {
       client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
       page: action.page,
@@ -88,10 +95,24 @@ describe('Test `smallphotolisting` saga', () => {
       expect(gen.next().value).toEqual(put({ type: 'SMALL_PHOTO_LISTING_REQUEST_ERROR', error, itemNum: action.itemNum }));
     });
   });
+  describe('Test `processResponse` and `getParamsRequest` functions', () => {
+    it('`processResponse`', () => {
+      expect(processResponse(response, action.page, action.perPage, action.itemNum)).toEqual(dataForProps);
+      expect(processResponse()).toEqual({
+        cards: [],
+        itemNum: undefined,
+        page: undefined,
+        perPage: undefined,
+        totalCards: 10,
+      });
+
+      expect(getParamsRequest(action.name, action.page, 'harleydavidson', action.perPage)).toEqual(axiosRequestForcardsPhotos);
+    });
+  });
 
   // Mock
-  describe('Test `smallPhotoListingRequestSaga` saga: mock request axios.get', () => {
-    it('`smallPhotoListingRequestSaga`: Mock axios.get', async () => {
+  describe('Test `smallPhotoListingRequestSaga` saga: mock axios.get and stub api', () => {
+    it('`smallPhotoListingRequestSaga`: Stub api', async () => {
       action = {
         isSmalPhotoListingFetching: true,
         itemNum: 0,
@@ -117,65 +138,48 @@ describe('Test `smallphotolisting` saga', () => {
         },
         type: 'SMALL_PHOTO_LISTING_SUCCESS',
       }]);
-      // const request = async (url) => {
-      //   const res = await axios.get(`https://api.unsplash.com/users/harleydavidson/${url}`, {
-      //     params: {
-      //       params: axiosRequestForcardsPhotos.params,
-      //     },
-      //   });
-      //   return res;
-      // };
-      // const axiosGet = sinon.stub(axios, 'get').callsFake(() => {
-      //   return response;
-      // });
+    });
 
-      // request('photos', () => {} );
-      // axiosGet.restore();
-      // sinon.assert.calledWith(axiosGet, axiosRequestForcardsPhotos.url, {
-      //   params: { params: axiosRequestForcardsPhotos.params },
-      // });
-      // sinon.assert.calledOnce(axiosGet);
-      // axiosGet.returns(54)
+    it('`smallPhotoListingRequestSaga`: Mock axios.get', async () => {
+      axios.get = jest.fn(() => Promise.resolve({ response }));
+      const request = async (url) => {
+        const res = await axios.get(`https://api.unsplash.com/users/harleydavidson/${url}`, {
+          params: {
+            params: axiosRequestForcardsPhotos.params,
+          },
+        });
+        return res;
+      };
+      mockAxios.get.mockImplementationOnce(() => Promise.resolve({
+        response,
+      }));
+      let res = response;
 
-      // axios.get = jest.fn(() => Promise.resolve({ response }));
-      // const request = async (url) => {
-      //   const res = await axios.get(`https://api.unsplash.com/users/harleydavidson/${url}`, {
-      //     params: {
-      //       params: axiosRequestForcardsPhotos.params,
-      //     },
-      //   });
-      //   return res;
-      // };
-      // mockAxios.get.mockImplementationOnce(() => Promise.resolve({
-      //   response,
-      // }));
-      // let res = response;
+      // request with `photos`
+      request('photos').then((r) => {
+        res = r.response;
+      });
+      expect(res).toEqual(response);
+      expect(mockAxios.get).toHaveBeenCalledTimes(1);
+      expect(mockAxios.get).toHaveBeenCalledWith(
+        'https://api.unsplash.com/users/harleydavidson/photos',
+        {
+          params: { params: axiosRequestForcardsPhotos.params },
+        },
+      );
 
-      // // request with `photos`
-      // request('photos').then((r) => {
-      //   res = r.response;
-      // });
-      // expect(res).toEqual(response);
-      // expect(mockAxios.get).toHaveBeenCalledTimes(1);
-      // expect(mockAxios.get).toHaveBeenCalledWith(
-      //   'https://api.unsplash.com/users/harleydavidson/photos',
-      //   {
-      //     params: { params: axiosRequestForcardsPhotos.params },
-      //   },
-      // );
-
-      // // request with `likes`
-      // request('likes').then((r) => {
-      //   res = r.response;
-      // });
-      // expect(res).toEqual(response);
-      // expect(mockAxios.get).toHaveBeenCalledTimes(2);
-      // expect(mockAxios.get).toHaveBeenCalledWith(
-      //   'https://api.unsplash.com/users/harleydavidson/likes',
-      //   {
-      //     params: { params: axiosRequestForcardsPhotos.params },
-      //   },
-      // );
+      // request with `likes`
+      request('likes').then((r) => {
+        res = r.response;
+      });
+      expect(res).toEqual(response);
+      expect(mockAxios.get).toHaveBeenCalledTimes(2);
+      expect(mockAxios.get).toHaveBeenCalledWith(
+        'https://api.unsplash.com/users/harleydavidson/likes',
+        {
+          params: { params: axiosRequestForcardsPhotos.params },
+        },
+      );
     });
   });
 });

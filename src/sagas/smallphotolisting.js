@@ -3,6 +3,35 @@ import { put, call } from 'redux-saga/effects';
 import get from 'lodash/get';
 import { URL_FOR_USER_LIKES_QUERY, URL_FOR_USER_PHOTO_LISTING_QUERY } from '../constants';
 
+export const processResponse = (response, page, perPage, itemNum) => {
+  const cards = get(response, 'data', []).map(item => ({
+    photoUrl: get(item, 'urls.regular', ''),
+    photoID: get(item, 'id', ''),
+  }));
+
+  return {
+    page,
+    perPage,
+    cards,
+    totalCards: parseInt(get(response, 'headers["x-total"]', 10), 10),
+    itemNum,
+  };
+};
+export const getParamsRequest = (name, page, userId, perPage) => {
+  let url = URL_FOR_USER_LIKES_QUERY(userId);
+  if (name === 'photos') url = URL_FOR_USER_PHOTO_LISTING_QUERY(userId);
+  const axiosRequestForcardsPhotos = {
+    method: 'get',
+    url,
+    params: {
+      page,
+      per_page: perPage,
+      client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
+    },
+  };
+  return axiosRequestForcardsPhotos;
+};
+
 export const api = {
   getSmallPhotoListing: ({
     page,
@@ -10,34 +39,8 @@ export const api = {
     itemNum,
     userId,
     name,
-  }) => {
-    let url = URL_FOR_USER_LIKES_QUERY(userId);
-    if (name === 'photos') url = URL_FOR_USER_PHOTO_LISTING_QUERY(userId);
-    const axiosRequestForcardsPhotos = {
-      url,
-      params: {
-        page,
-        per_page: perPage,
-        client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
-      },
-    };
-    return axios.get(axiosRequestForcardsPhotos.url, {
-      params: axiosRequestForcardsPhotos.params,
-    }).then((response) => {
-      const cards = get(response, 'data', []).map(item => ({
-        photoUrl: get(item, 'urls.regular', ''),
-        photoID: get(item, 'id', ''),
-      }));
-
-      return {
-        page,
-        perPage,
-        cards,
-        totalCards: parseInt(get(response, 'headers["x-total"]', 10), 10),
-        itemNum,
-      };
-    });
-  },
+  }) => axios(getParamsRequest(name, page, userId, perPage))
+    .then(response => processResponse(response, page, perPage, itemNum)),
 };
 
 export function* smallPhotoListingRequestSaga(action) {
