@@ -1,10 +1,7 @@
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { createSerializer } from 'enzyme-to-json';
 import get from 'lodash/get';
 import { put, call } from 'redux-saga/effects';
 import axios from 'axios';
-import mockAxios from "axios";
+import mockAxios from 'axios';
 import sinon from 'sinon';
 import { runSaga } from 'redux-saga';
 import {
@@ -13,13 +10,7 @@ import {
   processResponse,
   getParamsRequest,
 } from './smallphotolisting';
-import {
-  URL_FOR_USER_LIKES_QUERY,
-  URL_FOR_USER_PHOTO_LISTING_QUERY,
-} from '../constants';
-import { async } from 'q';
 
-var assert = require('assert');
 describe('Test `smallphotolisting` saga', () => {
   // Default Setting Data
   let action = {
