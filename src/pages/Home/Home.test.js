@@ -83,7 +83,6 @@ describe('Test of component of Home', () => {
 
       const home = shallow(<Home {...props} />);
       expect(home.find('[data-test="spinner"]')).toHaveLength(0);
-      expect(home.find('[data-test="PhotoList"]')).toHaveLength(1);
       expect(home).toMatchSnapshot();
     });
 
@@ -160,77 +159,6 @@ describe('Test of component of Home', () => {
   });
 
   describe('Home component with content', () => {
-    it('renders with one cards', () => {
-      const props = {
-        ...initialProps,
-        cards: [
-          {
-            photoDesc: null,
-            photoID: 'kdGstD3te3M',
-            photoName: 'https://id1',
-            title: 'Harley-Davidson',
-            userAvatar: 'https://images.unsplash',
-            userID: 'harleydavidson',
-          },
-        ],
-      };
-      const home = shallow(<Home {...props} />);
-      expect(home.find('.photo-list__item')).toHaveLength(1);
-      expect(home).toMatchSnapshot();
-    });
-
-    it('renders with one cards', () => {
-      const props = {
-        ...initialProps,
-        cards: [
-          {
-            photoDesc: null,
-            photoID: 'kdGstD3te3M',
-            photoName: 'https://id1',
-            title: 'Harley-Davidson',
-            userAvatar: 'https://images.unsplash',
-            userID: 'harleydavidson',
-          },
-          {
-            photoDesc: null,
-            photoID: 'kdGstD3te3M',
-            photoName: 'https://id1',
-            title: 'Harley-Davidson',
-            userAvatar: 'https://images.unsplash',
-            userID: 'harleydavidson',
-          },
-          {
-            photoDesc: null,
-            photoID: 'kdGstD3te3M',
-            photoName: 'https://id1',
-            title: 'Harley-Davidson',
-            userAvatar: 'https://images.unsplash',
-            userID: 'harleydavidson',
-          },
-        ],
-      };
-      const home = shallow(<Home {...props} />);
-      expect(home.find('.photo-list__item')).toHaveLength(3);
-      expect(home).toMatchSnapshot();
-    });
-
-    it('renders with one filters for NavTop', () => {
-      const props = {
-        ...initialProps,
-        filters: [
-          {
-            id: 0,
-            label: 'Editorial',
-            filterValue: 'editorial',
-          },
-        ],
-      };
-
-      const home = shallow(<Home {...props} />);
-      expect(home.find('.nav-top__item')).toHaveLength(1);
-      expect(home).toMatchSnapshot();
-    });
-
     it('renders without filters for NavTop', () => {
       const props = {
         ...initialProps,

@@ -9,12 +9,14 @@ exports[`Test of component of Home Home component initial dispatches the \`cards
     onSearchInputValue={[Function]}
     queryText="wallpapers"
   />
-  <ul
-    className="nav-top"
+  <Memo()
+    filters={Array []}
+    navTopItemActive={2}
+    onFilterItemValue={[Function]}
   />
-  <ul
-    className="photo-list"
-    data-test="PhotoList"
+  <Memo()
+    cards={Array []}
+    onSearchTagValue={[Function]}
   />
   <div
     className="cards__text-empty"
@@ -38,12 +40,14 @@ exports[`Test of component of Home Home component initial dispatches the \`getPa
     onSearchInputValue={[Function]}
     queryText="wallpapers"
   />
-  <ul
-    className="nav-top"
+  <Memo()
+    filters={Array []}
+    navTopItemActive={2}
+    onFilterItemValue={[Function]}
   />
-  <ul
-    className="photo-list"
-    data-test="PhotoList"
+  <Memo()
+    cards={Array []}
+    onSearchTagValue={[Function]}
   />
   <div
     className="cards__text-empty"
@@ -144,12 +148,14 @@ exports[`Test of component of Home Home component initial renders with initial p
     onSearchInputValue={[Function]}
     queryText="wallpapers"
   />
-  <ul
-    className="nav-top"
+  <Memo()
+    filters={Array []}
+    navTopItemActive={2}
+    onFilterItemValue={[Function]}
   />
-  <ul
-    className="photo-list"
-    data-test="PhotoList"
+  <Memo()
+    cards={Array []}
+    onSearchTagValue={[Function]}
   />
   <div
     className="cards__text-empty"
@@ -177,8 +183,10 @@ exports[`Test of component of Home Home component initial renders with loading 1
     onSearchInputValue={[Function]}
     queryText="wallpapers"
   />
-  <ul
-    className="nav-top"
+  <Memo()
+    filters={Array []}
+    navTopItemActive={2}
+    onFilterItemValue={[Function]}
   />
   <div
     className="cards__text-empty"
@@ -202,180 +210,14 @@ exports[`Test of component of Home Home component initial renders without loadin
     onSearchInputValue={[Function]}
     queryText="wallpapers"
   />
-  <ul
-    className="nav-top"
+  <Memo()
+    filters={Array []}
+    navTopItemActive={2}
+    onFilterItemValue={[Function]}
   />
-  <ul
-    className="photo-list"
-    data-test="PhotoList"
-  />
-  <div
-    className="cards__text-empty"
-    data-test="CardsTextEmpty"
-  >
-    No images were found for your request. Try to find more.
-  </div>
-  <div
-    className="pagination"
-    data-test="pagination"
-  />
-</div>
-`;
-
-exports[`Test of component of Home Home component with content renders with one cards 1`] = `
-<div
-  className="App"
->
-  <Search
-    onChangeInputValue={[Function]}
-    onSearchInputValue={[Function]}
-    queryText="wallpapers"
-  />
-  <ul
-    className="nav-top"
-  />
-  <ul
-    className="photo-list"
-    data-test="PhotoList"
-  >
-    <li
-      className="photo-list__item"
-      data-test="PhotoListItem"
-      key="kdGstD3te3M"
-    >
-      <Memo()
-        onSearchTagValue={[Function]}
-        photoDesc={null}
-        photoID="kdGstD3te3M"
-        photoName="https://id1"
-        tags={Array []}
-        title="Harley-Davidson"
-        userAvatar="https://images.unsplash"
-        userID="harleydavidson"
-      />
-    </li>
-  </ul>
-  <div
-    className="cards__text-empty"
-    data-test="CardsTextEmpty"
-  >
-    No images were found for your request. Try to find more.
-  </div>
-  <div
-    className="pagination"
-    data-test="pagination"
-  />
-</div>
-`;
-
-exports[`Test of component of Home Home component with content renders with one cards 2`] = `
-<div
-  className="App"
->
-  <Search
-    onChangeInputValue={[Function]}
-    onSearchInputValue={[Function]}
-    queryText="wallpapers"
-  />
-  <ul
-    className="nav-top"
-  />
-  <ul
-    className="photo-list"
-    data-test="PhotoList"
-  >
-    <li
-      className="photo-list__item"
-      data-test="PhotoListItem"
-      key="kdGstD3te3M"
-    >
-      <Memo()
-        onSearchTagValue={[Function]}
-        photoDesc={null}
-        photoID="kdGstD3te3M"
-        photoName="https://id1"
-        tags={Array []}
-        title="Harley-Davidson"
-        userAvatar="https://images.unsplash"
-        userID="harleydavidson"
-      />
-    </li>
-    <li
-      className="photo-list__item"
-      data-test="PhotoListItem"
-      key="kdGstD3te3M"
-    >
-      <Memo()
-        onSearchTagValue={[Function]}
-        photoDesc={null}
-        photoID="kdGstD3te3M"
-        photoName="https://id1"
-        tags={Array []}
-        title="Harley-Davidson"
-        userAvatar="https://images.unsplash"
-        userID="harleydavidson"
-      />
-    </li>
-    <li
-      className="photo-list__item"
-      data-test="PhotoListItem"
-      key="kdGstD3te3M"
-    >
-      <Memo()
-        onSearchTagValue={[Function]}
-        photoDesc={null}
-        photoID="kdGstD3te3M"
-        photoName="https://id1"
-        tags={Array []}
-        title="Harley-Davidson"
-        userAvatar="https://images.unsplash"
-        userID="harleydavidson"
-      />
-    </li>
-  </ul>
-  <div
-    className="cards__text-empty"
-    data-test="CardsTextEmpty"
-  >
-    No images were found for your request. Try to find more.
-  </div>
-  <div
-    className="pagination"
-    data-test="pagination"
-  />
-</div>
-`;
-
-exports[`Test of component of Home Home component with content renders with one filters for NavTop 1`] = `
-<div
-  className="App"
->
-  <Search
-    onChangeInputValue={[Function]}
-    onSearchInputValue={[Function]}
-    queryText="wallpapers"
-  />
-  <ul
-    className="nav-top"
-  >
-    <li
-      className="nav-top__item "
-      data-test="navTopItem"
-      key="0"
-    >
-      <Memo()
-        filterValue="editorial"
-        itemId={0}
-        key="0"
-        label="Editorial"
-        navTopItemActive={2}
-        onFilterItemValue={[Function]}
-      />
-    </li>
-  </ul>
-  <ul
-    className="photo-list"
-    data-test="PhotoList"
+  <Memo()
+    cards={Array []}
+    onSearchTagValue={[Function]}
   />
   <div
     className="cards__text-empty"
@@ -399,12 +241,14 @@ exports[`Test of component of Home Home component with content renders without f
     onSearchInputValue={[Function]}
     queryText="wallpapers"
   />
-  <ul
-    className="nav-top"
+  <Memo()
+    filters={Array []}
+    navTopItemActive={2}
+    onFilterItemValue={[Function]}
   />
-  <ul
-    className="photo-list"
-    data-test="PhotoList"
+  <Memo()
+    cards={Array []}
+    onSearchTagValue={[Function]}
   />
   <div
     className="cards__text-empty"
