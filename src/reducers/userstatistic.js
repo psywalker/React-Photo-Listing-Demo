@@ -10,7 +10,7 @@ const userstatistic = (state = initialStore, action) => {
     case 'USER_STATISTIC_REQUEST_SUCCESS':
       return {
         ...state,
-        chartData: action.chartData,
+        chartData: action.dataForProps,
         isListingLoading: false,
         requestError: false,
       };
