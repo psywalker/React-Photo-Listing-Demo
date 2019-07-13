@@ -3,7 +3,7 @@ import { loginSaga } from './login';
 import { cardsPhotosRequestSaga } from './photolisting';
 import { userStatisticRequestSaga } from './userstatistic';
 import photoRequestSaga from './photo';
-import userRequestSaga from './user';
+import { userRequestSaga } from './user';
 import { smallPhotoListingRequestSaga } from './smallphotolisting';
 
 export default function* rootSaga() {

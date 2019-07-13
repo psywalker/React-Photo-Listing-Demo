@@ -1,8 +1,6 @@
 
-import get from 'lodash/get';
 import { runSaga } from 'redux-saga';
 import { put, call } from 'redux-saga/effects';
-import axios from 'axios';
 import sinon from 'sinon';
 import {
   userStatisticRequestSaga,
