@@ -7,18 +7,27 @@ import {
   URL_FOR_AVATAR_PLACEHOLDER,
 } from '../constants';
 
+export const processResponse = response => ({
+  profilePhotoUrl: get(response, 'data.profile_image.large', URL_FOR_AVATAR_PLACEHOLDER),
+  profileName: get(response, 'data.first_name', ''),
+  profileFullName: get(response, 'data.name', ''),
+  profileEmail: get(response, 'data.email', ''),
+});
+export const getParamsRequest = (token) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const axiosRequestParamsForToken = {
+    method: 'get',
+    url: URL_FOR_PROFILE_ME,
+    headers,
+  };
+  return axiosRequestParamsForToken;
+};
+
+const getProfile = token => axios(getParamsRequest(token)).then(processResponse);
 export const api = {
-  getProfile: (token) => {
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
-    return axios.get(URL_FOR_PROFILE_ME, { headers }).then(response => ({
-      profilePhotoUrl: get(response, 'data.profile_image.large', URL_FOR_AVATAR_PLACEHOLDER),
-      profileName: get(response, 'data.first_name', ''),
-      profileFullName: get(response, 'data.name', ''),
-      profileEmail: get(response, 'data.email', ''),
-    }));
-  },
+  getProfile,
 };
 
 export function* fetchLoginData(token) {

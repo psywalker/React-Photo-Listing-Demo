@@ -11,11 +11,10 @@ import {
   fetchGetToken,
   loginSaga,
   api,
+  processResponse,
+  getParamsRequest,
 } from './login';
-import {
-  URL_FOR_PROFILE_ME,
-  URL_FOR_TOKEN,
-} from '../constants';
+import { URL_FOR_TOKEN, URL_FOR_PROFILE_ME } from '../constants';
 
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
 Enzyme.configure({ adapter: new Adapter() });
@@ -32,10 +31,13 @@ describe('Test of saga `login`', () => {
   )
     ? action.location.search.split('?code=')[1]
     : false;
-  const response = {
+  let response = {
     data: {
       access_token: '60e28dea945bad4a82cd97255a13fc1bac0c72ca1518612afa4c8ba31380f6c3',
     },
+  };
+  const headers = {
+    Authorization: `Bearer ${token}`,
   };
   const axiosRequestForToken = {
     url: URL_FOR_TOKEN,
@@ -47,7 +49,12 @@ describe('Test of saga `login`', () => {
       client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
     },
   };
-  const dataForProps = {
+  const axiosRequestParamsForToken = {
+    method: 'get',
+    url: URL_FOR_PROFILE_ME,
+    headers,
+  };
+  let dataForProps = {
     profileEmail: '',
     profileFullName: '',
     profileName: '',
@@ -118,7 +125,29 @@ describe('Test of saga `login`', () => {
       expect(gen.next(code).value).toEqual(put({ type: 'LOGIN_ERROR' }));
       expect(gen.next()).toEqual({ done: true, value: undefined });
     });
+  });
 
+  describe('Test `processResponse` and `getParamsRequest` functions', () => {
+    it('`processResponse`', () => {
+      expect(processResponse()).toEqual(dataForProps);
+      response = {
+        data: {
+          ...response.data,
+          email: 'psywalker09@gmail.com',
+        },
+      };
+      dataForProps = {
+        ...dataForProps,
+        profileEmail: 'psywalker09@gmail.com',
+      };
+
+      expect(processResponse(response)).toEqual(dataForProps);
+      expect(getParamsRequest(token)).toEqual(axiosRequestParamsForToken);
+    });
+  });
+
+  // Mock
+  describe('Test `cardsPhotosRequestSaga` saga: mock axios.get and stub api', () => {
     it('test acync', async () => {
       const tokken = 'tokken';
       const dispatched = [];
