@@ -6,7 +6,6 @@ import {
   Home,
   Photo,
   User,
-  UserPhotoListing,
   Profile,
   HeaderApp,
 } from '../components';
@@ -25,7 +24,6 @@ const Main = memo(() => (
       <div className="page">
         <Switch>
           <Route exact path="/" component={props => <Home {...props} />} />
-          <Route path="/users/:id/photos" component={props => <UserPhotoListing {...props} />} />
           <Route path="/photo/:id" component={props => <Photo {...props} />} />
           <Route path="/profile" component={props => <Profile {...props} />} />
           <Route path="/users/:id" component={props => <User {...props} />} />

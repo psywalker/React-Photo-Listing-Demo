@@ -1,8 +1,6 @@
 import {
   LOGOUT,
   USER_FETCHING,
-  USER_LIKES_FETCHING,
-  USER_PHOTO_LISTING_FETCHING,
   SMALL_PHOTO_LISTING_FETCHING,
   PHOTO_FETCHING,
   PHOTO_IMAGE_LOAD,
@@ -33,22 +31,6 @@ export const smallPhotoListingRequestAction = (userId, page, perPage, name, item
   perPage,
   name,
   itemNum,
-});
-
-export const userLikesRequestAction = (userId, page, perPage) => ({
-  type: USER_LIKES_FETCHING,
-  isUserLikesFetching: true,
-  userId,
-  page,
-  perPage,
-});
-
-export const userPhotoListingRequestAction = (userId, page, perPage) => ({
-  type: USER_PHOTO_LISTING_FETCHING,
-  isUserPhotoListingFetching: true,
-  userId,
-  page,
-  perPage,
 });
 
 export const photoRequestAction = match => ({

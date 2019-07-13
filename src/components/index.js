@@ -14,7 +14,6 @@ import Photo from '../pages/Photo';
 import Profile from '../pages/Profile';
 import User from '../pages/User';
 import UserStatistic from '../pages/UserStatistic';
-import UserPhotoListing from '../pages/UserPhotoListing';
 
 export {
   ButtonBack,
@@ -31,7 +30,6 @@ export {
   Profile,
   User,
   UserStatistic,
-  UserPhotoListing,
   HighchartsHOC,
   SmallPhotoListing,
 };
