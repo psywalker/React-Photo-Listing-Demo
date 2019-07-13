@@ -3,7 +3,7 @@ import { put, call } from 'redux-saga/effects';
 import get from 'lodash/get';
 import { URL_FOR_USER_LIKES_QUERY, URL_FOR_USER_PHOTO_LISTING_QUERY } from '../constants';
 
-export const processResponse = (response, page, perPage, itemNum) => {
+export const processResponse = response => (page, perPage, itemNum) => {
   const cards = get(response, 'data', []).map(item => ({
     photoUrl: get(item, 'urls.regular', ''),
     photoID: get(item, 'id', ''),
@@ -32,15 +32,17 @@ export const getParamsRequest = (name, page, userId, perPage) => {
   return axiosRequestForcardsPhotos;
 };
 
+const getSmallPhotoListing = ({
+  page,
+  perPage,
+  itemNum,
+  userId,
+  name,
+}) => axios(getParamsRequest(name, page, userId, perPage))
+  .then(processResponse(page, perPage, itemNum));
+
 export const api = {
-  getSmallPhotoListing: ({
-    page,
-    perPage,
-    itemNum,
-    userId,
-    name,
-  }) => axios(getParamsRequest(name, page, userId, perPage))
-    .then(response => processResponse(response, page, perPage, itemNum)),
+  getSmallPhotoListing,
 };
 
 export function* smallPhotoListingRequestSaga(action) {

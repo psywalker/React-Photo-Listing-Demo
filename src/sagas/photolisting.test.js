@@ -1,3 +1,6 @@
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { createSerializer } from 'enzyme-to-json';
 import get from 'lodash/get';
 import { put, call } from 'redux-saga/effects';
 import axios from 'axios';
@@ -11,6 +14,8 @@ import {
   getParamsRequest,
 } from './photolisting';
 import { URL_FOR_CARDS_PHOTOS } from '../constants';
+expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('Test `cardsPhotosRequestSaga` saga', () => {
   // Default Setting Data
@@ -146,7 +151,7 @@ describe('Test `cardsPhotosRequestSaga` saga', () => {
 
     it('`smallPhotoListingRequestSaga`: Mock axios.get', async () => {
       axios.get = jest.fn(() => Promise.resolve({ response }));
-      const request = async (url) => {
+      const request = async () => {
         const res = await axios.get(URL_FOR_CARDS_PHOTOS, {
           params: {
             params: axiosRequestForPhotoListing.params,
@@ -159,25 +164,11 @@ describe('Test `cardsPhotosRequestSaga` saga', () => {
       }));
       let res = response;
 
-      // request with `photos`
-      request('photos').then((r) => {
+      request().then((r) => {
         res = r.response;
       });
       expect(res).toEqual(response);
       expect(mockAxios.get).toHaveBeenCalledTimes(1);
-      expect(mockAxios.get).toHaveBeenCalledWith(
-        URL_FOR_CARDS_PHOTOS,
-        {
-          params: { params: axiosRequestForPhotoListing.params },
-        },
-      );
-
-      // request with `likes`
-      request('likes').then((r) => {
-        res = r.response;
-      });
-      expect(res).toEqual(response);
-      expect(mockAxios.get).toHaveBeenCalledTimes(2);
       expect(mockAxios.get).toHaveBeenCalledWith(
         URL_FOR_CARDS_PHOTOS,
         {

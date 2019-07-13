@@ -32,9 +32,10 @@ export const getParamsRequest = (cardsData) => {
   return axiosRequestForPhotoListing;
 };
 
+const getPhotoListing = cardsData => axios(getParamsRequest(cardsData)).then(processResponse);
+
 export const api = {
-  getPhotoListing: cardsData => axios(getParamsRequest(cardsData))
-    .then(processResponse),
+  getPhotoListing,
 };
 
 export function* cardsPhotosRequestSaga(action) {
