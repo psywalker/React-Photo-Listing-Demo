@@ -20,10 +20,7 @@ exports[`Test of component of Home Home component initial dispatches the \`cards
     className="cards__text-empty"
     data-test="CardsTextEmpty"
   >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
+    No images were found for your request. Try to find more.
   </div>
   <div
     className="pagination"
@@ -52,10 +49,7 @@ exports[`Test of component of Home Home component initial dispatches the \`getPa
     className="cards__text-empty"
     data-test="CardsTextEmpty"
   >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
+    No images were found for your request. Try to find more.
   </div>
   <div
     className="pagination"
@@ -161,10 +155,7 @@ exports[`Test of component of Home Home component initial renders with initial p
     className="cards__text-empty"
     data-test="CardsTextEmpty"
   >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
+    No images were found for your request. Try to find more.
   </div>
   <div
     className="pagination"
@@ -193,10 +184,7 @@ exports[`Test of component of Home Home component initial renders with loading 1
     className="cards__text-empty"
     data-test="CardsTextEmpty"
   >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
+    No images were found for your request. Try to find more.
   </div>
   <div
     className="pagination"
@@ -225,10 +213,7 @@ exports[`Test of component of Home Home component initial renders without loadin
     className="cards__text-empty"
     data-test="CardsTextEmpty"
   >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
+    No images were found for your request. Try to find more.
   </div>
   <div
     className="pagination"
@@ -274,10 +259,7 @@ exports[`Test of component of Home Home component with content renders with one 
     className="cards__text-empty"
     data-test="CardsTextEmpty"
   >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
+    No images were found for your request. Try to find more.
   </div>
   <div
     className="pagination"
@@ -355,10 +337,7 @@ exports[`Test of component of Home Home component with content renders with one 
     className="cards__text-empty"
     data-test="CardsTextEmpty"
   >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
+    No images were found for your request. Try to find more.
   </div>
   <div
     className="pagination"
@@ -402,10 +381,7 @@ exports[`Test of component of Home Home component with content renders with one 
     className="cards__text-empty"
     data-test="CardsTextEmpty"
   >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
+    No images were found for your request. Try to find more.
   </div>
   <div
     className="pagination"
@@ -434,10 +410,7 @@ exports[`Test of component of Home Home component with content renders without f
     className="cards__text-empty"
     data-test="CardsTextEmpty"
   >
-    <Memo()
-      smallErrorFlag={false}
-      text="No images were found for your request. Try to find more."
-    />
+    No images were found for your request. Try to find more.
   </div>
   <div
     className="pagination"

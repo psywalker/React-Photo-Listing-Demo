@@ -14,7 +14,6 @@ import {
   PhotoCard,
   NavTop,
   Spinner,
-  Error,
 } from '../../components';
 import 'antd/dist/antd.css';
 import './index.scss';
@@ -121,9 +120,7 @@ export class Home extends PureComponent {
         )}
         {!totalCards && (
           <div className="cards__text-empty" data-test="CardsTextEmpty">
-            <Error
-              text="No images were found for your request. Try to find more."
-            />
+            No images were found for your request. Try to find more.
           </div>
         )}
 
