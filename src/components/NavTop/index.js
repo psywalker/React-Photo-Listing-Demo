@@ -4,32 +4,40 @@ import { Tag } from 'antd';
 import './index.scss';
 
 const NavTop = memo(({
-  onFilterItemValue,
-  label,
-  filterValue,
-  itemId,
   navTopItemActive,
+  onFilterItemValue,
+  filters,
 }) => (
-  <Tag
-    color={`${itemId === navTopItemActive ? 'purple' : ''}`}
-    onClick={() => onFilterItemValue(filterValue, itemId)}
-  >
-    {label}
-  </Tag>
+  <ul className="nav-top">
+    {filters.map(item => (
+      <li
+        key={item.id}
+        data-test="navTopItem"
+        className={`nav-top__item ${item.border ? 'nav-top__item_border-right' : ''}`}
+      >
+        <Tag
+          color={`${item.id === navTopItemActive ? 'purple' : ''}`}
+          onClick={() => onFilterItemValue(item.filterValue, item.id)}
+        >
+          {item.label}
+        </Tag>
+      </li>
+    ))}
+  </ul>
 ));
 
 NavTop.propTypes = {
-  label: PropTypes.string,
-  filterValue: PropTypes.string,
+  filters: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    label: PropTypes.string,
+    filterValue: PropTypes.string,
+  })),
   onFilterItemValue: PropTypes.func,
-  itemId: PropTypes.number,
   navTopItemActive: PropTypes.number,
 };
 NavTop.defaultProps = {
-  itemId: 0,
+  filters: [],
   navTopItemActive: 0,
-  label: '',
-  filterValue: '',
   onFilterItemValue: () => { },
 };
 export default NavTop;

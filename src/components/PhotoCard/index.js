@@ -12,113 +12,105 @@ import './index.scss';
 const { Meta } = Card;
 
 const PhotoCard = memo(({
-  tags,
-  photoName,
-  photoDesc,
-  title,
-  photoID,
-  userID,
-  userAvatar,
   onSearchTagValue,
+  cards,
 }) => (
-  <div className="photo-card-self">
-    <Card
-      style={{ width: '100%' }}
-      cover={(
-        <Link
-          className="photo-card__photo-link"
-          to={`/photo/${photoID}`}
-        >
-          <img
-            className="photo-card__img"
-            alt="example"
-            src={photoName}
-          />
-        </Link>
-        )}
-    >
-      { title && (
-        <Link
-          className="photo-card-self__link-ava"
-          to={`/users/${userID}`}
-        >
-          <Meta
-            avatar={
-              <Avatar src={userAvatar} />
-            }
-            title={title}
-          />
-        </Link>
-      )}
-      <p className="photo-card-self__desc">
-        {`${photoDesc || 'No Description'}`}
-      </p>
-      <div className="photo-card-self__badge-wrap">
-        {tags.map((item, i) => {
-          if (i < 3) {
-            return (
-              <Tag
-                key={item.title}
-                onClick={() => onSearchTagValue(item.title, 'tags')}
-                className="photo-card-self__badge"
+  <ul className="photo-list" data-test="PhotoList">
+    {cards.map(item => (
+      <li
+        data-test="PhotoListItem"
+        key={item.photoID}
+        className="photo-list__item"
+      >
+        <div className="photo-card-self">
+          <Card
+            style={{ width: '100%' }}
+            cover={(
+              <Link
+                className="photo-card__photo-link"
+                to={`/photo/${item.photoID}`}
               >
-                {item.title}
-              </Tag>
-            );
-          }
-          return null;
-        })}
-        {tags.length > 3 && (
-          <Popover
-            placement="top"
-            title="Remaining tags"
-            content={(
-              <div>
-                {tags.map((item, i) => {
-                  if (i > 2) {
-                    return (
-                      <Tag
-                        key={item.title}
-                        onClick={() => onSearchTagValue(item.title, 'tags')}
-                        className="photo-card-self__badge"
-                      >
-                        {item.title}
-                      </Tag>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
-            )}
-            trigger="click"
+                <img
+                  className="photo-card__img"
+                  alt="example"
+                  src={item.photoName}
+                />
+              </Link>
+          )}
           >
-            <Tag className="photo-card-self__badge">more tags...</Tag>
-          </Popover>
-        )}
-      </div>
-    </Card>
-  </div>
+            { item.title && (
+            <Link
+              className="photo-card-self__link-ava"
+              to={`/users/${item.userID}`}
+            >
+              <Meta
+                avatar={
+                  <Avatar src={item.userAvatar} />
+              }
+                title={item.title}
+              />
+            </Link>
+            )}
+            <p className="photo-card-self__desc">
+              {`${item.photoDesc || 'No Description'}`}
+            </p>
+            <div className="photo-card-self__badge-wrap">
+              {item.tags.map((item, i) => {
+                if (i < 3) {
+                  return (
+                    <Tag
+                      key={item.title}
+                      onClick={() => onSearchTagValue(item.title, 'tags')}
+                      className="photo-card-self__badge"
+                    >
+                      {item.title}
+                    </Tag>
+                  );
+                }
+                return null;
+              })}
+              {item.tags.length > 3 && (
+              <Popover
+                placement="top"
+                title="Remaining tags"
+                content={(
+                  <div>
+                    {item.tags.map((item, i) => {
+                      if (i > 2) {
+                        return (
+                          <Tag
+                            key={item.title}
+                            onClick={() => onSearchTagValue(item.title, 'tags')}
+                            className="photo-card-self__badge"
+                          >
+                            {item.title}
+                          </Tag>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+              )}
+                trigger="click"
+              >
+                <Tag className="photo-card-self__badge">more tags...</Tag>
+              </Popover>
+              )}
+            </div>
+          </Card>
+        </div>
+      </li>
+    ))}
+  </ul>
 ));
 
 PhotoCard.propTypes = {
-  photoName: PropTypes.string,
-  photoDesc: PropTypes.string,
-  title: PropTypes.string,
-  tags: PropTypes.arrayOf(PropTypes.object),
-  userAvatar: PropTypes.string,
   onSearchTagValue: PropTypes.func,
-  photoID: PropTypes.string,
-  userID: PropTypes.string,
+  cards: PropTypes.arrayOf(PropTypes.object),
 };
 PhotoCard.defaultProps = {
-  photoName: '',
-  photoDesc: '',
-  title: 'Noname',
-  tags: [],
-  userAvatar: '',
-  photoID: '',
-  userID: '',
   onSearchTagValue: () => {},
+  cards: [],
 };
 
 export default PhotoCard;

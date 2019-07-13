@@ -75,48 +75,16 @@ export class Home extends PureComponent {
           onChangeInputValue={this.getChangeInputValue}
           queryText={cardsData.query}
         />
-
-        <ul className="nav-top">
-          {filters.map(item => (
-            <li
-              key={item.id}
-              data-test="navTopItem"
-              className={`nav-top__item ${item.border ? 'nav-top__item_border-right' : ''}`}
-            >
-              <NavTop
-                navTopItemActive={navTopItemActive}
-                itemId={item.id}
-                onFilterItemValue={this.getFilterItemValue}
-                key={item.id}
-                label={item.label}
-                filterValue={item.filterValue}
-              />
-            </li>
-          ))}
-        </ul>
-
+        <NavTop
+          navTopItemActive={navTopItemActive}
+          onFilterItemValue={this.getFilterItemValue}
+          filters={filters}
+        />
         {!isListingLoading && (
-          <ul className="photo-list" data-test="PhotoList">
-            {
-            cards.map(item => (
-              <li
-                data-test="PhotoListItem"
-                key={item.photoID}
-                className="photo-list__item"
-              >
-                <PhotoCard
-                  photoName={item.photoName}
-                  photoDesc={item.photoDesc}
-                  title={item.title}
-                  tags={item.tags}
-                  photoID={item.photoID}
-                  userID={item.userID}
-                  userAvatar={item.userAvatar}
-                  onSearchTagValue={this.getSearchText}
-                />
-              </li>
-            ))}
-          </ul>
+          <PhotoCard
+            onSearchTagValue={this.getSearchText}
+            cards={cards}
+          />
         )}
         {!totalCards && (
           <div className="cards__text-empty" data-test="CardsTextEmpty">
