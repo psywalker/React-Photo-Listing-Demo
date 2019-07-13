@@ -3,12 +3,11 @@ import { put, call } from 'redux-saga/effects';
 import get from 'lodash/get';
 import { URL_FOR_USER_LIKES_QUERY, URL_FOR_USER_PHOTO_LISTING_QUERY } from '../constants';
 
-export const processResponse = response => (page, perPage, itemNum) => {
+export const processResponse = (page, perPage, itemNum) => (response) => {
   const cards = get(response, 'data', []).map(item => ({
     photoUrl: get(item, 'urls.regular', ''),
     photoID: get(item, 'id', ''),
   }));
-
   return {
     page,
     perPage,

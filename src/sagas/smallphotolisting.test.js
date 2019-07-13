@@ -88,7 +88,7 @@ describe('Test `smallphotolisting` saga', () => {
   });
   describe('Test `processResponse` and `getParamsRequest` functions', () => {
     it('`processResponse`', () => {
-      expect(processResponse(response)(action.page, action.perPage, action.itemNum)).toEqual(dataForProps);
+      expect(processResponse(action.page, action.perPage, action.itemNum)(response)).toEqual(dataForProps);
       expect(processResponse()()).toEqual({
         cards: [],
         itemNum: undefined,
