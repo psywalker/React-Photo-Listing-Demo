@@ -132,7 +132,9 @@ Home.propTypes = {
   isListingLoading: PropTypes.bool,
   photolistingRequestError: PropTypes.bool,
   match: PropTypes.shape({
-    prop: PropTypes.string,
+    params: PropTypes.shape({
+      tag: PropTypes.string,
+    }),
   }),
 };
 Home.defaultProps = {
@@ -152,7 +154,11 @@ Home.defaultProps = {
   totalCards: 10,
   navTopItemActive: 2,
   photolistingRequestError: false,
-  match: {},
+  match: {
+    params: {
+      tag: '',
+    },
+  },
 };
 
 const mapStateToProps = (state) => {

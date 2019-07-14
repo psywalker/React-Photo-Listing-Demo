@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { BrowserRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 import { createSerializer } from 'enzyme-to-json';
+import 'jest-extended';
 import { Home } from '.';
-import { Search, Photo } from '../../components';
 import filters from '../../filters';
 
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
@@ -32,7 +31,7 @@ describe('Test of component of Home', () => {
     photolistingRequestError: false,
     match: {
       params: {
-        tag: {},
+        tag: '',
       },
     },
   };
@@ -54,6 +53,12 @@ describe('Test of component of Home', () => {
   }
 
   describe('Home component initial', () => {
+    it('renders without initial props', () => {
+      const home = shallow(<Home />);
+      expect(home.instance().props.filters).toBeArray();
+      expect(home.instance().props.filters).toBeArrayOfSize(0);
+      expect(home.instance().props.match.params.tag).toBeString();
+    });
     it('renders with initial props', () => {
       const home = shallow(<Home {...initialProps} />);
 
@@ -133,7 +138,7 @@ describe('Test of component of Home', () => {
           per_page: 2,
         },
       });
-      expect(mockFetchRequestAction).toHaveBeenCalledTimes(1);
+      expect(mockFetchRequestAction).toHaveBeenCalledTimes(2);
       expect(home).toMatchSnapshot();
     });
 

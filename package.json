@@ -93,7 +93,8 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
-    ]
+    ],
+    "setupFilesAfterEnv": ["jest-extended"]
   },
   "devDependencies": {
     "@types/jasmine": "^3.3.0",
@@ -108,6 +109,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "gh-pages": "^2.0.1",
+    "jest-extended": "^0.11.2",
     "mocha": "^5.2.0",
     "react-test-renderer": "^16.6.3"
   }

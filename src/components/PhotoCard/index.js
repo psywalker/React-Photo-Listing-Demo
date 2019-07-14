@@ -55,15 +55,15 @@ const PhotoCard = memo(({
               {`${item.photoDesc || 'No Description'}`}
             </p>
             <div className="photo-card-self__badge-wrap">
-              {item.tags.map((item, i) => {
+              {item.tags.map((itemTag, i) => {
                 if (i < 3) {
                   return (
                     <Tag
-                      key={item.title}
-                      onClick={() => onSearchTagValue(item.title, 'tags')}
+                      key={itemTag.title}
+                      onClick={() => onSearchTagValue(itemTag.title, 'tags')}
                       className="photo-card-self__badge"
                     >
-                      {item.title}
+                      {itemTag.title}
                     </Tag>
                   );
                 }
@@ -75,15 +75,15 @@ const PhotoCard = memo(({
                 title="Remaining tags"
                 content={(
                   <div>
-                    {item.tags.map((item, i) => {
+                    {item.tags.map((itemTag, i) => {
                       if (i > 2) {
                         return (
                           <Tag
-                            key={item.title}
-                            onClick={() => onSearchTagValue(item.title, 'tags')}
+                            key={itemTag.title}
+                            onClick={() => onSearchTagValue(itemTag.title, 'tags')}
                             className="photo-card-self__badge"
                           >
-                            {item.title}
+                            {itemTag.title}
                           </Tag>
                         );
                       }
