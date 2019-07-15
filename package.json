@@ -4,21 +4,22 @@
   "private": true,
   "homepage": "https://psywalker.github.io/React-Photo-Listing-Demo/",
   "dependencies": {
-    "enzyme-adapter-react-16": "^1.7.0",
-    "jest-extended": "^0.11.2",
-    "enzyme-to-json": "^3.3.5",
-    "enzyme": "^3.7.0",
     "antd": "^3.11.2",
     "axios": "^0.18.0",
     "babel-jest": "24.7.1",
     "chai": "^4.2.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-to-json": "^3.3.5",
     "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
     "highcharts": "^7.0.0",
+    "jest-extended": "^0.11.2",
     "lodash": "^4.17.11",
     "mdbreact": "^4.8.2",
     "moment": "^2.23.0",
     "moment-timezone": "^0.5.23",
+    "nock": "^10.0.6",
     "node-sass": "^4.12.0",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.2",
@@ -114,6 +115,7 @@
     "gh-pages": "^2.0.1",
     "jest-extended": "^0.11.2",
     "mocha": "^5.2.0",
-    "react-test-renderer": "^16.6.3"
+    "react-test-renderer": "^16.6.3",
+    "redux-saga-test-plan": "^4.0.0-beta.3"
   }
 }

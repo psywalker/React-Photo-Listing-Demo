@@ -1,6 +1,12 @@
 import { runSaga } from 'redux-saga';
 import { put, call } from 'redux-saga/effects';
 import sinon from 'sinon';
+import { expectSaga } from 'redux-saga-test-plan';
+import * as matchers from 'redux-saga-test-plan/matchers';
+import { throwError } from 'redux-saga-test-plan/providers';
+import axios from 'axios';
+import nock from 'nock';
+import httpAdapter from 'axios/lib/adapters/http';
 import {
   photoRequestSaga,
   api,
@@ -8,6 +14,10 @@ import {
   getParamsRequest,
 } from './photo';
 import { URL_FOR_PHOTO_QUERY } from '../constants';
+
+const host = 'https://api.unsplash.com';
+axios.defaults.host = host;
+axios.defaults.adapter = httpAdapter;
 
 describe('Test of saga `user`', () => {
   // Default
@@ -115,6 +125,29 @@ describe('Test of saga `user`', () => {
     method: 'get',
     url: URL_FOR_PHOTO_QUERY(match),
   };
+
+
+  nock('https://api.unsplash.com')
+    .get('/photos/kdGstD3te3M?client_id=49ad32d0834cd26409d2fdfe8edf42e1c9f5d32bc01b89bfdab3fd14a3826fc7')
+    .reply(200, { ...response.data, likes: null });
+
+    // Test with saga-redux-test-plan
+  describe('Test `photoRequestSaga` saga with saga-redux-test-plan', () => {
+    it('just works!', () => {
+      return expectSaga(photoRequestSaga, action)
+        .put({
+          type: 'PHOTO_REQUEST_SUCCESS',
+          dataForProps: {
+            ...dataForProps,
+            info: {
+              ...dataForProps.info,
+              likes: null,
+            },
+          },
+        })
+        .run();
+    });
+  });
   describe('`userRequestSaga` saga test', () => {
     it('`userRequestSaga`: Success', () => {
       const gen = photoRequestSaga(action);
@@ -183,6 +216,55 @@ describe('Test of saga `user`', () => {
         },
         type: 'PHOTO_REQUEST_SUCCESS',
       }]);
+      stub.restore();
     });
+  });
+
+  // Test with saga-redux-test-plan
+  describe('Test `photoRequestSaga` saga with saga-redux-test-plan', () => {
+    // it('just works!', () => {
+    //   return expectSaga(photoRequestSaga, action)
+    //     .put({
+    //       type: 'PHOTO_REQUEST_SUCCESS',
+    //       dataForProps: response,
+    //     })
+    //     .run();
+    // });
+    // it('just works!', () => {
+    //   return expectSaga(photoRequestSaga, action)
+    //     .provide([
+    //       [call(api.getPhoto, match), { ...dataForProps, heightPhoto: 10 }],
+    //     ])
+    //     .put({
+    //       type: 'PHOTO_REQUEST_SUCCESS',
+    //       dataForProps: {
+    //         ...dataForProps,
+    //         heightPhoto: 10,
+    //       },
+    //     })
+  
+    //     // Start the test. Returns a Promise.
+    //     .run();
+    // });
+
+    // it('handles errors', () => {
+    //   const error = new Error('error');
+    //   return expectSaga(photoRequestSaga, action)
+    //     .provide([
+    //       [call(api.getPhoto, match), throwError(error)],
+    //     ])
+    //     .put({ type: 'PHOTO_REQUEST_ERROR', error })
+    //     .run()
+    //     // .then((result) => {
+    //     //   const { effects } = result;
+    //     //   console.log("1: ", effects.put)
+    //     //   expect(effects.call).toHaveLength(1);
+    //     //   expect(effects.put).toHaveLength(1);
+    
+    //     //   expect(effects.put[0]).toEqual(
+    //     //     put({ type: 'PHOTO_REQUEST_ERROR', error })
+    //     //   );
+    //     // });
+    // });
   });
 });
