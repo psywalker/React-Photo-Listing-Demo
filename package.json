@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "https://psywalker.github.io/React-Photo-Listing-Demo/",
   "dependencies": {
+    "enzyme-adapter-react-16": "^1.7.0",
+    "jest-extended": "^0.11.2",
+    "enzyme-to-json": "^3.3.5",
+    "enzyme": "^3.7.0",
     "antd": "^3.11.2",
     "axios": "^0.18.0",
     "babel-jest": "24.7.1",
@@ -93,8 +97,7 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
-    ],
-    "setupFilesAfterEnv": ["jest-extended"]
+    ]
   },
   "devDependencies": {
     "@types/jasmine": "^3.3.0",

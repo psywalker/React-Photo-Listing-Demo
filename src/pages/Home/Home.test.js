@@ -1,15 +1,6 @@
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { BrowserRouter } from 'react-router-dom';
-import { shape } from 'prop-types';
-import { createSerializer } from 'enzyme-to-json';
-import 'jest-extended';
 import { Home } from '.';
 import filters from '../../filters';
-
-expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
-Enzyme.configure({ adapter: new Adapter() });
 
 describe('Test of component of Home', () => {
   const initialProps = {
@@ -36,7 +27,7 @@ describe('Test of component of Home', () => {
     },
   };
   const router = {
-    history: new BrowserRouter().history,
+    history: new global.BrowserRouter().history,
     route: {
       location: {},
       match: {},
@@ -45,22 +36,22 @@ describe('Test of component of Home', () => {
 
   const createContext = () => ({
     context: { router },
-    childContextTypes: { router: shape({}) },
+    childContextTypes: { router: global.shape({}) },
   });
 
   function mountWrap(node) {
-    return mount(node, createContext());
+    return global.mount(node, createContext());
   }
 
   describe('Home component initial', () => {
     it('renders without initial props', () => {
-      const home = shallow(<Home />);
+      const home = global.shallow(<Home />);
       expect(home.instance().props.filters).toBeArray();
       expect(home.instance().props.filters).toBeArrayOfSize(0);
       expect(home.instance().props.match.params.tag).toBeString();
     });
     it('renders with initial props', () => {
-      const home = shallow(<Home {...initialProps} />);
+      const home = global.shallow(<Home {...initialProps} />);
 
       expect(home.find('[data-test="navTopItem"]')).toHaveLength(0);
       expect(home.find('[data-test="CardsTextEmpty"]')).toHaveLength(1);
@@ -75,7 +66,7 @@ describe('Test of component of Home', () => {
         isListingLoading: true,
       };
 
-      const home = shallow(<Home {...props} />);
+      const home = global.shallow(<Home {...props} />);
       expect(home.find('[data-test="spinner"]')).toHaveLength(1);
       expect(home).toMatchSnapshot();
     });
@@ -86,7 +77,7 @@ describe('Test of component of Home', () => {
         isListingLoading: false,
       };
 
-      const home = shallow(<Home {...props} />);
+      const home = global.shallow(<Home {...props} />);
       expect(home.find('[data-test="spinner"]')).toHaveLength(0);
       expect(home).toMatchSnapshot();
     });
@@ -97,7 +88,7 @@ describe('Test of component of Home', () => {
         photolistingRequestError: true,
       };
 
-      const home = shallow(<Home {...props} />);
+      const home = global.shallow(<Home {...props} />);
       expect(home.find('[data-test="errorText"]').text()).toEqual('Error loading photolisting');
       expect(home).toMatchSnapshot();
     });
@@ -130,7 +121,7 @@ describe('Test of component of Home', () => {
         },
       };
 
-      const home = shallow(<Home {...props} />);
+      const home = global.shallow(<Home {...props} />);
       home.setProps({
         cardsData: {
           query: 'wallpapers',
@@ -149,7 +140,7 @@ describe('Test of component of Home', () => {
         paginationChangeAction: mockFetchRequestAction,
       };
 
-      const home = shallow(<Home {...props} />);
+      const home = global.shallow(<Home {...props} />);
       home.setProps({
         cardsData: {
           query: 'wallpapers',
@@ -169,7 +160,7 @@ describe('Test of component of Home', () => {
         ...initialProps,
       };
 
-      const home = shallow(<Home {...props} />);
+      const home = global.shallow(<Home {...props} />);
       expect(home.find('.nav-top__item')).toHaveLength(0);
       expect(home).toMatchSnapshot();
     });

@@ -1,6 +1,3 @@
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { createSerializer } from 'enzyme-to-json';
 import get from 'lodash/get';
 import { put, call } from 'redux-saga/effects';
 import axios from 'axios';
@@ -14,8 +11,6 @@ import {
   getParamsRequest,
 } from './photolisting';
 import { URL_FOR_CARDS_PHOTOS } from '../constants';
-expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
-Enzyme.configure({ adapter: new Adapter() });
 
 describe('Test `cardsPhotosRequestSaga` saga', () => {
   // Default Setting Data
