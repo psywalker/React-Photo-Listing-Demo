@@ -9,11 +9,26 @@ import 'jest-extended';
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
 Enzyme.configure({ adapter: new Adapter() });
 
+const router = {
+  history: new BrowserRouter().history,
+  route: {
+    location: {},
+    match: {},
+  },
+};
+
+const createContext = () => ({
+  context: { router },
+  childContextTypes: { router: shape({}) },
+});
+
+export default function mountWrap(node) {
+  return mount(node, createContext());
+}
+
 global.shallow = shallow;
 global.render = render;
 global.mount = mount;
-global.BrowserRouter = BrowserRouter;
-global.shape = shape;
 
 // Fail tests on any warning
 window.console.error = (message) => {

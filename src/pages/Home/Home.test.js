@@ -1,6 +1,7 @@
 import React from 'react';
 import { Home } from '.';
 import filters from '../../filters';
+import mountWrap from '../../setupTests';
 
 describe('Test of component of Home', () => {
   const initialProps = {
@@ -26,22 +27,6 @@ describe('Test of component of Home', () => {
       },
     },
   };
-  const router = {
-    history: new global.BrowserRouter().history,
-    route: {
-      location: {},
-      match: {},
-    },
-  };
-
-  const createContext = () => ({
-    context: { router },
-    childContextTypes: { router: global.shape({}) },
-  });
-
-  function mountWrap(node) {
-    return global.mount(node, createContext());
-  }
 
   describe('Home component initial', () => {
     it('renders without initial props', () => {
@@ -175,6 +160,7 @@ describe('Test of component of Home', () => {
       };
 
       const home = mountWrap(<Home {...props} />);
+      expect(home).toMatchSnapshot();
       home.instance().getFilterItemValue = jest.fn();
       home.instance().forceUpdate();
       home.find('.ant-tag').first().simulate('click');
