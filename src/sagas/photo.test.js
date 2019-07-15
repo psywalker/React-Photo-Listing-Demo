@@ -126,28 +126,6 @@ describe('Test of saga `user`', () => {
     url: URL_FOR_PHOTO_QUERY(match),
   };
 
-
-  nock('https://api.unsplash.com')
-    .get('/photos/kdGstD3te3M?client_id=49ad32d0834cd26409d2fdfe8edf42e1c9f5d32bc01b89bfdab3fd14a3826fc7')
-    .reply(200, { ...response.data, likes: null });
-
-    // Test with saga-redux-test-plan
-  describe('Test `photoRequestSaga` saga with saga-redux-test-plan', () => {
-    it('just works!', () => {
-      return expectSaga(photoRequestSaga, action)
-        .put({
-          type: 'PHOTO_REQUEST_SUCCESS',
-          dataForProps: {
-            ...dataForProps,
-            info: {
-              ...dataForProps.info,
-              likes: null,
-            },
-          },
-        })
-        .run();
-    });
-  });
   describe('`userRequestSaga` saga test', () => {
     it('`userRequestSaga`: Success', () => {
       const gen = photoRequestSaga(action);
@@ -193,7 +171,6 @@ describe('Test of saga `user`', () => {
 
       expect(processResponse(processResponseResultDefault)).toEqual(processResponseResult);
       expect(getParamsRequest(match)).toEqual(axiosRequestForPhoto);
-
     });
   });
 
@@ -220,51 +197,52 @@ describe('Test of saga `user`', () => {
     });
   });
 
-  // Test with saga-redux-test-plan
   describe('Test `photoRequestSaga` saga with saga-redux-test-plan', () => {
-    // it('just works!', () => {
-    //   return expectSaga(photoRequestSaga, action)
-    //     .put({
-    //       type: 'PHOTO_REQUEST_SUCCESS',
-    //       dataForProps: response,
-    //     })
-    //     .run();
-    // });
-    // it('just works!', () => {
-    //   return expectSaga(photoRequestSaga, action)
-    //     .provide([
-    //       [call(api.getPhoto, match), { ...dataForProps, heightPhoto: 10 }],
-    //     ])
-    //     .put({
-    //       type: 'PHOTO_REQUEST_SUCCESS',
-    //       dataForProps: {
-    //         ...dataForProps,
-    //         heightPhoto: 10,
-    //       },
-    //     })
-  
-    //     // Start the test. Returns a Promise.
-    //     .run();
-    // });
+    it('change response', () => {
+      return expectSaga(photoRequestSaga, action)
+        .provide([
+          [call(api.getPhoto, match), { ...dataForProps, heightPhoto: 10 }],
+        ])
+        .put({
+          type: 'PHOTO_REQUEST_SUCCESS',
+          dataForProps: {
+            ...dataForProps,
+            heightPhoto: 10,
+          },
+        })
+        .run();
+    });
 
-    // it('handles errors', () => {
-    //   const error = new Error('error');
-    //   return expectSaga(photoRequestSaga, action)
-    //     .provide([
-    //       [call(api.getPhoto, match), throwError(error)],
-    //     ])
-    //     .put({ type: 'PHOTO_REQUEST_ERROR', error })
-    //     .run()
-    //     // .then((result) => {
-    //     //   const { effects } = result;
-    //     //   console.log("1: ", effects.put)
-    //     //   expect(effects.call).toHaveLength(1);
-    //     //   expect(effects.put).toHaveLength(1);
-    
-    //     //   expect(effects.put[0]).toEqual(
-    //     //     put({ type: 'PHOTO_REQUEST_ERROR', error })
-    //     //   );
-    //     // });
-    // });
+    it('handles errors', () => {
+      const error = new Error('error');
+      return expectSaga(photoRequestSaga, action)
+        .provide([
+          [call(api.getPhoto, match), throwError(error)],
+        ])
+        .put({ type: 'PHOTO_REQUEST_ERROR', error })
+        .run();
+    });
+  });
+
+  // Test with saga-redux-test-plan
+  describe('Test `photoRequestSaga` saga with `nock` and saga-redux-test-plan', () => {
+    nock('https://api.unsplash.com')
+      .get('/photos/kdGstD3te3M?client_id=49ad32d0834cd26409d2fdfe8edf42e1c9f5d32bc01b89bfdab3fd14a3826fc7')
+      .reply(200, { ...response.data, likes: undefined });
+
+    it('test `nock`', () => {
+      return expectSaga(photoRequestSaga, action)
+        .put({
+          type: 'PHOTO_REQUEST_SUCCESS',
+          dataForProps: {
+            ...dataForProps,
+            info: {
+              ...dataForProps.info,
+              likes: 0,
+            },
+          },
+        })
+        .run();
+    });
   });
 });
