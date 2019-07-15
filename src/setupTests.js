@@ -22,15 +22,15 @@ const createContext = () => ({
   childContextTypes: { router: shape({}) },
 });
 
-export default function mountWrap(node) {
+function mountWrap(node) {
   return mount(node, createContext());
 }
 
 global.shallow = shallow;
 global.render = render;
 global.mount = mount;
-
+global.mountWrap = mountWrap;
 // Fail tests on any warning
-window.console.error = (message) => {
+console.error = (message) => {
   throw new Error(message);
 };

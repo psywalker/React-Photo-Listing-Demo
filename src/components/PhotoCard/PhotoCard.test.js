@@ -1,3 +1,48 @@
+import React from 'react';
+import PhotoCard from '.';
+
+describe('Test of component of PhotoCard', () => {
+  const initialProps = {
+    onSearchTagValue: () => {},
+    cards: [],
+  };
+
+  const cardsOneElement = [
+    {
+      photoDesc: null,
+      photoID: 'kdGstD3te3M',
+      tags: [
+        {
+          title: 'motorcycle',
+        },
+      ],
+      photoName: 'https://images.unsplash.com/photo-1558981408-db0ecd8a1ee4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ',
+      title: 'Harley-Davidson',
+      userAvatar: 'https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128',
+      userID: 'harleydavidson',
+    },
+  ];
+
+  describe('Home component initial', () => {
+    it('renders without initial props', () => {
+      const photoCard = global.shallow(<PhotoCard />);
+    });
+    it('renders with initial props', () => {
+      const photoCard = global.shallow(<PhotoCard {...initialProps} />);
+      expect(photoCard).toMatchSnapshot();
+    });
+    it('renders with `cards`', () => {
+      const props = {
+        ...initialProps,
+        cards: cardsOneElement,
+      };
+      const photoCard = global.shallow(<PhotoCard {...props} />);
+      expect(photoCard).toMatchSnapshot();
+    });
+  });
+});
+
+
 // import React from 'react';
 // import { LastLocationProvider } from 'react-router-last-location';
 // import { BrowserRouter } from 'react-router-dom';

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Home } from '.';
 import filters from '../../filters';
-import mountWrap from '../../setupTests';
 
 describe('Test of component of Home', () => {
   const initialProps = {
@@ -159,7 +158,7 @@ describe('Test of component of Home', () => {
         filters,
       };
 
-      const home = mountWrap(<Home {...props} />);
+      const home = global.mountWrap(<Home {...props} />);
       expect(home).toMatchSnapshot();
       home.instance().getFilterItemValue = jest.fn();
       home.instance().forceUpdate();
