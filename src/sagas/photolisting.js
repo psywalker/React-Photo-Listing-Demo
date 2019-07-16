@@ -6,7 +6,7 @@ import { URL_FOR_CARDS_PHOTOS } from '../constants';
 export const processResponse = (response) => {
   const cards = get(response, 'data.results', []).map(item => ({
     photoName: get(item, 'urls.regular', ''),
-    photoDesc: get(item, 'description', ''),
+    photoDesc: get(item, 'description', 'No Description'),
     title: get(item, 'user.first_name', ''),
     tags: get(item, 'tags', []),
     photoID: get(item, 'id', ''),

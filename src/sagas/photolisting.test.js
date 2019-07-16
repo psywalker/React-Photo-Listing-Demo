@@ -23,7 +23,7 @@ describe('Test `cardsPhotosRequestSaga` saga', () => {
     isListingLoading: true,
     type: 'CARDS_PHOTOS_FETCHING',
   };
-  const cardsData = action.cardsData;
+  const { cardsData } = action.cardsData;
   const axiosRequestForPhotoListing = {
     method: 'get',
     url: URL_FOR_CARDS_PHOTOS,

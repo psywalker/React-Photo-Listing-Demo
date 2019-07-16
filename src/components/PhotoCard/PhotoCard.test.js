@@ -22,6 +22,7 @@ describe('Test of component of PhotoCard', () => {
       userID: 'harleydavidson',
     },
   ];
+  const photoList = 'li[data-test="tab"]';
 
   describe('Home component initial', () => {
     it('renders without initial props', () => {
