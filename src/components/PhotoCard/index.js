@@ -22,14 +22,17 @@ const PhotoCard = memo(({
         className="photo-card-list__item"
       >
         <div
-          className="photo-card"
           data-test="photoCard"
+          className="photo-card"
         >
-          <Link to={`/photo/${item.photoID}`}>
+          <Link
+            data-test="photoCardPhotoLink"
+            to={`/photo/${item.photoID}`}
+          >
             <img
               data-test="photoCardImg"
               className="photo-card__img"
-              alt="example"
+              alt={item.photoAltDesc}
               src={item.photoName}
             />
           </Link>
@@ -46,7 +49,7 @@ const PhotoCard = memo(({
               <img
                 data-test="photoCardAutorAvatar"
                 className="photo-card-autor__avatar"
-                alt="example"
+                alt={item.userID}
                 src={item.userAvatar}
               />
               <span
@@ -111,7 +114,12 @@ const PhotoCard = memo(({
               )}
                 trigger="click"
               >
-                <Tag className="photo-card-badge__tag">more tags...</Tag>
+                <Tag
+                  data-test="photoCardBadgeTagInnerMore"
+                  className="photo-card-badge__tag"
+                >
+                  more tags...
+                </Tag>
               </Popover>
             )}
           </div>

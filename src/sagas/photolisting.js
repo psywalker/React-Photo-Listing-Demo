@@ -6,13 +6,15 @@ import { URL_FOR_CARDS_PHOTOS } from '../constants';
 export const processResponse = (response) => {
   const cards = get(response, 'data.results', []).map(item => ({
     photoName: get(item, 'urls.regular', ''),
-    photoDesc: get(item, 'description', 'No Description'),
+    photoDesc: item.description !== null ? item.description : 'No Description',
+    photoAltDesc: item.alt_description !== null ? item.alt_description : 'Photo',
     title: get(item, 'user.first_name', ''),
     tags: get(item, 'tags', []),
     photoID: get(item, 'id', ''),
     userID: get(item, 'user.username', ''),
     userAvatar: get(item, 'user.profile_image.large', ''),
   }));
+  console.log("2: ", response)
   return {
     cards,
     isListingLoading: false,
