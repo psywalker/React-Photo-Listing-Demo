@@ -9,6 +9,7 @@ import InfoPhotoModal from './InfoPhotoModal';
 import Error from './Error';
 import HighchartsHOC from './HighchartsHOC';
 import SmallPhotoListing from './SmallPhotoListing';
+import Tags from './Tags';
 import Home from '../pages/Home';
 import Photo from '../pages/Photo';
 import Profile from '../pages/Profile';
@@ -32,4 +33,5 @@ export {
   UserStatistic,
   HighchartsHOC,
   SmallPhotoListing,
+  Tags,
 };
