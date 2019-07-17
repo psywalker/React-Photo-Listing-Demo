@@ -1,7 +1,7 @@
 import React from 'react';
 import PhotoCard from '.';
 
-describe('Test of component of PhotoCard', () => {
+describe('Test of component of `PhotoCard`', () => {
   const initialProps = {
     onSearchTagValue: () => {},
     cards: [],
@@ -10,7 +10,7 @@ describe('Test of component of PhotoCard', () => {
   const cardsOneElement = [
     {
       photoDesc: null,
-      photoID: 'kdGstD3te3M',
+      photoID: '1',
       tags: [
         {
           title: 'motorcycle',
@@ -22,23 +22,206 @@ describe('Test of component of PhotoCard', () => {
       userID: 'harleydavidson',
     },
   ];
-  const photoList = 'li[data-test="tab"]';
+  const photoCardList = 'ul[data-test="photoCardList"]';
+  const photoCardListItem = 'li[data-test="photoCardListItem"]';
+  const photoCard = 'div[data-test="photoCard"]';
+  const photoCardPhotoLink = 'a[data-test="photoCardPhotoLink"]';
+  const photoCardImg = 'img[data-test="photoCardImg"]';
+  const photoCardAutor = 'div[data-test="photoCardAutor"]';
+  const photoCardAutorLink = 'a[data-test="photoCardAutorLink"]';
+  const photoCardAutorAvatar = 'img[data-test="photoCardAutorAvatar"]';
+  const photoCardAutorName = 'span[data-test="photoCardAutorName"]';
+  const photoCardDesc = 'p[data-test="photoCardDesc"]';
+  const photoCardBadge = 'div[data-test="photoCardBadge"]';
+  const photoCardBadgeTagMain = 'div[data-test="photoCardBadgeTagMain"]';
+  const photoCardPopover = 'div[data-test="photoCardPopover"]';
+  const photoCardBadgeTagInner = 'div[data-test="photoCardBadgeTagInner"]';
+  const photoCardBadgeTagInnerMore = 'div[data-test="photoCardBadgeTagInnerMore"]';
 
-  describe('Home component initial', () => {
+
+  const appSelector = wrapper => ({
+    getPhotoCardList: () => wrapper.find(photoCardList),
+    getPhotoCardListItem: () => wrapper.find(photoCardListItem),
+    getNthPhotoCardListItem: n => wrapper.find(photoCardListItem).at(n),
+    getPhotoCardPhotoLink: () => wrapper.find(photoCardPhotoLink),
+    getNthPhotoCardPhotoLink: n => wrapper.find(photoCardPhotoLink).at(n),
+    getPhotoCard: () => wrapper.find(photoCard),
+    getPhotoCardImg: () => wrapper.find(photoCardImg),
+    getNthPhotoCardImg: n => wrapper.find(photoCardImg).at(n),
+    getPhotoCardAutor: () => wrapper.find(photoCardAutor),
+    getPhotoCardAutorLink: () => wrapper.find(photoCardAutorLink),
+    getPhotoCardAutorAvatar: () => wrapper.find(photoCardAutorAvatar),
+    getPhotoCardAutorName: () => wrapper.find(photoCardAutorName),
+    getPhotoCardDesc: () => wrapper.find(photoCardDesc),
+    getPhotoCardBadge: () => wrapper.find(photoCardBadge),
+    getNthPhotoCardBadge: n => wrapper.find(photoCardBadge).at(n),
+    getPhotoCardBadgeTagMain: () => wrapper.find(photoCardBadgeTagMain),
+    getNthPhotoCardBadgeTagMain: n => wrapper.find(photoCardBadgeTagMain).at(n),
+    getPhotoCardPopover: () => wrapper.find(photoCardPopover),
+    getPhotoCardBadgeTagInner: () => wrapper.find(photoCardBadgeTagInner),
+    getNthPhotoCardBadgeTagInner: n => wrapper.find(photoCardBadgeTagInner).at(n),
+    getPhotoCardBadgeTagInnerMore: () => wrapper.find(photoCardBadgeTagInnerMore),
+    getNthPhotoCardBadgeTagInnerMore: n => wrapper.find(photoCardBadgeTagInnerMore).at(n),
+  });
+
+  describe('`PhotoCard` initional render', () => {
     it('renders without initial props', () => {
-      const photoCard = global.shallow(<PhotoCard />);
+      const photoCardComponent = global.mountWrap(<PhotoCard />);
+      const page = appSelector(photoCardComponent);
+      const cardList = page.getPhotoCardList();
+      const cardListItem = page.getPhotoCardListItem();
+
+      expect(cardList).toHaveLength(1);
+      expect(cardListItem).toHaveLength(0);
     });
     it('renders with initial props', () => {
-      const photoCard = global.shallow(<PhotoCard {...initialProps} />);
-      expect(photoCard).toMatchSnapshot();
+      const photoCardComponent = global.mountWrap(<PhotoCard {...initialProps} />);
+      const page = appSelector(photoCardComponent);
+      const cardList = page.getPhotoCardList();
+      const cardListItem = page.getPhotoCardListItem();
+
+      expect(cardList).toHaveLength(1);
+      expect(cardListItem).toHaveLength(0);
     });
-    it('renders with `cards`', () => {
+    it('renders with one element in `cards`', () => {
       const props = {
         ...initialProps,
         cards: cardsOneElement,
       };
-      const photoCard = global.shallow(<PhotoCard {...props} />);
-      expect(photoCard).toMatchSnapshot();
+      const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
+      const page = appSelector(photoCardComponent);
+
+      const cardList = page.getPhotoCardList();
+      //console.log(cardList.debug())
+      const cardListItem = page.getPhotoCardListItem();
+      const cardListItem0 = page.getNthPhotoCardListItem(0);
+      //console.log(cardListItem0.debug())
+
+      expect(cardList).toHaveLength(1);
+      expect(cardListItem).toHaveLength(1);
+      expect(cardListItem).toExist();
+      expect(cardList).toContainMatchingElement('.photo-card-list__item');
+    });
+  });
+
+  describe('Test Tags', () => {
+    it('render `tags` on one element `cards`', () => {
+      const props = {
+        ...initialProps,
+        cards: [
+          {
+            ...cardsOneElement[0],
+            tags: [
+              {
+                title: 'motorcycle',
+              },
+              {
+                title: 'auto',
+              },
+              {
+                title: 'velocity',
+              },
+            ],
+          },
+        ],
+      };
+      const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
+      const page = appSelector(photoCardComponent);
+      const cardBadge = page.getPhotoCardBadge();
+      const cardBadgeTagMain = page.getPhotoCardBadgeTagMain();
+      const cardBadgeTagMain0 = page.getNthPhotoCardBadgeTagMain(0);
+
+      expect(cardBadgeTagMain).toHaveLength(3);
+      expect(cardBadgeTagMain0).toHaveText('motorcycle');
+      //console.log(cardBadgeTagMain.debug())
+    });
+    it('render `tags` on two element `cards`', () => {
+      const props = {
+        ...initialProps,
+        cards: [
+          {
+            ...cardsOneElement[0],
+            tags: [
+              {
+                title: 'motorcycle1',
+              },
+              {
+                title: 'auto1',
+              },
+              {
+                title: 'velocity1',
+              },
+            ],
+          },
+          {
+            ...cardsOneElement[0],
+            photoID: '2',
+            tags: [
+              {
+                title: 'motorcycle2',
+              },
+              {
+                title: 'auto2',
+              },
+              {
+                title: 'velocity2',
+              },
+            ],
+          },
+        ],
+      };
+      const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
+      const page = appSelector(photoCardComponent);
+      const cardBadge = page.getPhotoCardBadge();
+      const cardBadgeTagMain = page.getPhotoCardBadgeTagMain();
+      const cardBadgeTagMain5 = page.getNthPhotoCardBadgeTagMain(5);
+      
+      expect(cardBadgeTagMain).toHaveLength(6);
+      expect(cardBadgeTagMain5).toHaveText('velocity2');
+    });
+
+    it('Mock `onSearchTagValue` ', () => {
+      const mockFetchRequestAction = jest.fn();
+      const props = {
+        cards: [
+          {
+            ...cardsOneElement[0],
+            tags: [
+              {
+                title: 'motorcycle1',
+              },
+              {
+                title: 'auto1',
+              },
+              {
+                title: 'velocity1',
+              },
+              {
+                title: 'motorcycle2',
+              },
+              {
+                title: 'auto2',
+              },
+              {
+                title: 'velocity2',
+              },
+            ],
+          },
+        ],
+        onSearchTagValue: mockFetchRequestAction,
+      };
+
+      const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
+      const page = appSelector(photoCardComponent);
+      const cardBadge = page.getPhotoCardBadge();
+      const cardBadgeTagMain = page.getPhotoCardBadgeTagMain();
+      const cardBadgeTagMain0 = page.getNthPhotoCardBadgeTagMain(0);
+      const cardBadgeTagInner = page.getPhotoCardBadgeTagInner();
+      const cardBadgeTagInner4 = page.getNthPhotoCardBadgeTagInner(4);
+      cardBadgeTagMain0.simulate('click');
+      //cardBadgeTagInner4.simulate('click');
+      //expect(mockFetchRequestAction).toHaveBeenCalledTimes(2);
+      console.log(cardBadgeTagInner4.debug());
     });
   });
 });

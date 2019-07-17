@@ -14,7 +14,6 @@ export const processResponse = (response) => {
     userID: get(item, 'user.username', ''),
     userAvatar: get(item, 'user.profile_image.large', ''),
   }));
-  console.log("2: ", response)
   return {
     cards,
     isListingLoading: false,

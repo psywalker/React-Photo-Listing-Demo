@@ -90,7 +90,7 @@ const PhotoCard = memo(({
  
             { item.tags.length > 3 && (
               <Popover
-                data-test="photoCarPopover"
+                data-test="photoCardPopover"
                 placement="top"
                 title="Remaining tags"
                 content={(

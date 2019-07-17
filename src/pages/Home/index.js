@@ -65,8 +65,6 @@ export class Home extends PureComponent {
       navTopItemActive,
       photolistingRequestError,
     } = this.props;
-
-    console.log("1: ", cards)
     if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
     return (
       <div className="App">

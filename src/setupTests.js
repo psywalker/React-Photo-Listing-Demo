@@ -4,6 +4,7 @@ import Enzyme, { shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { createSerializer } from 'enzyme-to-json';
 import 'jest-extended';
+import 'jest-enzyme';
 
 // React 16 Enzyme adapter
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));

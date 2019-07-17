@@ -120,8 +120,8 @@ exports[`Test of component of Home Home component initial renders Error if \`tot
     className="nav-top"
   />
   <ul
-    className="photo-list"
-    data-test="PhotoList"
+    className="photo-card-list"
+    data-test="photoCardList"
   />
   <div
     className="pagination"
@@ -611,8 +611,8 @@ exports[`Test of component of Home Mount tests Test method of tags 1`] = `
     </li>
   </ul>
   <ul
-    className="photo-list"
-    data-test="PhotoList"
+    className="photo-card-list"
+    data-test="photoCardList"
   />
   <div
     className="cards__text-empty"
