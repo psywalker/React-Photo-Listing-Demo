@@ -92,10 +92,7 @@ describe('Test of component of `PhotoCard`', () => {
       const page = appSelector(photoCardComponent);
 
       const cardList = page.getPhotoCardList();
-      //console.log(cardList.debug())
       const cardListItem = page.getPhotoCardListItem();
-      const cardListItem0 = page.getNthPhotoCardListItem(0);
-      //console.log(cardListItem0.debug())
 
       expect(cardList).toHaveLength(1);
       expect(cardListItem).toHaveLength(1);
@@ -127,102 +124,103 @@ describe('Test of component of `PhotoCard`', () => {
       };
       const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
       const page = appSelector(photoCardComponent);
+      const cardList = page.getPhotoCardList();
       const cardBadge = page.getPhotoCardBadge();
       const cardBadgeTagMain = page.getPhotoCardBadgeTagMain();
       const cardBadgeTagMain0 = page.getNthPhotoCardBadgeTagMain(0);
-
-      expect(cardBadgeTagMain).toHaveLength(3);
-      expect(cardBadgeTagMain0).toHaveText('motorcycle');
+      console.log(cardList.debug())
+      // expect(cardBadgeTagMain).toHaveLength(3);
+      // expect(cardBadgeTagMain0).toHaveText('motorcycle');
       //console.log(cardBadgeTagMain.debug())
     });
-    it('render `tags` on two element `cards`', () => {
-      const props = {
-        ...initialProps,
-        cards: [
-          {
-            ...cardsOneElement[0],
-            tags: [
-              {
-                title: 'motorcycle1',
-              },
-              {
-                title: 'auto1',
-              },
-              {
-                title: 'velocity1',
-              },
-            ],
-          },
-          {
-            ...cardsOneElement[0],
-            photoID: '2',
-            tags: [
-              {
-                title: 'motorcycle2',
-              },
-              {
-                title: 'auto2',
-              },
-              {
-                title: 'velocity2',
-              },
-            ],
-          },
-        ],
-      };
-      const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
-      const page = appSelector(photoCardComponent);
-      const cardBadge = page.getPhotoCardBadge();
-      const cardBadgeTagMain = page.getPhotoCardBadgeTagMain();
-      const cardBadgeTagMain5 = page.getNthPhotoCardBadgeTagMain(5);
+    // it('render `tags` on two element `cards`', () => {
+    //   const props = {
+    //     ...initialProps,
+    //     cards: [
+    //       {
+    //         ...cardsOneElement[0],
+    //         tags: [
+    //           {
+    //             title: 'motorcycle1',
+    //           },
+    //           {
+    //             title: 'auto1',
+    //           },
+    //           {
+    //             title: 'velocity1',
+    //           },
+    //         ],
+    //       },
+    //       {
+    //         ...cardsOneElement[0],
+    //         photoID: '2',
+    //         tags: [
+    //           {
+    //             title: 'motorcycle2',
+    //           },
+    //           {
+    //             title: 'auto2',
+    //           },
+    //           {
+    //             title: 'velocity2',
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   };
+    //   const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
+    //   const page = appSelector(photoCardComponent);
+    //   const cardBadge = page.getPhotoCardBadge();
+    //   const cardBadgeTagMain = page.getPhotoCardBadgeTagMain();
+    //   const cardBadgeTagMain5 = page.getNthPhotoCardBadgeTagMain(5);
       
-      expect(cardBadgeTagMain).toHaveLength(6);
-      expect(cardBadgeTagMain5).toHaveText('velocity2');
-    });
+    //   expect(cardBadgeTagMain).toHaveLength(6);
+    //   expect(cardBadgeTagMain5).toHaveText('velocity2');
+    // });
 
-    it('Mock `onSearchTagValue` ', () => {
-      const mockFetchRequestAction = jest.fn();
-      const props = {
-        cards: [
-          {
-            ...cardsOneElement[0],
-            tags: [
-              {
-                title: 'motorcycle1',
-              },
-              {
-                title: 'auto1',
-              },
-              {
-                title: 'velocity1',
-              },
-              {
-                title: 'motorcycle2',
-              },
-              {
-                title: 'auto2',
-              },
-              {
-                title: 'velocity2',
-              },
-            ],
-          },
-        ],
-        onSearchTagValue: mockFetchRequestAction,
-      };
+    // it('Mock `onSearchTagValue` ', () => {
+    //   const mockFetchRequestAction = jest.fn();
+    //   const props = {
+    //     cards: [
+    //       {
+    //         ...cardsOneElement[0],
+    //         tags: [
+    //           {
+    //             title: 'motorcycle1',
+    //           },
+    //           {
+    //             title: 'auto1',
+    //           },
+    //           {
+    //             title: 'velocity1',
+    //           },
+    //           {
+    //             title: 'motorcycle2',
+    //           },
+    //           {
+    //             title: 'auto2',
+    //           },
+    //           {
+    //             title: 'velocity2',
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //     onSearchTagValue: mockFetchRequestAction,
+    //   };
 
-      const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
-      const page = appSelector(photoCardComponent);
-      const cardBadge = page.getPhotoCardBadge();
-      const cardBadgeTagMain = page.getPhotoCardBadgeTagMain();
-      const cardBadgeTagMain0 = page.getNthPhotoCardBadgeTagMain(0);
-      const cardBadgeTagInner = page.getPhotoCardBadgeTagInner();
-      const cardBadgeTagInner4 = page.getNthPhotoCardBadgeTagInner(4);
-      cardBadgeTagMain0.simulate('click');
-      //cardBadgeTagInner4.simulate('click');
-      //expect(mockFetchRequestAction).toHaveBeenCalledTimes(2);
-      console.log(cardBadgeTagInner4.debug());
-    });
+    //   const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
+    //   const page = appSelector(photoCardComponent);
+    //   const cardBadge = page.getPhotoCardBadge();
+    //   const cardBadgeTagMain = page.getPhotoCardBadgeTagMain();
+    //   const cardBadgeTagMain0 = page.getNthPhotoCardBadgeTagMain(0);
+    //   const cardBadgeTagInner = page.getPhotoCardBadgeTagInner();
+    //   const cardBadgeTagInner4 = page.getNthPhotoCardBadgeTagInner(4);
+    //   cardBadgeTagMain0.simulate('click');
+    //   //cardBadgeTagInner4.simulate('click');
+    //   //expect(mockFetchRequestAction).toHaveBeenCalledTimes(2);
+    //   console.log(cardBadgeTagInner4.debug());
+    // });
   });
 });
 

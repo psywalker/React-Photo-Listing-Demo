@@ -77,6 +77,7 @@ const PhotoCard = memo(({
               data-test="photoCardBadge"
             >
               <Tags
+                data-test="photoCardTagMain"
                 handleMethod={onSearchTagValue}
                 tags={tagsVisibleArr}
               />
@@ -87,6 +88,7 @@ const PhotoCard = memo(({
                   title="Remaining tags"
                   content={(
                     <Tags
+                      data-test="photoCardTagPopup"
                       handleMethod={onSearchTagValue}
                       tags={tagsHiddenArr}
                     />
@@ -94,7 +96,7 @@ const PhotoCard = memo(({
                   trigger="click"
                 >
                   <Tag
-                    data-test="photoCardBadgeTagInnerMore"
+                    data-test="photoCardTagMore"
                     className="photo-card-badge__tag"
                   >
                     more tags...
