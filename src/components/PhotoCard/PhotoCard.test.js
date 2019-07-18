@@ -27,9 +27,11 @@ describe('Test of component of `PhotoCard`', () => {
   const photoCardListItem = 'li[data-test="photoCardListItem"]';
   const photoCard = 'div[data-test="photoCard"]';
   const photoCardPhotoLink = 'a[data-test="photoCardPhotoLink"]';
+  const photoCardPhotoLinkRouter = 'Link[data-test="photoCardPhotoLink"]';
   const photoCardImg = 'img[data-test="photoCardImg"]';
   const photoCardAutor = 'div[data-test="photoCardAutor"]';
   const photoCardAutorLink = 'a[data-test="photoCardAutorLink"]';
+  const photoCardAutorLinkRouter = 'Link[data-test="photoCardAutorLink"]';
   const photoCardAutorAvatar = 'img[data-test="photoCardAutorAvatar"]';
   const photoCardAutorName = 'span[data-test="photoCardAutorName"]';
   const photoCardDesc = 'p[data-test="photoCardDesc"]';
@@ -44,11 +46,13 @@ describe('Test of component of `PhotoCard`', () => {
     getNthPhotoCardListItem: n => wrapper.find(photoCardListItem).at(n),
     getPhotoCardPhotoLink: () => wrapper.find(photoCardPhotoLink),
     getNthPhotoCardPhotoLink: n => wrapper.find(photoCardPhotoLink).at(n),
+    getPhotoCardPhotoLinkRouter: () => wrapper.find(photoCardPhotoLinkRouter),
     getPhotoCard: () => wrapper.find(photoCard),
     getPhotoCardImg: () => wrapper.find(photoCardImg),
     getNthPhotoCardImg: n => wrapper.find(photoCardImg).at(n),
     getPhotoCardAutor: () => wrapper.find(photoCardAutor),
     getPhotoCardAutorLink: () => wrapper.find(photoCardAutorLink),
+    getPhotoCardAutorLinkRouter: () => wrapper.find(photoCardAutorLinkRouter),
     getNthPhotoCardAutorLink: n => wrapper.find(photoCardAutorLink).at(n),
     getPhotoCardAutorAvatar: () => wrapper.find(photoCardAutorAvatar),
     getPhotoCardAutorName: () => wrapper.find(photoCardAutorName),
@@ -146,7 +150,27 @@ describe('Test of component of `PhotoCard`', () => {
       const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
       const page = appSelector(photoCardComponent);
       const cardPhotoLink0 = page.getNthPhotoCardPhotoLink(0);
+      const cardPhotoLinkRouter = page.getPhotoCardPhotoLinkRouter(); 
+      
       expect(cardPhotoLink0.props().href).toEqual('/photo/1');
+      expect(cardPhotoLinkRouter.prop('to')).toEqual('/photo/1');
+    });
+    it('Test varibles', () => {
+      const props = {
+        ...initialProps,
+        cards: cardsOneElement,
+      };
+      const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
+      const page = appSelector(photoCardComponent);
+      const cardListItem = page.getPhotoCardListItem();
+      const cardImg = page.getPhotoCardImg();
+      const cardAutorLinkRouter = page.getPhotoCardAutorLinkRouter();
+      const cardAutorAvatar = page.getPhotoCardAutorAvatar();
+      const cardAutorName = page.getPhotoCardAutorName();
+      const cardPhotoDesc = page.getPhotoCardDesc();
+      const cardTagMainContainer = page.getPhotoCardTagMainContainer();
+
+      
     });
   });
 
