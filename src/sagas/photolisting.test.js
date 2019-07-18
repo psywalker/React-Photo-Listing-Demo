@@ -1,7 +1,6 @@
 import get from 'lodash/get';
 import { put, call } from 'redux-saga/effects';
 import axios from 'axios';
-import mockAxios from 'axios';
 import sinon from 'sinon';
 import { runSaga } from 'redux-saga';
 import {
@@ -156,7 +155,7 @@ describe('Test `cardsPhotosRequestSaga` saga', () => {
         });
         return res;
       };
-      mockAxios.get.mockImplementationOnce(() => Promise.resolve({
+      axios.get.mockImplementationOnce(() => Promise.resolve({
         response,
       }));
       let res = response;
@@ -165,8 +164,8 @@ describe('Test `cardsPhotosRequestSaga` saga', () => {
         res = r.response;
       });
       expect(res).toEqual(response);
-      expect(mockAxios.get).toHaveBeenCalledTimes(1);
-      expect(mockAxios.get).toHaveBeenCalledWith(
+      expect(axios.get).toHaveBeenCalledTimes(1);
+      expect(axios.get).toHaveBeenCalledWith(
         URL_FOR_CARDS_PHOTOS,
         {
           params: { params: axiosRequestForPhotoListing.params },

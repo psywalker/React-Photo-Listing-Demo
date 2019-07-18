@@ -8,6 +8,18 @@ import {
 import { Tags } from '..';
 import './index.scss';
 
+export const getTagsVisibleArr = item => (
+  item.tags.length < 4
+    ? item.tags
+    : item.tags.slice(0, 3)
+);
+
+export const getTagsHiddenArr = item => (
+  item.tags.length > 3
+    ? item.tags.slice(3)
+    : false
+);
+
 const PhotoCard = memo(({
   onSearchTagValue,
   cards,
@@ -17,8 +29,8 @@ const PhotoCard = memo(({
     data-test="photoCardList"
   >
     { cards.map((item) => {
-      const tagsVisibleArr = item.tags.length < 4 ? item.tags : item.tags.slice(0, 3);
-      const tagsHiddenArr = item.tags.length > 3 ? item.tags.slice(3, -1) : [];
+      const tagsVisibleArr = getTagsVisibleArr(item);
+      const tagsHiddenArr = getTagsHiddenArr(item);
       return (
         <li
           data-test="photoCardListItem"
@@ -77,11 +89,11 @@ const PhotoCard = memo(({
               data-test="photoCardBadge"
             >
               <Tags
-                data-test="photoCardTagMain"
+                data-test="photoCardTagMainContainer"
                 handleMethod={onSearchTagValue}
                 tags={tagsVisibleArr}
               />
-              { tagsHiddenArr.length && (
+              { tagsHiddenArr && (
                 <Popover
                   data-test="photoCardPopover"
                   placement="top"
