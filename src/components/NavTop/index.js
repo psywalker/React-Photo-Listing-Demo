@@ -8,7 +8,7 @@ const NavTop = memo(({
   onFilterItemValue,
   filters,
 }) => (
-  <ul className="nav-top">
+  <ul className="nav-top" data-test="navTop">
     {filters.map(item => (
       <li
         key={item.id}

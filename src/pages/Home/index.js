@@ -65,29 +65,34 @@ export class Home extends PureComponent {
       navTopItemActive,
       photolistingRequestError,
     } = this.props;
+
+    console.log("1: ", this.props)
     if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
     return (
       <div className="App">
         { isListingLoading && (<Spinner className="spinner" data-test="spinner" />)}
 
         <Search
+          data-test="search"
           onSearchInputValue={this.getSearchText}
           onChangeInputValue={this.getChangeInputValue}
           queryText={cardsData.query}
         />
         <NavTop
+          data-test="navTop"
           navTopItemActive={navTopItemActive}
           onFilterItemValue={this.getFilterItemValue}
           filters={filters}
         />
         {!isListingLoading && (
           <PhotoCard
+            data-test="photoCard"
             onSearchTagValue={this.getSearchText}
             cards={cards}
           />
         )}
         {!totalCards && (
-          <div className="cards__text-empty" data-test="CardsTextEmpty">
+          <div className="cards__text-empty" data-test="cardsTextEmpty">
             No images were found for your request. Try to find more.
           </div>
         )}
@@ -151,7 +156,7 @@ Home.defaultProps = {
     page: 1,
     per_page: 6,
   },
-  totalCards: 10,
+  totalCards: 0,
   navTopItemActive: 2,
   photolistingRequestError: false,
   match: {
