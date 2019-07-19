@@ -11,6 +11,7 @@ describe('Test of component of `PhotoCard`', () => {
   const cardsOneElement = [
     {
       photoDesc: null,
+      photoAltDesc: 'image',
       photoID: '1',
       tags: [
         {
@@ -155,22 +156,31 @@ describe('Test of component of `PhotoCard`', () => {
       expect(cardPhotoLink0.props().href).toEqual('/photo/1');
       expect(cardPhotoLinkRouter.prop('to')).toEqual('/photo/1');
     });
-    it('Test varibles', () => {
+    it('Test data `cards` in component', () => {
       const props = {
         ...initialProps,
         cards: cardsOneElement,
       };
       const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
       const page = appSelector(photoCardComponent);
-      const cardListItem = page.getPhotoCardListItem();
       const cardImg = page.getPhotoCardImg();
+      const cardAutorLink = page.getPhotoCardAutorLink();
       const cardAutorLinkRouter = page.getPhotoCardAutorLinkRouter();
       const cardAutorAvatar = page.getPhotoCardAutorAvatar();
       const cardAutorName = page.getPhotoCardAutorName();
       const cardPhotoDesc = page.getPhotoCardDesc();
       const cardTagMainContainer = page.getPhotoCardTagMainContainer();
 
-      
+      expect(cardImg.prop('alt')).toEqual('image');
+      expect(cardImg.prop('src')).toEqual(cardsOneElement[0].photoName);
+      expect(cardAutorLink.props().href).toEqual('/users/harleydavidson');
+      expect(cardAutorLinkRouter.prop('to')).toEqual('/users/harleydavidson');
+      expect(cardAutorAvatar.prop('alt')).toEqual('harleydavidson');
+      expect(cardAutorAvatar.prop('src')).toEqual(cardsOneElement[0].userAvatar);
+      expect(cardAutorName).toHaveText('Harley-Davidson');
+      expect(cardPhotoDesc).toHaveText('');
+      expect(cardTagMainContainer.prop('tags')).toBeArray();
+      expect(cardTagMainContainer.prop('handleMethod')).toBeFunction();
     });
   });
 
