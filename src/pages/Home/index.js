@@ -66,7 +66,6 @@ export class Home extends PureComponent {
       photolistingRequestError,
     } = this.props;
 
-    console.log("1: ", this.props)
     if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
     return (
       <div className="App">
@@ -166,7 +165,7 @@ Home.defaultProps = {
   },
 };
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { photolisting } = state;
   return photolisting;
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Home } from '.';
+import { mapStateToProps } from '.';
 
 describe('Test of component of Home', () => {
   // Default Data
@@ -66,6 +67,7 @@ describe('Test of component of Home', () => {
   const homeSearch = 'Search[data-test="search"]';
   const homeNavTop = 'ul[data-test="navTop"]';
   const homeNavTopItem = 'li[data-test="navTopItem"]';
+  const homeNavTopItemTag = 'div[data-test="navTopItemTag"]';
   const homePhotoCardList = 'ul[data-test="photoCardList"]';
   const homePhotoCardListItem = 'li[data-test="photoCardListItem"]';
   const homePhotoCardsTextEmpty = 'div[data-test="cardsTextEmpty"]';
@@ -79,7 +81,9 @@ describe('Test of component of Home', () => {
     getHomeSearch: () => wrapper.find(homeSearch),
     getHomeNavTop: () => wrapper.find(homeNavTop),
     getHomeNavTopItem: () => wrapper.find(homeNavTopItem),
+    getHomeNavTopItemTag: () => wrapper.find(homeNavTopItemTag),
     getNthHomeNavTopItem: n => wrapper.find(homeNavTopItem).at(n),
+    getNthHomeNavTopItemTag: n => wrapper.find(homeNavTopItemTag).at(n),
     getHomePhotoCardList: () => wrapper.find(homePhotoCardList),
     getHomePhotoCardListItem: () => wrapper.find(homePhotoCardListItem),
     getNthHomePhotoCardListItem: n => wrapper.find(homePhotoCardListItem).at(n),
@@ -87,19 +91,6 @@ describe('Test of component of Home', () => {
     getHomePaginationComponent: () => wrapper.find(homePaginationComponent),
     getHomePaginationDiv: () => wrapper.find(homePaginationDiv),
     getHomePaginationUl: () => wrapper.find(homePaginationUl),
-  });
-  const propses = {
-    ...initialProps,
-    filters,
-    cards,
-    match,
-    totalCards: 0,
-  };
-  describe('Home component initial', () => {
-    it('renders without initial props', () => {
-      const home = global.mountWrap(<Home {...propses} />);
-      console.log(home.debug())
-    });
   });
 
   describe('Home component initial', () => {
@@ -135,6 +126,8 @@ describe('Test of component of Home', () => {
       expect(paginationComponent).toHaveLength(0);
       expect(paginationDiv).toHaveLength(1);
       expect(paginationUl).toHaveLength(0);
+
+      expect(home).toMatchSnapshot();
     });
   });
 
@@ -154,8 +147,9 @@ describe('Test of component of Home', () => {
 
       expect(navTopItem).toHaveLength(2);
       expect(navTop).toHaveLength(1);
-      expect(navTopItem).toHaveLength(2);
       expect(navTopItem0).toHaveText('Editorial');
+
+      expect(navTop).toMatchSnapshot();
     });
     it('test spinner with `isListingLoading` true ', () => {
       const props = {
@@ -168,6 +162,8 @@ describe('Test of component of Home', () => {
       const spinner = page.getHomeSpinner();
 
       expect(spinner).toHaveLength(1);
+
+      expect(spinner).toMatchSnapshot();
     });
     it('test `cards` ', () => {
       const props = {
@@ -182,6 +178,8 @@ describe('Test of component of Home', () => {
 
       expect(photoCardList).toHaveLength(1);
       expect(photoCardListItem).toHaveLength(1);
+
+      expect(photoCardList).toMatchSnapshot();
     });
     it('test `cardsTextEmpty` with totalCards` ', () => {
       const props = {
@@ -194,6 +192,8 @@ describe('Test of component of Home', () => {
       const cardsTextEmpty = page.getHomeCardsTextEmpty();
 
       expect(cardsTextEmpty).toHaveLength(0);
+
+      expect(cardsTextEmpty).toMatchSnapshot();
     });
     it('test `cardsTextEmpty` with totalCards` > `cardsData.per_page`', () => {
       const props = {
@@ -206,6 +206,8 @@ describe('Test of component of Home', () => {
       const paginationDiv = page.getHomePaginationDiv();
 
       expect(paginationDiv).toHaveLength(1);
+
+      expect(paginationDiv).toMatchSnapshot();
     });
     it('test `photolistingRequestError` true', () => {
       const props = {
@@ -218,146 +220,130 @@ describe('Test of component of Home', () => {
       const errorText = page.getHomeErrorText();
 
       expect(errorText).toHaveLength(1);
+
+      expect(errorText).toMatchSnapshot();
     });
   });
-  // describe('Home component initial', () => {
-  //   it('renders without initial props', () => {
-  //     const home = global.shallow(<Home />);
-  //     expect(home.instance().props.filters).toBeArray();
-  //     expect(home.instance().props.filters).toBeArrayOfSize(0);
-  //     expect(home.instance().props.match.params.tag).toBeString();
-  //   });
-  //   it('renders with initial props', () => {
-  //     const home = global.shallow(<Home {...initialProps} />);
+  describe('Test action methods ', () => {
+    it('Test `searchTextAction` and `searchChangeInputValueAction` actions', () => {
+      const mockSearchTextAction = jest.fn();
+      const mockSearchChangeInputValueAction = jest.fn();
+      const props = {
+        ...initialProps,
+        searchTextAction: mockSearchTextAction,
+        searchChangeInputValueAction: mockSearchChangeInputValueAction,
+      };
+      const home = global.mountWrap(<Home {...props} />);
+      const page = appSelector(home);
+      const search = page.getHomeSearch();
 
-  //     expect(home.find('[data-test="navTopItem"]')).toHaveLength(0);
-  //     expect(home.find('[data-test="CardsTextEmpty"]')).toHaveLength(1);
-  //     expect(home.find('[data-test="pagination"]')).toHaveLength(1);
-  //     expect(home.find('[data-test="spinner"]')).toHaveLength(0);
-  //     expect(home).toMatchSnapshot();
-  //   });
+      search.props().onSearchInputValue('text1', 'tags1');
+      expect(mockSearchTextAction.mock.calls.length).toBe(1)
+      expect(mockSearchTextAction.mock.calls[0][0]).toBe('text1');
+      expect(mockSearchTextAction.mock.calls[0][1]).toBe('tags1');
 
-  //   it('renders with loading', () => {
-  //     const props = {
-  //       ...initialProps,
-  //       isListingLoading: true,
-  //     };
+      search.props().onChangeInputValue('text2');
+      expect(mockSearchChangeInputValueAction.mock.calls.length).toBe(1)
+      expect(mockSearchChangeInputValueAction.mock.calls[0][0]).toBe('text2');
+      expect(mockSearchChangeInputValueAction.mock.calls[0][1]).toBe(undefined);
 
-  //     const home = global.shallow(<Home {...props} />);
-  //     expect(home.find('[data-test="spinner"]')).toHaveLength(1);
-  //     expect(home).toMatchSnapshot();
-  //   });
+      expect(search).toMatchSnapshot();
+    });
+    it('Test `filterItemValueAction` actions', () => {
+      const mockFilterItemValueAction = jest.fn();
+      const props = {
+        ...initialProps,
+        filters,
+        filterItemValueAction: mockFilterItemValueAction,
+      };
+      const home = global.mountWrap(<Home {...props} />);
+      const page = appSelector(home);
+      const navTopItemTag0 = page.getNthHomeNavTopItemTag(0);
 
-  //   it('renders without loading', () => {
-  //     const props = {
-  //       ...initialProps,
-  //       isListingLoading: false,
-  //     };
+      navTopItemTag0.props().onClick();
+      expect(mockFilterItemValueAction).toBeCalled();
+      expect(mockFilterItemValueAction.mock.calls.length).toBe(1)
+      expect(mockFilterItemValueAction.mock.calls[0][0]).toBe('editorial');
+      expect(mockFilterItemValueAction.mock.calls[0][1]).toBe(0);
 
-  //     const home = global.shallow(<Home {...props} />);
-  //     expect(home.find('[data-test="spinner"]')).toHaveLength(0);
-  //     expect(home).toMatchSnapshot();
-  //   });
+      expect(home).toMatchSnapshot();
+    });
+    it('Test `cardsPhotosRequestAction` actions', () => {
+      const mockCardsPhotosRequestAction = jest.fn();
+      const props = {
+        ...initialProps,
+        cardsPhotosRequestAction: mockCardsPhotosRequestAction,
+      };
+      const home = global.mountWrap(<Home {...props} />);
 
-  //   it('renders with error', () => {
-  //     const props = {
-  //       ...initialProps,
-  //       photolistingRequestError: true,
-  //     };
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(1);
 
-  //     const home = global.shallow(<Home {...props} />);
-  //     expect(home.find('[data-test="errorText"]').text()).toEqual('Error loading photolisting');
-  //     expect(home).toMatchSnapshot();
-  //   });
+      home.setProps({
+        cardsData: {
+          query: 'wallpapers',
+          page: 1,
+          per_page: 2,
+        },
+      });
 
-  //   it('renders Error if `totalCards` > `cardsData.per_page`', () => {
-  //     const props = {
-  //       ...initialProps,
-  //       totalCards: 7,
-  //       cardsData: {
-  //         query: 'wallpapers',
-  //         page: 1,
-  //         per_page: 2,
-  //       },
-  //     };
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(2);
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledWith({
+        query: 'wallpapers',
+        page: 1,
+        per_page: 2,
+      });
 
-  //     const home = mountWrap(<Home {...props} />);
-  //     expect(home.find('[data-test-id-pagination="pagination"]')).toHaveLength(2);
-  //     expect(home).toMatchSnapshot();
-  //   });
+      // The same `cardsData`
+      const cardsData = {
+        query: 'wallpapers',
+        page: 1,
+        per_page: 2,
+      };
 
-  //   it('dispatches the `cardsPhotosRequestAction()` method it receives from props', () => {
-  //     const mockFetchRequestAction = jest.fn();
-  //     const props = {
-  //       ...initialProps,
-  //       cardsPhotosRequestAction: mockFetchRequestAction,
-  //       cardsData: {
-  //         query: 'wallpapers',
-  //         page: 1,
-  //         per_page: 2,
-  //       },
-  //     };
+      home.setProps({
+        cardsData,
+      });
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(3);
 
-  //     const home = global.shallow(<Home {...props} />);
-  //     home.setProps({
-  //       cardsData: {
-  //         query: 'wallpapers',
-  //         page: 1,
-  //         per_page: 2,
-  //       },
-  //     });
-  //     expect(mockFetchRequestAction).toHaveBeenCalledTimes(2);
-  //     expect(home).toMatchSnapshot();
-  //   });
+      home.setProps({
+        cardsData,
+      });
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(3);
+      
+    });
+    it('Test `filterItemValueAction` actions', () => {
+      const mockPaginationChangeAction = jest.fn();
+      const props = {
+        ...initialProps,
+        totalCards: 10,
+        paginationChangeAction: mockPaginationChangeAction,
+      };
+      const home = global.mountWrap(<Home {...props} />);
+      const page = appSelector(home);
+      const paginationComponent = page.getHomePaginationComponent();
 
-  //   it('dispatches the `getPaginationChange()` method it receives from props', () => {
-  //     const mockFetchRequestAction = jest.fn();
-  //     const props = {
-  //       ...initialProps,
-  //       paginationChangeAction: mockFetchRequestAction,
-  //     };
+      paginationComponent.at(0).props().onChange(1);
+      expect(mockPaginationChangeAction).toBeCalled();
+      expect(mockPaginationChangeAction.mock.calls.length).toBe(1)
+      expect(mockPaginationChangeAction.mock.calls[0][0]).toBe(1);
 
-  //     const home = global.shallow(<Home {...props} />);
-  //     home.setProps({
-  //       cardsData: {
-  //         query: 'wallpapers',
-  //         page: 1,
-  //         per_page: 2,
-  //       },
-  //     });
-  //     home.instance().getPaginationChange();
-  //     expect(mockFetchRequestAction).toHaveBeenCalledTimes(1);
-  //     expect(home).toMatchSnapshot();
-  //   });
-  // });
-
-  // describe('Home component with content', () => {
-  //   it('renders without filters for NavTop', () => {
-  //     const props = {
-  //       ...initialProps,
-  //     };
-
-  //     const home = global.shallow(<Home {...props} />);
-  //     expect(home.find('.nav-top__item')).toHaveLength(0);
-  //     expect(home).toMatchSnapshot();
-  //   });
-  // });
-
-  // describe('Mount tests', () => {
-  //   it('Test method of tags', () => {
-  //     const { id, filterValue } = filters[0];
-  //     const props = {
-  //       ...initialProps,
-  //       filters,
-  //     };
-
-  //     const home = global.mountWrap(<Home {...props} />);
-  //     expect(home).toMatchSnapshot();
-  //     home.instance().getFilterItemValue = jest.fn();
-  //     home.instance().forceUpdate();
-  //     home.find('.ant-tag').first().simulate('click');
-  //     expect(home.instance().getFilterItemValue).toHaveBeenCalledTimes(1);
-  //     expect(home.instance().getFilterItemValue).toHaveBeenCalledWith(filterValue, id);
-  //   });
-  // });
+      expect(paginationComponent).toMatchSnapshot();
+    });
+    it('Test `mapStateToProps` method', () => {
+      const state = {
+        photolisting: {
+          cards: [],
+          cardsData: { query: 'wallpapers', page: 1, per_page: 6 },
+          filters: [],
+          isListingLoading: false,
+          navTopItemActive: 2,
+          photolistingRequestError: false,
+          totalCards: 25841,
+        },
+      };
+      const { photolisting } = state;
+      const result = mapStateToProps(state);
+      expect(result).toEqual(photolisting);
+    });
+  });
 });

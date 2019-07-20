@@ -75,6 +75,8 @@ describe('Test of component of `PhotoCard`', () => {
 
       expect(cardList).toHaveLength(1);
       expect(cardListItem).toHaveLength(0);
+
+      expect(photoCardComponent).toMatchSnapshot();
     });
     it('renders with initial props', () => {
       const photoCardComponent = global.mountWrap(<PhotoCard {...initialProps} />);
@@ -84,6 +86,8 @@ describe('Test of component of `PhotoCard`', () => {
 
       expect(cardList).toHaveLength(1);
       expect(cardListItem).toHaveLength(0);
+
+      expect(photoCardComponent).toMatchSnapshot();
     });
     it('renders with one element in `cards`', () => {
       const props = {
@@ -100,6 +104,8 @@ describe('Test of component of `PhotoCard`', () => {
       expect(cardListItem).toHaveLength(1);
       expect(cardListItem).toExist();
       expect(cardList).toContainMatchingElement('.photo-card-list__item');
+
+      expect(photoCardComponent).toMatchSnapshot();
     });
   });
 
@@ -155,6 +161,8 @@ describe('Test of component of `PhotoCard`', () => {
       
       expect(cardPhotoLink0.props().href).toEqual('/photo/1');
       expect(cardPhotoLinkRouter.prop('to')).toEqual('/photo/1');
+
+      expect(photoCardComponent).toMatchSnapshot();
     });
     it('Test data `cards` in component', () => {
       const props = {
@@ -181,6 +189,8 @@ describe('Test of component of `PhotoCard`', () => {
       expect(cardPhotoDesc).toHaveText('');
       expect(cardTagMainContainer.prop('tags')).toBeArray();
       expect(cardTagMainContainer.prop('handleMethod')).toBeFunction();
+
+      expect(photoCardComponent).toMatchSnapshot();
     });
   });
 
@@ -224,6 +234,8 @@ describe('Test of component of `PhotoCard`', () => {
       expect(cardTag0).toHaveText('motorcycle');
       expect(cardPhotoCardTagMore).toHaveText('more tags...');
       expect(cardPhotoCardTagMore).toHaveLength(1);
+
+      expect(photoCardComponent).toMatchSnapshot();
     });
     it('render `tags` on two element `cards`', () => {
       const props = {
@@ -267,6 +279,8 @@ describe('Test of component of `PhotoCard`', () => {
       
       expect(cardTag).toHaveLength(6);
       expect(cardTag5).toHaveText('velocity2');
+
+      expect(photoCardComponent).toMatchSnapshot();
     });
 
     it('Mock `onSearchTagValue` ', () => {
