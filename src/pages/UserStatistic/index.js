@@ -5,7 +5,7 @@ import { Spinner, Error, HighchartsHOC } from '../../components';
 import { userStatistingRequestAction } from '../../actions';
 import './index.css';
 
-class UserStatistic extends PureComponent {
+export class UserStatistic extends PureComponent {
   componentDidMount = () => {
     const { userId } = this.props;
     const { userStatistingRequestAction: handleAction } = this.props;
@@ -19,15 +19,36 @@ class UserStatistic extends PureComponent {
       chartData,
     } = this.props;
     return (
-      <div className="user-statistic">
-        { isListingLoading && (<Spinner className="spinner" />)}
+      <div
+        data-test="userStatistic"
+        className="user-statistic"
+      >
+        { isListingLoading && (
+          <Spinner
+            data-test="spinner"
+            className="spinner"
+          />
+        )}
         { !isListingLoading && !requestError && (
-        <div className="user-statistic__charts">
-          { chartData.map((item, i) => <HighchartsHOC config={item} configNum={i} key={i} />) }
+        <div
+          data-test="userStatisticCharts"
+          className="user-statistic__charts"
+        >
+          { chartData.map((item, i) => (
+            <HighchartsHOC
+              data-test="highchartsHOC"
+              config={item}
+              configNum={i}
+              key={i}
+            />
+          ))}
         </div>
         )}
         { !isListingLoading && requestError && (
-          <Error text="Failed to get user statistics. Try later again" />
+          <Error
+            data-test="error"
+            text="Failed to get user statistics. Try later again"
+          />
         )}
       </div>
     );
