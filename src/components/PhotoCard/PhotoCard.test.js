@@ -316,8 +316,6 @@ describe('Test of component of `PhotoCard`', () => {
 
       const photoCardComponent = global.mountWrap(<PhotoCard {...props} />);
       const page = appSelector(photoCardComponent);
-      const cardBadge = page.getPhotoCardBadge();
-      const cardTag = page.getTag();
       const cardTag0 = page.getNthTag(0);
       cardTag0.simulate('click');
       expect(mockFetchRequestAction).toHaveBeenCalledTimes(1);
