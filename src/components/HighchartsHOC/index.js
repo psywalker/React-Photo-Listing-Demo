@@ -41,8 +41,6 @@ export const getNewConfig = (configInitionalData, config) => ({
 const HighchartsHOC = memo(({ config, configNum }) => {
   const configInitionalData = getConfigInitionalData(configNum);
   const newConfig = getNewConfig(configInitionalData, config);
-  console.log("1: ", configInitionalData)
-  console.log("2: ", newConfig)
   return (
     <Highcharts
       data-test="highchartsContainer"
