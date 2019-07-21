@@ -1,6 +1,6 @@
 import React from 'react';
 import InfoPhotoModal from '.';
-import setInfoPhotoModalContent from './infoPhotoModalContent';
+import InfoPhotoModalContent from './infoPhotoModalContent';
 
 describe('Test of component of SmallPhotoListing', () => {
   // Default Data
@@ -59,7 +59,6 @@ describe('Test of component of SmallPhotoListing', () => {
     it('renders without initial props', () => {
       const infoPhotoModal = global.mountWrap(<InfoPhotoModal {...propsFull} />);  
       const page = appSelector(infoPhotoModal);
-      const photoModalContent = setInfoPhotoModalContent(propsFull);
 
       const photoInfoWrap = page.getPagePhotoInfoWrap();
       const openModalBtn = page.getPageOpenModalBtn();
