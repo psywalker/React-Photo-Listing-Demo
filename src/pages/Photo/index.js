@@ -17,7 +17,7 @@ import getPhotoSize from './getPhotoSize';
 import handleDowloadPhoto from './handleDowloadPhoto';
 import './index.scss';
 
-class Photo extends Component {
+export class Photo extends Component {
   state = {
     photoWidth: null,
     photoHeight: null,
@@ -71,29 +71,46 @@ class Photo extends Component {
       photoImageLoadAction: photoLoadAction,
     } = this.props;
     const photoSize = { width: photoWidth, height: photoHeight };
+    console.log("1: ", this.props)
+  
     return (
       <div
+        data-test="photoContainer"
         className="photo-container photo"
         id="photo-container"
       >
         { !isSuccessPhotoRequest && !requestError && (
           <Card
             title={(
-              <Link to={`/users/${userName}`}>
-                <div className="photo__twitter photo-twitter">
+              <Link
+                data-test="photoTwitterLinkRouter"
+                to={`/users/${userName}`}
+              >
+                <div
+                  data-test="photoTwitter"
+                  className="photo__twitter photo-twitter"
+                >
                   <img
+                    data-test="photoTwitterAvatar"
                     src={photoProfile}
                     alt="Avatar"
                     className="photo-twitter__ava"
 
                   />
-                  <div className="photo-twitter__content">
+                  <div
+                    data-test="photoTwitterContent"
+                    className="photo-twitter__content"
+                  >
                     <p
+                      data-test="photoTwitterUserName"
                       className="photo-twitter__user-name"
                     >
                       {`${userFirstName} ${userLastName}`}
                     </p>
-                    <p className="photo-twitter__twitter-name">
+                    <p
+                      data-test="photoTwitterName"
+                      className="photo-twitter__twitter-name"
+                    >
                       @
                       {twitterName}
                     </p>
@@ -102,13 +119,20 @@ class Photo extends Component {
               </Link>
             )}
             extra={(
-              <div className="photo-header">
+              <div
+                data-test="photoHeader"
+                className="photo-header"
+              >
                 <Button
+                  data-test="photoHeaderButton"
                   style={{ marginLeft: '10px' }}
                   href="#"
                   onClick={this.downLoadPhoto}
                 >
-                  <Icon type="download" />
+                  <Icon
+                    data-test="photoHeaderButtonIcon"
+                    type="download"
+                  />
                   Download
                 </Button>
               </div>
@@ -121,9 +145,13 @@ class Photo extends Component {
             bodyStyle={{ padding: 0 }}
             headStyle={{ padding: '0 10px' }}
           >
-            <div className="photo__content photo-content">
-              { isPhotoLoading && <SpinnerPhoto /> }
+            <div
+              data-test="photoContent"
+              className="photo__content photo-content"
+            >
+              { isPhotoLoading && <SpinnerPhoto data-test="photoSpinner" /> }
               <ImageZoom
+                data-test="photoImageZoom"
                 defaultStyles={{
                   overlay: {
                     background: 'rgba(0, 0, 0, .8)',
@@ -142,60 +170,78 @@ class Photo extends Component {
                 }}
               />
               <div
+                data-test="photoFooter"
                 className="photo-content__footer photo-footer"
               >
-                <div className="photo-footer__tags">
-                  { tags.length > 2 && (
+                <div
+                  data-test="photoFooterTags"
+                  className="photo-footer__tags"
+                >
+                  { tags.length && (
                     <Popover
+                      data-test="photoPopover"
                       placement="topLeft"
                       title="All tags"
                       content={(
                         <div>
-                          {tags.map((item, i) => {
-                            if (i > 2) {
-                              return (
-                                <Link
-                                  to={`/${item.title}`}
-                                  key={item.title}
-                                >
-                                  <Tag key={item.title}>
-                                    {item.title}
-                                  </Tag>
-                                </Link>
-                              );
-                            }
-                            return null;
-                          })}
+                          {tags.map(item => (
+                            <Link
+                              data-test="photoTagLinkRouter"
+                              to={`/${item.title}`}
+                              key={item.title}
+                            >
+                              <Tag
+                                data-test="photoTag"
+                                key={item.title}
+                              >
+                                {item.title}
+                              </Tag>
+                            </Link>
+                          ))}
                         </div>
                       )}
                       trigger="click"
                     >
                       <Button
+                        data-test="photoPopoverButton"
                         style={{ marginLeft: '10px' }}
                         href="#"
                       >
-                        <Icon type="tag" />
+                        <Icon
+                          type="tag"
+                          data-test="photoPopoverButtonIcon"
+                        />
                         Show all tags
                       </Button>
                     </Popover>
                   )}
                 </div>
-                <div className="photo-footer__btns">
+                <div
+                  data-test="photoFooterBtns"
+                  className="photo-footer__btns"
+                >
                   <Button
+                    data-test="photoFooterBtnsBtn"
                     style={{ marginLeft: '10px' }}
                     href="#"
                   >
                     <Icon type="share-alt" />
                     Share
                   </Button>
-                  <InfoPhotoModal {...info} />
+                  <InfoPhotoModal
+                    data-test="photoInfoPhotoModal"
+                    {...info}
+                  />
                 </div>
               </div>
             </div>
           </Card>
         )}
         { !isPhotoLoading && !isSuccessPhotoRequest && requestError && (
-        <Error text="Sorry, no photo found" />
+        <Error
+          data-test="photoError"
+          text="Sorry, no photo found"
+        />
         )}
       </div>
     );
@@ -229,6 +275,8 @@ Photo.propTypes = {
   }),
 };
 Photo.defaultProps = {
+  photoImageLoadAction: () => {},
+  photoRequestAction: () => {},
   info: {},
   userFirstName: '',
   userLastName: '',
@@ -240,8 +288,6 @@ Photo.defaultProps = {
   photoSrc: '',
   widthPhoto: 300,
   heightPhoto: 300,
-  photoImageLoadAction: () => {},
-  photoRequestAction: () => {},
   isPhotoLoading: true,
   isSuccessPhotoRequest: true,
   requestError: false,
@@ -249,7 +295,7 @@ Photo.defaultProps = {
   history: {},
 };
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { photo } = state;
   return photo;
 };
