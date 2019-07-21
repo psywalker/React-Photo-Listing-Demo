@@ -2,7 +2,7 @@ import React from 'react';
 import { Profile } from '.';
 import { mapStateToProps } from '.';
 
-describe('Test of component of Home', () => {
+describe('Test of component of Profile', () => {
   // Default Data
   const initialProps = {
     logoutAction: () => {},
@@ -24,7 +24,7 @@ describe('Test of component of Home', () => {
   const profileContentTitle = 'h2[data-test="profileContentTitle"]';
   const profileContentEmail = 'p[data-test="profileContentEmail"]';
   const profileContentText = 'p[data-test="profileContentText"]';
-  const error = 'p[data-test="error"]';
+  const error = '[data-test="error"]';
 
   const appSelector = wrapper => ({
     getProfile: () => wrapper.find(profile),
@@ -44,7 +44,7 @@ describe('Test of component of Home', () => {
   // const pageProfile = global.mountWrap(<Profile {...propses} />);
   // console.log(pageProfile.debug())
 
-  describe('Photo component initial', () => {
+  describe('Profile component initial', () => {
     it('renders without initial props', () => {
       const profile = global.mountWrap(<Profile />);
       const page = appSelector(profile);

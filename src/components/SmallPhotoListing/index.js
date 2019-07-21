@@ -8,7 +8,7 @@ import { smallPhotoListingRequestAction } from '../../actions';
 import { Spinner, Error } from '..';
 import './index.scss';
 
-class SmallPhotoListing extends PureComponent {
+export class SmallPhotoListing extends PureComponent {
   componentDidMount = () => {
     const {
       userId,

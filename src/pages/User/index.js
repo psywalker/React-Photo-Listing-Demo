@@ -18,7 +18,7 @@ import './user.css';
 
 const { TabPane } = Tabs;
 
-class User extends PureComponent {
+export class User extends PureComponent {
   componentDidMount = () => {
     const { match, userRequestAction: requestAction } = this.props;
     requestAction(match);
@@ -33,19 +33,32 @@ class User extends PureComponent {
       requestError,
     } = this.props;
     return (
-      <div className="user-container">
-        { isUserFetching && (<Spinner />)}
+      <div
+        data-test="userContainer"
+        className="user-container"
+      >
+        { isUserFetching && (
+          <Spinner data-test="spinner" />
+        )}
         { !isUserFetching && !requestError && (
-          <div>
+          <>
             <Row style={{ display: 'flex', justifyContent: 'center' }}>
               <Col>
                 <img
+                  data-test="userAvatar"
                   className="user-card__first-img"
                   alt="example"
                   src={userFirstPhoto}
                 />
-                <div className="user-card__photo-wrap">
-                  <Avatar size={150} src={userPhoto} />
+                <div
+                  data-test="userCardPhotoWrap"
+                  className="user-card__photo-wrap"
+                >
+                  <Avatar
+                    data-test="userCardPhotoAvatar"
+                    size={150}
+                    src={userPhoto}
+                  />
                 </div>
               </Col>
             </Row>
@@ -57,8 +70,12 @@ class User extends PureComponent {
               }}
             >
               <Col>
-                <div className="user-tabs">
+                <div
+                  data-test="userTabs"
+                  className="user-tabs"
+                >
                   <Tabs
+                    data-test="userTabsItem"
                     className="user-tabs__item"
                     defaultActiveKey="1"
                   >
@@ -68,6 +85,7 @@ class User extends PureComponent {
                       className="user-tabs__pane"
                     >
                       <SmallPhotoListing
+                        data-test="smallPhotoListing"
                         userId={match.params.id}
                         itemNum={0}
                         name="photos"
@@ -79,6 +97,7 @@ class User extends PureComponent {
                       className="user-tabs__pane"
                     >
                       <SmallPhotoListing
+                        data-test="smallPhotoListing"
                         userId={match.params.id}
                         itemNum={1}
                         name="likes"
@@ -89,16 +108,22 @@ class User extends PureComponent {
                       key="3"
                       className="user-tabs__pane"
                     >
-                      <UserStatistic userId={match.params.id} />
+                      <UserStatistic
+                        data-test="userStatistic"
+                        userId={match.params.id}
+                      />
                     </TabPane>
                   </Tabs>
                 </div>
               </Col>
             </Row>
-          </div>
+          </>
         )}
         { !isUserFetching && requestError && (
-        <Error text="Sorry, user is not found" />
+          <Error
+            data-test="photoError"
+            text="Sorry, user is not found"
+          />
         )}
       </div>
     );
@@ -125,7 +150,11 @@ User.defaultProps = {
   userRequestAction: () => {},
   requestError: false,
   history: {},
-  match: {},
+  match: {
+    params: {
+      id: '',
+    },
+  },
 };
 
 const mapStateToProps = (state) => {
