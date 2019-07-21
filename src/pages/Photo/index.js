@@ -71,7 +71,6 @@ export class Photo extends Component {
       photoImageLoadAction: photoLoadAction,
     } = this.props;
     const photoSize = { width: photoWidth, height: photoHeight };
-    console.log("1: ", this.props)
   
     return (
       <div
