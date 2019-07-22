@@ -18,10 +18,16 @@ import {
 import 'antd/dist/antd.css';
 import './index.scss';
 
+export const testDidUpdate = {
+  get: () => console.log('update'),
+};
 export class Home extends PureComponent {
   componentDidUpdate = (prevProps) => {
-    const { cardsData, cardsPhotosRequestAction: handleAction } = this.props;
-    if (prevProps.cardsData !== cardsData) handleAction(cardsData);
+    const { cardsData, handleСardsPhotosAction } = this.props;
+    if (prevProps.cardsData !== cardsData) {
+      handleСardsPhotosAction(cardsData);
+      testDidUpdate.get();
+    }
   };
 
   componentDidMount = () => {
@@ -31,8 +37,8 @@ export class Home extends PureComponent {
   };
 
   getCardsPhotos = () => {
-    const { cardsData, cardsPhotosRequestAction: handleAction } = this.props;
-    handleAction(cardsData);
+    const { cardsData, handleСardsPhotosAction } = this.props;
+    handleСardsPhotosAction(cardsData);
   };
 
   getPaginationChange = (currentPage) => {
@@ -115,6 +121,7 @@ export class Home extends PureComponent {
 }
 
 Home.propTypes = {
+  handleСardsPhotosAction: PropTypes.func,
   cardsPhotosRequestAction: PropTypes.func,
   paginationChangeAction: PropTypes.func,
   filterItemValueAction: PropTypes.func,
@@ -142,6 +149,7 @@ Home.propTypes = {
   }),
 };
 Home.defaultProps = {
+  handleСardsPhotosAction: () => {},
   cardsPhotosRequestAction: () => {},
   paginationChangeAction: () => {},
   filterItemValueAction: () => {},
@@ -171,7 +179,7 @@ export const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = ({
-  cardsPhotosRequestAction,
+  handleСardsPhotosAction: cardsPhotosRequestAction,
   paginationChangeAction,
   filterItemValueAction,
   searchTextAction,

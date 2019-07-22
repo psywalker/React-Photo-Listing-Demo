@@ -1,6 +1,7 @@
 import React from 'react';
 import { Home } from '.';
 import { mapStateToProps } from '.';
+import { testDidUpdate } from '.';
 
 describe('Test of component of Home', () => {
   // Default Data
@@ -272,7 +273,7 @@ describe('Test of component of Home', () => {
       const mockCardsPhotosRequestAction = jest.fn();
       const props = {
         ...initialProps,
-        cardsPhotosRequestAction: mockCardsPhotosRequestAction,
+        handleСardsPhotosAction: mockCardsPhotosRequestAction,
       };
       const home = global.mountWrap(<Home {...props} />);
 
@@ -309,6 +310,26 @@ describe('Test of component of Home', () => {
         cardsData,
       });
       expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(3);
+
+      const mockTestUpdate = jest.fn();
+      testDidUpdate.get = mockTestUpdate;
+
+      expect(mockTestUpdate).toHaveBeenCalledTimes(0);
+
+      home.setProps({
+        cardsData: {
+          query: 'wallpapers',
+          page: 1,
+          per_page: 2,
+        },
+      });
+      expect(mockTestUpdate).toHaveBeenCalledTimes(1);
+
+      home.props().handleСardsPhotosAction();
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(5);
+
+      home.props().handleСardsPhotosAction();
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(6);
       
     });
     it('Test `filterItemValueAction` actions', () => {
