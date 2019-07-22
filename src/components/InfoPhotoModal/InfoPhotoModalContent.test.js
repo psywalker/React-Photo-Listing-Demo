@@ -1,5 +1,11 @@
 import React from 'react';
-import InfoPhotoModalContent from './InfoPhotoModalContent';
+import InfoPhotoModalContent from '.';
+import {
+  getDate,
+  getViewsFormat,
+  getDownloadsFormat,
+  getLikesFormat,
+} from '.';
 
 describe('Test of component of SmallPhotoListing', () => {
   // Default Data
@@ -20,18 +26,17 @@ describe('Test of component of SmallPhotoListing', () => {
   };
 
   const propsFull = {
-    aperture: null,
-    cameraMake: null,
-    cameraModel: null,
-    'data-test': 'photoInfoPhotoModal',
+    aperture: '1.4',
+    cameraMake: 'SONY',
+    cameraModel: 'ILCE-7RM2',
     downloads: 102632,
-    focalLength: null,
+    focalLength: '85.0',
     height: 5250,
-    iso: null,
+    iso: '200',
     lastUpdateInfo: '2019-07-21T01:07:46-04:00',
     likes: 344,
-    photoDesc: null,
-    shutterspeed: null,
+    photoDesc: 'El Capitan on a sunny afternoon',
+    shutterspeed: '1/500',
     views: 9808487,
     width: 3502,
   };

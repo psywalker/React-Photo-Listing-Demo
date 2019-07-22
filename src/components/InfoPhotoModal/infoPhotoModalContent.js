@@ -5,6 +5,11 @@ import moment from 'moment';
 import 'moment-timezone';
 import numeral from 'numeral';
 
+export const getDate = lastUpdateInfo => moment(lastUpdateInfo).format('LL');
+export const getViewsFormat = views => numeral(views).format('0,0');
+export const getDownloadsFormat = downloads => numeral(downloads).format('0,0');
+export const getLikesFormat = likes => numeral(likes).format('0,0');
+
 const InfoPhotoModalContent = memo(({
   lastUpdateInfo,
   photoDesc,
@@ -20,10 +25,10 @@ const InfoPhotoModalContent = memo(({
   width,
   height,
 }) => {
-  const date = moment(lastUpdateInfo).format('LL');
-  const viewsFormat = numeral(views).format('0,0');
-  const downloadsFormat = numeral(downloads).format('0,0');
-  const likesFormat = numeral(likes).format('0,0');
+  const date = getDate(lastUpdateInfo);
+  const viewsFormat = getViewsFormat(views);
+  const downloadsFormat = getDownloadsFormat(downloads);
+  const likesFormat = getLikesFormat(likes);
   const photoModalHeader = (
     <header
       data-test="photoInfoHeader"
@@ -66,7 +71,8 @@ const InfoPhotoModalContent = memo(({
       >
         <li
           data-test="photoInfoListHeadItem"
-          className="photo-info-list-head__item">
+          className="photo-info-list-head__item"
+        >
           <h3
             data-test="photoInfoListHeadTitle"
             className="photo-info-list-head__title"
@@ -88,29 +94,53 @@ const InfoPhotoModalContent = memo(({
             {''}
           </p>
         </li>
-        <li className="photo-info-list-head__item">
-          <h3 className="photo-info-list-head__title">
+        <li
+          data-test="photoInfoListHeadItem"
+          className="photo-info-list-head__item"
+        >
+          <h3
+            data-test="photoInfoListHeadTitle"
+            className="photo-info-list-head__title"
+          >
             <Icon type="arrow-down" />
             {' '}
             Downloads
           </h3>
-          <p className="photo-info-list-head__text-main">
+          <p
+            data-test="photoInfoListHeadTextMain"
+            className="photo-info-list-head__text-main"
+          >
             {downloadsFormat}
           </p>
-          <p className="photo-info-list-head__text">
+          <p
+            data-test="photoInfoListHeadText"
+            className="photo-info-list-head__text"
+          >
             {''}
           </p>
         </li>
-        <li className="photo-info-list-head__item">
-          <h3 className="photo-info-list-head__title">
+        <li
+          data-test="photoInfoListHeadItem"
+          className="photo-info-list-head__item"
+        >
+          <h3
+            data-test="photoInfoListHeadTitle"
+            className="photo-info-list-head__title"
+          >
             <Icon type="heart" />
             {' '}
             Likes
           </h3>
-          <p className="photo-info-list-head__text-main">
+          <p
+            data-test="photoInfoListHeadTextMain"
+            className="photo-info-list-head__text-main"
+          >
             {likesFormat}
           </p>
-          <p className="photo-info-list-head__text">
+          <p
+            data-test="photoInfoListHeadText"
+            className="photo-info-list-head__text"
+          >
             {''}
           </p>
         </li>
@@ -118,60 +148,126 @@ const InfoPhotoModalContent = memo(({
 
       <Divider />
 
-      <ul className="photo-info-list photo-info__list-content">
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+      <ul
+        data-test="photoInfoListContent"
+        className="photo-info-list photo-info__list-content"
+      >
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Camera Make
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {cameraMake || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Camera Model
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {cameraModel || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Focal Length
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {focalLength || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Aperture
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {aperture || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Shutter Speed
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {shutterspeed || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             ISO
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {iso || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Dimensions
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {(width && height) ? `${width} x ${height}` : '--' }
           </p>
         </li>
@@ -179,7 +275,10 @@ const InfoPhotoModalContent = memo(({
     </div>
   );
   return (
-    <div className="photo-info">
+    <div
+      data-test="photoInfo"
+      className="photo-info"
+    >
       { photoModalHeader }
       { photoModalContent }
     </div>
