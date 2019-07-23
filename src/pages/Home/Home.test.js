@@ -1,8 +1,10 @@
 import React from 'react';
-import Home from '.';
+// import Home from '.';
 // import { mapStateToProps } from './HomeHOC';
 // import { testDidUpdate } from '.';
-
+describe('Test of component of Home', () => {
+  it('with `filters` data ', () => {});
+});
 // describe('Test of component of Home', () => {
 //   // Default Data
 //   const initialProps = {
