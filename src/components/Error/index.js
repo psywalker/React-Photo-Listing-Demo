@@ -10,13 +10,30 @@ const Error = memo(({ text, smallErrorFlag }) => (
     data-test="error"
     className={`${smallErrorFlag ? 'error error_small-list' : 'error '}`}
   >
-    <div className="error__content">
-      <div className="error__content-inner">
-        <h3 className="error__title">OOPS</h3>
-        <h2 className="error__subtitle">{text}</h2>
+    <div
+      data-test="errorContent"
+      className="error__content"
+    >
+      <div
+        data-test="errorContentInner"
+        className="error__content-inner"
+      >
+        <h3
+          data-test="errorTitle"
+          className="error__title"
+        >
+          OOPS
+        </h3>
+        <h2
+          data-test="erroSubtitle"
+          className="error__subtitle"
+        >
+          {text}
+        </h2>
         {' '}
-        <Link to="/">
+        <Link to="/" data-test="errorLinkRouter">
           <Button
+            data-test="errorButton"
             style={{ marginLeft: '10px' }}
           >
             BACK TO HOME
@@ -24,7 +41,12 @@ const Error = memo(({ text, smallErrorFlag }) => (
         </Link>
       </div>
     </div>
-    <img alt={text} src={`${URL_FOR_ERROR_IMAGE}`} className="error__bg" />
+    <img
+      data-test="errorBgImg"
+      alt={text}
+      src={`${URL_FOR_ERROR_IMAGE}`}
+      className="error__bg"
+    />
   </div>
 ));
 
