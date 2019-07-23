@@ -14,6 +14,44 @@ export const testDidUpdate = {
   get: () => console.log('update'),
 };
 export default class HomeComponent extends PureComponent {
+  componentDidUpdate = (prevProps) => {
+    const { cardsData, handleСardsPhotosAction } = this.props;
+    if (prevProps.cardsData !== cardsData) {
+      handleСardsPhotosAction(cardsData);
+      testDidUpdate.get();
+    }
+  };
+
+  componentDidMount = () => {
+    const { match: { params: { tag } }, searchTextAction: handleAction } = this.props;
+    if (tag) handleAction(tag, 'tags');
+    else this.getCardsPhotos();
+  };
+
+  getCardsPhotos = () => {
+    const { cardsData, handleСardsPhotosAction } = this.props;
+    handleСardsPhotosAction(cardsData);
+  };
+
+  getPaginationChange = (currentPage) => {
+    const { paginationChangeAction: handleAction } = this.props;
+    handleAction(currentPage);
+  };
+
+  getFilterItemValue = (itemText, itemId) => {
+    const { filterItemValueAction: handleAction } = this.props;
+    handleAction(itemText, itemId);
+  };
+
+  getSearchText = (text, tags) => {
+    const { searchTextAction: handleAction } = this.props;
+    handleAction(text, tags);
+  }
+
+  getChangeInputValue = (text) => {
+    const { searchChangeInputValueAction: handleAction } = this.props;
+    handleAction(text);
+  }
 
   render() {
     const {
