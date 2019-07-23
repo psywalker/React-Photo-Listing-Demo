@@ -7,6 +7,7 @@ import './index.scss';
 
 const Error = memo(({ text, smallErrorFlag }) => (
   <div
+    data-test="error"
     className={`${smallErrorFlag ? 'error error_small-list' : 'error '}`}
   >
     <div className="error__content">

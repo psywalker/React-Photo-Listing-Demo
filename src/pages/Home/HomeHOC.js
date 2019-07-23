@@ -8,10 +8,7 @@ import {
   searchChangeInputValueAction,
 } from '../../actions';
 
-export const mapStateToProps = (state) => {
-  const { photolisting } = state;
-  return photolisting;
-};
+export const mapStateToProps = state => state.photolisting;
 
 const mapDispatchToProps = ({
   handleСardsPhotosAction: cardsPhotosRequestAction,
