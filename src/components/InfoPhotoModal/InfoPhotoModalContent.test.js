@@ -32,7 +32,7 @@ describe('Test of component of SmallPhotoListing', () => {
     downloads: 102632,
     focalLength: '85.0',
     height: 5250,
-    iso: '200',
+    iso: 200,
     lastUpdateInfo: '2019-07-21T01:07:46-04:00',
     likes: 344,
     photoDesc: 'El Capitan on a sunny afternoon',

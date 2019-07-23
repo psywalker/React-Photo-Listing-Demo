@@ -1,14 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Pagination } from 'antd';
-import {
-  cardsPhotosRequestAction,
-  paginationChangeAction,
-  filterItemValueAction,
-  searchTextAction,
-  searchChangeInputValueAction,
-} from '../../actions';
 import {
   Search,
   PhotoCard,
@@ -21,7 +13,7 @@ import './index.scss';
 export const testDidUpdate = {
   get: () => console.log('update'),
 };
-export class Home extends PureComponent {
+export default class Home extends PureComponent {
   componentDidUpdate = (prevProps) => {
     const { cardsData, handleСardsPhotosAction } = this.props;
     if (prevProps.cardsData !== cardsData) {
@@ -173,20 +165,20 @@ Home.defaultProps = {
   },
 };
 
-export const mapStateToProps = (state) => {
-  const { photolisting } = state;
-  return photolisting;
-};
+// export const mapStateToProps = (state) => {
+//   const { photolisting } = state;
+//   return photolisting;
+// };
 
-const mapDispatchToProps = ({
-  handleСardsPhotosAction: cardsPhotosRequestAction,
-  paginationChangeAction,
-  filterItemValueAction,
-  searchTextAction,
-  searchChangeInputValueAction,
-});
+// const mapDispatchToProps = ({
+//   handleСardsPhotosAction: cardsPhotosRequestAction,
+//   paginationChangeAction,
+//   filterItemValueAction,
+//   searchTextAction,
+//   searchChangeInputValueAction,
+// });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Home);
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(Home);
