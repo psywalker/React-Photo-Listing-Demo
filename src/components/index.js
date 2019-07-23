@@ -10,7 +10,7 @@ import Error from './Error';
 import HighchartsHOC from './HighchartsHOC';
 import SmallPhotoListing from './SmallPhotoListing';
 import Tags from './Tags';
-import HomeHOC from '../pages/Home/HomeHOC';
+import HomeTestHOC from '../pages/Home/HomeTestHOC';
 import Photo from '../pages/Photo';
 import Profile from '../pages/Profile';
 import User from '../pages/User';
@@ -26,7 +26,7 @@ export {
   SpinnerPhoto,
   InfoPhotoModal,
   Error,
-  HomeHOC,
+  HomeTestHOC,
   Photo,
   Profile,
   User,

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Home from '.';
+import Home from './HomeComponent';
 import {
   cardsPhotosRequestAction,
   paginationChangeAction,

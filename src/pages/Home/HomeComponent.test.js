@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from '.';
+//import HomeComponent from './HomeComponent';
 // import { mapStateToProps } from './HomeHOC';
 // import { testDidUpdate } from '.';
 describe('Test of component of Home', () => {
