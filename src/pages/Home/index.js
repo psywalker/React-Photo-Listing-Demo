@@ -1,19 +1,17 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Pagination } from 'antd';
-import {
-  Search,
-  PhotoCard,
-  NavTop,
-  Spinner,
-} from '../../components';
+import PhotoCard from '../../components/PhotoCard';
+import Search from '../../components/Search';
+import NavTop from '../../components/NavTop';
+import Spinner from '../../components/Spinner';
 import 'antd/dist/antd.css';
 import './index.scss';
 
 export const testDidUpdate = {
   get: () => console.log('update'),
 };
-export default class HomeComponent extends PureComponent {
+export default class Home extends PureComponent {
   componentDidUpdate = (prevProps) => {
     const { cardsData, handleСardsPhotosAction } = this.props;
     if (prevProps.cardsData !== cardsData) {
@@ -112,7 +110,7 @@ export default class HomeComponent extends PureComponent {
   }
 }
 
-HomeComponent.propTypes = {
+Home.propTypes = {
   handleСardsPhotosAction: PropTypes.func,
   cardsPhotosRequestAction: PropTypes.func,
   paginationChangeAction: PropTypes.func,
@@ -140,7 +138,7 @@ HomeComponent.propTypes = {
     }),
   }),
 };
-HomeComponent.defaultProps = {
+Home.defaultProps = {
   handleСardsPhotosAction: () => {},
   cardsPhotosRequestAction: () => {},
   paginationChangeAction: () => {},
@@ -164,21 +162,3 @@ HomeComponent.defaultProps = {
     },
   },
 };
-
-// export const mapStateToProps = (state) => {
-//   const { photolisting } = state;
-//   return photolisting;
-// };
-
-// const mapDispatchToProps = ({
-//   handleСardsPhotosAction: cardsPhotosRequestAction,
-//   paginationChangeAction,
-//   filterItemValueAction,
-//   searchTextAction,
-//   searchChangeInputValueAction,
-// });
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(Home);

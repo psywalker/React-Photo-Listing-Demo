@@ -7,10 +7,10 @@ import Spinner from './Spinner';
 import SpinnerPhoto from './SpinnerPhoto';
 import InfoPhotoModal from './InfoPhotoModal';
 import Error from './Error';
-// import HighchartsHOC from './HighchartsHOC';
+import HighchartsHOC from './HighchartsHOC';
 import SmallPhotoListing from './SmallPhotoListing';
 import Tags from './Tags';
-import HomeTestHOC from '../pages/Home/HomeTestHOC';
+import HomeHOC from '../pages/Home/HomeHOC';
 import Photo from '../pages/Photo';
 import Profile from '../pages/Profile';
 import User from '../pages/User';
@@ -26,12 +26,12 @@ export {
   SpinnerPhoto,
   InfoPhotoModal,
   Error,
-  HomeTestHOC,
+  HomeHOC,
   Photo,
   Profile,
   User,
   UserStatistic,
-  // HighchartsHOC,
+  HighchartsHOC,
   SmallPhotoListing,
   Tags,
 };

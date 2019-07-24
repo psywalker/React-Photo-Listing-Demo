@@ -5,7 +5,7 @@ import {
   Tag,
   Popover,
 } from 'antd';
-import { Tags } from '..';
+import Tags from '../Tags';
 import './index.scss';
 
 export const getTagsVisibleArr = item => (
