@@ -8,22 +8,19 @@ import {
   searchChangeInputValueAction,
 } from '../../actions';
 
-export const mapStateToProps = state => state.photolisting;
+// export const mapStateToProps = state => state.photolisting;
 
-const mapDispatchToProps = ({
-  handleСardsPhotosAction: cardsPhotosRequestAction,
-  paginationChangeAction,
-  filterItemValueAction,
-  searchTextAction,
-  searchChangeInputValueAction,
-});
-const ContainerComponent = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(HomeTest);
-
-export default ContainerComponent;
-// export default connect(
+// const mapDispatchToProps = ({
+//   handleСardsPhotosAction: cardsPhotosRequestAction,
+//   paginationChangeAction,
+//   filterItemValueAction,
+//   searchTextAction,
+//   searchChangeInputValueAction,
+// });
+// const ContainerComponent = connect(
 //   mapStateToProps,
 //   mapDispatchToProps,
 // )(HomeTest);
+
+// export default ContainerComponent;
+export default connect(null, null)(HomeTest);

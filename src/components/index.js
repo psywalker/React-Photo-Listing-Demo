@@ -7,7 +7,7 @@ import Spinner from './Spinner';
 import SpinnerPhoto from './SpinnerPhoto';
 import InfoPhotoModal from './InfoPhotoModal';
 import Error from './Error';
-import HighchartsHOC from './HighchartsHOC';
+// import HighchartsHOC from './HighchartsHOC';
 import SmallPhotoListing from './SmallPhotoListing';
 import Tags from './Tags';
 import HomeTestHOC from '../pages/Home/HomeTestHOC';
@@ -31,7 +31,7 @@ export {
   Profile,
   User,
   UserStatistic,
-  HighchartsHOC,
+  // HighchartsHOC,
   SmallPhotoListing,
   Tags,
 };

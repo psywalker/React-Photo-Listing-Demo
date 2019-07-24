@@ -32,11 +32,11 @@ describe('Test of component of ButtonBack', () => {
     getPageBtnBackRoute: () => wrapper.find(pageBtnBackRoute),
   });
 
-  const propses = {
-    ...initialProps,
-  };
-  const headerApp = global.mountWrap(<HeaderApp {...propses} />);
-  console.log(headerApp.debug());
+  // const propses = {
+  //   ...initialProps,
+  // };
+  // const headerApp = global.mountWrap(<HeaderApp {...propses} />);
+  // console.log(headerApp.debug());
 
   describe('HeaderApp component initial', () => {
     it('renders without initial props', () => {
@@ -44,8 +44,8 @@ describe('Test of component of ButtonBack', () => {
       // const page = appSelector(errorComponent);
 
       // const error = page.getPageError();
-        window.location.assign('http://localhost:3000/photo/HYjJ1_AZnqw');
-        sinon.stub(window.location, 'assign');
+        // window.location.assign('http://localhost:3000/photo/HYjJ1_AZnqw');
+        // sinon.stub(window.location, 'assign');
 
     });
   });
