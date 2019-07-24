@@ -39,6 +39,6 @@ NavTop.propTypes = {
 NavTop.defaultProps = {
   filters: [],
   navTopItemActive: 0,
-  onFilterItemValue: () => { },
+  onFilterItemValue: () => {},
 };
 export default NavTop;

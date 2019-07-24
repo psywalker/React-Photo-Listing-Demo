@@ -47,8 +47,12 @@ class Search extends PureComponent {
   render() {
     const { inputValue } = this.state;
     return (
-      <div className="search">
+      <div
+        data-test="searchContainer"
+        className="search"
+      >
         <InputSearch
+          data-test="searchInput"
           className="search__input"
           value={inputValue}
           placeholder="Wallpapers"

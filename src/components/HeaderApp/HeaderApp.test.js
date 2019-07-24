@@ -40,13 +40,16 @@ describe('Test of component of ButtonBack', () => {
 
   describe('HeaderApp component initial', () => {
     it('renders without initial props', () => {
-      // const errorComponent = global.mountWrap(<Error />);
-      // const page = appSelector(errorComponent);
+      const headerApp = global.mountWrap(<HeaderApp />);
+      const page = appSelector(headerApp);
 
-      // const error = page.getPageError();
-        // window.location.assign('http://localhost:3000/photo/HYjJ1_AZnqw');
-        // sinon.stub(window.location, 'assign');
-
+      const header = page.getPageHeaderApp();
+      const userLayoutHeader = page.getPageUserLayoutHeader();
+      const pgInner = page.getPageInner();
+      const siteLogoLinkRouter = page.getPageSiteLogoLinkRouter();
+      const siteLogoLink = page.getPageSiteLogoLink();
+      const siteLogoTitle = page.getPageSiteLogoTitle();
+      const btnBackRoute = page.getPageBtnBackRoute();
     });
   });
 });

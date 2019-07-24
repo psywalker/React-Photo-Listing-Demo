@@ -6,6 +6,7 @@ exports[`Test of component of Home Home component initial renders without initia
 >
   <div
     className="search"
+    data-test="searchContainer"
   >
     <span
       className="ant-input-search search__input ant-input-affix-wrapper"
@@ -17,6 +18,7 @@ exports[`Test of component of Home Home component initial renders without initia
     >
       <input
         className="ant-input"
+        data-test="searchInput"
         disabled={false}
         onChange={[Function]}
         onKeyDown={[Function]}
@@ -81,6 +83,7 @@ exports[`Test of component of Home Test action methods  Test \`filterItemValueAc
 >
   <div
     className="search"
+    data-test="searchContainer"
   >
     <span
       className="ant-input-search search__input ant-input-affix-wrapper"
@@ -92,6 +95,7 @@ exports[`Test of component of Home Test action methods  Test \`filterItemValueAc
     >
       <input
         className="ant-input"
+        data-test="searchInput"
         disabled={false}
         onChange={[Function]}
         onKeyDown={[Function]}
@@ -197,6 +201,7 @@ Array [
 exports[`Test of component of Home Test action methods  Test \`searchTextAction\` and \`searchChangeInputValueAction\` actions 1`] = `
 <div
   className="search"
+  data-test="searchContainer"
 >
   <span
     className="ant-input-search search__input ant-input-affix-wrapper"
@@ -208,6 +213,7 @@ exports[`Test of component of Home Test action methods  Test \`searchTextAction\
   >
     <input
       className="ant-input"
+      data-test="searchInput"
       disabled={false}
       onChange={[Function]}
       onKeyDown={[Function]}
