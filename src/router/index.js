@@ -31,8 +31,8 @@ const Main = () => <HomeTestHOC />
   //         {/* <Route path="/:tag" component={props => <HomeTestHOC {...props} />} /> */}
   //       </Switch>
   //     </div>
-  //   </LastLocationProvider>
-  // </BrowserRouter>
-));
+//   //   </LastLocationProvider>
+//   // </BrowserRouter>
+// ));
 
-export default Main;
+// export default Main;
