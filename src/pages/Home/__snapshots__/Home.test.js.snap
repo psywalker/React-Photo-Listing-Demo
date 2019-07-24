@@ -354,20 +354,30 @@ exports[`Test of component of Home Test component \`Home\` with diff props  test
 >
   <div
     className="site-spinner"
+    data-test="spinnerContainer"
   >
     <div
       className="lds-ring"
+      data-test="spinnerInner"
     >
-      <div>
+      <div
+        data-test="spinnerInnerItem"
+      >
          
       </div>
-      <div>
+      <div
+        data-test="spinnerInnerItem"
+      >
          
       </div>
-      <div>
+      <div
+        data-test="spinnerInnerItem"
+      >
          
       </div>
-      <div>
+      <div
+        data-test="spinnerInnerItem"
+      >
          
       </div>
     </div>
