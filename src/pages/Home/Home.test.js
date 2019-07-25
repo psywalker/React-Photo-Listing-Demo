@@ -1,7 +1,6 @@
 import React from 'react';
 import Home from '.';
 import { mapStateToProps } from './HomeHOC';
-import { testDidUpdate } from '.';
 
 describe('Test of component of Home', () => {
   // Default Data
@@ -269,6 +268,21 @@ describe('Test of component of Home', () => {
 
       expect(home).toMatchSnapshot();
     });
+    it('Test componentDidMount tag condition', () => {
+      const mockCardsPhotosRequestAction = jest.fn();
+      const props = {
+        ...initialProps,
+        match: {
+          params: {
+            tag: 'testtags',
+          },
+        },
+        searchTextAction: mockCardsPhotosRequestAction,
+      };
+      const home = global.mountWrap(<Home {...props} />);
+    
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(1);
+    });
     it('Test `cardsPhotosRequestAction` actions', () => {
       const mockCardsPhotosRequestAction = jest.fn();
       const props = {
@@ -304,33 +318,29 @@ describe('Test of component of Home', () => {
       home.setProps({
         cardsData,
       });
-      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(3);
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(2);
 
       home.setProps({
         cardsData,
       });
-      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(3);
-
-      const mockTestUpdate = jest.fn();
-      testDidUpdate.get = mockTestUpdate;
-
-      expect(mockTestUpdate).toHaveBeenCalledTimes(0);
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(2);
 
       home.setProps({
         cardsData: {
-          query: 'wallpapers',
-          page: 1,
+          query: 'wallpaperz',
+          page: 2,
           per_page: 2,
-        },
+        }
       });
-      expect(mockTestUpdate).toHaveBeenCalledTimes(1);
 
-      home.props().handleСardsPhotosAction();
-      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(5);
-
-      home.props().handleСardsPhotosAction();
-      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(6);
-      
+      // new props case, should call cards api with new props
+      home.setProps({ cardsData });
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledTimes(4);
+      expect(mockCardsPhotosRequestAction).toHaveBeenCalledWith({
+        query: 'wallpaperz',
+        page: 2,
+        per_page: 2,
+      });
     });
     it('Test `filterItemValueAction` actions', () => {
       const mockPaginationChangeAction = jest.fn();

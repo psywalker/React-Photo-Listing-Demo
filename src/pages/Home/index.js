@@ -8,15 +8,11 @@ import Spinner from '../../components/Spinner';
 import 'antd/dist/antd.css';
 import './index.scss';
 
-export const testDidUpdate = {
-  get: () => console.log('update'),
-};
 export default class Home extends PureComponent {
   componentDidUpdate = (prevProps) => {
     const { cardsData, handleСardsPhotosAction } = this.props;
-    if (prevProps.cardsData !== cardsData) {
+    if (JSON.stringify(prevProps.cardsData) !== JSON.stringify(cardsData)) {
       handleСardsPhotosAction(cardsData);
-      testDidUpdate.get();
     }
   };
 
