@@ -25,12 +25,12 @@ describe('Test of component of Spinner', () => {
 
   describe('Spinner component initial', () => {
     it('renders without initial props', () => {
-      // const searchMount = global.mountWrap(<Search />);
-      // const page = appSelector(searchMount);
+      const spinnerMount = global.mountWrap(<Spinner />);
+      const page = appSelector(spinnerMount);
 
-      // const searchContainer = page.getPageSearchContainer();
-      // const search = page.getPageSearch();
-      // const searchInput = page.getPageSearchInput();
+      const spinnerContainer = page.getSpinnerContainer();
+      const spinnerInner = page.getPageSpinnerInner();
+      const spinnerInnerItem = page.getPageSpinnerInnerItem();
     });
   });
 });
