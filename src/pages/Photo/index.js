@@ -80,6 +80,7 @@ export class Photo extends Component {
       >
         { !isSuccessPhotoRequest && !requestError && (
           <Card
+            data-test="photoCard"
             title={(
               <Link
                 data-test="photoTwitterLinkRouter"
@@ -125,7 +126,6 @@ export class Photo extends Component {
                 <Button
                   data-test="photoHeaderButton"
                   style={{ marginLeft: '10px' }}
-                  href="#"
                   onClick={this.downLoadPhoto}
                 >
                   <Icon
@@ -157,6 +157,7 @@ export class Photo extends Component {
                   },
                 }}
                 image={{
+                  'data-test': 'photoImageZoomImg',
                   src: photoSrc,
                   alt: altDescriprion,
                   className: 'photo-content__photo',

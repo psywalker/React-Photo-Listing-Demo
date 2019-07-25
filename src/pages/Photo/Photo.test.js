@@ -59,10 +59,11 @@ describe('Test of component of Home', () => {
   const match = {
     params: {
       id: 'HYjJ1_AZnqw',
-    }
+    },
   };
 
   const photoPageContainer = 'div[data-test="photoContainer"]';
+  const photoPageCard = 'div[data-test="photoCard"]';
   const photoTwitterLinkRouter = 'Link[data-test="photoTwitterLinkRouter"]';
   const photoTwitterLink = 'a[data-test="photoTwitterLinkRouter"]';
   const photoTwitter = 'div[data-test="photoTwitter"]';
@@ -76,6 +77,7 @@ describe('Test of component of Home', () => {
   const photoHeaderButtonIcon = 'a[data-test="photoHeaderButtonIcon"]';
   const photoSpinner = '[data-test="photoSpinner"]';
   const photoImageZoom = 'ImageZoom[data-test="photoImageZoom"]';
+  const photoImageZoomImg = 'img[data-test="photoImageZoomImg"]';
   const photoFooter = 'div[data-test="photoFooter"]';
   const photoFooterTags = 'div[data-test="photoFooterTags"]';
   const photoPopoverButton = 'Button[data-test="photoPopoverButton"]';
@@ -89,6 +91,7 @@ describe('Test of component of Home', () => {
 
   const appSelector = wrapper => ({
     getPhotoPageContainer: () => wrapper.find(photoPageContainer),
+    getPhotoPageCard: () => wrapper.find(photoPageCard),
     getPhotoTwitterLinkRouter: () => wrapper.find(photoTwitterLinkRouter),
     getPhotoTwitterLink: () => wrapper.find(photoTwitterLink),
     getPhotoTwitter: () => wrapper.find(photoTwitter),
@@ -102,7 +105,7 @@ describe('Test of component of Home', () => {
     getPhotoHeaderButtonIcon: () => wrapper.find(photoHeaderButtonIcon),
     getPhotoSpinner: () => wrapper.find(photoSpinner),
     getPhotoImageZoom: () => wrapper.find(photoImageZoom),
-    getPhotoImageZoomImg: () => wrapper.find(photoImageZoom).find('img'),
+    getPhotoImageZoomImg: () => wrapper.find(photoImageZoomImg),
     getPhotoFooter: () => wrapper.find(photoFooter),
     getPhotoFooterTags: () => wrapper.find(photoFooterTags),
     getPhotoPopoverButton: () => wrapper.find(photoPopoverButton),
@@ -122,7 +125,7 @@ describe('Test of component of Home', () => {
   //   match,
   //   isSuccessPhotoRequest: false,
   //   isPhotoLoading: false,
-  //   requestError: true,
+  //   requestError: false,
   // }
   // const photo = global.mountWrap(<Photo {...propses} />);
   // console.log(photo.debug())
@@ -132,6 +135,7 @@ describe('Test of component of Home', () => {
       const photo = global.mountWrap(<Photo />);
       const page = appSelector(photo);
       const pageContainer = page.getPhotoPageContainer();
+      const pageCard = page.getPhotoPageCard();
       const twitterLinkRouter = page.getPhotoTwitterLinkRouter();
       const twitterLink = page.getPhotoTwitterLink();
       const twitter = page.getPhotoTwitter();
@@ -156,6 +160,104 @@ describe('Test of component of Home', () => {
       const photoPageFooterBtnsBtnA = page.getPhotoFooterBtnsBtnA();
       const infoPhotoModal = page.getPhotoInfoPhotoModal();
       const error = page.getPhotoError();
+
+      expect(pageContainer).toHaveLength(1);
+      expect(pageCard).toHaveLength(0);
+
+    });
+  });
+
+  describe('Test component `Photo` with diff props ', () => {
+    it('with `isSuccessPhotoRequest` to equal false ', () => {
+      const props = {
+        ...initialProps,
+        isSuccessPhotoRequest: false,
+      };
+      const photo = global.mountWrap(<Photo {...props} />);
+      const page = appSelector(photo);
+      const pageContainer = page.getPhotoPageContainer();
+      const pageCard = page.getPhotoPageCard();
+      const twitterLinkRouter = page.getPhotoTwitterLinkRouter();
+      const twitterAvatar = page.getPhotoTwitterAvatar();
+      const twitterName = page.getPhotoTwitterName();
+      const twitterUserName = page.getPhotoTwitterUserName();
+      const photoPageHeader = page.getPhotoHeader();
+      const photoPageHeaderButton = page.getPhotoHeaderButton();
+      const spinner = page.getPhotoSpinner();
+      const imageZoom = page.getPhotoImageZoom();
+      const imageZoomImg = page.getPhotoImageZoomImg();
+      const photoPageFooterTags = page.getPhotoFooterTags();
+      const popoverButton = page.getPhotoPopoverButton();
+      const photoPageFooterBtns = page.getPhotoFooterBtns();
+      const infoPhotoModal = page.getPhotoInfoPhotoModal();
+      const error = page.getPhotoError();
+
+      expect(pageContainer).toHaveLength(1);
+      expect(pageCard).toHaveLength(1);
+      expect(twitterLinkRouter).toHaveLength(1);
+      expect(twitterAvatar).toHaveLength(1);
+      expect(twitterLinkRouter.prop('to')).toEqual('/users/');
+      expect(twitterAvatar.prop('alt')).toEqual('Avatar');
+      expect(twitterUserName).toHaveLength(1);
+      expect(twitterUserName).toHaveText(' ');
+      expect(twitterName).toHaveLength(1);
+      expect(twitterName).toHaveText('@');
+      expect(photoPageHeader).toHaveLength(1);
+      expect(photoPageHeaderButton).toHaveLength(1);
+      expect(photoPageHeaderButton.prop('onClick')).toBeFunction();
+      expect(spinner).toHaveLength(1);
+      expect(imageZoom).toHaveLength(1);
+      expect(imageZoomImg).toHaveLength(1);
+      expect(imageZoomImg.prop('src')).toEqual('');
+      expect(imageZoomImg.prop('alt')).toEqual('');
+      expect(photoPageFooterTags).toHaveLength(1);
+      expect(photoPageFooterTags).toHaveText('0');
+      expect(popoverButton).toHaveLength(0);
+      expect(photoPageFooterBtns).toHaveLength(1);
+      expect(infoPhotoModal).toHaveLength(2);
+      expect(error).toHaveLength(0);
+      
+    });
+    it('with `isPhotoLoading` and `isSuccessPhotoRequest` to equel `false` and `requestError` to equal `true`', () => {
+      const props = {
+        ...initialProps,
+        isPhotoLoading: false,
+        isSuccessPhotoRequest: false,
+        requestError: true,
+      };
+      const photo = global.mountWrap(<Photo {...props} />);
+      const page = appSelector(photo);
+      const pageContainer = page.getPhotoPageContainer();
+      const error = page.getPhotoError();
+
+      expect(pageContainer).toHaveLength(1);
+      expect(error).toHaveLength(1);
+    });
+    it('`isSuccessPhotoRequest` to equel `false` (when photo loading) ', () => {
+      const props = {
+        ...initialProps,
+        isSuccessPhotoRequest: false,
+      };
+      const photo = global.mountWrap(<Photo {...props} />);
+      const page = appSelector(photo);
+      const pageContainer = page.getPhotoPageContainer();
+      const spinner = page.getPhotoSpinner();
+
+      expect(pageContainer).toHaveLength(1);
+      expect(spinner).toHaveLength(1);
+
+    });
+
+    it('`isSuccessPhotoRequest` ', () => {
+      const props = {
+        ...initialProps,
+        isSuccessPhotoRequest: false,
+      };
+      const photo = global.mountWrap(<Photo {...props} />);
+      const page = appSelector(photo);
+      const pageContainer = page.getPhotoPageContainer();
+      const spinner = page.getPhotoSpinner();
+
 
     });
   });
