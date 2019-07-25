@@ -238,12 +238,12 @@ describe('Test of component of Home', () => {
       const search = page.getHomeSearch();
 
       search.props().onSearchInputValue('text1', 'tags1');
-      expect(mockSearchTextAction.mock.calls.length).toBe(1)
+      expect(mockSearchTextAction.mock.calls.length).toBe(1);
       expect(mockSearchTextAction.mock.calls[0][0]).toBe('text1');
       expect(mockSearchTextAction.mock.calls[0][1]).toBe('tags1');
 
       search.props().onChangeInputValue('text2');
-      expect(mockSearchChangeInputValueAction.mock.calls.length).toBe(1)
+      expect(mockSearchChangeInputValueAction.mock.calls.length).toBe(1);
       expect(mockSearchChangeInputValueAction.mock.calls[0][0]).toBe('text2');
       expect(mockSearchChangeInputValueAction.mock.calls[0][1]).toBe(undefined);
 
@@ -262,7 +262,7 @@ describe('Test of component of Home', () => {
 
       navTopItemTag0.props().onClick();
       expect(mockFilterItemValueAction).toBeCalled();
-      expect(mockFilterItemValueAction.mock.calls.length).toBe(1)
+      expect(mockFilterItemValueAction.mock.calls.length).toBe(1);
       expect(mockFilterItemValueAction.mock.calls[0][0]).toBe('editorial');
       expect(mockFilterItemValueAction.mock.calls[0][1]).toBe(0);
 
@@ -355,7 +355,7 @@ describe('Test of component of Home', () => {
 
       paginationComponent.at(0).props().onChange(1);
       expect(mockPaginationChangeAction).toBeCalled();
-      expect(mockPaginationChangeAction.mock.calls.length).toBe(1)
+      expect(mockPaginationChangeAction.mock.calls.length).toBe(1);
       expect(mockPaginationChangeAction.mock.calls[0][0]).toBe(1);
 
       expect(paginationComponent).toMatchSnapshot();
