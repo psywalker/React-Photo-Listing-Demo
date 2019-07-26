@@ -268,9 +268,9 @@ describe('Test of component of Home', () => {
       };
 
       const photo = global.mountWrap(<Photo {...props} />);
-      photo.setProps({
-        photoWidth: 500,
-        photoHeight: 100,
+      photo.setState({
+        photoWidth: '500px',
+        photoHeight: '100px',
       });
       const page = appSelector(photo);
       const pageContainer = page.getPhotoPageContainer();
@@ -279,16 +279,21 @@ describe('Test of component of Home', () => {
       const twitterUserName = page.getPhotoTwitterUserName();
       const twitterName = page.getPhotoTwitterName();
       const imageZoomImg = page.getPhotoImageZoomImg();
+      const infoPhotoModal = page.getPhotoInfoPhotoModal();
 
       expect(pageContainer).toHaveLength(1);
       expect(twitterLink.prop('href')).toEqual('/users/userName');
       expect(twitterAvatar.prop('src')).toEqual('photoProfile');
       expect(twitterUserName).toHaveText('userFirstName userLastName');
       expect(twitterName).toHaveText('@twitterName');
+      expect(imageZoomImg.prop('src')).toEqual('htttp/imgSrc');
+      expect(imageZoomImg.prop('alt')).toEqual('altDescriprion');
+      expect(imageZoomImg.prop('style').width).toEqual('500px');
+      expect(imageZoomImg.prop('style').height).toEqual('100px');
 
-      const style = window.getComputedStyle(imageZoomImg);
-
-      console.log(style)
+      expect(infoPhotoModal.at(0).prop('cameraMake')).toEqual('SONY');
+      expect(infoPhotoModal.at(0).prop('downloads')).toEqual(78329);
+      console.log(pageContainer.debug())
       //console.log(imageZoomImg.prop())
     });
   });
