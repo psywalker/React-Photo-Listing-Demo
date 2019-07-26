@@ -167,8 +167,8 @@ describe('Test of component of Home', () => {
     });
   });
 
-  describe('Test component `Photo` with diff props ', () => {
-    it('with `isSuccessPhotoRequest` to equal false ', () => {
+  describe('Test component `Photo` with diff request', () => {
+    it('Successful request photo', () => {
       const props = {
         ...initialProps,
         isSuccessPhotoRequest: false,
@@ -218,7 +218,7 @@ describe('Test of component of Home', () => {
       expect(error).toHaveLength(0);
       
     });
-    it('with `isPhotoLoading` and `isSuccessPhotoRequest` to equel `false` and `requestError` to equal `true`', () => {
+    it('Error request photo', () => {
       const props = {
         ...initialProps,
         isPhotoLoading: false,
@@ -233,7 +233,7 @@ describe('Test of component of Home', () => {
       expect(pageContainer).toHaveLength(1);
       expect(error).toHaveLength(1);
     });
-    it('`isSuccessPhotoRequest` to equel `false` (when photo loading) ', () => {
+    it('Before uploading a photo with spinner', () => {
       const props = {
         ...initialProps,
         isSuccessPhotoRequest: false,
@@ -245,20 +245,51 @@ describe('Test of component of Home', () => {
 
       expect(pageContainer).toHaveLength(1);
       expect(spinner).toHaveLength(1);
-
     });
+  });
 
-    it('`isSuccessPhotoRequest` ', () => {
+  describe('Test component `Photo` with full props', () => {
+    it('Successful request photo', () => {
       const props = {
         ...initialProps,
+        userFirstName: 'userFirstName',
+        userLastName: 'userLastName',
+        userName: 'userName',
+        twitterName: 'twitterName',
+        photoProfile: 'photoProfile',
+        altDescriprion: 'altDescriprion',
+        photoSrc: 'htttp/imgSrc',
+        info,
+        tags,
+        match,
         isSuccessPhotoRequest: false,
+        isPhotoLoading: false,
+        requestError: false,
       };
+
       const photo = global.mountWrap(<Photo {...props} />);
+      photo.setProps({
+        photoWidth: 500,
+        photoHeight: 100,
+      });
       const page = appSelector(photo);
       const pageContainer = page.getPhotoPageContainer();
-      const spinner = page.getPhotoSpinner();
+      const twitterLink = page.getPhotoTwitterLink();
+      const twitterAvatar = page.getPhotoTwitterAvatar();
+      const twitterUserName = page.getPhotoTwitterUserName();
+      const twitterName = page.getPhotoTwitterName();
+      const imageZoomImg = page.getPhotoImageZoomImg();
 
+      expect(pageContainer).toHaveLength(1);
+      expect(twitterLink.prop('href')).toEqual('/users/userName');
+      expect(twitterAvatar.prop('src')).toEqual('photoProfile');
+      expect(twitterUserName).toHaveText('userFirstName userLastName');
+      expect(twitterName).toHaveText('@twitterName');
 
+      const style = window.getComputedStyle(imageZoomImg);
+
+      console.log(style)
+      //console.log(imageZoomImg.prop())
     });
   });
 });
