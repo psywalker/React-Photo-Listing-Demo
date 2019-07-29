@@ -1,4 +1,5 @@
 const getPhotoSize = (props) => {
+  window.document.body.height = 100;
   const { isSuccessPhotoRequest } = props;
   if (window.document.getElementById('photo-container') && !isSuccessPhotoRequest) {
     const { widthPhoto, heightPhoto } = props;
