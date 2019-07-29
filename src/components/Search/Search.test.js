@@ -1,6 +1,6 @@
 import React from 'react';
-import Search from '.';
 import sinon from 'sinon';
+import Search from '.';
 
 describe('Test of component of Search', () => {
   // Default Data

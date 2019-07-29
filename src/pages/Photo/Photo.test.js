@@ -1,10 +1,9 @@
 import React from 'react';
 import { Photo } from '.';
 import { mapStateToProps } from '.';
-import handleDowloadPhoto from '.';
-import getPhotoSize from '.';
+import * as handleDowloadPhoto from './handleDowloadPhoto';
 
-describe('Test of component of Home', () => {
+describe('Test of component of Photo', () => {
   // Default Data
   const initialProps = {
     photoImageLoadAction: () => {},
@@ -73,7 +72,7 @@ describe('Test of component of Home', () => {
   const photoTwitterName = 'p[data-test="photoTwitterName"]';
   const photoHeader = 'div[data-test="photoHeader"]';
   const photoHeaderButton = 'Button[data-test="photoHeaderButton"]';
-  const photoHeaderButtonA = 'a[data-test="photoHeaderButton"]';
+  const photoHeaderButtonBtn = 'button[data-test="photoHeaderButton"]';
   const photoHeaderButtonIcon = 'a[data-test="photoHeaderButtonIcon"]';
   const photoSpinner = '[data-test="photoSpinner"]';
   const photoImageZoom = 'ImageZoom[data-test="photoImageZoom"]';
@@ -101,7 +100,7 @@ describe('Test of component of Home', () => {
     getPhotoTwitterName: () => wrapper.find(photoTwitterName),
     getPhotoHeader: () => wrapper.find(photoHeader),
     getPhotoHeaderButton: () => wrapper.find(photoHeaderButton),
-    getPhotoHeaderButtonA: () => wrapper.find(photoHeaderButtonA),
+    getPhotoHeaderButtonBtn: () => wrapper.find(photoHeaderButtonBtn),
     getPhotoHeaderButtonIcon: () => wrapper.find(photoHeaderButtonIcon),
     getPhotoSpinner: () => wrapper.find(photoSpinner),
     getPhotoImageZoom: () => wrapper.find(photoImageZoom),
@@ -145,7 +144,7 @@ describe('Test of component of Home', () => {
       const twitterName = page.getPhotoTwitterName();
       const photoPageHeader = page.getPhotoHeader();
       const photoPageHeaderButton = page.getPhotoHeaderButton();
-      const photoPageHeaderButtonA = page.getPhotoHeaderButtonA();
+      const photoPageHeaderButtonBtn = page.getPhotoHeaderButtonBtn();
       const photoPageHeaderButtonIcon = page.getPhotoHeaderButtonIcon();
       const spinner = page.getPhotoSpinner();
       const imageZoom = page.getPhotoImageZoom();
@@ -216,7 +215,7 @@ describe('Test of component of Home', () => {
       expect(photoPageFooterBtns).toHaveLength(1);
       expect(infoPhotoModal).toHaveLength(2);
       expect(error).toHaveLength(0);
-      
+
     });
     it('Error request photo', () => {
       const props = {
@@ -293,8 +292,122 @@ describe('Test of component of Home', () => {
 
       expect(infoPhotoModal.at(0).prop('cameraMake')).toEqual('SONY');
       expect(infoPhotoModal.at(0).prop('downloads')).toEqual(78329);
-      console.log(pageContainer.debug())
-      //console.log(imageZoomImg.prop())
+
+    });
+  });
+  describe('Test action methods ', () => {
+    it('Test `componentDidMount`', () => {
+      const mockpPotoRequestAction = jest.fn();
+      const props = {
+        ...initialProps,
+        info,
+        tags,
+        match,
+        isSuccessPhotoRequest: false,
+        isPhotoLoading: false,
+        requestError: false,
+        photoRequestAction: mockpPotoRequestAction,
+      };
+
+      const photo = global.mountWrap(<Photo {...props} />);
+      expect(mockpPotoRequestAction).toBeCalled();
+
+    });
+    it('Test `handleDowloadPhoto`', () => {
+      const props = {
+        ...initialProps,
+        info,
+        tags,
+        match,
+        isSuccessPhotoRequest: false,
+        isPhotoLoading: false,
+        requestError: false,
+      };
+      const photo = global.mountWrap(<Photo {...props} />);
+      const page = appSelector(photo);
+      const headerButtonBtn = page.getPhotoHeaderButtonBtn();
+
+      handleDowloadPhoto.default = jest.fn();
+      headerButtonBtn.simulate('click');
+      expect(handleDowloadPhoto.default).toBeCalled();
+    });
+
+    it('Test `window.addEventListener`', () => {
+      const props = {
+        ...initialProps,
+        info,
+        tags,
+        match,
+        isSuccessPhotoRequest: false,
+        isPhotoLoading: false,
+        requestError: false,
+      };
+      const photo = global.mountWrap(<Photo {...props} />);
+      const spy = jest.spyOn(photo.instance(), 'setPhotoSize');
+
+      global.addEventListener('resize', spy);
+      global.dispatchEvent(new Event('resize'));
+
+      expect(spy).toHaveBeenCalled();
+
+    });
+    it('Test `window.removeEventListener`', () => {
+      const props = {
+        ...initialProps,
+        info,
+        tags,
+        match,
+        isSuccessPhotoRequest: false,
+        isPhotoLoading: false,
+        requestError: false,
+      };
+      const photo = global.mountWrap(<Photo {...props} />);
+
+      const spy = jest.spyOn(global.window, 'removeEventListener');
+      photo.instance().componentWillUnmount();
+
+      expect(spy).toHaveBeenCalled();
+    });
+    it('Test `mapStateToProps` method', () => {
+      const state = {
+        photo: {
+          altDescriprion: 'black motorcycle',
+          heightPhoto: 5304,
+          info: {},
+          isPhotoLoading: false,
+          isSuccessPhotoRequest: false,
+          photoProfile: 'https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128',
+          photoSrc: 'https://images.unsplash.com/photo-1558981285-6f0c94958bb6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ',
+          requestError: false,
+          tags: [],
+          twitterName: 'harleydavidson',
+          userFirstName: 'Harley-Davidson',
+          userLastName: '',
+          userName: 'harleydavidson',
+        },
+      };
+      const { photo } = state;
+      const result = mapStateToProps(state);
+      expect(result).toEqual(photo);
+    });
+    it('Test `componentDidUpdate`', () => {
+      const props = {
+        ...initialProps,
+        info,
+        tags,
+        match,
+        widthPhoto: 300,
+        isSuccessPhotoRequest: false,
+        isPhotoLoading: false,
+        requestError: false,
+      };
+      const photo = global.mountWrap(<Photo {...props} />);
+
+      const spy = jest.spyOn(photo.instance(), 'setPhotoSize');
+      photo.setProps({
+        widthPhoto: 500,
+      });
+      expect(spy).toHaveBeenCalled();
     });
   });
 });
