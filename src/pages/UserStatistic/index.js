@@ -70,7 +70,7 @@ UserStatistic.defaultProps = {
   requestError: false,
 };
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { userstatistic } = state;
   return userstatistic;
 };
