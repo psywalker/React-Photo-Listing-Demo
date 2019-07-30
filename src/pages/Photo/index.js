@@ -47,6 +47,8 @@ export class Photo extends Component {
 
   setPhotoSize = () => {
     const photoSize = getPhotoSize(this.props);
+    // console.log("1:", this.props)
+    // console.log("2:", photoSize)
     this.setState({
       photoWidth: photoSize.photoWidth,
       photoHeight: photoSize.photoHeight,
