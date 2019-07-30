@@ -65,5 +65,41 @@ describe('Test of component of User', () => {
       const userPageStatistic = page.getUserStatistic();
       const error = page.getUserError();
     });
+    it('with isUserFetching: false', () => {
+      const props = {
+        ...initialProps,
+        isUserFetching: false,
+      };
+      const pageUser = global.shallow(<User {...props} />);
+      const page = appSelector(pageUser);
+      const userPageAvatar = page.getUserAvatar();
+
+      expect(userPageAvatar).toHaveLength(1);
+    });
+    it('with fetching error', () => {
+      const props = {
+        ...initialProps,
+        isUserFetching: false,
+        requestError: true,
+      };
+      const pageUser = global.shallow(<User {...props} />);
+      const page = appSelector(pageUser);
+      const error = page.getUserError();
+
+      // expect(error).toHaveLength(1);
+    });
+    it('Test `mapStateToProps` method', () => {
+      const state = {
+        user: {
+          isUserFetching: false,
+          userPhoto: 'https://',
+          userFirstPhoto: 'https:',
+          requestError: false,
+        },
+      };
+      const { user } = state;
+      const result = mapStateToProps(state);
+      expect(result).toEqual(user);
+    });
   });
 });
