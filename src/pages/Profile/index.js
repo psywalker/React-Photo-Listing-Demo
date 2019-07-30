@@ -112,7 +112,7 @@ Profile.defaultProps = {
   history: {},
 };
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { login } = state;
   return login;
 };

@@ -26,6 +26,11 @@ const createContext = () => ({
 function mountWrap(node) {
   return mount(node, createContext());
 }
+// const localStorageMock = {
+//   getItem: jest.fn(),
+//   setItem: jest.fn(),
+//   clear: jest.fn()
+// };
 
 global.shallow = shallow;
 global.render = render;
