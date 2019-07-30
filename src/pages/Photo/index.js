@@ -18,9 +18,14 @@ import handleDowloadPhoto from './handleDowloadPhoto';
 import './index.scss';
 
 export class Photo extends Component {
-  state = {
-    photoWidth: null,
-    photoHeight: null,
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      photoWidth: null,
+      photoHeight: null,
+    };
+    this.photoContainer = React.createRef();
   }
 
   componentDidMount = () => {
@@ -46,9 +51,9 @@ export class Photo extends Component {
   }
 
   setPhotoSize = () => {
-    const photoSize = getPhotoSize(this.props);
-    // console.log("1:", this.props)
-    // console.log("2:", photoSize)
+    const photoContainerWidth = this.photoContainer.current.offsetWidth;
+    const windowHeight = window.document.documentElement.clientHeight;
+    const photoSize = getPhotoSize(this.props, photoContainerWidth, windowHeight);
     this.setState({
       photoWidth: photoSize.photoWidth,
       photoHeight: photoSize.photoHeight,
@@ -79,6 +84,7 @@ export class Photo extends Component {
         data-test="photoContainer"
         className="photo-container photo"
         id="photo-container"
+        ref={this.photoContainer}
       >
         { !isSuccessPhotoRequest && !requestError && (
           <Card

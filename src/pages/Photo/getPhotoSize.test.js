@@ -12,61 +12,60 @@ describe('Test `getPhotoSize` method', () => {
     heightPhoto: 1000,
   };
 
-  describe('without `window.document.getElementById("photo-container")` and `isSuccessPhotoRequest` null ', () => {
+  describe('without and `isSuccessPhotoRequest` null', () => {
     it('Result with `isSuccessPhotoRequest` true', () => {
       const props = {
         ...initialProps,
         isSuccessPhotoRequest: true,
       };
-      const result = getPhotoSize(props);
+      const result = getPhotoSize(props, 500, 1000);
       expect(result).toEqual({ photoWidth: '300px', photoHeight: 'auto' });
       
     });
-    it('Result with `window.document.getElementById("photo-container")` null', () => {
+    it('Result with default `widthPhoto` and `heightPhoto`', () => {
       const props = {
         ...initialProps,
+        widthPhoto: 300,
+        heightPhoto: 300,
       };
-      const result = getPhotoSize(props);
+      const result = getPhotoSize(props, 994, 710);
       expect(result).toEqual({ photoWidth: '300px', photoHeight: 'auto' });
     });
   });
-  describe('with `window.document.getElementById("photo-container")`', () => {
-    it('Result with `window.document.getElementById("photo-container")` in DOM', () => {
-      // const html = ''
-      //   + '<!DOCTYPE html>'
-      //       + '<html>'
-      //       + '<head>'
-      //           + '<title>Blank</title>'
-      //       + '</head>'
-      //       + '<body>'
-      //           + '<div id="photo-container">Hello World</div>'
-      //       + '</body>'
-      //   + '</html>';
-      // const jsdom = new JSDOM(html);
-      // Object.defineProperty(jsdom.window.HTMLHtmlElement.prototype, 'clientHeight', { value: 698 });
-      // const { window } = jsdom.window;
-      // const el = window.document.getElementById('photo-container');
-      // el.style.width = '812px';
-      // console.log(el.innerHTML);
-      // const div = window.document.createElement('div');
-      // div.id = 'photo-container';
-      // div.style.width = '812px';
-      // window.document.body.appendChild(div);
-      const jsdom = new JSDOM('<!DOCTYPE html><html>');
-      Object.defineProperty(jsdom.window.HTMLHtmlElement.prototype, 'clientHeight', { value: 698 });
-      const div = window.document.createElement('div');
-      div.id = 'photo-container';
-      div.style.width = '812px';
-      window.document.body.appendChild(div);
-
-      const props = {
-        ...initialProps,
-        widthPhoto: 7952,
-        heightPhoto: 5304,
-      };
-      const result = getPhotoSize(props);
-      expect(result).toEqual({photoWidth: "auto", photoHeight: "438px"});
-
-    });
+  it('Result with ``widthPhoto` > `heightPhoto ', () => {
+    const props = {
+      ...initialProps,
+      widthPhoto: 3600,
+      heightPhoto: 2703,
+    };
+    const result = getPhotoSize(props, 994, 710);
+    expect(result).toEqual({ photoWidth: 'auto', photoHeight: '450px' });
+  });
+  it('Result with ``widthPhoto` < `heightPhoto ', () => {
+    const props = {
+      ...initialProps,
+      widthPhoto: 2318,
+      heightPhoto: 3000,
+    };
+    const result = getPhotoSize(props, 994, 710);
+    expect(result).toEqual({ photoWidth: '403px', photoHeight: 'auto' });
+  });
+  it('Result with `widthPhoto` > `heightPhoto` and `heightPhoto` < `windowHeight` ', () => {
+    const props = {
+      ...initialProps,
+      widthPhoto: 7952,
+      heightPhoto: 5304,
+    };
+    const result = getPhotoSize(props, 994, 931);
+    expect(result).toEqual({ photoWidth: 'auto', photoHeight: '603px' });
+  });
+  it('Result with `widthPhoto` < `heightPhoto` and `widthPhoto` > `photoContainerWidth` ', () => {
+    const props = {
+      ...initialProps,
+      widthPhoto: 3346,
+      heightPhoto: 4736,
+    };
+    const result = getPhotoSize(props, 992, 3260);
+    expect(result).toEqual({ photoWidth: '930px', photoHeight: 'auto' });
   });
 });
