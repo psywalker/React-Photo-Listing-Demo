@@ -9,8 +9,8 @@ import { store } from '../index';
 import HomeHOC from '../pages/Home/HomeHOC';
 import * as Func from '../index';
 
-Func.renderIntoDocumentFunc = renderIntoDocument
-console.log(111)
+Func.renderIntoDocumentFunc = renderIntoDocument;
+console.log(111);
 
 describe('Test of component of Router', () => {
   it('renders ButtonBack', () => {
