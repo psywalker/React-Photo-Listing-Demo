@@ -39,15 +39,6 @@ describe('Test of component of ButtonBack', () => {
 
       const button = page.getBtnBack();
       button.props().onClick();
-      console.log(button.debug());
-
-      // const wrapper = global.mountWrap(
-      //   <MemoryRouter initialEntries={['/random']}>
-      //     <ButtonBack />
-      //   </MemoryRouter>,
-      // );
-
-      // console.log(wrapper.debug());
     });
   });
 });

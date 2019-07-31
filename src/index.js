@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger());
 }
 
-const store = createStore(allRedusers, initialStore, applyMiddleware(...middleware));
+export const store = createStore(allRedusers, initialStore, applyMiddleware(...middleware));
 
 sagaMiddleware.run(rootSaga, [555]);
 
