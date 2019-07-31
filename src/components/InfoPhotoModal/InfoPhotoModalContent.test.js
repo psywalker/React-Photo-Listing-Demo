@@ -102,5 +102,13 @@ describe('Test of component of SmallPhotoListing', () => {
       const listText = page.getPagePhotoInfoListText();
       const info = page.getPagePhotoInfo();
     });
+    it('renders ButtonBack', () => {
+      const props = {
+        ...initialProps,
+        photoDesc: 'photoDesc',
+      };
+      const infoPhotoModalContent = global.mountWrap(<InfoPhotoModalContent {...props} />);
+      const page = appSelector(infoPhotoModalContent);
+    });
   });
 });
