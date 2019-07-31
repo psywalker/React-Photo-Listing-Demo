@@ -81,5 +81,81 @@ describe('Test of component of SmallPhotoListing', () => {
       const paginationUl = page.getPaginationUl();
       const error = page.getError();
     });
+    it('test childElements', () => {
+      const props = {
+        ...initialProps,
+        userId: 'user',
+        cards,
+        isSmallPhotoListingFetching: false,
+      };
+      const smallPhotoListing = global.mountWrap(<SmallPhotoListing {...props} />);
+      const page = appSelector(smallPhotoListing);
+      const photoListingListItem0 = page.getNthSmallPhotoListingListItem(0);
+      expect(photoListingListItem0).toHaveLength(1);
+
+    });
+    it('with fetching error', () => {
+      const props = {
+        ...initialProps,
+        isSmallPhotoListingFetching: false,
+        requestError: true,
+      };
+      const smallPhotoListing = global.mountWrap(<SmallPhotoListing {...props} />);
+      const pageSPL = appSelector(smallPhotoListing);
+      const error = pageSPL.getError();
+    });
+  });
+  describe('Test action methods ', () => {
+    it('Test `smallPhotoListingRequestAction` action', () => {
+      const mockSmallPhotoListingRequestAction = jest.fn();
+      const props = {
+        ...initialProps,
+        userId: 'user',
+        isSmallPhotoListingFetching: false,
+        smallPhotoListingRequestAction: mockSmallPhotoListingRequestAction,
+      };
+      const {
+        userId,
+        page,
+        perPage,
+        name,
+        itemNum,
+      } = props;
+      const smallPhotoListing = global.mountWrap(<SmallPhotoListing {...props} />);
+      const pageSPL = appSelector(smallPhotoListing);
+      const paginationComponent = pageSPL.getPaginationComponent();
+
+      expect(mockSmallPhotoListingRequestAction).toHaveBeenCalledWith(userId, page, perPage, name, itemNum);
+
+      paginationComponent.at(0).props().onChange(1);
+      expect(mockSmallPhotoListingRequestAction).toBeCalled();
+    });
+    it('Test `mapStateToProps` method', () => {
+      const props = {
+        itemNum: 0,
+      };
+      const state = {
+        smallphotolisting: [
+          {
+            cards,
+            isSmallPhotoListingFetching: false,
+            itemNum: 0,
+            page: 1,
+            perPage: 6,
+            requestError: false,
+            totalCards: 53,
+          },
+          {
+            cards: [],
+            isSmallPhotoListingFetching: false,
+            page: 1,
+            perPage: 6,
+            totalCards: 10,
+          },
+        ],
+      };
+      const result = mapStateToProps(state, props);
+      expect(result).toEqual(state.smallphotolisting[props.itemNum]);
+    });
   });
 });

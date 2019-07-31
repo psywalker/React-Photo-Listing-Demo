@@ -145,7 +145,7 @@ SmallPhotoListing.defaultProps = {
   history: {},
   userId: '',
 };
-const mapStateToProps = (state, props) => {
+export const mapStateToProps = (state, props) => {
   return state.smallphotolisting[props.itemNum];
 };
 

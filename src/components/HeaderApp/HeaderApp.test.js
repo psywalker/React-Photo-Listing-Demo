@@ -1,7 +1,7 @@
 import React from 'react';
-import sinon from 'sinon';
+import { MemoryRouter } from 'react-router-dom';
 import { HeaderApp } from '.';
-import mapStateToProps from '.';
+import { mapStateToProps } from '.';
 
 describe('Test of component of ButtonBack', () => {
   // Default Data
@@ -20,7 +20,8 @@ describe('Test of component of ButtonBack', () => {
   const pageSiteLogoLinkRouter = 'Link[data-test="siteLogoLinkRouter"]';
   const pageSiteLogoLink = 'a[data-test="siteLogoLinkRouter"]';
   const pageSiteLogoTitle = 'h1[data-test="siteLogoTitle"]';
-  const pageBtnBackRoute = 'a[data-test="btnBackRoute"]';
+  const pageBtnBackRoute = 'Route[data-test="btnBackRoute"]';
+  const pageBtnLogout = 'button[data-test="btnLogout"]';
 
   const appSelector = wrapper => ({
     getPageHeaderApp: () => wrapper.find(pageHeaderApp),
@@ -30,6 +31,7 @@ describe('Test of component of ButtonBack', () => {
     getPageSiteLogoLink: () => wrapper.find(pageSiteLogoLink),
     getPageSiteLogoTitle: () => wrapper.find(pageSiteLogoTitle),
     getPageBtnBackRoute: () => wrapper.find(pageBtnBackRoute),
+    getPageBtnLogout: () => wrapper.find(pageBtnLogout),
   });
 
   // const propses = {
@@ -50,6 +52,43 @@ describe('Test of component of ButtonBack', () => {
       const siteLogoLink = page.getPageSiteLogoLink();
       const siteLogoTitle = page.getPageSiteLogoTitle();
       const btnBackRoute = page.getPageBtnBackRoute();
+
+    });
+    it('renders ButtonBack', () => {
+      const wrapper = global.mountWrap(
+        <MemoryRouter initialEntries={['/random']}>
+          <HeaderApp />
+        </MemoryRouter>,
+      );
+    });
+  });
+  describe('Test action methods ', () => {
+    it('Test `handleLoguotHeader`', () => {
+      const props = {
+        ...initialProps,
+        profileName: 'profileName',
+      };
+      const headerApp = global.mountWrap(<HeaderApp {...props} />);
+      const page = appSelector(headerApp);
+      const btnBtnLogout = page.getPageBtnLogout();
+
+      btnBtnLogout.props().onClick();
+      
+    });
+    it('Test `mapStateToProps` method', () => {
+      const state = {
+        login: {
+          fetching: false,
+          loginError: false,
+          profileEmail: '',
+          profileFullName: '',
+          profileName: '',
+          profilePhotoUrl: '',
+        },
+      };
+      const { login } = state;
+      const result = mapStateToProps(state);
+      expect(result).toEqual(login);
     });
   });
 });

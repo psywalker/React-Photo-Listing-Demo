@@ -138,7 +138,7 @@ HeaderApp.defaultProps = {
   fetching: false,
 };
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { login } = state;
   return login;
 };
