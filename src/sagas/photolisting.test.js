@@ -72,6 +72,48 @@ describe('Test `cardsPhotosRequestSaga` saga', () => {
     totalCards: get(response, 'data.total', 10),
   };
 
+
+
+  const response2 = {
+    data: {
+      results: [
+        {
+          id: 'kdGstD3te3M',
+          tags: [],
+          description: null,
+          alt_description: null,
+          urls: {
+            regular: 'https://images.unsplash.com/photo-1558981408-db0ecd8a1ee4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ',
+          },
+          user: {
+            first_name: 'Harley-Davidson',
+            username: 'harleydavidson',
+            profile_image: {
+              large: 'https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128',
+            },
+          },
+        },
+      ],
+      total: 25312,
+    },
+  };
+  const cards2 = [
+    {
+      photoName: response2.data.results[0].urls.regular,
+      photoAltDesc: 'Photo',
+      photoDesc: 'No Description',
+      title: response2.data.results[0].user.first_name,
+      tags: response2.data.results[0].tags,
+      photoID: response2.data.results[0].id,
+      userID: response2.data.results[0].user.username,
+      userAvatar: response2.data.results[0].user.profile_image.large,
+    },
+  ];
+  const dataForProps2 = {
+    cards: cards2,
+    isListingLoading: false,
+    totalCards: get(response2, 'data.total', 10),
+  };
   describe('Test `cardsPhotosRequestSaga` saga', () => {
     it('`cardsPhotosRequestSaga` with full `action` and `cardsData` parametr', () => {
       const gen = cardsPhotosRequestSaga(action);
@@ -105,6 +147,7 @@ describe('Test `cardsPhotosRequestSaga` saga', () => {
   describe('Test `processResponse` and `getParamsRequest` functions', () => {
     it('`processResponse`', () => {
       expect(processResponse(response)).toEqual(dataForProps);
+      expect(processResponse(response2)).toEqual(dataForProps2);
       expect(processResponse()).toEqual({
         cards: [],
         isListingLoading: false,

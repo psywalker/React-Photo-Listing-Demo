@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-//import { render } from 'react-dom';
+//import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
@@ -12,7 +12,7 @@ import initialStore from './initialStore';
 import rootSaga from './sagas';
 import './index.scss';
 
-export const renderIntoDocumentFunc = element => ReactDOM.render(element, window.document.getElementById('root'));
+//export const renderIntoDocumentFunc = element => ReactDOM.render(element, window.document.getElementById('root'));
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -20,14 +20,24 @@ if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger());
 }
 
-export const store = createStore(allRedusers, initialStore, applyMiddleware(...middleware));
-
+const store = createStore(allRedusers, initialStore, applyMiddleware(...middleware));
 sagaMiddleware.run(rootSaga, [555]);
-renderIntoDocumentFunc(
+
+export const App = () => (
   <Provider store={store}>
     <Main />
-  </Provider>,
+  </Provider>
 );
+
+render(
+  <App />,
+  window.document.getElementById('root'),
+);
+// renderIntoDocumentFunc(
+//   <Provider store={store}>
+//     <Main />
+//   </Provider>,
+// );
 // render(
 //   <Provider store={store}>
 //     <Main />
