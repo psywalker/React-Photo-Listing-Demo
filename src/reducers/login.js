@@ -1,6 +1,6 @@
 import initialStore from '../initialStore';
 
-const login = (state = initialStore, action) => {
+const login = (state = initialStore, action = {}) => {
   switch (action.type) {
     case 'LOGIN_FETCHING':
       return {

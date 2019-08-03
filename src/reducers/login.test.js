@@ -1,17 +1,11 @@
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { createSerializer } from 'enzyme-to-json';
 import * as t from '../constants/actionTypes';
 import loginReducer from './login';
 import initialStore from '../initialStore';
 
 const initLoginState = initialStore.login;
 
-expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
-Enzyme.configure({ adapter: new Adapter() });
-
 describe('Test of reducer `login`', () => {
-
+ 
   const initialState = {
     fetching: false,
     loginError: false,
@@ -27,7 +21,7 @@ describe('Test of reducer `login`', () => {
         ...initLoginState,
         fetching: true,
         loginError: false,
-      })
+      });
     });
   });
   describe('Test of `LOGIN_FETCHING`', () => {
@@ -47,7 +41,7 @@ describe('Test of reducer `login`', () => {
         ...action.dataForProps,
         fetching: false,
         loginError: false,
-      })
+      });
     });
 
     it('LOGIN_SUCCESS 2', () => {
@@ -58,7 +52,44 @@ describe('Test of reducer `login`', () => {
       expect(loginReducer(initLoginState, action)).not.toEqual({
         ...initLoginState,
         fetching: true,
-      })
+      });
+    });
+
+    it('LOGIN_ERROR', () => {
+      const action = {
+        type: 'LOGIN_ERROR',
+      };
+
+      expect(loginReducer(initLoginState, action)).toEqual({
+        ...initLoginState,
+        fetching: false,
+        loginError: true,
+      });
+    });
+    it('LOGOUT', () => {
+      const action = {
+        type: 'LOGOUT',
+      };
+
+      expect(loginReducer(initLoginState, action)).toEqual(
+        initLoginState,
+      );
+    });
+    it('return default state', () => {
+      const action = {};
+
+      expect(loginReducer(initialStore, action)).toEqual(initialStore);
+    });
+    it('', () => {
+      expect(loginReducer(initialStore)).toEqual(initialStore);
+    });
+    it('return default state', () => {
+      const action = {
+        type: 'Test',
+      };
+
+      expect(loginReducer(initialStore, action)).toEqual(initialStore);
+      expect(loginReducer()).toEqual(initialStore);
     });
   });
 
