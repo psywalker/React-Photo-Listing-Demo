@@ -1,6 +1,6 @@
 import initialStore from '../initialStore';
 
-const photolisting = (state = initialStore, action) => {
+const photolisting = (state = initialStore, action = {}) => {
   switch (action.type) {
     case 'CARDS_PHOTOS_FETCHING':
       return {

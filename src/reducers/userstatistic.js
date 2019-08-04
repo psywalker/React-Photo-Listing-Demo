@@ -1,6 +1,6 @@
 import initialStore from '../initialStore';
 
-const userstatistic = (state = initialStore, action) => {
+const userstatistic = (state = initialStore, action = {}) => {
   switch (action.type) {
     case 'USER_STATISTIC_FETCHING':
       return {

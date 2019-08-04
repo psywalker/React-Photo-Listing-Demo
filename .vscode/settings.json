@@ -1,4 +1,5 @@
 {
 	"editor.tabSize": 2,
-	"prettier.singleQuote": true
+	"prettier.singleQuote": true,
+	"workbench.colorCustomizations": {}
 }
