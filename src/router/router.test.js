@@ -8,7 +8,8 @@ import { LastLocationProvider } from 'react-router-last-location';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Main from './index';
 import initialStore from '../initialStore';
-//import App from '../index';
+
+import App from '../index';
 
 // import HomeHOC from '../pages/Home/HomeHOC';
 // import * as Func from '../index';
