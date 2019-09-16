@@ -10,6 +10,7 @@ import { LastLocationProvider } from 'react-router-last-location';
 import HomeHOC from '../pages/Home/HomeHOC';
 import Home from '../pages/Home';
 import Photo from '../pages/Photo';
+import User from '../pages/User';
 import Profile from '../pages/Profile';
 import Test from '../pages/Test';
 import Main from './index';
@@ -22,85 +23,20 @@ const div = global.document.createElement('div');
 jest.mock('react-dom', () => ({ render: jest.fn() }));
 global.document.getElementById = id => id === 'root' && div;
 
-// import HomeHOC from '../pages/Home/HomeHOC';
-// import * as Func from '../index';
-
-// Func.renderIntoDocumentFunc = renderIntoDocument;
 describe('Test of component of Router', () => {
   it('renders `<App />`', () => {
 
     const component = global.shallow(<Main />);
-    // const wrapper = mount(
-    //   <MemoryRouter initialEntries={[ '/random' ]}>
-    //     <Main />
-    //   </MemoryRouter>
-    // );
-    // console.log("4.1: ", wrapper)
-    
     const newPathMap = component.find('Route').reduce((pathMap, route) => {
-      console.log("2.1: ", pathMap)
-      console.log("2.2: ", route)
-      
       const routeProps = route.props();
-      console.log("2.3: ", typeof routeProps.component)
-      pathMap[routeProps.path] = routeProps.component;
+      pathMap[routeProps.path] = routeProps.component({});
       return pathMap;
     }, {});
 
-    console.log("1: ", newPathMap)
-
-    expect(newPathMap['/test']).toBe(Test);
-
-
-    // renderIntoDocumentFunc.default = jest.fn();
-    // renderIntoDocument()
-
-    // const store = {
-    //   ...initialStore,
-    //   dispatch: () => {},
-    //   getState: () => {},
-    //   replaceReducer: () => {},
-    //   subscribe: () => {},
-    //   Symbol: () => {},
-    // };
-    // const props = {
-    //   login: {}
-    // }
-    // const tree = TestRenderer.create(
-    //   <MemoryRouter initialEntries={['/photo/hag']}>
-    //     <Provider store={store}>
-    //       <Main {...props} />
-    //     </Provider>
-    //   </MemoryRouter>,
-    // ).toJSON();
-    // const wrapper = global.mountWrap(
-    //   <MemoryRouter initialEntries={['/']}>
-    //     <Provider store={store}>
-    //       <BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
-    //         <LastLocationProvider>
-    //           <Main />
-    //         </LastLocationProvider>
-    //       </BrowserRouter>
-    //     </Provider>
-    //   </MemoryRouter>,
-    // );
-
-    // console.log(wrapper.debug())
-    // const wrapper = global.mountWrap(
-    //   <MemoryRouter initialEntries={['/']}>
-    //     <Provider store={store}>
-    //       <Main />
-    //     </Provider>
-    //   </MemoryRouter>,
-    // );
-    // const App = ({store}) => (
-    //   <Provider store={store}>
-    //     <Switch>
-    //       <Route exact path="/" component={props => <HomeHOC {...props} />} />
-    //     </Switch>
-    //   </Provider>
-    // );
-
-    //console.log(wrapper.debug());
+    expect(newPathMap['/']).toStrictEqual(<HomeHOC />);
+    expect(newPathMap['/photo/:id']).toStrictEqual(<Photo />);
+    expect(newPathMap['/profile']).toStrictEqual(<Profile />);
+    expect(newPathMap['/users/:id']).toStrictEqual(<User />);
+    expect(newPathMap['/:tag']).toStrictEqual(<HomeHOC />);
   });
 });
