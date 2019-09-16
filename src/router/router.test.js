@@ -1,23 +1,54 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Enzyme, { shallow, mount, render } from 'enzyme';
 import { renderIntoDocument } from 'react-dom/test-utils';
-import TestRenderer from 'react-test-renderer'; 
+import TestRenderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { LastLocationProvider } from 'react-router-last-location';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+// import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import HomeHOC from '../pages/Home/HomeHOC';
+import Home from '../pages/Home';
+import Photo from '../pages/Photo';
+import Profile from '../pages/Profile';
 import Main from './index';
 import initialStore from '../initialStore';
 
 import App from '../index';
 
+const div = global.document.createElement('div');
+
+jest.mock('react-dom', () => ({ render: jest.fn() }));
+global.document.getElementById = id => id === 'root' && div;
+
 // import HomeHOC from '../pages/Home/HomeHOC';
 // import * as Func from '../index';
 
 // Func.renderIntoDocumentFunc = renderIntoDocument;
-
 describe('Test of component of Router', () => {
   it('renders `<App />`', () => {
+
+    const component = global.shallow(<Main />);
+    // const wrapper = mount(
+    //   <MemoryRouter initialEntries={[ '/random' ]}>
+    //     <Main />
+    //   </MemoryRouter>
+    // );
+    // console.log("4.1: ", wrapper)
+    
+    const newPathMap = component.find('Route').reduce((pathMap, route) => {
+      console.log("2.1: ", pathMap)
+      console.log("2.2: ", route)
+      const routeProps = route.props();
+      pathMap[routeProps.path] = routeProps.component;
+      return pathMap;
+    }, {});
+
+    console.log("1: ", newPathMap)
+
+    expect(newPathMap['/profile']).toBe(Profile);
+
+
     // renderIntoDocumentFunc.default = jest.fn();
     // renderIntoDocument()
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import InfoPhotoModal from '.';
-import InfoPhotoModalContent from './InfoPhotoModalContent';
 
 describe('Test of component of SmallPhotoListing', () => {
   // Default Data
