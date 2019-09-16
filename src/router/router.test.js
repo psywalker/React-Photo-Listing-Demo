@@ -40,14 +40,16 @@ describe('Test of component of Router', () => {
     const newPathMap = component.find('Route').reduce((pathMap, route) => {
       console.log("2.1: ", pathMap)
       console.log("2.2: ", route)
+      
       const routeProps = route.props();
-      pathMap[routeProps.path] = routeProps.component({});
+      console.log("2.3: ", typeof routeProps.component)
+      pathMap[routeProps.path] = routeProps.component;
       return pathMap;
     }, {});
 
     console.log("1: ", newPathMap)
 
-    expect(newPathMap['/test']).toStrictEqual(<Test />);
+    expect(newPathMap['/test']).toBe(Test);
 
 
     // renderIntoDocumentFunc.default = jest.fn();

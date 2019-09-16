@@ -29,12 +29,14 @@ sagaMiddleware.run(rootSaga, [555]);
 //   </Provider>
 // );
 
-export const App = () => (
-  <Main />
-);
+// export const App = () => (
+//   <Main />
+// );
 
 render(
-  <App />,
+  <Provider store={store}>
+    <Main />
+  </Provider>,
   window.document.getElementById('root'),
 );
 // renderIntoDocumentFunc(
