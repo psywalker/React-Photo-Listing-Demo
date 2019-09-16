@@ -11,6 +11,7 @@ import HomeHOC from '../pages/Home/HomeHOC';
 import Home from '../pages/Home';
 import Photo from '../pages/Photo';
 import Profile from '../pages/Profile';
+import Test from '../pages/Test';
 import Main from './index';
 import initialStore from '../initialStore';
 
@@ -40,13 +41,13 @@ describe('Test of component of Router', () => {
       console.log("2.1: ", pathMap)
       console.log("2.2: ", route)
       const routeProps = route.props();
-      pathMap[routeProps.path] = routeProps.component;
+      pathMap[routeProps.path] = routeProps.component({});
       return pathMap;
     }, {});
 
     console.log("1: ", newPathMap)
 
-    expect(newPathMap['/profile']).toBe(Profile);
+    expect(newPathMap['/test']).toStrictEqual(<Test />);
 
 
     // renderIntoDocumentFunc.default = jest.fn();

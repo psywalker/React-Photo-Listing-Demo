@@ -23,10 +23,14 @@ if (process.env.NODE_ENV !== 'production') {
 const store = createStore(allRedusers, initialStore, applyMiddleware(...middleware));
 sagaMiddleware.run(rootSaga, [555]);
 
+// export const App = () => (
+//   <Provider store={store}>
+//     <Main />
+//   </Provider>
+// );
+
 export const App = () => (
-  <Provider store={store}>
-    <Main />
-  </Provider>
+  <Main />
 );
 
 render(
