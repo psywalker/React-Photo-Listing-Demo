@@ -7,13 +7,21 @@
     "antd": "^3.11.2",
     "axios": "^0.18.0",
     "babel-jest": "24.7.1",
+    "chai": "^4.2.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-to-json": "^3.3.5",
     "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
     "highcharts": "^7.0.0",
+    "jest-enzyme": "^7.0.2",
+    "jest-extended": "^0.11.2",
+    "jsdom": "^15.1.1",
     "lodash": "^4.17.11",
     "mdbreact": "^4.8.2",
     "moment": "^2.23.0",
     "moment-timezone": "^0.5.23",
+    "nock": "^10.0.6",
     "node-sass": "^4.12.0",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.2",
@@ -33,12 +41,14 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
+    "sinon": "^7.3.2",
     "unsplash-js": "^4.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && cp build/index.html build/404.html",
     "test": "react-scripts test",
+    "co": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
@@ -87,6 +97,11 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
   "devDependencies": {
     "@types/jasmine": "^3.3.0",
     "babel-plugin-transform-export-extensions": "^6.22.0",
@@ -94,12 +109,15 @@
     "create-react-server": "^0.3.2",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-to-json": "^3.3.5",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "gh-pages": "^2.0.1",
+    "jest-extended": "^0.11.2",
     "mocha": "^5.2.0",
-    "react-test-renderer": "^16.6.3"
+    "react-test-renderer": "^16.6.3",
+    "redux-saga-test-plan": "^4.0.0-beta.3"
   }
 }

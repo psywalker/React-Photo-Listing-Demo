@@ -8,7 +8,7 @@ import { smallPhotoListingRequestAction } from '../../actions';
 import { Spinner, Error } from '..';
 import './index.scss';
 
-class SmallPhotoListing extends PureComponent {
+export class SmallPhotoListing extends PureComponent {
   componentDidMount = () => {
     const {
       userId,
@@ -43,12 +43,18 @@ class SmallPhotoListing extends PureComponent {
       requestError,
     } = this.props;
     const childElements = cards.map(item => (
-      <li className="small-photo-listing-list__item" key={item.photoID}>
+      <li
+        data-test="smallPhotoListingListItem"
+        className="small-photo-listing-list__item"
+        key={item.photoID}
+      >
         <Link
+          data-test="smallPhotoListingListLinkPhotoRouter"
           className="small-photo-listing-list__link-photo"
           to={`/photo/${item.photoID}`}
         >
           <img
+            data-test="smallPhotoListingListPhoto"
             className="small-photo-listing-list__photo"
             alt="example"
             src={item.photoUrl}
@@ -57,11 +63,22 @@ class SmallPhotoListing extends PureComponent {
       </li>
     ));
     return (
-      <div className="small-photo-listing-container">
-        { isSmallPhotoListingFetching && (<Spinner />)}
+      <div
+        data-test="smallPhotoListingContainer"
+        className="small-photo-listing-container"
+      >
+        { isSmallPhotoListingFetching && (
+          <Spinner
+            data-test="spinner"
+          />
+        )}
         { !isSmallPhotoListingFetching && !requestError && (
-        <div className="small-photo-listing">
+        <div
+          data-test="smallPhotoListing"
+          className="small-photo-listing"
+        >
           <Masonry
+            data-test="smallPhotoListingList"
             className="small-photo-listing-list"
             elementType="ul"
             disableImagesLoaded={false}
@@ -69,9 +86,13 @@ class SmallPhotoListing extends PureComponent {
           >
             {childElements}
           </Masonry>
-          <div className="small-photo-listing__pagination">
+          <div
+            data-test="paginationContainer"
+            className="small-photo-listing__pagination"
+          >
             {totalCards > perPage && (
               <Pagination
+                data-test="pagination"
                 className="ml-3 mb-5"
                 onChange={this.handlePaginationChange}
                 hideOnSinglePage
@@ -86,6 +107,7 @@ class SmallPhotoListing extends PureComponent {
         )}
         { !isSmallPhotoListingFetching && requestError && (
         <Error
+          data-test="error"
           smallErrorFlag
           text="Sorry, an error occurred during the request. Try again later."
         />
@@ -123,7 +145,7 @@ SmallPhotoListing.defaultProps = {
   history: {},
   userId: '',
 };
-const mapStateToProps = (state, props) => {
+export const mapStateToProps = (state, props) => {
   return state.smallphotolisting[props.itemNum];
 };
 

@@ -17,7 +17,7 @@ import './index.scss';
 
 const { Header } = Layout;
 
-const HeaderApp = withRouter(memo((props) => {
+export const HeaderApp = withRouter(memo((props) => {
   const {
     history,
     profileName,
@@ -30,21 +30,46 @@ const HeaderApp = withRouter(memo((props) => {
     history.push('/');
   };
   return (
-    <div className="header-app">
-      <Header className="user-layout__header">
-        <div className="page">
+    <div
+      data-test="headerApp"
+      className="header-app"
+    >
+      <Header
+        data-test="userLayoutHeader"
+        className="user-layout__header"
+      >
+        <div
+          data-test="page"
+          className="page"
+        >
           <Row type="flex" justify="space-between">
             <Col span={9} style={{ whiteSpace: 'nowrap' }}>
-              <Link to="/" style={{ display: 'inline-block' }}>
-                <h1 className="site-logo">PHOTOLISTING</h1>
+              <Link
+                data-test="siteLogoLinkRouter"
+                to="/"
+                style={{ display: 'inline-block' }}
+              >
+                <h1
+                  data-test="siteLogoTitle"
+                  className="site-logo"
+                >
+                  PHOTOLISTING
+                </h1>
               </Link>
               <Route
+                data-test="btnBackRoute"
                 path="/:id"
-                component={() => <ButtonBack style={{ marginLeft: '10px' }} />}
+                component={() => (
+                  <ButtonBack
+                    data-test="btnBack"
+                    style={{ marginLeft: '10px' }}
+                  />
+                )}
               />
 
               {!profileName && (
                 <Button
+                  data-test="btnLogin"
                   style={{ marginLeft: '10px' }}
                   href={URL_FOR_LOGIN}
                 >
@@ -54,6 +79,7 @@ const HeaderApp = withRouter(memo((props) => {
               {profileName && (
                 <span>
                   <Button
+                    data-test="btnLogout"
                     className="btn-logout"
                     style={{ marginLeft: '10px' }}
                     onClick={handleLoguotHeader}
@@ -69,10 +95,14 @@ const HeaderApp = withRouter(memo((props) => {
               style={{ display: 'flex', justifyContent: 'flex-end' }}
             >
               {profileName && (
-                <Link to="/profile">
+                <Link
+                  data-test="linkProfileName"
+                  to="/profile"
+                >
                   <Icon
                     component={() => (
                       <img
+                        data-test="userAvatarImg"
                         className="user-avatar"
                         alt=""
                         src={`${profilePhotoUrl}`}
@@ -108,7 +138,7 @@ HeaderApp.defaultProps = {
   fetching: false,
 };
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { login } = state;
   return login;
 };

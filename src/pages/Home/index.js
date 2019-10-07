@@ -1,28 +1,19 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Pagination } from 'antd';
-import {
-  cardsPhotosRequestAction,
-  paginationChangeAction,
-  filterItemValueAction,
-  searchTextAction,
-  searchChangeInputValueAction,
-} from '../../actions';
-import {
-  Search,
-  PhotoCard,
-  NavTop,
-  Spinner,
-  Error,
-} from '../../components';
+import PhotoCard from '../../components/PhotoCard';
+import Search from '../../components/Search';
+import NavTop from '../../components/NavTop';
+import Spinner from '../../components/Spinner';
 import 'antd/dist/antd.css';
 import './index.scss';
 
-class Home extends PureComponent {
+export default class Home extends PureComponent {
   componentDidUpdate = (prevProps) => {
-    const { cardsData, cardsPhotosRequestAction: handleAction } = this.props;
-    if (prevProps.cardsData !== cardsData) handleAction(cardsData);
+    const { cardsData, handleСardsPhotosAction } = this.props;
+    if (JSON.stringify(prevProps.cardsData) !== JSON.stringify(cardsData)) {
+      handleСardsPhotosAction(cardsData);
+    }
   };
 
   componentDidMount = () => {
@@ -32,8 +23,8 @@ class Home extends PureComponent {
   };
 
   getCardsPhotos = () => {
-    const { cardsData, cardsPhotosRequestAction: handleAction } = this.props;
-    handleAction(cardsData);
+    const { cardsData, handleСardsPhotosAction } = this.props;
+    handleСardsPhotosAction(cardsData);
   };
 
   getPaginationChange = (currentPage) => {
@@ -66,68 +57,41 @@ class Home extends PureComponent {
       navTopItemActive,
       photolistingRequestError,
     } = this.props;
-    if (photolistingRequestError) return <div>Error loading photolisting</div>;
+
+    if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
     return (
       <div className="App">
-        { isListingLoading && (<Spinner className="spinner" />)}
+        { isListingLoading && (<Spinner className="spinner" data-test="spinner" />)}
 
         <Search
+          data-test="search"
           onSearchInputValue={this.getSearchText}
           onChangeInputValue={this.getChangeInputValue}
           queryText={cardsData.query}
         />
-
-        <ul className="nav-top">
-          {filters.map(item => (
-            <li
-              key={item.id}
-              className={`nav-top__item ${item.border ? 'nav-top__item_border-right' : ''}`}
-            >
-              <NavTop
-                navTopItemActive={navTopItemActive}
-                itemId={item.id}
-                onFilterItemValue={this.getFilterItemValue}
-                key={item.id}
-                label={item.label}
-                filterValue={item.filterValue}
-              />
-            </li>
-          ))}
-        </ul>
-
+        <NavTop
+          data-test="navTop"
+          navTopItemActive={navTopItemActive}
+          onFilterItemValue={this.getFilterItemValue}
+          filters={filters}
+        />
         {!isListingLoading && (
-          <ul className="photo-list">
-            {
-            cards.map(item => (
-              <li
-                key={item.photoID}
-                className="photo-list__item"
-              >
-                <PhotoCard
-                  photoName={item.photoName}
-                  photoDesc={item.photoDesc}
-                  title={item.title}
-                  tags={item.tags}
-                  photoID={item.photoID}
-                  userID={item.userID}
-                  userAvatar={item.userAvatar}
-                  onSearchTagValue={this.getSearchText}
-                />
-              </li>
-            ))}
-          </ul>
+          <PhotoCard
+            data-test="photoCard"
+            onSearchTagValue={this.getSearchText}
+            cards={cards}
+          />
         )}
         {!totalCards && (
-          <div className="cards__text-empty">
-            <Error
-              text="No images were found for your request. Try to find more."
-            />
+          <div className="cards__text-empty" data-test="cardsTextEmpty">
+            No images were found for your request. Try to find more.
           </div>
         )}
 
-        <div className="pagination">
+        <div className="pagination" data-test="pagination">
           {totalCards > cardsData.per_page && (
             <Pagination
+              data-test-id-pagination="pagination"
               showSizeChanger
               hideOnSinglePage
               onChange={this.getPaginationChange}
@@ -143,6 +107,7 @@ class Home extends PureComponent {
 }
 
 Home.propTypes = {
+  handleСardsPhotosAction: PropTypes.func,
   cardsPhotosRequestAction: PropTypes.func,
   paginationChangeAction: PropTypes.func,
   filterItemValueAction: PropTypes.func,
@@ -164,10 +129,13 @@ Home.propTypes = {
   isListingLoading: PropTypes.bool,
   photolistingRequestError: PropTypes.bool,
   match: PropTypes.shape({
-    prop: PropTypes.string,
+    params: PropTypes.shape({
+      tag: PropTypes.string,
+    }),
   }),
 };
 Home.defaultProps = {
+  handleСardsPhotosAction: () => {},
   cardsPhotosRequestAction: () => {},
   paginationChangeAction: () => {},
   filterItemValueAction: () => {},
@@ -181,26 +149,12 @@ Home.defaultProps = {
     page: 1,
     per_page: 6,
   },
-  totalCards: 10,
+  totalCards: 0,
   navTopItemActive: 2,
   photolistingRequestError: false,
-  match: {},
+  match: {
+    params: {
+      tag: '',
+    },
+  },
 };
-
-const mapStateToProps = (state) => {
-  const { photolisting } = state;
-  return photolisting;
-};
-
-const mapDispatchToProps = ({
-  cardsPhotosRequestAction,
-  paginationChangeAction,
-  filterItemValueAction,
-  searchTextAction,
-  searchChangeInputValueAction,
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Home);

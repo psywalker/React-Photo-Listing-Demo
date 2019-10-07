@@ -1,31 +1,37 @@
 import React, { memo, useState } from 'react';
 import { Button, Icon } from 'antd';
 import Modal from 'react-awesome-modal';
-import setInfoPhotoModalContent from './infoPhotoModalContent';
+import InfoPhotoModalContent from './InfoPhotoModalContent';
 import './index.scss';
 
 const InfoPhotoModal = memo(({ ...props }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
-  const photoModalContent = setInfoPhotoModalContent(props);
-
   return (
-    <div className="photo-info-wrap">
+    <div
+      data-test="photoInfoWrap"
+      className="photo-info-wrap"
+    >
       <Button
+        data-test="openModalBtn"
         style={{ marginLeft: '10px' }}
         onClick={openModal}
       >
-        <Icon type="info-circle" />
+        <Icon
+          data-test="openModalBtnIcon"
+          type="info-circle"
+        />
         Info
       </Button>
       <Modal
+        data-test="modal"
         visible={modalVisible}
         effect="fadeInDown"
         onClickAway={closeModal}
         className="modal"
       >
-        {photoModalContent}
+        <InfoPhotoModalContent {...props} />
       </Modal>
     </div>
   );

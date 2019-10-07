@@ -26,15 +26,36 @@ class UserStatistic extends Component {
     } = this.props;
 
     return (
-      <div className="user-statistic">
-        { isListingLoading && (<Spinner className="spinner" />)}
+      <div
+        data-test="userStatistic"
+        className="user-statistic"
+      >
+        { isListingLoading && (
+          <Spinner
+            data-test="spinner"
+            className="spinner"
+          />
+        )}
         { !isListingLoading && !requestError && (
-        <div className="user-statistic__charts">
-          { chartData.map((item, i) => <HighchartsHOC config={item} configNum={i} key={i} />) }
+        <div
+          data-test="userStatisticCharts"
+          className="user-statistic__charts"
+        >
+          { chartData.map((item, i) => (
+            <HighchartsHOC
+              data-test="highchartsHOC"
+              config={item}
+              configNum={i}
+              key={i}
+            />
+          ))}
         </div>
         )}
         { !isListingLoading && requestError && (
-          <Error text="Failed to get user statistics. Try later again" />
+          <Error
+            data-test="error"
+            text="Failed to get user statistics. Try later again"
+          />
         )}
       </div>
     );
@@ -56,7 +77,7 @@ UserStatistic.defaultProps = {
   requestError: false,
 };
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { userstatistic } = state;
   return userstatistic;
 };

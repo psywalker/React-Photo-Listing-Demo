@@ -9,12 +9,12 @@ import InfoPhotoModal from './InfoPhotoModal';
 import Error from './Error';
 import HighchartsHOC from './HighchartsHOC';
 import SmallPhotoListing from './SmallPhotoListing';
-import Home from '../pages/Home';
+import Tags from './Tags';
+import HomeHOC from '../pages/Home/HomeHOC';
 import Photo from '../pages/Photo';
 import Profile from '../pages/Profile';
 import User from '../pages/User';
 import UserStatistic from '../pages/UserStatistic';
-import UserPhotoListing from '../pages/UserPhotoListing';
 
 export {
   ButtonBack,
@@ -26,12 +26,12 @@ export {
   SpinnerPhoto,
   InfoPhotoModal,
   Error,
-  Home,
+  HomeHOC,
   Photo,
   Profile,
   User,
   UserStatistic,
-  UserPhotoListing,
   HighchartsHOC,
   SmallPhotoListing,
+  Tags,
 };

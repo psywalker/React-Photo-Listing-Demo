@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Icon } from 'antd';
 import moment from 'moment';
 import 'moment-timezone';
 import numeral from 'numeral';
 
-const setInfoPhotoModalContent = ({
+export const getDate = lastUpdateInfo => moment(lastUpdateInfo).format('LL');
+export const getViewsFormat = views => numeral(views).format('0,0');
+export const getDownloadsFormat = downloads => numeral(downloads).format('0,0');
+export const getLikesFormat = likes => numeral(likes).format('0,0');
+
+const InfoPhotoModalContent = memo(({
   lastUpdateInfo,
   photoDesc,
   views,
@@ -20,25 +25,34 @@ const setInfoPhotoModalContent = ({
   width,
   height,
 }) => {
-  const date = moment(lastUpdateInfo).format('LL');
-  const viewsFormat = numeral(views).format('0,0');
-  const downloadsFormat = numeral(downloads).format('0,0');
-  const likesFormat = numeral(likes).format('0,0');
+  const date = getDate(lastUpdateInfo);
+  const viewsFormat = getViewsFormat(views);
+  const downloadsFormat = getDownloadsFormat(downloads);
+  const likesFormat = getLikesFormat(likes);
   const photoModalHeader = (
-    <header className="photo-info__header">
-      <h2 className="photo-info__title">
+    <header
+      data-test="photoInfoHeader"
+      className="photo-info__header"
+    >
+      <h2
+        data-test="photoInfoTitle"
+        className="photo-info__title"
+      >
         Info
       </h2>
       { photoDesc && (
         <p className="photo-info__desc">
           <i>
-            <b>
+            <b data-test="photoInfoDesc">
               {photoDesc}
             </b>
           </i>
         </p>
       )}
-      <p className="photo-info__date">
+      <p
+        data-test="photoInfoDate"
+        className="photo-info__date"
+      >
         Published on
         {' '}
         {date}
@@ -47,44 +61,86 @@ const setInfoPhotoModalContent = ({
   );
 
   const photoModalContent = (
-    <div className="photo-info__content">
-      <ul className="photo-info__list-head photo-info-list-head">
-        <li className="photo-info-list-head__item">
-          <h3 className="photo-info-list-head__title">
+    <div
+      data-test="photoInfoContent"
+      className="photo-info__content"
+    >
+      <ul
+        data-test="photoInfoListHead"
+        className="photo-info__list-head photo-info-list-head"
+      >
+        <li
+          data-test="photoInfoListHeadItem"
+          className="photo-info-list-head__item"
+        >
+          <h3
+            data-test="photoInfoListHeadTitle"
+            className="photo-info-list-head__title"
+          >
             <Icon type="eye" />
             {' '}
             Views
           </h3>
-          <p className="photo-info-list-head__text-main">
+          <p
+            data-test="photoInfoListHeadTextMain"
+            className="photo-info-list-head__text-main"
+          >
             {viewsFormat}
           </p>
-          <p className="photo-info-list-head__text">
+          <p
+            data-test="photoInfoListHeadText"
+            className="photo-info-list-head__text"
+          >
             {''}
           </p>
         </li>
-        <li className="photo-info-list-head__item">
-          <h3 className="photo-info-list-head__title">
+        <li
+          data-test="photoInfoListHeadItem"
+          className="photo-info-list-head__item"
+        >
+          <h3
+            data-test="photoInfoListHeadTitle"
+            className="photo-info-list-head__title"
+          >
             <Icon type="arrow-down" />
             {' '}
             Downloads
           </h3>
-          <p className="photo-info-list-head__text-main">
+          <p
+            data-test="photoInfoListHeadTextMain"
+            className="photo-info-list-head__text-main"
+          >
             {downloadsFormat}
           </p>
-          <p className="photo-info-list-head__text">
+          <p
+            data-test="photoInfoListHeadText"
+            className="photo-info-list-head__text"
+          >
             {''}
           </p>
         </li>
-        <li className="photo-info-list-head__item">
-          <h3 className="photo-info-list-head__title">
+        <li
+          data-test="photoInfoListHeadItem"
+          className="photo-info-list-head__item"
+        >
+          <h3
+            data-test="photoInfoListHeadTitle"
+            className="photo-info-list-head__title"
+          >
             <Icon type="heart" />
             {' '}
             Likes
           </h3>
-          <p className="photo-info-list-head__text-main">
+          <p
+            data-test="photoInfoListHeadTextMain"
+            className="photo-info-list-head__text-main"
+          >
             {likesFormat}
           </p>
-          <p className="photo-info-list-head__text">
+          <p
+            data-test="photoInfoListHeadText"
+            className="photo-info-list-head__text"
+          >
             {''}
           </p>
         </li>
@@ -92,60 +148,126 @@ const setInfoPhotoModalContent = ({
 
       <Divider />
 
-      <ul className="photo-info-list photo-info__list-content">
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+      <ul
+        data-test="photoInfoListContent"
+        className="photo-info-list photo-info__list-content"
+      >
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Camera Make
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {cameraMake || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Camera Model
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {cameraModel || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Focal Length
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {focalLength || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Aperture
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {aperture || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Shutter Speed
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {shutterspeed || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             ISO
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {iso || '--'}
           </p>
         </li>
-        <li className="photo-info-list__item">
-          <h3 className="photo-info-list__title">
+        <li
+          data-test="photoInfoListItem"
+          className="photo-info-list__item"
+        >
+          <h3
+            data-test="photoInfoListTitle"
+            className="photo-info-list__title"
+          >
             Dimensions
           </h3>
-          <p className="photo-info-list__text">
+          <p
+            data-test="photoInfoListText"
+            className="photo-info-list__text"
+          >
             {(width && height) ? `${width} x ${height}` : '--' }
           </p>
         </li>
@@ -153,14 +275,17 @@ const setInfoPhotoModalContent = ({
     </div>
   );
   return (
-    <div className="photo-info">
+    <div
+      data-test="photoInfo"
+      className="photo-info"
+    >
       { photoModalHeader }
       { photoModalContent }
     </div>
   );
-};
+});
 
-setInfoPhotoModalContent.propTypes = {
+InfoPhotoModalContent.propTypes = {
   lastUpdateInfo: PropTypes.string,
   photoDesc: PropTypes.string,
   views: PropTypes.number,
@@ -176,7 +301,7 @@ setInfoPhotoModalContent.propTypes = {
   height: PropTypes.number,
 };
 
-setInfoPhotoModalContent.defaultProps = {
+InfoPhotoModalContent.defaultProps = {
   lastUpdateInfo: '',
   photoDesc: '',
   views: 0,
@@ -192,4 +317,4 @@ setInfoPhotoModalContent.defaultProps = {
   height: 0,
 };
 
-export default setInfoPhotoModalContent;
+export default InfoPhotoModalContent;

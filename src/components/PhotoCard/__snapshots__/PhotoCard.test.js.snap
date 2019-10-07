@@ -1,0 +1,555 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test of component of \`PhotoCard\` \`PhotoCard\` initional render renders with initial props 1`] = `
+<ul
+  className="photo-card-list"
+  data-test="photoCardList"
+/>
+`;
+
+exports[`Test of component of \`PhotoCard\` \`PhotoCard\` initional render renders with one element in \`cards\` 1`] = `
+<ul
+  className="photo-card-list"
+  data-test="photoCardList"
+>
+  <li
+    className="photo-card-list__item"
+    data-test="photoCardListItem"
+    key="1"
+  >
+    <div
+      className="photo-card"
+      data-test="photoCard"
+    >
+      <a
+        data-test="photoCardPhotoLink"
+        href="/photo/1"
+        onClick={[Function]}
+      >
+        <img
+          alt="image"
+          className="photo-card__img"
+          data-test="photoCardImg"
+          src="https://images.unsplash.com/photo-1558981408-db0ecd8a1ee4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ"
+        />
+      </a>
+      <div
+        className="photo-card__autor photo-card-autor"
+        data-test="photoCardAutor"
+      >
+        <a
+          className="photo-card-autor__link"
+          data-test="photoCardAutorLink"
+          href="/users/harleydavidson"
+          onClick={[Function]}
+        >
+          <img
+            alt="harleydavidson"
+            className="photo-card-autor__avatar"
+            data-test="photoCardAutorAvatar"
+            src="https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128"
+          />
+          <span
+            className="photo-card-autor__name"
+            data-test="photoCardAutorName"
+          >
+            Harley-Davidson
+          </span>
+        </a>
+      </div>
+      <p
+        className="photo-card__desc"
+        data-test="photoCardDesc"
+      />
+      <div
+        className="photo-card__badge-container photo-card-badge"
+        data-test="photoCardBadge"
+      >
+        <div
+          className="ant-tag tag"
+          data-test="tag"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": undefined,
+            }
+          }
+        >
+          motorcycle
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`Test of component of \`PhotoCard\` \`PhotoCard\` initional render renders without initial props 1`] = `
+<ul
+  className="photo-card-list"
+  data-test="photoCardList"
+/>
+`;
+
+exports[`Test of component of \`PhotoCard\` Test \`photoCardPhotoLink\` Test \`photoCardPhotoLink\` address 1`] = `
+<ul
+  className="photo-card-list"
+  data-test="photoCardList"
+>
+  <li
+    className="photo-card-list__item"
+    data-test="photoCardListItem"
+    key="1"
+  >
+    <div
+      className="photo-card"
+      data-test="photoCard"
+    >
+      <a
+        data-test="photoCardPhotoLink"
+        href="/photo/1"
+        onClick={[Function]}
+      >
+        <img
+          alt="image"
+          className="photo-card__img"
+          data-test="photoCardImg"
+          src="https://images.unsplash.com/photo-1558981408-db0ecd8a1ee4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ"
+        />
+      </a>
+      <div
+        className="photo-card__autor photo-card-autor"
+        data-test="photoCardAutor"
+      >
+        <a
+          className="photo-card-autor__link"
+          data-test="photoCardAutorLink"
+          href="/users/harleydavidson"
+          onClick={[Function]}
+        >
+          <img
+            alt="harleydavidson"
+            className="photo-card-autor__avatar"
+            data-test="photoCardAutorAvatar"
+            src="https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128"
+          />
+          <span
+            className="photo-card-autor__name"
+            data-test="photoCardAutorName"
+          >
+            Harley-Davidson
+          </span>
+        </a>
+      </div>
+      <p
+        className="photo-card__desc"
+        data-test="photoCardDesc"
+      />
+      <div
+        className="photo-card__badge-container photo-card-badge"
+        data-test="photoCardBadge"
+      >
+        <div
+          className="ant-tag tag"
+          data-test="tag"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": undefined,
+            }
+          }
+        >
+          motorcycle
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`Test of component of \`PhotoCard\` Test \`photoCardPhotoLink\` Test data \`cards\` in component 1`] = `
+<ul
+  className="photo-card-list"
+  data-test="photoCardList"
+>
+  <li
+    className="photo-card-list__item"
+    data-test="photoCardListItem"
+    key="1"
+  >
+    <div
+      className="photo-card"
+      data-test="photoCard"
+    >
+      <a
+        data-test="photoCardPhotoLink"
+        href="/photo/1"
+        onClick={[Function]}
+      >
+        <img
+          alt="image"
+          className="photo-card__img"
+          data-test="photoCardImg"
+          src="https://images.unsplash.com/photo-1558981408-db0ecd8a1ee4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ"
+        />
+      </a>
+      <div
+        className="photo-card__autor photo-card-autor"
+        data-test="photoCardAutor"
+      >
+        <a
+          className="photo-card-autor__link"
+          data-test="photoCardAutorLink"
+          href="/users/harleydavidson"
+          onClick={[Function]}
+        >
+          <img
+            alt="harleydavidson"
+            className="photo-card-autor__avatar"
+            data-test="photoCardAutorAvatar"
+            src="https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128"
+          />
+          <span
+            className="photo-card-autor__name"
+            data-test="photoCardAutorName"
+          >
+            Harley-Davidson
+          </span>
+        </a>
+      </div>
+      <p
+        className="photo-card__desc"
+        data-test="photoCardDesc"
+      />
+      <div
+        className="photo-card__badge-container photo-card-badge"
+        data-test="photoCardBadge"
+      >
+        <div
+          className="ant-tag tag"
+          data-test="tag"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": undefined,
+            }
+          }
+        >
+          motorcycle
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`Test of component of \`PhotoCard\` Test Tags render \`tags\` on one element \`cards\` 1`] = `
+<ul
+  className="photo-card-list"
+  data-test="photoCardList"
+>
+  <li
+    className="photo-card-list__item"
+    data-test="photoCardListItem"
+    key="1"
+  >
+    <div
+      className="photo-card"
+      data-test="photoCard"
+    >
+      <a
+        data-test="photoCardPhotoLink"
+        href="/photo/1"
+        onClick={[Function]}
+      >
+        <img
+          alt="image"
+          className="photo-card__img"
+          data-test="photoCardImg"
+          src="https://images.unsplash.com/photo-1558981408-db0ecd8a1ee4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ"
+        />
+      </a>
+      <div
+        className="photo-card__autor photo-card-autor"
+        data-test="photoCardAutor"
+      >
+        <a
+          className="photo-card-autor__link"
+          data-test="photoCardAutorLink"
+          href="/users/harleydavidson"
+          onClick={[Function]}
+        >
+          <img
+            alt="harleydavidson"
+            className="photo-card-autor__avatar"
+            data-test="photoCardAutorAvatar"
+            src="https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128"
+          />
+          <span
+            className="photo-card-autor__name"
+            data-test="photoCardAutorName"
+          >
+            Harley-Davidson
+          </span>
+        </a>
+      </div>
+      <p
+        className="photo-card__desc"
+        data-test="photoCardDesc"
+      />
+      <div
+        className="photo-card__badge-container photo-card-badge"
+        data-test="photoCardBadge"
+      >
+        Array [
+          <div
+            className="ant-tag tag"
+            data-test="tag"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": undefined,
+              }
+            }
+          >
+            motorcycle
+          </div>,
+          <div
+            className="ant-tag tag"
+            data-test="tag"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": undefined,
+              }
+            }
+          >
+            auto
+          </div>,
+          <div
+            className="ant-tag tag"
+            data-test="tag"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": undefined,
+              }
+            }
+          >
+            velocity
+          </div>,
+        ]
+        <div
+          className="ant-tag photo-card-badge__tag"
+          data-test="photoCardTagMore"
+          onClick={[Function]}
+          onMouseDown={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "backgroundColor": undefined,
+            }
+          }
+        >
+          more tags...
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`Test of component of \`PhotoCard\` Test Tags render \`tags\` on two element \`cards\` 1`] = `
+<ul
+  className="photo-card-list"
+  data-test="photoCardList"
+>
+  <li
+    className="photo-card-list__item"
+    data-test="photoCardListItem"
+    key="1"
+  >
+    <div
+      className="photo-card"
+      data-test="photoCard"
+    >
+      <a
+        data-test="photoCardPhotoLink"
+        href="/photo/1"
+        onClick={[Function]}
+      >
+        <img
+          alt="image"
+          className="photo-card__img"
+          data-test="photoCardImg"
+          src="https://images.unsplash.com/photo-1558981408-db0ecd8a1ee4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ"
+        />
+      </a>
+      <div
+        className="photo-card__autor photo-card-autor"
+        data-test="photoCardAutor"
+      >
+        <a
+          className="photo-card-autor__link"
+          data-test="photoCardAutorLink"
+          href="/users/harleydavidson"
+          onClick={[Function]}
+        >
+          <img
+            alt="harleydavidson"
+            className="photo-card-autor__avatar"
+            data-test="photoCardAutorAvatar"
+            src="https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128"
+          />
+          <span
+            className="photo-card-autor__name"
+            data-test="photoCardAutorName"
+          >
+            Harley-Davidson
+          </span>
+        </a>
+      </div>
+      <p
+        className="photo-card__desc"
+        data-test="photoCardDesc"
+      />
+      <div
+        className="photo-card__badge-container photo-card-badge"
+        data-test="photoCardBadge"
+      >
+        Array [
+          <div
+            className="ant-tag tag"
+            data-test="tag"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": undefined,
+              }
+            }
+          >
+            motorcycle1
+          </div>,
+          <div
+            className="ant-tag tag"
+            data-test="tag"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": undefined,
+              }
+            }
+          >
+            auto1
+          </div>,
+          <div
+            className="ant-tag tag"
+            data-test="tag"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": undefined,
+              }
+            }
+          >
+            velocity1
+          </div>,
+        ]
+      </div>
+    </div>
+  </li>
+  <li
+    className="photo-card-list__item"
+    data-test="photoCardListItem"
+    key="2"
+  >
+    <div
+      className="photo-card"
+      data-test="photoCard"
+    >
+      <a
+        data-test="photoCardPhotoLink"
+        href="/photo/2"
+        onClick={[Function]}
+      >
+        <img
+          alt="image"
+          className="photo-card__img"
+          data-test="photoCardImg"
+          src="https://images.unsplash.com/photo-1558981408-db0ecd8a1ee4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQzODA4fQ"
+        />
+      </a>
+      <div
+        className="photo-card__autor photo-card-autor"
+        data-test="photoCardAutor"
+      >
+        <a
+          className="photo-card-autor__link"
+          data-test="photoCardAutorLink"
+          href="/users/harleydavidson"
+          onClick={[Function]}
+        >
+          <img
+            alt="harleydavidson"
+            className="photo-card-autor__avatar"
+            data-test="photoCardAutorAvatar"
+            src="https://images.unsplash.com/profile-1556751276456-1561737ea797?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128"
+          />
+          <span
+            className="photo-card-autor__name"
+            data-test="photoCardAutorName"
+          >
+            Harley-Davidson
+          </span>
+        </a>
+      </div>
+      <p
+        className="photo-card__desc"
+        data-test="photoCardDesc"
+      />
+      <div
+        className="photo-card__badge-container photo-card-badge"
+        data-test="photoCardBadge"
+      >
+        Array [
+          <div
+            className="ant-tag tag"
+            data-test="tag"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": undefined,
+              }
+            }
+          >
+            motorcycle2
+          </div>,
+          <div
+            className="ant-tag tag"
+            data-test="tag"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": undefined,
+              }
+            }
+          >
+            auto2
+          </div>,
+          <div
+            className="ant-tag tag"
+            data-test="tag"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": undefined,
+              }
+            }
+          >
+            velocity2
+          </div>,
+        ]
+      </div>
+    </div>
+  </li>
+</ul>
+`;

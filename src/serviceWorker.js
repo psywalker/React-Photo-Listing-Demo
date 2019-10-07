@@ -11,7 +11,7 @@
 // opt-in, read http://bit.ly/CRA-PWA
 /* eslint no-param-reassign: "error" */
 /* eslint-disable no-console */
-function registerValidSW(swUrl, config) {
+export function registerValidSW(swUrl, config) {
   window.navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {

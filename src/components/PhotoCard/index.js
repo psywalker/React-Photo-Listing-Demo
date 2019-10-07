@@ -2,123 +2,134 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
-  Card,
-  Avatar,
   Tag,
   Popover,
 } from 'antd';
+import Tags from '../Tags';
 import './index.scss';
 
-const { Meta } = Card;
+export const getTagsVisibleArr = item => (
+  item.tags.length < 4
+    ? item.tags
+    : item.tags.slice(0, 3)
+);
+
+export const getTagsHiddenArr = item => (
+  item.tags.length > 3
+    ? item.tags.slice(3)
+    : false
+);
 
 const PhotoCard = memo(({
-  tags,
-  photoName,
-  photoDesc,
-  title,
-  photoID,
-  userID,
-  userAvatar,
   onSearchTagValue,
+  cards,
 }) => (
-  <div className="photo-card-self">
-    <Card
-      style={{ width: '100%' }}
-      cover={(
-        <Link
-          className="photo-card__photo-link"
-          to={`/photo/${photoID}`}
+  <ul
+    className="photo-card-list"
+    data-test="photoCardList"
+  >
+    { cards.map((item) => {
+      const tagsVisibleArr = getTagsVisibleArr(item);
+      const tagsHiddenArr = getTagsHiddenArr(item);
+      return (
+        <li
+          data-test="photoCardListItem"
+          key={item.photoID}
+          className="photo-card-list__item"
         >
-          <img
-            className="photo-card__img"
-            alt="example"
-            src={photoName}
-          />
-        </Link>
-        )}
-    >
-      { title && (
-        <Link
-          className="photo-card-self__link-ava"
-          to={`/users/${userID}`}
-        >
-          <Meta
-            avatar={
-              <Avatar src={userAvatar} />
-            }
-            title={title}
-          />
-        </Link>
-      )}
-      <p className="photo-card-self__desc">
-        {`${photoDesc || 'No Description'}`}
-      </p>
-      <div className="photo-card-self__badge-wrap">
-        {tags.map((item, i) => {
-          if (i < 3) {
-            return (
-              <Tag
-                key={item.title}
-                onClick={() => onSearchTagValue(item.title, 'tags')}
-                className="photo-card-self__badge"
-              >
-                {item.title}
-              </Tag>
-            );
-          }
-          return null;
-        })}
-        {tags.length > 3 && (
-          <Popover
-            placement="top"
-            title="Remaining tags"
-            content={(
-              <div>
-                {tags.map((item, i) => {
-                  if (i > 2) {
-                    return (
-                      <Tag
-                        key={item.title}
-                        onClick={() => onSearchTagValue(item.title, 'tags')}
-                        className="photo-card-self__badge"
-                      >
-                        {item.title}
-                      </Tag>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
-            )}
-            trigger="click"
+          <div
+            data-test="photoCard"
+            className="photo-card"
           >
-            <Tag className="photo-card-self__badge">more tags...</Tag>
-          </Popover>
-        )}
-      </div>
-    </Card>
-  </div>
+            <Link
+              data-test="photoCardPhotoLink"
+              to={`/photo/${item.photoID}`}
+            >
+              <img
+                data-test="photoCardImg"
+                className="photo-card__img"
+                alt={item.photoAltDesc}
+                src={item.photoName}
+              />
+            </Link>
+
+            <div
+              data-test="photoCardAutor"
+              className="photo-card__autor photo-card-autor"
+            >
+              <Link
+                data-test="photoCardAutorLink"
+                className="photo-card-autor__link"
+                to={`/users/${item.userID}`}
+              >
+                <img
+                  data-test="photoCardAutorAvatar"
+                  className="photo-card-autor__avatar"
+                  alt={item.userID}
+                  src={item.userAvatar}
+                />
+                <span
+                  data-test="photoCardAutorName"
+                  className="photo-card-autor__name"
+                >
+                  { item.title }
+                </span>
+              </Link>
+            </div>
+
+            <p
+              className="photo-card__desc"
+              data-test="photoCardDesc"
+            >
+              { item.photoDesc }
+            </p>
+
+            <div
+              className="photo-card__badge-container photo-card-badge"
+              data-test="photoCardBadge"
+            >
+              <Tags
+                data-test="photoCardTagMainContainer"
+                handleMethod={onSearchTagValue}
+                tags={tagsVisibleArr}
+              />
+              { tagsHiddenArr && (
+                <Popover
+                  data-test="photoCardPopover"
+                  placement="top"
+                  title="Remaining tags"
+                  content={(
+                    <Tags
+                      data-test="photoCardTagPopup"
+                      handleMethod={onSearchTagValue}
+                      tags={tagsHiddenArr}
+                    />
+                  )}
+                  trigger="click"
+                >
+                  <Tag
+                    data-test="photoCardTagMore"
+                    className="photo-card-badge__tag"
+                  >
+                    more tags...
+                  </Tag>
+                </Popover>
+              )}
+            </div>
+          </div>
+        </li>
+      );
+    })}
+  </ul>
 ));
 
 PhotoCard.propTypes = {
-  photoName: PropTypes.string,
-  photoDesc: PropTypes.string,
-  title: PropTypes.string,
-  tags: PropTypes.arrayOf(PropTypes.object),
-  userAvatar: PropTypes.string,
   onSearchTagValue: PropTypes.func,
-  photoID: PropTypes.string,
-  userID: PropTypes.string,
+  cards: PropTypes.arrayOf(PropTypes.object),
 };
 PhotoCard.defaultProps = {
-  photoName: '',
-  photoDesc: '',
-  title: 'Noname',
-  tags: [],
-  userAvatar: '',
-  photoID: '',
-  userID: '',
   onSearchTagValue: () => {},
+  cards: [],
 };
 
 export default PhotoCard;

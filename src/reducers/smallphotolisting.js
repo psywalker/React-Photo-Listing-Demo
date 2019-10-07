@@ -1,6 +1,10 @@
 import initialStore from '../initialStore';
 
-const smallphotolisting = (state = initialStore, action) => {
+const actionDefault = {
+  type: '',
+};
+
+const smallphotolisting = (state = initialStore, action = actionDefault) => {
   switch (action.type) {
     case 'SMALL_PHOTO_LISTING_FETCHING':
       return {

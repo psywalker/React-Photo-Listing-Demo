@@ -5,7 +5,7 @@ import { loadingRequestAction, logoutAction } from '../../actions';
 import { Spinner, Error } from '../../components';
 import './index.scss';
 
-class Profile extends PureComponent {
+export class Profile extends PureComponent {
   componentDidMount = () => {
     const { profilePhotoUrl } = this.props;
     if (!profilePhotoUrl) {
@@ -31,21 +31,42 @@ class Profile extends PureComponent {
       profileName,
     } = this.props;
     return (
-      <div className="profile">
-        { fetching && (<Spinner className="spinner" />)}
+      <div
+        data-test="profile"
+        className="profile"
+      >
+        { fetching && (
+          <Spinner
+            data-test="spinner"
+            className="spinner"
+          />
+        )}
         { !fetching && !loginError && (
-          <div className="profile__content profile-content">
+          <div
+            data-test="profileContent"
+            className="profile__content profile-content"
+          >
             <img
+              data-test="profileContentAvatar"
               className="profile-content__avatar"
               src={profilePhotoUrl}
               alt="Profile avatar"
             />
-            <div className="profile-content__title-wrap">
-              <h2 className="profile-content__title">
+            <div
+              data-test="profileContentTitleWrap"
+              className="profile-content__title-wrap"
+            >
+              <h2
+                data-test="profileContentTitle"
+                className="profile-content__title"
+              >
                 {profileFullName}
               </h2>
-              <p>{profileEmail}</p>
-              <p className="profile-content__text">
+              <p data-test="profileContentEmail">{profileEmail}</p>
+              <p
+                data-test="profileContentText"
+                className="profile-content__text"
+              >
                 Download free, beautiful high-quality photos curated by
                 {' '}
                 {
@@ -56,7 +77,10 @@ class Profile extends PureComponent {
           </div>
         )}
         { !fetching && loginError && (
-          <Error text="An authorization failed. Try logging in later!" />
+          <Error
+            data-test="error"
+            text="An authorization failed. Try logging in later!"
+          />
         )}
       </div>
     );
@@ -88,7 +112,7 @@ Profile.defaultProps = {
   history: {},
 };
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { login } = state;
   return login;
 };

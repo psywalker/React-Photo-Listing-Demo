@@ -1,6 +1,6 @@
 import initialStore from '../initialStore';
 
-const userstatistic = (state = initialStore, action) => {
+const userstatistic = (state = initialStore, action = {}) => {
   switch (action.type) {
     case 'USER_STATISTIC_FETCHING':
       return {
@@ -10,7 +10,7 @@ const userstatistic = (state = initialStore, action) => {
     case 'USER_STATISTIC_REQUEST_SUCCESS':
       return {
         ...state,
-        chartData: action.chartData,
+        chartData: action.dataForProps,
         isListingLoading: false,
         requestError: false,
       };

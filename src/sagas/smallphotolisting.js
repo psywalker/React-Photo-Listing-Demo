@@ -1,46 +1,63 @@
 import axios from 'axios';
-import { put } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 import get from 'lodash/get';
 import { URL_FOR_USER_LIKES_QUERY, URL_FOR_USER_PHOTO_LISTING_QUERY } from '../constants';
 
-export default function* smallPhotoListingRequestSaga(action) {
-  const {
-    userId,
+export const processResponse = (page, perPage, itemNum) => (response) => {
+  const cards = get(response, 'data', []).map(item => ({
+    photoUrl: get(item, 'urls.regular', ''),
+    photoID: get(item, 'id', ''),
+  }));
+  return {
     page,
     perPage,
-    name,
+    cards,
+    totalCards: parseInt(get(response, 'headers["x-total"]', 10), 10),
+    itemNum,
+  };
+};
+export const getParamsRequest = (name, page, userId, perPage) => {
+  let url = URL_FOR_USER_LIKES_QUERY(userId);
+  if (name === 'photos') url = URL_FOR_USER_PHOTO_LISTING_QUERY(userId);
+  const axiosRequestForcardsPhotos = {
+    method: 'get',
+    url,
+    params: {
+      page,
+      per_page: perPage,
+      client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
+    },
+  };
+  return axiosRequestForcardsPhotos;
+};
+
+const getSmallPhotoListing = ({
+  page,
+  perPage,
+  itemNum,
+  userId,
+  name,
+}) => axios(getParamsRequest(name, page, userId, perPage))
+  .then(processResponse(page, perPage, itemNum));
+
+export const api = {
+  getSmallPhotoListing,
+};
+
+export function* smallPhotoListingRequestSaga(action) {
+  const {
+    userId,
     itemNum,
   } = action;
   if (userId) {
     try {
-      let url = URL_FOR_USER_LIKES_QUERY(userId);
-      if (name === 'photos') url = URL_FOR_USER_PHOTO_LISTING_QUERY(userId);
-      const axiosRequestForcardsPhotos = {
-        url,
-        params: {
-          page,
-          per_page: perPage,
-          client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
-        },
-      };
-      const response = yield axios.get(axiosRequestForcardsPhotos.url, {
-        params: axiosRequestForcardsPhotos.params,
-      });
-      const cards = get(response, 'data', []).map(item => ({
-        photoUrl: get(item, 'urls.regular', ''),
-        photoID: get(item, 'id', ''),
-      }));
-
-      const dataForProps = {
-        page,
-        perPage,
-        cards,
-        totalCards: parseInt(get(response, 'headers["x-total"]', 10), 10),
-        itemNum,
-      };
+      const dataForProps = yield call(api.getSmallPhotoListing, action);
       yield put({ type: 'SMALL_PHOTO_LISTING_SUCCESS', dataForProps });
     } catch (error) {
       yield put({ type: 'SMALL_PHOTO_LISTING_REQUEST_ERROR', error, itemNum });
     }
+  } else {
+    const error = {};
+    yield put({ type: 'SMALL_PHOTO_LISTING_REQUEST_ERROR', error, itemNum });
   }
 }

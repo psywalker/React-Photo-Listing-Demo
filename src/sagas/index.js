@@ -1,12 +1,10 @@
 import { takeEvery, all } from 'redux-saga/effects';
 import { loginSaga } from './login';
-import cardsPhotosRequestSaga from './photolisting';
-import userStatisticRequestSaga from './userstatistic';
-import photoRequestSaga from './photo';
-import userRequestSaga from './user';
-import userLikesRequestSaga from './userlikesphotos';
-import userPhotoListingRequestSaga from './userphotolisting';
-import smallPhotoListingRequestSaga from './smallphotolisting';
+import { cardsPhotosRequestSaga } from './photolisting';
+import { userStatisticRequestSaga } from './userstatistic';
+import { photoRequestSaga } from './photo';
+import { userRequestSaga } from './user';
+import { smallPhotoListingRequestSaga } from './smallphotolisting';
 
 export default function* rootSaga() {
   yield all([
@@ -15,8 +13,6 @@ export default function* rootSaga() {
     yield takeEvery('USER_STATISTIC_FETCHING', userStatisticRequestSaga),
     yield takeEvery('PHOTO_FETCHING', photoRequestSaga),
     yield takeEvery('USER_FETCHING', userRequestSaga),
-    yield takeEvery('USER_LIKES_FETCHING', userLikesRequestSaga),
-    yield takeEvery('USER_PHOTO_LISTING_FETCHING', userPhotoListingRequestSaga),
     yield takeEvery('SMALL_PHOTO_LISTING_FETCHING', smallPhotoListingRequestSaga),
   ]);
 }

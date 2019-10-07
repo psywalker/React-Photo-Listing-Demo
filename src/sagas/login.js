@@ -1,57 +1,78 @@
 import axios from 'axios';
-import { put } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 import get from 'lodash/get';
-import { URL_FOR_PROFILE_ME, URL_FOR_TOKEN, URL_FOR_AVATAR_PLACEHOLDER } from '../constants';
+import {
+  URL_FOR_PROFILE_ME,
+  URL_FOR_TOKEN,
+  URL_FOR_AVATAR_PLACEHOLDER,
+} from '../constants';
 
-export function* loginAfterToken(token) {
-  if (token) {
-    try {
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      const response = yield axios.get(URL_FOR_PROFILE_ME, { headers });
-      const dataForProps = {
-        profilePhotoUrl: get(response, 'data.profile_image.large', URL_FOR_AVATAR_PLACEHOLDER),
-        profileName: get(response, 'data.first_name', ''),
-        profileFullName: get(response, 'data.name', ''),
-        profileEmail: get(response, 'data.email', ''),
-      };
+export const processResponse = response => ({
+  profilePhotoUrl: get(response, 'data.profile_image.large', URL_FOR_AVATAR_PLACEHOLDER),
+  profileName: get(response, 'data.first_name', ''),
+  profileFullName: get(response, 'data.name', ''),
+  profileEmail: get(response, 'data.email', ''),
+});
+export const getParamsRequest = (token) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const axiosRequestParamsForToken = {
+    method: 'get',
+    url: URL_FOR_PROFILE_ME,
+    headers,
+  };
+  return axiosRequestParamsForToken;
+};
 
-      yield put({ type: 'LOGIN_SUCCESS', dataForProps });
-    } catch (error) {
-      yield put({ type: 'LOGIN_ERROR' });
-    }
+const getProfile = token => axios(getParamsRequest(token)).then(processResponse);
+export const api = {
+  getProfile,
+};
+
+export function* fetchLoginData(token) {
+  try {
+    const dataForProps = yield call(api.getProfile, token);
+    yield put({ type: 'LOGIN_SUCCESS', dataForProps });
+  } catch {
+    yield put({ type: 'LOGIN_ERROR' });
   }
 }
+
+export function* fetchGetToken(code) {
+  const axiosRequestForToken = {
+    url: URL_FOR_TOKEN,
+    body: {
+      redirect_uri: process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI,
+      client_secret: process.env.REACT_APP_UNSPLASH_API_CLIENT_SECRET,
+      code,
+      grant_type: 'authorization_code',
+      client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
+    },
+  };
+  try {
+    const response = yield call(axios.post, axiosRequestForToken.url, axiosRequestForToken.body);
+    const token = yield call(get, response, 'data.access_token', false);
+    window.localStorage.clear();
+    window.localStorage.setItem('token', token);
+    yield call(fetchLoginData, token);
+  } catch {
+    yield put({ type: 'LOGIN_ERROR' });
+  }
+}
+
 export function* loginSaga(action) {
   const tokenFirst = window.localStorage.getItem('token');
-  if (tokenFirst) {
-    yield loginAfterToken(tokenFirst);
+  const code = (
+    action && action.location && action.location.search
+  )
+    ? action.location.search.split('?code=')[1]
+    : false;
+  if (tokenFirst && tokenFirst !== 'undefined') {
+    yield call(fetchLoginData, tokenFirst);
+  } else if (code) {
+    yield call(fetchGetToken, code);
   } else {
-    const code = action.location.search.split('?code=')[1];
-    if (code) {
-      try {
-        const axiosRequestForToken = {
-          url: URL_FOR_TOKEN,
-          body: {
-            redirect_uri: process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI,
-            client_secret: process.env.REACT_APP_UNSPLASH_API_CLIENT_SECRET,
-            code,
-            grant_type: 'authorization_code',
-            client_id: process.env.REACT_APP_UNSPLASH_API_KEY,
-          },
-        };
-
-        const response = yield axios.post(axiosRequestForToken.url, axiosRequestForToken.body);
-        const token = get(response, 'data.access_token', false);
-        window.localStorage.clear();
-        window.localStorage.setItem('token', token);
-        yield loginAfterToken(token);
-      } catch (error) {
-        yield put({ type: 'LOGIN_ERROR' });
-      }
-    } else {
-      yield put({ type: 'LOGIN_ERROR' });
-    }
+    yield put({ type: 'LOGIN_ERROR' });
   }
 }
