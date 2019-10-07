@@ -11,8 +11,10 @@ import {
 import HomeHOC from '../pages/Home/HomeHOC';
 import './index.scss';
 
+export const getBaseName = () => process.env.PUBLIC_URL || '/';
+
 const Main = memo(() => (
-  <BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
+  <BrowserRouter basename={getBaseName()}>
     <LastLocationProvider>
       <Row className="header-row" style={{ margin: '0px 0 30px' }}>
         <Col>
