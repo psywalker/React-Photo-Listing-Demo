@@ -5,7 +5,7 @@ import { Spinner, Error, HighchartsHOC } from '../../components';
 import { userStatistingRequestAction } from '../../actions';
 import './index.css';
 
-class UserStatistic extends Component {
+export class UserStatistic extends Component {
   componentDidMount = () => {
     const { userId } = this.props;
     const { userStatistingRequestAction: handleAction } = this.props;

@@ -1,6 +1,5 @@
 import React from 'react';
-import { UserStatistic } from '.';
-import { mapStateToProps } from '.';
+import { UserStatistic, mapStateToProps } from '.';
 
 describe('Test of component of User', () => {
   // Default Data
