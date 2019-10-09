@@ -1,25 +1,31 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Pagination } from 'antd';
 import PhotoCard from '../../components/PhotoCard';
 import Search from '../../components/Search';
 import NavTop from '../../components/NavTop';
-import Spinner from '../../components/Spinner';
 import 'antd/dist/antd.css';
 import './index.scss';
 
 export default class Home extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 1,
-    };
+  state = {
+    page: 1,
+    cards: [],
   }
 
   componentDidUpdate = (prevProps) => {
     const { cardsData, handleСardsPhotosAction } = this.props;
+    const { cards: cardsState } = this.state;
+    const { cards: cardsProps } = this.props;
+    if (prevProps.cards !== cardsProps) {
+      const arr = [...cardsState, ...cardsProps];
+      this.setState({ cards: arr });
+    }
     if (JSON.stringify(prevProps.cardsData) !== JSON.stringify(cardsData)) {
-      handleСardsPhotosAction(cardsData);
+      handleСardsPhotosAction({
+        ...cardsData,
+        page: 1,
+      });
+      this.setState({ page: 1, cards: [] });
     }
   };
 
@@ -34,19 +40,14 @@ export default class Home extends PureComponent {
     handleСardsPhotosAction(cardsData);
   };
 
-  getCardsPhotosTest = () => {
-    const { cardsData, handleСardsPhotosAction } = this.props;
-    const { count } = this.state;
+  getPaginationChange = () => {
+    const { handleСardsPhotosAction, cardsData } = this.props;
+    const { page } = this.state;
     handleСardsPhotosAction({
       ...cardsData,
-      per_page: 6 * count,
+      page: page + 1,
     });
-    this.setState({ count: count + 1 });
-  };
-
-  getPaginationChange = (currentPage) => {
-    const { paginationChangeAction: handleAction } = this.props;
-    handleAction(currentPage);
+    this.setState({ page: page + 1 });
   };
 
   getFilterItemValue = (itemText, itemId) => {
@@ -67,13 +68,12 @@ export default class Home extends PureComponent {
   render() {
     const {
       filters,
-      isListingLoading,
-      cards,
       totalCards,
       cardsData,
       navTopItemActive,
       photolistingRequestError,
     } = this.props;
+    const { cards } = this.state;
 
     if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
     return (
@@ -94,7 +94,7 @@ export default class Home extends PureComponent {
         <PhotoCard
           data-test="photoCard"
           onSearchTagValue={this.getSearchText}
-          getCardsPhotosTest={this.getCardsPhotosTest}
+          getPaginationChange={this.getPaginationChange}
           cards={cards}
         />
         {!totalCards && (
@@ -103,19 +103,6 @@ export default class Home extends PureComponent {
           </div>
         )}
 
-        <div className="pagination" data-test="pagination">
-          {totalCards > cardsData.per_page && (
-            <Pagination
-              data-test-id-pagination="pagination"
-              showSizeChanger
-              hideOnSinglePage
-              onChange={this.getPaginationChange}
-              current={cardsData.page}
-              defaultCurrent={1}
-              total={totalCards}
-            />
-          )}
-        </div>
       </div>
     );
   }
