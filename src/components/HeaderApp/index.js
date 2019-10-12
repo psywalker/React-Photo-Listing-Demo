@@ -11,7 +11,7 @@ import {
 import { withLastLocation } from 'react-router-last-location';
 import { connect } from 'react-redux';
 import { ButtonBack } from '../index';
-import { URL_FOR_LOGIN } from '../../constants';
+import { URL_FOR_LOGIN, URL_FOR_LOGO } from '../../constants';
 import { logoutAction } from '../../actions';
 import './index.scss';
 
@@ -53,7 +53,11 @@ export const HeaderApp = withRouter(memo((props) => {
                   data-test="siteLogoTitle"
                   className="site-logo"
                 >
-                  PHOTOLISTING
+                  <img
+                    className="site-logo__img"
+                    src={URL_FOR_LOGO} 
+                    alt="logo"
+                  />
                 </h1>
               </Link>
               <Route

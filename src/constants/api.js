@@ -2,6 +2,7 @@ export const URL_FOR_PROFILE_ME = `${process.env.REACT_APP_PROFILE}/me`;
 export const URL_FOR_TOKEN = 'https://unsplash.com/oauth/token';
 export const URL_FOR_AVATAR_PLACEHOLDER = `${process.env.PUBLIC_URL}/ava-placeholder.jpg`;
 export const URL_FOR_ERROR_IMAGE = `${process.env.PUBLIC_URL}/error-image.jpg`;
+export const URL_FOR_LOGO = `${process.env.PUBLIC_URL}/logo.svg`;
 export const URL_FOR_CARDS_PHOTOS = 'https://api.unsplash.com/search/photos';
 export const URL_FOR_LOGIN = `https://unsplash.com/oauth/authorize?redirect_uri=${
   process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI
