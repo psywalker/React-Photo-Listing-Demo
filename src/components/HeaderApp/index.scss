@@ -19,12 +19,12 @@
     white-space: nowrap;
     width: 200px;
     text-align: right;
-    top: 2px;
+    top: 0px;
   }
 }
 .user-avatar-empty {
   width: 30px;
-  margin-left: 5px;
+  margin-left: 10px;
   display: inline-block;
   margin-bottom: 2px;
 
@@ -46,6 +46,7 @@
 .btn-login {
   margin-left: 10px;
   padding: 0 20px !important;
+  width: 90px;
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
     padding: 0 5px !important;
     display: none !important;
@@ -59,6 +60,7 @@
   }
 }
 .btn-logout {
+  width: 90px;
   margin-left: 10px;
   padding: 0 20px;
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
