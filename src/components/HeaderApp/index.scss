@@ -19,6 +19,7 @@
     white-space: nowrap;
     width: 200px;
     text-align: right;
+    top: 2px;
   }
 }
 .user-avatar-empty {
@@ -38,8 +39,8 @@
   margin-bottom: 10px;
   margin-left: 6px;
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
-    width: 26px;
-    margin-bottom: 28px;
+    width: 28px;
+    margin-bottom: 16px;
   }
 }
 .btn-login {
@@ -52,8 +53,7 @@
 }
 .logout-icon {
   display: none;
-  width: 20px;
-  margin-bottom: 10px;
+  width: 26px;
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
     display: block;
   }
