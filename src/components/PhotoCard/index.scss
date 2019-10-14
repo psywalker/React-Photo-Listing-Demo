@@ -13,7 +13,7 @@
       width: calc(100%/2 - 10px);
     }
     @media screen and ( min-width: 0px ) and ( max-width: 740px) {
-      width: 100%;
+      width: calc(100% - 10px);
     }
 
     &:hover {

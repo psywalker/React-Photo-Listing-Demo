@@ -16,7 +16,7 @@ export const getBaseName = () => process.env.PUBLIC_URL || '/';
 const Main = memo(() => (
   <BrowserRouter basename={getBaseName()}>
     <LastLocationProvider>
-      <Row className="header-row" style={{ margin: '0px 0 30px' }}>
+      <Row className="header-row">
         <Col>
           <Layout className="user-layout">
             <HeaderApp />

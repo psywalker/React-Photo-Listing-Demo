@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
 import debounce from 'lodash/debounce';
-import './index.css';
+import './index.scss';
 
 const InputSearch = Input.Search;
 

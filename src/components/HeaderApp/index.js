@@ -11,7 +11,13 @@ import {
 import { withLastLocation } from 'react-router-last-location';
 import { connect } from 'react-redux';
 import { ButtonBack } from '../index';
-import { URL_FOR_LOGIN, URL_FOR_LOGO } from '../../constants';
+import {
+  URL_FOR_LOGIN,
+  URL_FOR_LOGO,
+  URL_FOR_AVA_EMPTY_LOGIN,
+  URL_FOR_LOGIN_ICON,
+  URL_FOR_LOGOUT_ICON,
+} from '../../constants';
 import { logoutAction } from '../../actions';
 import './index.scss';
 
@@ -29,6 +35,7 @@ export const HeaderApp = withRouter(memo((props) => {
     window.localStorage.clear();
     history.push('/');
   };
+
   return (
     <div
       data-test="headerApp"
@@ -36,14 +43,14 @@ export const HeaderApp = withRouter(memo((props) => {
     >
       <Header
         data-test="userLayoutHeader"
-        className="user-layout__header"
+        className="user-layout__header user-layout-header"
       >
         <div
           data-test="page"
           className="page"
         >
           <Row type="flex" justify="space-between">
-            <Col span={9} style={{ whiteSpace: 'nowrap' }}>
+            <Col span={2} style={{ whiteSpace: 'nowrap' }}>
               <Link
                 data-test="siteLogoLinkRouter"
                 to="/"
@@ -71,50 +78,80 @@ export const HeaderApp = withRouter(memo((props) => {
                 )}
               />
 
-              {!profileName && (
-                <Button
-                  data-test="btnLogin"
-                  style={{ marginLeft: '10px' }}
-                  href={URL_FOR_LOGIN}
-                >
-                  Login
-                </Button>
-              )}
-              {profileName && (
-                <span>
-                  <Button
-                    data-test="btnLogout"
-                    className="btn-logout"
-                    style={{ marginLeft: '10px' }}
-                    onClick={handleLoguotHeader}
-                  >
-                    Logout
-                  </Button>
-                </span>
-              )}
             </Col>
 
             <Col
-              span={3}
+              span={10}
               style={{ display: 'flex', justifyContent: 'flex-end' }}
             >
-              {profileName && (
-                <Link
-                  data-test="linkProfileName"
-                  to="/profile"
-                >
-                  <Icon
-                    component={() => (
+              <div className="user-layout-header__login">
+                
+                {!profileName && (
+                  <div>
+                    <Button
+                      data-test="btnLogin"
+                      className="btn-login"
+                      href={URL_FOR_LOGIN}
+                    >
+                      Login
+                    </Button>
+                    <a
+                      className="login-icon-link"
+                      href={URL_FOR_LOGIN}
+                    >
+                      <img
+                        data-test="login-icon"
+                        className="login-icon"
+                        alt="Login"
+                        src={`${URL_FOR_LOGIN_ICON}`}
+                      />
+                    </a>
+                    <img
+                      data-test="userAvatarEmpty"
+                      className="user-avatar-empty"
+                      alt=""
+                      src={`${URL_FOR_AVA_EMPTY_LOGIN}`}
+                    />
+
+                  </div>
+                )}
+                {profileName && (
+                  <span>
+                    <Button
+                      data-test="btnLogout"
+                      className="btn-logout"
+                      onClick={handleLoguotHeader}
+                    >
+                      Logout
+                    </Button>
+
+                    <Icon
+                      onClick={handleLoguotHeader}
+                      component={() => (
+                        <img
+                          data-test="logout-icon"
+                          className="logout-icon"
+                          alt="Logout"
+                          src={`${URL_FOR_LOGOUT_ICON}`}
+                        />
+                      )}
+                    />
+                    <Link
+                      data-test="linkProfileName"
+                      to="/profile"
+                    >
+
                       <img
                         data-test="userAvatarImg"
                         className="user-avatar"
                         alt=""
                         src={`${profilePhotoUrl}`}
                       />
-                    )}
-                  />
-                </Link>
-              )}
+
+                    </Link>
+                  </span>
+                )}
+              </div>
             </Col>
           </Row>
         </div>

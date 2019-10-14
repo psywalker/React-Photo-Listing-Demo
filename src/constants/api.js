@@ -3,6 +3,9 @@ export const URL_FOR_TOKEN = 'https://unsplash.com/oauth/token';
 export const URL_FOR_AVATAR_PLACEHOLDER = `${process.env.PUBLIC_URL}/ava-placeholder.jpg`;
 export const URL_FOR_ERROR_IMAGE = `${process.env.PUBLIC_URL}/error-image.jpg`;
 export const URL_FOR_LOGO = `${process.env.PUBLIC_URL}/logo.svg`;
+export const URL_FOR_AVA_EMPTY_LOGIN = `${process.env.PUBLIC_URL}/ava-empty-login.svg`;
+export const URL_FOR_LOGIN_ICON = `${process.env.PUBLIC_URL}/login.svg`;
+export const URL_FOR_LOGOUT_ICON = `${process.env.PUBLIC_URL}/logout.svg`;
 export const URL_FOR_CARDS_PHOTOS = 'https://api.unsplash.com/search/photos';
 export const URL_FOR_LOGIN = `https://unsplash.com/oauth/authorize?redirect_uri=${
   process.env.REACT_APP_UNSPLASH_API_REDIRECT_URI

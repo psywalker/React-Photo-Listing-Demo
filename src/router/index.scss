@@ -3,4 +3,8 @@
   z-index: 1 !important;;
   top: 0px;
   min-height: 64px;
+
+  @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+    min-height: 40px !important;
+  }
 }
