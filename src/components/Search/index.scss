@@ -1,8 +1,8 @@
 .search {
-  position: fixed;
+  position: absolute;
   right: 150px;
   left: 65px;
-  top: 16px;
+  top: -33px;
   height: 40px;
   z-index: 1;
 
@@ -16,7 +16,7 @@
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
     left: 52px;
     right: 80px;
-    top: 7px;
+    top: -18px;
     height: 30px;
     & .ant-input-suffix {
       right: 7px !important;
