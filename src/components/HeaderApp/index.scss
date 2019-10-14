@@ -8,6 +8,7 @@
 
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
     height: 40px !important;
+    line-height: normal !important;
   }
 }
 
@@ -21,13 +22,14 @@
   }
 }
 .user-avatar-empty {
-  width: 36px;
-  margin-left: 10px;
+  width: 30px;
+  margin-left: 5px;
   display: inline-block;
+  margin-bottom: 2px;
 
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
-    width: 21px;
-    margin-top: -28px;
+    width: 27px;
+    margin-bottom: 1px;
   }
 }
 .user-avatar {
@@ -73,20 +75,22 @@
     width: 100%;
   }
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+    vertical-align: middle;
     display: inline-block;
+    width: 27px;
+    margin-top: 8px;
   }
 }
 .site-logo {
   font-family: 'Fjalla One', sans-serif;
   position: relative;
-  width: 36px;
-  height: 36px;
+  width: 39px;
   &__img {
     width: 100%;
     margin-bottom: 7px;
 
     @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
-      margin-bottom: 24px;
+      margin-bottom: 0;
     }
   }
 
@@ -95,8 +99,8 @@
   }
 
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
-    width: 24px;
-    height: 24px;
+    width: 31px;
+    margin-top: 5px;
   }
   // @media screen and ( min-width: 0px ) and ( max-width: 400px ) {
   //   font-size: 18px;

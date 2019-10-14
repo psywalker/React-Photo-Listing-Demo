@@ -1,8 +1,8 @@
 .search {
   position: fixed;
-  right: 150px;
+  right: 140px;
   left: 65px;
-  top: 15px;
+  top: 16px;
   height: 40px;
   z-index: 1;
 
@@ -10,17 +10,19 @@
     width: 20px;
     height: 20px;
   }
-
+  & .ant-input {
+    height: 31px !important;
+  }
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
-    left: 45px;
-    right: 70px;
+    left: 52px;
+    right: 80px;
     top: 7px;
-    height: 25px;
+    height: 30px;
     & .ant-input-suffix {
       right: 7px !important;
     }
     & .ant-input {
-      height: 25px !important;
+      height: 30px !important;
     }
 
     & svg {
