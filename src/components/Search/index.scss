@@ -1,11 +1,11 @@
 .search {
-  position: absolute;
+  position: sticky;
   right: 150px;
   left: 65px;
-  top: -33px;
+  top: 17px;
   height: 40px;
   z-index: 1;
-
+  margin: -62px 140px 20px 45px;
   & svg {
     width: 20px;
     height: 20px;
@@ -14,10 +14,9 @@
     height: 31px !important;
   }
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
-    left: 52px;
-    right: 80px;
-    top: -18px;
+    top: 6px;
     height: 30px;
+    margin: -62px 69px 20px 38px;
     & .ant-input-suffix {
       right: 7px !important;
     }
