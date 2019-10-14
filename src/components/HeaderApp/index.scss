@@ -20,6 +20,10 @@
     width: 200px;
     text-align: right;
     top: 0px;
+
+    @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+      
+    }
   }
 }
 .user-avatar-empty {
@@ -35,8 +39,8 @@
 }
 .user-avatar {
   border-radius: 50%;
-  width: 36px;
-  margin-bottom: 10px;
+  width: 32px;
+  margin-bottom: 3px;
   margin-left: 6px;
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
     width: 28px;
@@ -57,6 +61,7 @@
   width: 26px;
   @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
     display: block;
+    margin-top: 9px;
   }
 }
 .btn-logout {
