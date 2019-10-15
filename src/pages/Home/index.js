@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import PhotoCard from '../../components/PhotoCard';
+import PhotoCardList from '../../components/PhotoCardList';
 import Search from '../../components/Search';
 import NavTop from '../../components/NavTop';
 import 'antd/dist/antd.css';
@@ -85,18 +85,21 @@ export default class Home extends PureComponent {
           onChangeInputValue={this.getChangeInputValue}
           queryText={cardsData.query}
         />
+
         <NavTop
           data-test="navTop"
           navTopItemActive={navTopItemActive}
           onFilterItemValue={this.getFilterItemValue}
           filters={filters}
         />
-        <PhotoCard
+
+        <PhotoCardList
           data-test="photoCard"
           onSearchTagValue={this.getSearchText}
           getPaginationChange={this.getPaginationChange}
           cards={cards}
         />
+
         {!totalCards && (
           <div className="cards__text-empty" data-test="cardsTextEmpty">
             No images were found for your request. Try to find more.
