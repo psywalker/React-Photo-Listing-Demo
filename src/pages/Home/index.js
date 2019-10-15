@@ -98,6 +98,7 @@ export default class Home extends PureComponent {
           onSearchTagValue={this.getSearchText}
           getPaginationChange={this.getPaginationChange}
           cards={cards}
+          totalCards={totalCards}
         />
 
         {!totalCards && (
