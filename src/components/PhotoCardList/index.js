@@ -43,7 +43,7 @@ PhotoCardList.propTypes = {
   onSearchTagValue: PropTypes.func,
   getPaginationChange: PropTypes.func,
   cards: PropTypes.arrayOf(PropTypes.object),
-  totalCards: PropTypes.number, 
+  totalCards: PropTypes.number,
 };
 PhotoCardList.defaultProps = {
   onSearchTagValue: () => {},
