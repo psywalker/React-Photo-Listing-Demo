@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
 import Masonry from 'react-masonry-component';
+import SpinnerPhotoCard from '../SpinnerPhotoCard';
 
 const PhotoCardList = memo(({
   onSearchTagValue,
@@ -15,7 +16,7 @@ const PhotoCardList = memo(({
     initialLoad={false}
     threshold={250}
     loadMore={getPaginationChange}
-    loader={<div className="loader" key={0}>Loading ...</div>}
+    loader={<SpinnerPhotoCard />}
     hasMore
   >
     <Masonry
