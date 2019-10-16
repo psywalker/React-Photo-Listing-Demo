@@ -4,32 +4,44 @@ import { Link } from 'react-router-dom';
 import './index.scss';
 
 const PhotoCardAutor = memo(({
-  photoID,
-  photoAltDesc,
-  photoName,
+  userID,
+  userAvatar,
+  title,
 }) => (
-  <Link
-    data-test="photoCardPhotoLink"
-    to={`/photo/${photoID}`}
+  <div
+    data-test="photoCardAutor"
+    className="photo-card__autor photo-card-autor"
   >
-    <img
-      data-test="photoCardImg"
-      className="photo-card-img"
-      alt={photoAltDesc}
-      src={photoName}
-    />
-  </Link>
+    <Link
+      data-test="photoCardAutorLink"
+      className="photo-card-autor__link"
+      to={`/users/${userID}`}
+    >
+      <img
+        data-test="photoCardAutorAvatar"
+        className="photo-card-autor__avatar"
+        alt={userID}
+        src={userAvatar}
+      />
+      <span
+        data-test="photoCardAutorName"
+        className="photo-card-autor__name"
+      >
+        { title }
+      </span>
+    </Link>
+  </div>
 ));
 
 PhotoCardAutor.propTypes = {
-  photoID: PropTypes.string,
-  photoAltDesc: PropTypes.string,
-  photoName: PropTypes.string,
+  userID: PropTypes.string,
+  userAvatar: PropTypes.string,
+  title: PropTypes.string,
 };
 PhotoCardAutor.defaultProps = {
-  photoID: '',
-  photoAltDesc: '',
-  photoName: '',
+  userID: '',
+  userAvatar: '',
+  title: '',
 };
 
 export default PhotoCardAutor;

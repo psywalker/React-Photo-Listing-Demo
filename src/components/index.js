@@ -1,7 +1,6 @@
 import ButtonBack from './ButtonBack';
 import HeaderApp from './HeaderApp';
 import NavTop from './NavTop';
-import PhotoCard from './PhotoCard';
 import Search from './Search';
 import Spinner from './Spinner';
 import SpinnerPhoto from './SpinnerPhoto';
@@ -20,7 +19,6 @@ export {
   ButtonBack,
   HeaderApp,
   NavTop,
-  PhotoCard,
   Search,
   Spinner,
   SpinnerPhoto,
