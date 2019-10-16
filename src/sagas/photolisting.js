@@ -13,6 +13,7 @@ export const processResponse = (response) => {
     photoID: get(item, 'id', ''),
     userID: get(item, 'user.username', ''),
     userAvatar: get(item, 'user.profile_image.large', ''),
+    likes: get(item, 'likes', 0),
   }));
   return {
     cards,

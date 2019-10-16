@@ -4,6 +4,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import Masonry from 'react-masonry-component';
 import PhotoCard from './PhotoCard';
 import SpinnerPhotoCard from '../SpinnerPhotoCard';
+import './index.scss';
 
 const PhotoCardList = memo(({
   onSearchTagValue,

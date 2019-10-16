@@ -10,11 +10,14 @@ import {
   Popover,
 } from 'antd';
 import ImageZoom from 'react-medium-image-zoom';
-import { saveAs } from 'file-saver';
-import { SpinnerPhoto, InfoPhotoModal, Error } from '../../components';
+import {
+  SpinnerPhoto,
+  InfoPhotoModal,
+  Error,
+  DownLoadButton,
+} from '../../components';
 import { photoRequestAction, photoImageLoadAction } from '../../actions';
 import getPhotoSize from './getPhotoSize';
-import handleDowloadPhoto from './handleDowloadPhoto';
 import './index.scss';
 
 export class Photo extends Component {
@@ -42,12 +45,6 @@ export class Photo extends Component {
 
   componentWillUnmount = () => {
     window.removeEventListener('resize', this.setPhotoSize);
-  }
-
-  downLoadPhoto = () => {
-    const { info: { photoDesc }, altDescriprion, photoSrc } = this.props;
-    const photoName = handleDowloadPhoto(altDescriprion, photoDesc);
-    saveAs(photoSrc, photoName);
   }
 
   setPhotoSize = () => {
@@ -127,22 +124,12 @@ export class Photo extends Component {
               </Link>
             )}
             extra={(
-              <div
-                data-test="photoHeader"
-                className="photo-header"
-              >
-                <Button
-                  data-test="photoHeaderButton"
-                  style={{ marginLeft: '10px' }}
-                  onClick={this.downLoadPhoto}
-                >
-                  <Icon
-                    data-test="photoHeaderButtonIcon"
-                    type="download"
-                  />
-                  Download
-                </Button>
-              </div>
+              <DownLoadButton
+                photoDesc={info.photoDesc}
+                altDescriprion={altDescriprion}
+                photoSrc={photoSrc}
+                textButton="Download"
+              />
             )}
             style={{
               width: '100%',

@@ -14,6 +14,8 @@ import Photo from '../pages/Photo';
 import Profile from '../pages/Profile';
 import User from '../pages/User';
 import UserStatistic from '../pages/UserStatistic';
+import DownLoadButton from './DownLoadButton';
+
 
 export {
   ButtonBack,
@@ -32,4 +34,5 @@ export {
   HighchartsHOC,
   SmallPhotoListing,
   Tags,
+  DownLoadButton,
 };

@@ -59,13 +59,13 @@ const PhotoCardTags = memo(({
         </Popover>
       )}
     </div>
-  )
+  );
 });
 
 
 PhotoCardTags.propTypes = {
   onSearchTagValue: PropTypes.func,
-  tags: PropTypes.arrayOf(PropTypes.string),
+  tags: PropTypes.arrayOf(PropTypes.shape({})),
 };
 PhotoCardTags.defaultProps = {
   onSearchTagValue: () => {},
