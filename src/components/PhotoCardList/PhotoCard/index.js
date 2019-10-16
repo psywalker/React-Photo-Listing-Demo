@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import PhotoCardImg from '../PhotoCardImg';
 import PhotoCardTags from '../PhotoCardTags';
 import PhotoCardAutor from '../PhotoCardAutor';
+import PhotoCardDescription from '../PhotoCardDescription';
 import './index.scss';
 
 const PhotoCard = memo(({
@@ -22,10 +23,13 @@ const PhotoCard = memo(({
     />
 
     <PhotoCardAutor
-      onSearchTagValue={onSearchTagValue}
       userID={item.userID}
       userAvatar={item.userAvatar}
       title={item.title}
+    />
+
+    <PhotoCardDescription
+      photoDesc={item.photoDesc}
     />
 
   </li>
