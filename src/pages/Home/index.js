@@ -19,8 +19,7 @@ export default class Home extends PureComponent {
     if (prevProps.cards !== cardsProps) {
       const arr = [...cardsState, ...cardsProps];
       this.setState({ cards: arr });
-    }
-    if (JSON.stringify(prevProps.cardsData) !== JSON.stringify(cardsData)) {
+    } else if (prevProps.cardsData !== cardsData) {
       handleСardsPhotosAction({
         ...cardsData,
         page: 1,
@@ -30,8 +29,10 @@ export default class Home extends PureComponent {
   };
 
   componentDidMount = () => {
-    const { match: { params: { tag } }, searchTextAction: handleAction } = this.props;
+    const { match: { params: { tag } }, searchTextAction: handleAction, searchChangeInputValueAction } = this.props;
+    const searchText = window.localStorage.getItem('search-text');
     if (tag) handleAction(tag, 'tags');
+    else if (searchText) searchChangeInputValueAction(searchText);
     else this.getCardsPhotos();
   };
 
@@ -52,16 +53,19 @@ export default class Home extends PureComponent {
 
   getFilterItemValue = (itemText, itemId) => {
     const { filterItemValueAction: handleAction } = this.props;
+    window.localStorage.setItem('search-text', itemText);
     handleAction(itemText, itemId);
   };
 
   getSearchText = (text, tags) => {
     const { searchTextAction: handleAction } = this.props;
+    window.localStorage.setItem('search-text', text);
     handleAction(text, tags);
   }
 
   getChangeInputValue = (text) => {
     const { searchChangeInputValueAction: handleAction } = this.props;
+    window.localStorage.setItem('search-text', text);
     handleAction(text);
   }
 
@@ -114,8 +118,6 @@ export default class Home extends PureComponent {
 
 Home.propTypes = {
   handleСardsPhotosAction: PropTypes.func,
-  cardsPhotosRequestAction: PropTypes.func,
-  paginationChangeAction: PropTypes.func,
   filterItemValueAction: PropTypes.func,
   searchTextAction: PropTypes.func,
   searchChangeInputValueAction: PropTypes.func,
@@ -132,7 +134,6 @@ Home.propTypes = {
   totalCards: PropTypes.number,
   navTopItemActive: PropTypes.number,
   cards: PropTypes.arrayOf(PropTypes.object),
-  isListingLoading: PropTypes.bool,
   photolistingRequestError: PropTypes.bool,
   match: PropTypes.shape({
     params: PropTypes.shape({
@@ -142,13 +143,10 @@ Home.propTypes = {
 };
 Home.defaultProps = {
   handleСardsPhotosAction: () => {},
-  cardsPhotosRequestAction: () => {},
-  paginationChangeAction: () => {},
   filterItemValueAction: () => {},
   searchTextAction: () => {},
   searchChangeInputValueAction: () => {},
   filters: [],
-  isListingLoading: false,
   cards: [],
   cardsData: {
     query: 'wallpapers',

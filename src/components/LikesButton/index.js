@@ -28,7 +28,6 @@ const LikesButton = memo(() => {
               className="likes-button__icon"
               type="heart"
               theme="filled"
-              filledColor="red"
               style={{ color: 'red' }}
             />
           </Button>
@@ -48,7 +47,6 @@ const LikesButton = memo(() => {
               className="likes-button__icon"
               type="heart"
               theme="filled"
-              filledColor="#fff"
               style={{ color: '#fff' }}
             />
           </Button>
