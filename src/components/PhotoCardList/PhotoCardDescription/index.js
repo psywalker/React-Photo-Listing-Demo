@@ -6,7 +6,7 @@ const PhotoCardDescription = memo(({
   photoDesc,
 }) => (
   <p
-    className="photo-card__desc"
+    className="photo-card-list__desc photo-card-desc"
     data-test="photoCardDesc"
   >
     { photoDesc }

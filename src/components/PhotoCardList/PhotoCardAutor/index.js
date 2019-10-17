@@ -10,7 +10,7 @@ const PhotoCardAutor = memo(({
 }) => (
   <div
     data-test="photoCardAutor"
-    className="photo-card__autor photo-card-autor"
+    className="photo-card-list__autor photo-card-autor"
   >
     <Link
       data-test="photoCardAutorLink"

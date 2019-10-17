@@ -14,6 +14,9 @@ const DownLoadButton = memo(({
   photoSrc,
   textButton = null,
 }) => {
+  console.log("1: ", altDescriprion, photoDesc, photoSrc)
+  console.log("2: ", photoDesc)
+  console.log("3: ", photoSrc)
   const downLoadPhoto = () => {
     const photoName = handleDowloadPhoto(altDescriprion, photoDesc);
     saveAs(photoSrc, photoName);

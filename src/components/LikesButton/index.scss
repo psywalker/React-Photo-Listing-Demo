@@ -1,0 +1,9 @@
+.likes-button {
+  &__btn {
+    padding: 0 10px !important;
+
+    &:hover {
+      opacity: .9;
+    }
+  }
+}

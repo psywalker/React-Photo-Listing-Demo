@@ -6,7 +6,7 @@
   box-shadow: none !important;
   padding: 0 !important;
 
-  @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+  @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
     height: 40px !important;
     line-height: normal !important;
   }
@@ -21,7 +21,7 @@
     text-align: right;
     top: 0px;
 
-    @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+    @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
       
     }
   }
@@ -32,7 +32,7 @@
   display: inline-block;
   margin-bottom: 2px;
 
-  @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+  @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
     width: 27px;
     margin-bottom: 1px;
   }
@@ -42,7 +42,7 @@
   width: 32px;
   margin-bottom: 3px;
   margin-left: 6px;
-  @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+  @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
     width: 28px;
     margin-bottom: 16px;
   }
@@ -51,7 +51,7 @@
   margin-left: 10px;
   padding: 0 20px !important;
   width: 90px;
-  @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+  @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
     padding: 0 5px !important;
     display: none !important;
   }
@@ -59,7 +59,7 @@
 .logout-icon {
   display: none;
   width: 26px;
-  @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+  @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
     display: block;
     margin-top: 9px;
   }
@@ -68,7 +68,7 @@
   width: 90px;
   margin-left: 10px;
   padding: 0 20px;
-  @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+  @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
     padding: 0 5px !important;
     display: none !important;
   }
@@ -81,7 +81,7 @@
     display: block;
     width: 100%;
   }
-  @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+  @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
     vertical-align: middle;
     display: inline-block;
     width: 27px;
@@ -96,7 +96,7 @@
     width: 100%;
     margin-bottom: 7px;
 
-    @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+    @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
       margin-bottom: 0;
     }
   }
@@ -105,7 +105,7 @@
     opacity: .7;
   }
 
-  @media screen and ( min-width: 0px ) and ( max-width: 500px ) {
+  @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
     width: 31px;
     margin-top: 5px;
   }

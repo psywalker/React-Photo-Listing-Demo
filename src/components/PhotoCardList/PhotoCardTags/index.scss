@@ -1,0 +1,15 @@
+.photo-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  
+  & .tag {
+    cursor: pointer;
+    opacity: .8;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

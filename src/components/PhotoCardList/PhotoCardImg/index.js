@@ -8,17 +8,20 @@ const PhotoCardImg = memo(({
   photoAltDesc,
   photoName,
 }) => (
-  <Link
-    data-test="photoCardPhotoLink"
-    to={`/photo/${photoID}`}
-  >
-    <img
-      data-test="photoCardImg"
-      className="photo-card-img"
-      alt={photoAltDesc}
-      src={photoName}
-    />
-  </Link>
+  <div className="photo-card-list__img photo-card-img">
+    <Link
+      data-test="photoCardPhotoLink"
+      to={`/photo/${photoID}`}
+      className="photo-card-img__link"
+    >
+      <img
+        data-test="photoCardImg"
+        className="photo-card-img__photo"
+        alt={photoAltDesc}
+        src={photoName}
+      />
+    </Link>
+  </div>
 ));
 
 

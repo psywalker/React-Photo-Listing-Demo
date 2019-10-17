@@ -28,8 +28,8 @@ const PhotoCardTags = memo(({
 
   return (
     <div
-      className="photo-card__badge-container photo-card-badge"
-      data-test="photoCardBadge"
+      className="photo-card-list__tags photo-card-tags"
+      data-test="photoCardTags"
     >
       <Tags
         data-test="photoCardTagMainContainer"
@@ -52,7 +52,7 @@ const PhotoCardTags = memo(({
         >
           <Tag
             data-test="photoCardTagMore"
-            className="photo-card-badge__tag"
+            className="photo-card-tags__tag"
           >
             more tags...
           </Tag>

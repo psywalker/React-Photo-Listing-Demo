@@ -1,4 +1,33 @@
-.photo-card-img {
-  width: 100%;
-  display: block;
+.photo-card-autor {
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+
+  &__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin-right: 5px;
+  }
+
+  &__name {
+    overflow: hidden;
+    color: #fff;
+    text-shadow: 0 1px 8px rgba(0,0,0,.1);
+    opacity: .8;
+    font-weight: 500;
+    font-size: 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    transition: all .3s;
+  }
+
+  &:hover .photo-card-autor__name {
+    color: #fff;
+    opacity: 1;
+  }
 }

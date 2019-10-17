@@ -1,14 +1,53 @@
 .photo-card-list {
-  margin: 0 0 20px;
+  margin-left: -10px;
   padding: 0;
   list-style: none;
-  margin-left: -10px;
   display: flex;
+
+  &__autor {
+    position: absolute;
+    left: 10px;
+    top: 0;
+  }
+
+  & .likes-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  &__desc {
+    position: absolute;
+    right: 10px;
+    left: 10px;
+    bottom: 40px;
+  }
+
+  &__tags {
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
+  }
+
+  & .download-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  &__autor,
+  &__tags,
+  &__desc,
+  & .download-button,
+  & .likes-button {
+    display: none;
+  }
 
   &__item {
     position: relative;
     width: calc(100%/3 - 10px);
     margin: 0 0 10px 10px;
+
     @media screen and ( min-width: 741px ) and ( max-width: 980px ) {
       width: calc(100%/2 - 10px);
     }
@@ -17,95 +56,14 @@
     }
 
     &:hover {
-      & .photo-card-autor {
-       display: block;
+      & .photo-card-list__autor,
+      & .photo-card-list__tags,
+      & .photo-card-list__desc,
+      & .download-button,
+      & .likes-button {
+        display: block;
       }
     }
   }
 }
 
-.photo-card {
-  &__img {
-    display: block;
-    width: 100%;
-  }
-  &__desc-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    transition: all .3s;
-  }
-  &__desc {
-    display: none;
-    text-align: center;
-    padding: 0 15px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-}
-
-.photo-card-autor {
-  display: none;
-  position: absolute;
-  left: 16px;
-  top: 5px;
-  &__link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-  }
-
-  &__avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    margin-right: 16px;
-  }
-
-  &__name {
-    overflow: hidden;
-    color: #fff;
-    text-shadow: 0 1px 8px rgba(0,0,0,.1);
-    opacity: .8;
-    font-weight: 500;
-    font-size: 18px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    transition: all .3s;
-  }
-
-  &:hover .photo-card-autor__name {
-    color: #fff;
-    opacity: 1;
-  }
-}
-
-.photo-card-badge {
-  position: absolute;
-  left: 16px;
-  bottom: 16px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-
-  //display: none;
-
-  // &__tag {
-  //   margin: 5px !important;
-  //   cursor: pointer  !important;
-  // }
-  & .tag {
-    cursor: pointer;
-    opacity: .8;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
