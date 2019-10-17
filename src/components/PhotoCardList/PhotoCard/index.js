@@ -4,6 +4,7 @@ import PhotoCardImg from '../PhotoCardImg';
 import PhotoCardTags from '../PhotoCardTags';
 import PhotoCardAutor from '../PhotoCardAutor';
 import PhotoCardDescription from '../PhotoCardDescription';
+import LikesButton from '../../LikesButton';
 import './index.scss';
 
 const PhotoCard = memo(({
@@ -32,6 +33,7 @@ const PhotoCard = memo(({
       photoDesc={item.photoDesc}
     />
 
+    <LikesButton />
   </li>
 ));
 
