@@ -76,10 +76,10 @@ export default class Home extends PureComponent {
       cardsData,
       navTopItemActive,
       photolistingRequestError,
-      errorRateLimit,
+      errorRateLimit = '',
     } = this.props;
     const { cards } = this.state;
-    const isErrorRateLimit = errorRateLimit !== null && errorRateLimit === 'Rate Limit Exceeded';
+    const isErrorRateLimit = errorRateLimit === 'Rate Limit Exceeded';
 
     if (isErrorRateLimit) return <div className="error-text" data-test="errorText">Вы привысили колчическво скачиваний за час. Попробуйте позже.</div>;
     if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
