@@ -10,6 +10,7 @@ export default class Home extends PureComponent {
   state = {
     page: 1,
     cards: [],
+    cards2: '',
   }
 
   componentDidUpdate = (prevProps) => {
