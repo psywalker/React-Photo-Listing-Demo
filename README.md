@@ -6,4 +6,5 @@
 This is a training project designed to study React and related technologies. It may not be used for commercial purposes.
 
 ## Features
-- Searching for photos 
+- Searching for photos on a variety of topics
+- Photolisting supports likes, uploads and downloads of photos
