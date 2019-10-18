@@ -54,6 +54,7 @@ const photolisting = (state = initialStore, action = {}) => {
         ...state,
         isListingLoading: false,
         photolistingRequestError: true,
+        errorRateLimit: action.errorRateLimit,
       };
     default:
       return state;
