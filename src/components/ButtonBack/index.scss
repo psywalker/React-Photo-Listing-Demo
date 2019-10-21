@@ -1,5 +1,8 @@
 .btn-back {
-	margin-left: 10px;
+  margin-left: 10px;
+  height: 37px !important;
+  line-height: 35px !important;
+  top: -6px;
 	@media screen and ( min-width: 0px ) and ( max-width: 400px ) {
     padding: 0 5px !important;  
     margin-left: 6px;
