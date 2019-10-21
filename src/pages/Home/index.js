@@ -10,7 +10,6 @@ export default class Home extends PureComponent {
   state = {
     page: 1,
     cards: [],
-    cards2: 0,
   }
 
   componentDidUpdate = (prevProps) => {
@@ -30,12 +29,24 @@ export default class Home extends PureComponent {
   };
 
   componentDidMount = () => {
-    const { match: { params: { tag } }, searchTextAction: handleAction, searchChangeInputValueAction } = this.props;
+    const { match: { params: { tag } }, searchTextAction: handleAction } = this.props;
+    const ulrStringArr = window.location.href.split('=')[1];
     const searchText = window.localStorage.getItem('search-text');
+    console.log("3: ", ulrStringArr)
     if (tag) handleAction(tag, 'tags');
-    else if (searchText) searchChangeInputValueAction(searchText);
+    else if (ulrStringArr) handleAction(ulrStringArr, 'tags');
+    //else if (searchText) searchChangeInputValueAction(searchText)
     else this.getCardsPhotos();
   };
+
+  handleUrl = (str) => {
+    console.log("1: ", this.props)
+    console.log("2: ", window.location.href)
+    this.props.history.push(process.env.PUBLIC_URL + '?search=' + str, {});
+    //window.location.href = process.env.PUBLIC_URL + '?search=' + str
+
+    //window.localStorage.setItem('search-text', window.location.href);
+  }
 
   getCardsPhotos = () => {
     const { cardsData, handleСardsPhotosAction } = this.props;
@@ -56,18 +67,21 @@ export default class Home extends PureComponent {
     const { filterItemValueAction: handleAction } = this.props;
     window.localStorage.setItem('search-text', itemText);
     handleAction(itemText, itemId);
+    this.handleUrl(itemText);
   };
 
   getSearchText = (text, tags) => {
     const { searchTextAction: handleAction } = this.props;
     window.localStorage.setItem('search-text', text);
     handleAction(text, tags);
+    this.handleUrl(text);
   }
 
   getChangeInputValue = (text) => {
     const { searchChangeInputValueAction: handleAction } = this.props;
     window.localStorage.setItem('search-text', text);
     handleAction(text);
+    this.handleUrl(text);
   }
 
   render() {
