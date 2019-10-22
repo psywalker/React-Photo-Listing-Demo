@@ -132,7 +132,7 @@ export default class Home extends PureComponent {
     const isErrorRateLimit = errorRateLimit === 'Rate Limit Exceeded';
     const dataSearch = this.getDataSearch();
 
-    if (isErrorRateLimit) return <div className="error-text" data-test="errorText">Вы привысили колчическво скачиваний за час. Попробуйте позже.</div>;
+    if (isErrorRateLimit) return <div className="error-text" data-test="errorText">Вы привысили количество скачиваний за час. Попробуйте позже.</div>;
     if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
 
     return (
