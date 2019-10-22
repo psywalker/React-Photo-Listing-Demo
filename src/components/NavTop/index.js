@@ -18,7 +18,9 @@ const NavTop = memo(({
         <Tag
           data-test="navTopItemTag"
           color={`${item.id === navTopItemActive ? 'purple' : ''}`}
-          onClick={() => onFilterItemValue(item.filterValue, item.id)}
+          onClick={() => {
+            if (item.id !== navTopItemActive) onFilterItemValue(item.filterValue, item.id);
+          }}
         >
           {item.label}
         </Tag>

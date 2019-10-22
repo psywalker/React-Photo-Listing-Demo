@@ -58,7 +58,7 @@ const filters = [
   {
     id: 11,
     label: 'Food & Drink',
-    filterValue: 'food-drink',
+    filterValue: 'food',
   },
   {
     id: 12,
@@ -75,15 +75,15 @@ const filters = [
     label: 'People',
     filterValue: 'people',
   },
-  {
-    id: 15,
-    label: 'Health',
-    filterValue: 'health',
-  },
-  {
-    id: 16,
-    label: 'Arts & Culture',
-    filterValue: 'arts-culture',
-  },
+  // {
+  //   id: 15,
+  //   label: 'Health',
+  //   filterValue: 'health',
+  // },
+  // {
+  //   id: 16,
+  //   label: 'Arts & Culture',
+  //   filterValue: 'arts',
+  // },
 ];
 export default filters;

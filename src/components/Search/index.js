@@ -40,7 +40,7 @@ class Search extends PureComponent {
       inputValue: event.target.value,
     }, () => {
       const { inputValue } = this.state;
-      this.onChangeDebounced(inputValue);
+      if (inputValue) this.onChangeDebounced(inputValue);
     });
   };
 

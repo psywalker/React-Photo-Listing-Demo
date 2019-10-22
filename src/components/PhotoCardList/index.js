@@ -16,7 +16,7 @@ const PhotoCardList = memo(({
     pageStart={0}
     data-test="photoCardList"
     initialLoad={false}
-    threshold={250}
+    threshold={0}
     loadMore={getPaginationChange}
     loader={totalCards > cards.length ? <SpinnerPhotoCard key="spinner" /> : null}
     hasMore={totalCards > cards.length}

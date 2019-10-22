@@ -10,42 +10,80 @@ export default class Home extends PureComponent {
   state = {
     page: 1,
     cards: [],
+    navTopItemActiveDefault: 2,
+    queryTextDefault: 'wallpapers',
   }
 
   componentDidUpdate = (prevProps) => {
-    const { cardsData, handleСardsPhotosAction } = this.props;
-    const { cards: cardsState } = this.state;
+    const {
+      cardsData,
+      handleСardsPhotosAction,
+      location: { state },
+      history: { push },
+      isListingLoading,
+      searchTextAction: handleAction,
+    } = this.props;
+
+    const { cards: cardsState, queryTextDefault } = this.state;
     const { cards: cardsProps } = this.props;
+
     if (prevProps.cards !== cardsProps) {
       const arr = [...cardsState, ...cardsProps];
       this.setState({ cards: arr });
-    } else if (prevProps.cardsData !== cardsData) {
+    } else if (prevProps.cardsData !== cardsData && !isListingLoading) {
       handleСardsPhotosAction({
         ...cardsData,
         page: 1,
       });
       this.setState({ page: 1, cards: [] });
+    } else if (state && state.flag && cardsData.query !== queryTextDefault && !isListingLoading) {
+      push('', {});
+      this.setState({ page: 1, cards: [] }, () => {
+        handleAction(queryTextDefault, 'tags');
+      });
     }
   };
 
   componentDidMount = () => {
     const { match: { params: { tag } }, searchTextAction: handleAction } = this.props;
     const ulrStringArr = window.location.href.split('=')[1];
-    const searchText = window.localStorage.getItem('search-text');
-    console.log("3: ", ulrStringArr)
     if (tag) handleAction(tag, 'tags');
     else if (ulrStringArr) handleAction(ulrStringArr, 'tags');
-    //else if (searchText) searchChangeInputValueAction(searchText)
     else this.getCardsPhotos();
   };
 
-  handleUrl = (str) => {
-    console.log("1: ", this.props)
-    console.log("2: ", window.location.href)
-    this.props.history.push(process.env.PUBLIC_URL + '?search=' + str, {});
-    //window.location.href = process.env.PUBLIC_URL + '?search=' + str
+  getDataSearch = () => {
+    const { cardsData, filters } = this.props;
+    const { queryTextDefault, navTopItemActiveDefault } = this.state;
+    const ulrStringArr = window.location.href.split('=')[1];
+    let queryText = queryTextDefault;
+    let navTopItemActive = navTopItemActiveDefault;
 
-    //window.localStorage.setItem('search-text', window.location.href);
+    if (ulrStringArr) {
+      navTopItemActive = filters.filter((item) => {
+        let flag = false;
+        const labelArr = item.label.split(' ');
+        labelArr.map((key) => {
+          if (key.toLowerCase() === ulrStringArr.toLowerCase()) flag = true;
+          return key;
+        });
+        return flag;
+      });
+
+      navTopItemActive = navTopItemActive.length ? navTopItemActive[0].id : null;
+      queryText = cardsData.query;
+    }
+
+    return {
+      queryText,
+      navTopItemActive,
+    };
+  }
+
+  handleUrl = (str) => {
+    const { history: { push } } = this.props;
+    const newUrl = `?search=${str}`;
+    push(newUrl, {});
   }
 
   getCardsPhotos = () => {
@@ -54,32 +92,31 @@ export default class Home extends PureComponent {
   };
 
   getPaginationChange = () => {
-    const { handleСardsPhotosAction, cardsData } = this.props;
+    const { handleСardsPhotosAction, cardsData, isListingLoading } = this.props;
     const { page } = this.state;
-    handleСardsPhotosAction({
-      ...cardsData,
-      page: page + 1,
-    });
-    this.setState({ page: page + 1 });
+    if (!isListingLoading) {
+      handleСardsPhotosAction({
+        ...cardsData,
+        page: page + 1,
+      });
+      this.setState({ page: page + 1 });
+    }
   };
 
   getFilterItemValue = (itemText, itemId) => {
     const { filterItemValueAction: handleAction } = this.props;
-    window.localStorage.setItem('search-text', itemText);
     handleAction(itemText, itemId);
     this.handleUrl(itemText);
   };
 
   getSearchText = (text, tags) => {
     const { searchTextAction: handleAction } = this.props;
-    window.localStorage.setItem('search-text', text);
     handleAction(text, tags);
     this.handleUrl(text);
   }
 
   getChangeInputValue = (text) => {
     const { searchChangeInputValueAction: handleAction } = this.props;
-    window.localStorage.setItem('search-text', text);
     handleAction(text);
     this.handleUrl(text);
   }
@@ -88,13 +125,12 @@ export default class Home extends PureComponent {
     const {
       filters,
       totalCards,
-      cardsData,
-      navTopItemActive,
       photolistingRequestError,
       errorRateLimit = '',
     } = this.props;
     const { cards } = this.state;
     const isErrorRateLimit = errorRateLimit === 'Rate Limit Exceeded';
+    const dataSearch = this.getDataSearch();
 
     if (isErrorRateLimit) return <div className="error-text" data-test="errorText">Вы привысили колчическво скачиваний за час. Попробуйте позже.</div>;
     if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
@@ -106,12 +142,12 @@ export default class Home extends PureComponent {
           data-test="search"
           onSearchInputValue={this.getSearchText}
           onChangeInputValue={this.getChangeInputValue}
-          queryText={cardsData.query}
+          queryText={dataSearch.queryText}
         />
 
         <NavTop
           data-test="navTop"
-          navTopItemActive={navTopItemActive}
+          navTopItemActive={dataSearch.navTopItemActive}
           onFilterItemValue={this.getFilterItemValue}
           filters={filters}
         />
@@ -151,7 +187,6 @@ Home.propTypes = {
     per_page: PropTypes.number,
   }),
   totalCards: PropTypes.number,
-  navTopItemActive: PropTypes.number,
   cards: PropTypes.arrayOf(PropTypes.object),
   photolistingRequestError: PropTypes.bool,
   match: PropTypes.shape({
@@ -159,6 +194,9 @@ Home.propTypes = {
       tag: PropTypes.string,
     }),
   }),
+  isListingLoading: PropTypes.bool,
+  location: PropTypes.shape({}),
+  history: PropTypes.shape({}),
   errorRateLimit: PropTypes.string,
 };
 Home.defaultProps = {
@@ -174,12 +212,14 @@ Home.defaultProps = {
     per_page: 6,
   },
   totalCards: 0,
-  navTopItemActive: 2,
   photolistingRequestError: false,
   match: {
     params: {
       tag: '',
     },
   },
+  isListingLoading: false,
+  location: {},
+  history: {},
   errorRateLimit: '',
 };

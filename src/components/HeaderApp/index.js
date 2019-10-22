@@ -53,7 +53,7 @@ export const HeaderApp = withRouter(memo((props) => {
             <Col span={2} style={{ whiteSpace: 'nowrap' }}>
               <Link
                 data-test="siteLogoLinkRouter"
-                to="/"
+                to={{ pathname: '/', state: { flag: true } }}
                 style={{ display: 'inline-block' }}
               >
                 <h1
@@ -62,7 +62,7 @@ export const HeaderApp = withRouter(memo((props) => {
                 >
                   <img
                     className="site-logo__img"
-                    src={URL_FOR_LOGO} 
+                    src={URL_FOR_LOGO}
                     alt="logo"
                   />
                 </h1>
@@ -85,7 +85,7 @@ export const HeaderApp = withRouter(memo((props) => {
               style={{ display: 'flex', justifyContent: 'flex-end' }}
             >
               <div className="user-layout-header__login">
-                
+
                 {!profileName && (
                   <div>
                     <Button

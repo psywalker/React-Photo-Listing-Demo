@@ -45,7 +45,7 @@ export function* cardsPhotosRequestSaga(action) {
   if (cardsData) {
     try {
       const dataForProps = yield call(api.getPhotoListing, cardsData);
-      yield put({ type: 'CARDS_PHOTOS_REQUEST_SUCCESS', dataForProps });
+      yield put({ type: 'CARDS_PHOTOS_REQUEST_SUCCESS', dataForProps, queryText: cardsData.query });
     } catch (error) {
       const errorRateLimit = get(error, 'response.data', '');
       yield put({ type: 'CARDS_PHOTOS_REQUEST_ERROR', errorRateLimit });

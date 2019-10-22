@@ -6,11 +6,19 @@ const photolisting = (state = initialStore, action = {}) => {
       return {
         ...state,
         isListingLoading: true,
+        // cardsData: {
+        //   ...action.cardsData,
+        //   query: action.cardsData.query,
+        // },
       };
     case 'CARDS_PHOTOS_REQUEST_SUCCESS':
       return {
         ...state,
         ...action.dataForProps,
+        cardsData: {
+          ...state.cardsData,
+          query: action.queryText,
+        },
         photolistingRequestError: false,
       };
     case 'PAGINATION_CHANGE':
