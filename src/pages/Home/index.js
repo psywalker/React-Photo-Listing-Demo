@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import PhotoCardList from '../../components/PhotoCardList';
 import Search from '../../components/Search';
 import NavTop from '../../components/NavTop';
+import { NAV_TOP_ITEM_ACTIVE_DEFAULT, QUERY_TEXT_DEFAULT } from '../../constants';
 import 'antd/dist/antd.css';
 import './index.scss';
 
@@ -10,8 +11,6 @@ export default class Home extends PureComponent {
   state = {
     page: 1,
     cards: [],
-    navTopItemActiveDefault: 2,
-    queryTextDefault: 'wallpapers',
   }
 
   componentDidUpdate = (prevProps) => {
@@ -24,54 +23,46 @@ export default class Home extends PureComponent {
       searchTextAction: handleAction,
     } = this.props;
 
-    const { cards: cardsState, queryTextDefault } = this.state;
+    const { cards: cardsState } = this.state;
     const { cards: cardsProps } = this.props;
 
     if (prevProps.cards !== cardsProps) {
       const arr = [...cardsState, ...cardsProps];
-      this.setState({ cards: arr });
-    } else if (prevProps.cardsData !== cardsData && !isListingLoading) {
-      handleСardsPhotosAction({
-        ...cardsData,
-        page: 1,
-      });
-      this.setState({ page: 1, cards: [] });
-    } else if (state && state.flag && cardsData.query !== queryTextDefault && !isListingLoading) {
+      return this.setState({ cards: arr });
+    }
+
+    if (prevProps.cardsData !== cardsData && !isListingLoading) {
+      handleСardsPhotosAction({ ...cardsData, page: 1 });
+      return this.setState({ page: 1, cards: [] });
+    }
+
+    if (state && state.flag && cardsData.query !== QUERY_TEXT_DEFAULT && !isListingLoading) {
       push('', {});
       this.setState({ page: 1, cards: [] }, () => {
-        handleAction(queryTextDefault, 'tags');
+        handleAction(QUERY_TEXT_DEFAULT, 'tags');
       });
     }
   };
 
   componentDidMount = () => {
     const { match: { params: { tag } }, searchTextAction: handleAction } = this.props;
-    const ulrStringArr = window.location.href.split('=')[1];
-    if (tag) handleAction(tag, 'tags');
-    else if (ulrStringArr) handleAction(ulrStringArr, 'tags');
-    else this.getCardsPhotos();
+    const tagName = new URL(window.location).searchParams.get('search');
+    if (tag) return handleAction(tag, 'tags');
+    if (tagName) return handleAction(tagName, 'tags');
+    return this.getCardsPhotos();
   };
 
   getDataSearch = () => {
     const { cardsData, filters } = this.props;
-    const { queryTextDefault, navTopItemActiveDefault } = this.state;
-    const ulrStringArr = window.location.href.split('=')[1];
-    let queryText = queryTextDefault;
-    let navTopItemActive = navTopItemActiveDefault;
+    const cardsDataQuery = cardsData.query;
+    const tagName = new URL(window.location).searchParams.get('search');
+    let queryText = QUERY_TEXT_DEFAULT;
+    let navTopItemActive = NAV_TOP_ITEM_ACTIVE_DEFAULT;
 
-    if (ulrStringArr) {
-      navTopItemActive = filters.filter((item) => {
-        let flag = false;
-        const labelArr = item.label.split(' ');
-        labelArr.map((key) => {
-          if (key.toLowerCase() === ulrStringArr.toLowerCase()) flag = true;
-          return key;
-        });
-        return flag;
-      });
-
-      navTopItemActive = navTopItemActive.length ? navTopItemActive[0].id : null;
-      queryText = cardsData.query;
+    if (tagName) {
+      const tag = filters.filter(item => item.label.toLowerCase() === tagName);
+      navTopItemActive = tag.length ? tag[0].id : null;
+      queryText = cardsDataQuery;
     }
 
     return {
@@ -132,7 +123,7 @@ export default class Home extends PureComponent {
     const isErrorRateLimit = errorRateLimit === 'Rate Limit Exceeded';
     const dataSearch = this.getDataSearch();
 
-    if (isErrorRateLimit) return <div className="error-text" data-test="errorText">Вы привысили количество скачиваний за час. Попробуйте позже.</div>;
+    if (isErrorRateLimit) return <div className="error-text" data-test="errorText">You have increased the number of downloads per hour. Try later.</div>;
     if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
 
     return (
