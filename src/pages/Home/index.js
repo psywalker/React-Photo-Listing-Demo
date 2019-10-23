@@ -4,6 +4,7 @@ import PhotoCardList from '../../components/PhotoCardList';
 import Search from '../../components/Search';
 import NavTop from '../../components/NavTop';
 import { NAV_TOP_ITEM_ACTIVE_DEFAULT, QUERY_TEXT_DEFAULT } from '../../constants';
+import getURLParam from '../../utils/getURLParam';
 import 'antd/dist/antd.css';
 import './index.scss';
 
@@ -42,11 +43,13 @@ export default class Home extends PureComponent {
         handleAction(QUERY_TEXT_DEFAULT, 'tags');
       });
     }
+
+    return false;
   };
 
   componentDidMount = () => {
     const { match: { params: { tag } }, searchTextAction: handleAction } = this.props;
-    const tagName = new URL(window.location).searchParams.get('search');
+    const tagName = getURLParam(window.location, 'search');
     if (tag) return handleAction(tag, 'tags');
     if (tagName) return handleAction(tagName, 'tags');
     return this.getCardsPhotos();
@@ -55,7 +58,7 @@ export default class Home extends PureComponent {
   getDataSearch = () => {
     const { cardsData, filters } = this.props;
     const cardsDataQuery = cardsData.query;
-    const tagName = new URL(window.location).searchParams.get('search');
+    const tagName = getURLParam(window.location, 'search');
     let queryText = QUERY_TEXT_DEFAULT;
     let navTopItemActive = NAV_TOP_ITEM_ACTIVE_DEFAULT;
 
