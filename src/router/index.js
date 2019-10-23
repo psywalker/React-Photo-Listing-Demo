@@ -16,14 +16,8 @@ export const getBaseName = () => process.env.PUBLIC_URL || '/';
 const Main = memo(() => (
   <BrowserRouter basename={getBaseName()}>
     <LastLocationProvider>
-      <Row className="header-row">
-        <Col>
-          <Layout className="user-layout">
-            <HeaderApp />
-          </Layout>
-        </Col>
-      </Row>
       <div className="page">
+        <HeaderApp />
         <Switch>
           <Route exact path="/" component={props => <HomeHOC {...props} />} />
           <Route path="/photo/:id" component={props => <Photo {...props} />} />
