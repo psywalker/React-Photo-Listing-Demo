@@ -1,25 +1,12 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Link, withRouter } from 'react-router-dom';
-import {
-  Layout,
-  Icon,
-  Button,
-  Row,
-  Col,
-} from 'antd';
+import { Route, withRouter } from 'react-router-dom';
 import { withLastLocation } from 'react-router-last-location';
 import { connect } from 'react-redux';
 import { ButtonBack } from '../index';
 import Logo from '../Logo';
 import DropdownLogin from '../DropdownLogin';
-import {
-  URL_FOR_LOGIN,
-  URL_FOR_LOGO,
-  URL_FOR_AVA_EMPTY_LOGIN,
-  URL_FOR_LOGIN_ICON,
-  URL_FOR_LOGOUT_ICON,
-} from '../../constants';
+
 import { logoutAction } from '../../actions';
 import './index.scss';
 
@@ -38,18 +25,20 @@ export const HeaderApp = withRouter(memo((props) => {
 
   return (
     <div className="header">
-      <Logo />
+      <div className="header__logo">
+        <Logo />
 
-      <Route
-        data-test="btnBackRoute"
-        path="/:id"
-        component={() => (
-          <ButtonBack
-            data-test="btnBack"
-            style={{ marginLeft: '10px' }}
-          />
-        )}
-      />
+        <Route
+          data-test="btnBackRoute"
+          path="/:id"
+          component={() => (
+            <ButtonBack
+              data-test="btnBack"
+              style={{ marginLeft: '10px' }}
+            />
+          )}
+        />
+      </div>
 
       <DropdownLogin
         profileName={profileName}

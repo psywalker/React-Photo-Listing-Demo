@@ -2,13 +2,13 @@
     display: flex;
     list-style: none;
     margin: 0 0 20px;
-    padding: 10px 0 15px;
+    padding: 10px 0 10px;
     width: 100%;
     overflow: hidden;
     position: relative;
     position: sticky !important;
     z-index: 1 !important;
-    top: 50px;
+    top: 40px;
     background: #fff;
     margin-top: -15px;
     border-bottom: 1px solid #cbcdd0 !important;
@@ -22,10 +22,6 @@
         width: 40px;
         height: 38px;
         background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 36%,rgba(255,255,255,0.98) 97%,rgba(255,255,255,1) 98%,rgba(255,255,255,1) 100%);
-    }
-    @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
-        top: 45px;
-        padding: 10px 0 8px;
     }
 }
 .nav-top__item {

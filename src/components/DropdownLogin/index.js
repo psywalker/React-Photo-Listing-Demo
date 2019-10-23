@@ -1,16 +1,14 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import UserAvatar from '../UserAvatar';
 import {
   Menu,
   Dropdown,
-  Icon,
   Avatar,
   Button,
 } from 'antd';
-import {
-  URL_FOR_LOGIN,
-} from '../../constants';
+import { URL_FOR_LOGIN } from '../../constants';
 import './index.scss';
 
 const DropdownLogin = memo(({
@@ -30,26 +28,28 @@ const DropdownLogin = memo(({
           </Link>
         </Menu.Item>
       )}
-      <Menu.Divider />
+      { profileName && <Menu.Divider /> }
       <Menu.Item key="3">
-        { !profileName && (
-          <Button
-            data-test="btnLogin"
-            className="btn-login"
-            href={URL_FOR_LOGIN}
-          >
-            Login
-          </Button>
-        )}
-        { profileName && (
-          <Button
-            data-test="btnLogout"
-            className="btn-logout"
-            onClick={handleLoguotHeader}
-          >
-            Logout
-          </Button>
-        )}
+        <div>
+          { !profileName && (
+            <Button
+              data-test="btnLogin"
+              className="btn-login"
+              href={URL_FOR_LOGIN}
+            >
+              Login
+            </Button>
+          )}
+          { profileName && (
+            <Button
+              data-test="btnLogout"
+              className="btn-logout"
+              onClick={handleLoguotHeader}
+            >
+              Logout
+            </Button>
+          )}
+        </div>
       </Menu.Item>
     </Menu>
   );
@@ -62,15 +62,7 @@ const DropdownLogin = memo(({
       <Dropdown overlay={menu} trigger={['click']}>
         <div className="dropdown__inner">
           { !profileName && <Avatar icon="user" /> }
-          { profileName && (
-            <img
-              data-test="userAvatarImg"
-              className="user-avatar"
-              alt=""
-              src={`${profilePhotoUrl}`}
-            />
-          )}
-          <Icon type="down" />
+          { profileName && <UserAvatar profilePhotoUrl={profilePhotoUrl} /> }
         </div>
       </Dropdown>
     </div>

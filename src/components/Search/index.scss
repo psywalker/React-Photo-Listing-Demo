@@ -3,31 +3,15 @@
   right: 150px;
   left: 65px;
   top: 9px;
-  height: 37px;
+  height: 32px;
   z-index: 2;
-  margin: -62px 140px 20px 49px;
+  margin: -62px 40px 20px 43px;
   & svg {
     width: 20px;
     height: 20px;
   }
   & .ant-input {
-    height: 37px !important;
+    height: 32px !important;
     font-size: 15px !important;
-  }
-  @media screen and ( min-width: 0px ) and ( max-width: 740px ) {
-    top: 8px;
-    height: 37px;
-    margin: -62px 89px 20px 49px;
-    & .ant-input-suffix {
-      right: 7px !important;
-    }
-    & .ant-input {
-      height: 37px !important;
-    }
-
-    & svg {
-      width: 15px;
-      height: 15px;
-    }
   }
 }
