@@ -30,7 +30,7 @@ const DropdownLogin = memo(({
           </Link>
         </Menu.Item>
       )}
-      { profileName && <Menu.Divider /> }
+      { profileName && isNotProfile && <Menu.Divider /> }
       <Menu.Item key="3">
         <div>
           { !profileName && (
