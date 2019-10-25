@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadingRequestAction, logoutAction } from '../../actions';
 import { Spinner, Error } from '../../components';
+import setScrollX from '../../utils/setScrollX';
 import './index.scss';
 
 export class Profile extends PureComponent {
@@ -30,6 +31,7 @@ export class Profile extends PureComponent {
       profileEmail,
       profileName,
     } = this.props;
+    setScrollX(0);
     return (
       <div
         data-test="profile"

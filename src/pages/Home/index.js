@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import PhotoCardList from '../../components/PhotoCardList';
 import { NAV_TOP_ITEM_ACTIVE_DEFAULT, QUERY_TEXT_DEFAULT } from '../../constants';
 import getURLParam from '../../utils/getURLParam';
+import setScrollX from '../../utils/setScrollX';
 import 'antd/dist/antd.css';
 import './index.scss';
 
@@ -121,10 +122,7 @@ export default class Home extends PureComponent {
     } = this.props;
     const { cards } = this.state;
     const isErrorRateLimit = errorRateLimit === 'Rate Limit Exceeded';
-    const bodyTag = window.document.querySelector('body');
-    bodyTag.style.overflowY = 'scroll';
-
-    if (totalCards < 4) bodyTag.style.overflowY = 'auto';
+    setScrollX(totalCards);
     if (isErrorRateLimit) return <div className="error-text" data-test="errorText">You have increased the number of downloads per hour. Try later.</div>;
     if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
 
