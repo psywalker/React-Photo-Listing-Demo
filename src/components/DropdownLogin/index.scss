@@ -1,3 +1,7 @@
 .dropdown {
-  cursor: pointer;
+  transition: all .3s;
+  &:hover {
+    cursor: pointer;
+    opacity: .8;
+  }
 }
