@@ -23,6 +23,7 @@ export const HeaderApp = withRouter(memo((props) => {
     history,
     profileName,
     profilePhotoUrl,
+    profileFullName,
     logoutAction: handleAction,
     searchTextAction,
     searchChangeInputValueAction,
@@ -30,7 +31,7 @@ export const HeaderApp = withRouter(memo((props) => {
     filters,
     cardsData,
   } = props;
-
+  console.log("profileFullName", profileFullName)
   const handleLoguotHeader = () => {
     handleAction();
     window.localStorage.clear();
@@ -107,6 +108,7 @@ export const HeaderApp = withRouter(memo((props) => {
           />
           <DropdownLogin
             profileName={profileName}
+            profileFullName={profileFullName}
             profilePhotoUrl={profilePhotoUrl}
             handleLoguotHeader={handleLoguotHeader}
           />

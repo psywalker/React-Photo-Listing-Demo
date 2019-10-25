@@ -1,4 +1,18 @@
 .user-avatar {
-  width: 32px;
-  border-radius: 100%; 
+  display: flex;
+  align-items: center;
+
+  &__name {
+    font-family: 'Fjalla One', sans-serif;
+    font-weight: bold;
+    display: none;
+    margin-right: 10px;
+    @media screen and ( min-width: 741px ) and ( max-width: 5000px ) {
+      display: block;
+    }
+  }
+  &__img {
+    width: 32px;
+    border-radius: 100%; 
+  }
 }

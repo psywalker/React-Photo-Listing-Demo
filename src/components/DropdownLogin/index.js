@@ -1,13 +1,13 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import UserAvatar from '../UserAvatar';
 import {
   Menu,
   Dropdown,
   Avatar,
   Button,
 } from 'antd';
+import UserAvatar from '../UserAvatar';
 import { URL_FOR_LOGIN } from '../../constants';
 import './index.scss';
 
@@ -15,6 +15,7 @@ const DropdownLogin = memo(({
   profileName,
   profilePhotoUrl,
   handleLoguotHeader,
+  profileFullName,
 }) => {
   const menu = (
     <Menu>
@@ -61,7 +62,12 @@ const DropdownLogin = memo(({
       <Dropdown overlay={menu} trigger={['click']}>
         <div className="dropdown__inner">
           { !profileName && <Avatar icon="user" /> }
-          { profileName && <UserAvatar profilePhotoUrl={profilePhotoUrl} /> }
+          { profileName && (
+            <UserAvatar
+              profilePhotoUrl={profilePhotoUrl}
+              profileFullName={profileFullName}
+            />
+          )}
         </div>
       </Dropdown>
     </div>
@@ -71,12 +77,14 @@ const DropdownLogin = memo(({
 DropdownLogin.propTypes = {
   profilePhotoUrl: PropTypes.string,
   profileName: PropTypes.string,
+  profileFullName: PropTypes.string, 
   handleLoguotHeader: PropTypes.func,
 };
 
 DropdownLogin.defaultProps = {
   profilePhotoUrl: '',
   profileName: '',
+  profileFullName: '',
   handleLoguotHeader: () => {},
 };
 
