@@ -5,10 +5,13 @@
   &__name {
     font-family: 'Fjalla One', sans-serif;
     font-weight: bold;
-    display: none;
-    margin-right: 10px;
+    white-space: nowrap;
+    max-width: 0;
+    overflow: hidden;
+    margin-right: 8px;
+    transition: all .3s;
     @media screen and ( min-width: 741px ) and ( max-width: 5000px ) {
-      display: block;
+      max-width: 300px;
     }
   }
   &__img {
