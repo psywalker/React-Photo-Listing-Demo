@@ -18,6 +18,7 @@ import {
 } from '../../components';
 import { photoRequestAction, photoImageLoadAction } from '../../actions';
 import getPhotoSize from './getPhotoSize';
+import setScrollX from '../../utils/setScrollX';
 import './index.scss';
 
 export class Photo extends Component {
@@ -75,7 +76,8 @@ export class Photo extends Component {
       photoImageLoadAction: photoLoadAction,
     } = this.props;
     const photoSize = { width: photoWidth, height: photoHeight };
-  
+    setScrollX(0);
+
     return (
       <div
         data-test="photoContainer"
