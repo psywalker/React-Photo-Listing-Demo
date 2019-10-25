@@ -16,10 +16,11 @@ const DropdownLogin = memo(({
   profilePhotoUrl,
   handleLoguotHeader,
   profileFullName,
+  isNotProfile,
 }) => {
   const menu = (
     <Menu>
-      { profileName && (
+      { profileName && isNotProfile && (
         <Menu.Item key="0">
           <Link
             data-test="linkProfileName"
@@ -77,8 +78,9 @@ const DropdownLogin = memo(({
 DropdownLogin.propTypes = {
   profilePhotoUrl: PropTypes.string,
   profileName: PropTypes.string,
-  profileFullName: PropTypes.string, 
+  profileFullName: PropTypes.string,
   handleLoguotHeader: PropTypes.func,
+  isNotProfile: PropTypes.bool,
 };
 
 DropdownLogin.defaultProps = {
@@ -86,6 +88,7 @@ DropdownLogin.defaultProps = {
   profileName: '',
   profileFullName: '',
   handleLoguotHeader: () => {},
+  isNotProfile: false,
 };
 
 export default DropdownLogin;
