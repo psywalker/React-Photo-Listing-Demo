@@ -53,7 +53,6 @@ const DropdownLogin = memo(({
       </Menu.Item>
     </Menu>
   );
-
   return (
     <div
       data-test="Dropdown"

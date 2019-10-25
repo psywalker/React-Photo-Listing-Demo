@@ -1,17 +1,4 @@
 .search {
-  position: sticky;
-  right: 150px;
-  left: 65px;
-  top: 9px;
-  height: 32px;
-  z-index: 2;
-  margin: -62px 40px 20px 43px;
-  & svg {
-    width: 20px;
-    height: 20px;
-  }
-  & .ant-input {
-    height: 32px !important;
-    font-size: 15px !important;
-  }
+  flex-grow: 2;
+  margin: 0 10px;
 }

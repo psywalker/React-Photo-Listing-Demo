@@ -2,15 +2,28 @@
   position: sticky;
   top: 0px;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  padding: 10px 0;
+  padding: 5px 0;
   background: #fff;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #cbcdd0;
+  box-shadow: 0px 1px 1px rgba(0,0,0,.15);
+
+  &__inner {
+    // max-width: 1700px;
+    padding: 0 15px;
+    // box-sizing: border-box;
+    // margin:  0 auto;
+  }
 
   &__logo {
     display: flex;
     height:  34.8px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
   }
 }

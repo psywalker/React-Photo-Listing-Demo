@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import { LastLocationProvider } from 'react-router-last-location';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import { Row, Col, Layout } from 'antd';
 import {
   Photo,
   User,
@@ -16,8 +15,8 @@ export const getBaseName = () => process.env.PUBLIC_URL || '/';
 const Main = memo(() => (
   <BrowserRouter basename={getBaseName()}>
     <LastLocationProvider>
+      <HeaderApp />
       <div className="page">
-        <HeaderApp />
         <Switch>
           <Route exact path="/" component={props => <HomeHOC {...props} />} />
           <Route path="/photo/:id" component={props => <Photo {...props} />} />

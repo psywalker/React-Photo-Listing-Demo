@@ -100,5 +100,30 @@ const filters = [
     label: 'Birds',
     filterValue: 'birds',
   },
+  {
+    id: 20,
+    label: 'Kings',
+    filterValue: 'kings',
+  },
+  {
+    id: 21,
+    label: 'Spheres',
+    filterValue: 'spheres',
+  },
+  {
+    id: 22,
+    label: 'Islands',
+    filterValue: 'islands',
+  },
+  {
+    id: 23,
+    label: 'Сities',
+    filterValue: 'cities',
+  },
+  {
+    id: 24,
+    label: 'Brands',
+    filterValue: 'brands',
+  },
 ];
 export default filters;

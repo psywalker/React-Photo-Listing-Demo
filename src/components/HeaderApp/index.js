@@ -6,8 +6,16 @@ import { connect } from 'react-redux';
 import { ButtonBack } from '../index';
 import Logo from '../Logo';
 import DropdownLogin from '../DropdownLogin';
-
-import { logoutAction } from '../../actions';
+import Search from '../Search';
+import NavTop from '../NavTop';
+import getURLParam from '../../utils/getURLParam';
+import { NAV_TOP_ITEM_ACTIVE_DEFAULT, QUERY_TEXT_DEFAULT } from '../../constants';
+import {
+  logoutAction,
+  searchTextAction,
+  searchChangeInputValueAction,
+  filterItemValueAction,
+} from '../../actions';
 import './index.scss';
 
 export const HeaderApp = withRouter(memo((props) => {
@@ -16,35 +24,108 @@ export const HeaderApp = withRouter(memo((props) => {
     profileName,
     profilePhotoUrl,
     logoutAction: handleAction,
+    searchTextAction,
+    searchChangeInputValueAction,
+    filterItemValueAction,
+    filters,
+    cardsData,
   } = props;
+
   const handleLoguotHeader = () => {
     handleAction();
     window.localStorage.clear();
     history.push('/');
   };
+  const getDataSearch = () => {
+    const cardsDataQuery = cardsData.query;
+    const tagName = getURLParam(window.location, 'search');
+    let queryText = QUERY_TEXT_DEFAULT;
+    let navTopItemActive = NAV_TOP_ITEM_ACTIVE_DEFAULT;
 
+    if (tagName) {
+      const tag = filters.filter(item => item.label.toLowerCase() === tagName);
+      navTopItemActive = tag.length ? tag[0].id : null;
+      queryText = cardsDataQuery;
+    }
+
+    return {
+      queryText,
+      navTopItemActive,
+    };
+  };
+
+  const handleUrl = (str) => {
+    const newUrl = `?search=${str}`;
+    history.push(newUrl, {});
+  };
+
+  const getSearchText = (text, tags) => {
+    searchTextAction(text, tags);
+    handleUrl(text);
+  };
+
+  const getChangeInputValue = (text) => {
+    searchChangeInputValueAction(text);
+    handleUrl(text);
+  };
+  const getFilterItemValue = (itemText, itemId) => {
+    filterItemValueAction(itemText, itemId);
+    handleUrl(itemText);
+  };
+
+  const dataSearch = getDataSearch();
   return (
     <div className="header">
-      <div className="header__logo">
-        <Logo />
+      <div className="header__inner">
+        <div className="header__item">
+          <div className="header__logo">
+            <Logo />
 
-        <Route
-          data-test="btnBackRoute"
-          path="/:id"
-          component={() => (
-            <ButtonBack
-              data-test="btnBack"
-              style={{ marginLeft: '10px' }}
+            <Route
+              data-test="btnBackRoute"
+              path="/:id"
+              component={() => (
+                <ButtonBack
+                  data-test="btnBack"
+                  style={{ marginLeft: '10px' }}
+                />
+              )}
             />
+          </div>
+
+          <Route
+            exact
+            path="/"
+            component={() => (
+              <Search
+                data-test="search"
+                onSearchInputValue={getSearchText}
+                onChangeInputValue={getChangeInputValue}
+                queryText={dataSearch.queryText}
+              />
+            )}
+          />
+          <DropdownLogin
+            profileName={profileName}
+            profilePhotoUrl={profilePhotoUrl}
+            handleLoguotHeader={handleLoguotHeader}
+          />
+        </div>
+        <Route
+          exact
+          path="/"
+          component={() => (
+            <div className="header__item">
+              <NavTop
+                data-test="navTop"
+                navTopItemActive={dataSearch.navTopItemActive}
+                onFilterItemValue={getFilterItemValue}
+                filters={filters}
+              />
+            </div>
           )}
         />
       </div>
-
-      <DropdownLogin
-        profileName={profileName}
-        profilePhotoUrl={profilePhotoUrl}
-        handleLoguotHeader={handleLoguotHeader}
-      />
     </div>
   );
 }));
@@ -69,12 +150,15 @@ HeaderApp.defaultProps = {
 };
 
 export const mapStateToProps = (state) => {
-  const { login } = state;
-  return login;
+  const { login, photolisting } = state;
+  return { ...login, ...photolisting };
 };
 
 const mapDispatchToProps = {
   logoutAction,
+  searchTextAction,
+  searchChangeInputValueAction,
+  filterItemValueAction,
 };
 
 export default withLastLocation(connect(

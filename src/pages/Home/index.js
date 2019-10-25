@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import PhotoCardList from '../../components/PhotoCardList';
-import Search from '../../components/Search';
-import NavTop from '../../components/NavTop';
 import { NAV_TOP_ITEM_ACTIVE_DEFAULT, QUERY_TEXT_DEFAULT } from '../../constants';
 import getURLParam from '../../utils/getURLParam';
 import 'antd/dist/antd.css';
@@ -117,34 +115,21 @@ export default class Home extends PureComponent {
 
   render() {
     const {
-      filters,
       totalCards,
       photolistingRequestError,
       errorRateLimit = '',
     } = this.props;
     const { cards } = this.state;
     const isErrorRateLimit = errorRateLimit === 'Rate Limit Exceeded';
-    const dataSearch = this.getDataSearch();
+    const bodyTag = window.document.querySelector('body');
+    bodyTag.style.overflowY = 'scroll';
 
+    if (totalCards < 4) bodyTag.style.overflowY = 'auto';
     if (isErrorRateLimit) return <div className="error-text" data-test="errorText">You have increased the number of downloads per hour. Try later.</div>;
     if (photolistingRequestError) return <div className="error-text" data-test="errorText">Error loading photolisting</div>;
 
     return (
       <div className="App">
-
-        <Search
-          data-test="search"
-          onSearchInputValue={this.getSearchText}
-          onChangeInputValue={this.getChangeInputValue}
-          queryText={dataSearch.queryText}
-        />
-
-        <NavTop
-          data-test="navTop"
-          navTopItemActive={dataSearch.navTopItemActive}
-          onFilterItemValue={this.getFilterItemValue}
-          filters={filters}
-        />
 
         <PhotoCardList
           data-test="photoCard"

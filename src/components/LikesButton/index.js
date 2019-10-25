@@ -1,5 +1,4 @@
 import React, { memo, useState } from 'react';
-import PropTypes from 'prop-types';
 import {
   Button,
   Icon,
@@ -55,12 +54,5 @@ const LikesButton = memo(() => {
     </div>
   );
 });
-
-LikesButton.propTypes = {
-
-};
-LikesButton.defaultProps = {
-
-};
 
 export default LikesButton;
