@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import PhotoCardList from '../../components/PhotoCardList';
-import { NAV_TOP_ITEM_ACTIVE_DEFAULT, QUERY_TEXT_DEFAULT } from '../../constants';
+import { QUERY_TEXT_DEFAULT } from '../../constants';
 import getURLParam from '../../utils/getURLParam';
 import setScrollX from '../../utils/setScrollX';
 import 'antd/dist/antd.css';
@@ -54,31 +54,6 @@ export default class Home extends PureComponent {
     return this.getCardsPhotos();
   };
 
-  getDataSearch = () => {
-    const { cardsData, filters } = this.props;
-    const cardsDataQuery = cardsData.query;
-    const tagName = getURLParam(window.location, 'search');
-    let queryText = QUERY_TEXT_DEFAULT;
-    let navTopItemActive = NAV_TOP_ITEM_ACTIVE_DEFAULT;
-
-    if (tagName) {
-      const tag = filters.filter(item => item.label.toLowerCase() === tagName);
-      navTopItemActive = tag.length ? tag[0].id : null;
-      queryText = cardsDataQuery;
-    }
-
-    return {
-      queryText,
-      navTopItemActive,
-    };
-  }
-
-  handleUrl = (str) => {
-    const { history: { push } } = this.props;
-    const newUrl = `?search=${str}`;
-    push(newUrl, {});
-  }
-
   getCardsPhotos = () => {
     const { cardsData, handleСardsPhotosAction } = this.props;
     handleСardsPhotosAction(cardsData);
@@ -96,21 +71,9 @@ export default class Home extends PureComponent {
     }
   };
 
-  getFilterItemValue = (itemText, itemId) => {
-    const { filterItemValueAction: handleAction } = this.props;
-    handleAction(itemText, itemId);
-    this.handleUrl(itemText);
-  };
-
   getSearchText = (text, tags) => {
     const { searchTextAction: handleAction } = this.props;
     handleAction(text, tags);
-    this.handleUrl(text);
-  }
-
-  getChangeInputValue = (text) => {
-    const { searchChangeInputValueAction: handleAction } = this.props;
-    handleAction(text);
     this.handleUrl(text);
   }
 
