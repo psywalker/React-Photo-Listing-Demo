@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import {
   Menu,
   Dropdown,
@@ -20,7 +20,7 @@ const DropdownLogin = memo(({
 }) => {
   const menu = (
     <Menu>
-      { profileName && isNotProfile && (
+      {/* { profileName && isNotProfile && (
         <Menu.Item key="0">
           <Link
             data-test="linkProfileName"
@@ -29,7 +29,8 @@ const DropdownLogin = memo(({
             Profile
           </Link>
         </Menu.Item>
-      )}
+      )} */}
+
       { profileName && isNotProfile && <Menu.Divider /> }
       <Menu.Item key="3">
         <div>

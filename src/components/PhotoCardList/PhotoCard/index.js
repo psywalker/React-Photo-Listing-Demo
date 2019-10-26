@@ -20,7 +20,7 @@ const PhotoCard = memo(({
       title={item.title}
     />
 
-    <LikesButton />
+    <LikesButton photoID={item.photoID} />
 
     <PhotoCardImg
       photoID={item.photoID}
@@ -28,9 +28,9 @@ const PhotoCard = memo(({
       photoName={item.photoName}
     />
 
-    <PhotoCardDescription
+    {/* <PhotoCardDescription
       photoDesc={item.photoDesc}
-    />
+    /> */}
 
     <PhotoCardTags
       onSearchTagValue={onSearchTagValue}
