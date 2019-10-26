@@ -1,0 +1,22 @@
+.user-avatar {
+  display: flex;
+  align-items: center;
+
+  &__name {
+    font-family: 'Fjalla One', sans-serif;
+    font-weight: bold;
+    white-space: nowrap;
+    max-width: 0;
+    overflow: hidden;
+    margin-right: 0px;
+    transition: all .3s;
+    @media screen and ( min-width: 741px ) and ( max-width: 5000px ) {
+      max-width: 300px;
+      margin-right: 8px;
+    }
+  }
+  &__img {
+    width: 32px;
+    border-radius: 100%; 
+  }
+}

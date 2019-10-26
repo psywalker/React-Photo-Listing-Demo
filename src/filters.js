@@ -17,7 +17,7 @@ const filters = [
   },
   {
     id: 3,
-    label: 'Textures & Patterns',
+    label: 'Textures',
     filterValue: 'textures',
   },
   {
@@ -27,7 +27,7 @@ const filters = [
   },
   {
     id: 5,
-    label: 'Current Events',
+    label: 'Events',
     filterValue: 'events',
   },
   {
@@ -37,7 +37,7 @@ const filters = [
   },
   {
     id: 7,
-    label: 'Business & Work',
+    label: 'Business',
     filterValue: 'business',
   },
   {
@@ -57,33 +57,73 @@ const filters = [
   },
   {
     id: 11,
-    label: 'Food & Drink',
+    label: 'Food',
     filterValue: 'food',
   },
   {
     id: 12,
+    label: 'Drink',
+    filterValue: 'drink',
+  },
+  {
+    id: 13,
     label: 'Spirituality',
     filterValue: 'spirituality',
   },
   {
-    id: 13,
+    id: 14,
     label: 'Experimental',
     filterValue: 'experimental',
   },
   {
-    id: 14,
+    id: 15,
     label: 'People',
     filterValue: 'people',
   },
-  // {
-  //   id: 15,
-  //   label: 'Health',
-  //   filterValue: 'health',
-  // },
-  // {
-  //   id: 16,
-  //   label: 'Arts & Culture',
-  //   filterValue: 'arts',
-  // },
+  {
+    id: 16,
+    label: 'Health',
+    filterValue: 'health',
+  },
+  {
+    id: 17,
+    label: 'Arts',
+    filterValue: 'arts',
+  },
+  {
+    id: 18,
+    label: 'Cars',
+    filterValue: 'cars',
+  },
+  {
+    id: 19,
+    label: 'Birds',
+    filterValue: 'birds',
+  },
+  {
+    id: 20,
+    label: 'Kings',
+    filterValue: 'kings',
+  },
+  {
+    id: 21,
+    label: 'Spheres',
+    filterValue: 'spheres',
+  },
+  {
+    id: 22,
+    label: 'Islands',
+    filterValue: 'islands',
+  },
+  {
+    id: 23,
+    label: 'Сities',
+    filterValue: 'cities',
+  },
+  {
+    id: 24,
+    label: 'Brands',
+    filterValue: 'brands',
+  },
 ];
 export default filters;
