@@ -1,14 +1,31 @@
 import React, { memo, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Button,
   Icon,
 } from 'antd';
-
+import {
+  photoLike,
+  photoUnlike,
+} from '../../actions';
 import './index.scss';
 
-const LikesButton = memo(() => {
+const LikesButton = memo(({ photoID }) => {
   const [like, setLike] = useState(false);
+  const dispatch = useDispatch();
 
+  const likePhoto = () => {
+    dispatch(photoLike(photoID));
+    window.localStorage.setItem(photoID, true);
+  };
+  const unlikePhoto = () => {
+    dispatch(photoUnlike(photoID));
+    window.localStorage.removeItem(photoID);
+  };
+
+  const getPhotoID = window.localStorage.getItem(photoID);
+  if (getPhotoID && !like) setLike(true);
   return (
     <div
       data-test="likesButtonContainer"
@@ -19,7 +36,10 @@ const LikesButton = memo(() => {
           <Button
             data-test="likesButton"
             className="likes-button__btn"
-            onClick={() => setLike(true)}
+            onClick={() => {
+              setLike(true);
+              likePhoto();
+            }}
             style={{ backgroundColor: '#fff' }}
           >
             <Icon
@@ -38,7 +58,10 @@ const LikesButton = memo(() => {
           <Button
             data-test="likesButton"
             className="likes-button__btn"
-            onClick={() => setLike(false)}
+            onClick={() => {
+              setLike(false);
+              unlikePhoto();
+            }}
             style={{ backgroundColor: 'red' }}
           >
             <Icon
@@ -54,5 +77,13 @@ const LikesButton = memo(() => {
     </div>
   );
 });
+
+LikesButton.propTypes = {
+  photoID: PropTypes.string,
+};
+
+LikesButton.defaultProps = {
+  photoID: '',
+};
 
 export default LikesButton;

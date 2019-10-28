@@ -11,6 +11,10 @@ import {
   FILTER_ITEM_VALUE,
   SEARCH_TEXT,
   SEARCH_TEXT_CHANGE_INPUT_VALUE,
+  PHOTO_LIKE,
+  PHOTO_UNLIKE,
+  LIST_USER_LIKED_PHOTOS,
+  GET_PHOTO,
 } from '../constants';
 
 export const logoutAction = () => ({
@@ -31,6 +35,25 @@ export const smallPhotoListingRequestAction = (userId, page, perPage, name, item
   perPage,
   name,
   itemNum,
+});
+
+export const getPhoto = photoId => ({
+  type: GET_PHOTO,
+  photoId,
+});
+export const listUserLikedPhotos = userName => ({
+  type: LIST_USER_LIKED_PHOTOS,
+  userName,
+});
+
+export const photoLike = photoId => ({
+  type: PHOTO_LIKE,
+  photoId,
+});
+
+export const photoUnlike = photoId => ({
+  type: PHOTO_UNLIKE,
+  photoId,
 });
 
 export const photoRequestAction = match => ({

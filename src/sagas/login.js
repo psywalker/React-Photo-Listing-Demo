@@ -53,7 +53,7 @@ export function* fetchGetToken(code) {
   try {
     const response = yield call(axios.post, axiosRequestForToken.url, axiosRequestForToken.body);
     const token = yield call(get, response, 'data.access_token', false);
-    window.localStorage.clear();
+    window.localStorage.removeItem('token');
     window.localStorage.setItem('token', token);
     yield call(fetchLoginData, token);
   } catch {
