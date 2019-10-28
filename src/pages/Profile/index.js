@@ -18,7 +18,7 @@ export class Profile extends PureComponent {
   handleLoguotProfile = () => {
     const { history, logoutAction: handleAction } = this.props;
     handleAction();
-    window.localStorage.clear();
+    window.localStorage.removeItem('token');
     history.push('/');
   };
 

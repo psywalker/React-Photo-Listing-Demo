@@ -5,7 +5,6 @@ import { URL_FOR_PHOTO } from '../constants';
 
 export const processResponse = (response) => {
   const { data } = response;
-  console.log("4.1 GET_PHOTO: ", response)
   return {
     liked: data.liked_by_user,
   };
@@ -38,10 +37,8 @@ export function* getPhotoSaga(action) {
   if (photoId) {
     try {
       const dataForProps = yield call(api.getPhoto, photoId);
-      console.log("4.2 GET_PHOTO:", dataForProps)
       yield put({ type: 'GET_PHOTO_SUCCESS', dataForProps });
     } catch (error) {
-      console.log("4.3 GET_PHOTO:", error)
       //const errorRateLimit = get(error, 'response.data', '');
       //yield put({ type: 'PHOTO_UNLIKE_ERROR', errorRateLimit });
     }

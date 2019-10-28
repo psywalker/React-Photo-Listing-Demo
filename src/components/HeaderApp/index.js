@@ -34,7 +34,7 @@ export const HeaderApp = withRouter(memo((props) => {
 
   const handleLoguotHeader = () => {
     handleAction();
-    window.localStorage.clear();
+    window.localStorage.removeItem('token');
     history.push('/');
   };
   const getDataSearch = () => {

@@ -17,10 +17,15 @@ const LikesButton = memo(({ photoID }) => {
 
   const likePhoto = () => {
     dispatch(photoLike(photoID));
+    window.localStorage.setItem(photoID, true);
   };
   const unlikePhoto = () => {
     dispatch(photoUnlike(photoID));
+    window.localStorage.removeItem(photoID);
   };
+
+  const getPhotoID = window.localStorage.getItem(photoID);
+  if (getPhotoID && !like) setLike(true);
   return (
     <div
       data-test="likesButtonContainer"

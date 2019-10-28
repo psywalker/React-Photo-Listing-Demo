@@ -4,7 +4,6 @@ import get from 'lodash/get';
 import { URL_FOR_LIKES } from '../constants';
 
 export const processResponse = (response) => {
-  console.log("2.1 UNLIKE: ", response)
 };
 
 export const getParamsRequest = (photoId) => {
@@ -34,10 +33,8 @@ export function* photoUnlikeSaga(action) {
   if (photoId) {
     try {
       const dataForProps = yield call(api.photoUnlike, photoId);
-      console.log("2.2 UNLIKE: ", dataForProps)
       yield put({ type: 'PHOTO_UNLIKE_SUCCESS', dataForProps });
     } catch (error) {
-      console.log("2.3 UNLIKE: ", error)
       //const errorRateLimit = get(error, 'response.data', '');
       //yield put({ type: 'PHOTO_UNLIKE_ERROR', errorRateLimit });
     }
