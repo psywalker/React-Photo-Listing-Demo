@@ -14,7 +14,6 @@ import {
   PHOTO_LIKE,
   PHOTO_UNLIKE,
   LIST_USER_LIKED_PHOTOS,
-  GET_PHOTO,
 } from '../constants';
 
 export const logoutAction = () => ({
@@ -37,10 +36,6 @@ export const smallPhotoListingRequestAction = (userId, page, perPage, name, item
   itemNum,
 });
 
-export const getPhoto = photoId => ({
-  type: GET_PHOTO,
-  photoId,
-});
 export const listUserLikedPhotos = userName => ({
   type: LIST_USER_LIKED_PHOTOS,
   userName,

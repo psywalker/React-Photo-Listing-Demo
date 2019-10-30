@@ -5,3 +5,9 @@
     opacity: .8;
   }
 }
+.ant-menu,
+.ant-dropdown-menu {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.ant-menu-item:not(:last-child) { margin-bottom: 0 !important; }

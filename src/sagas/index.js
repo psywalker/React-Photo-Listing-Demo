@@ -7,7 +7,6 @@ import { userRequestSaga } from './user';
 import { smallPhotoListingRequestSaga } from './smallphotolisting';
 import { photoLikeSaga } from './photolike';
 import { photoUnlikeSaga } from './photounlike';
-import { getPhotoSaga } from './getphoto';
 
 export default function* rootSaga() {
   yield all([
@@ -19,6 +18,5 @@ export default function* rootSaga() {
     yield takeEvery('SMALL_PHOTO_LISTING_FETCHING', smallPhotoListingRequestSaga),
     yield takeEvery('PHOTO_LIKE', photoLikeSaga),
     yield takeEvery('PHOTO_UNLIKE', photoUnlikeSaga),
-    yield takeEvery('GET_PHOTO', getPhotoSaga),
   ]);
 }

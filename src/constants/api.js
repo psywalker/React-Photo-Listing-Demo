@@ -19,4 +19,3 @@ export const URL_FOR_USER_PHOTO_LISTING_QUERY = userId => `${process.env.REACT_A
 export const URL_FOR_USER_STATISTIC = userId => `${process.env.REACT_APP_UNSPLASH_API_NAME}users/${userId}/statistics`;
 export const URL_FOR_LIKES = photoId => `${process.env.REACT_APP_UNSPLASH_API_NAME}photos/${photoId}/like`;
 export const LIST_USER_LIKED_PHOTOS = userName => `${process.env.REACT_APP_UNSPLASH_API_NAME}users/${userName}/likes`;
-export const URL_FOR_PHOTO = photoId => `${process.env.REACT_APP_UNSPLASH_API_NAME}photos/${photoId}`;

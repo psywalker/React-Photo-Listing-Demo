@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import {
   Menu,
   Dropdown,
@@ -16,46 +16,64 @@ const DropdownLogin = memo(({
   profilePhotoUrl,
   handleLoguotHeader,
   profileFullName,
-  isNotProfile,
 }) => {
-  const menu = (
-    <Menu>
-      {/* { profileName && isNotProfile && (
-        <Menu.Item key="0">
-          <Link
-            data-test="linkProfileName"
-            to="/profile"
-          >
-            Profile
-          </Link>
-        </Menu.Item>
-      )} */}
+  const generationButton = (className, href, onclick, datatest, text) => (
+    <div>
+      <Button
+        data-test={datatest}
+        className={className}
+        href={href}
+        onClick={onclick}
+      >
+        {text}
+      </Button>
+    </div>
+  );
 
-      { profileName && isNotProfile && <Menu.Divider /> }
+  const menuWithProfile = (
+    <Switch>
+      <Route
+        exact
+        path="/profile"
+        component={() => (
+          <Menu>
+            <Menu.Item key="0">
+              { generationButton('btn-logout', null, handleLoguotHeader, 'btnLogout', 'Logout') }
+            </Menu.Item>
+          </Menu>
+        )}
+      />
+      <Route
+        path="*"
+        component={() => (
+          <Menu>
+            <Menu.Item key="1">
+              <Link
+                data-test="linkProfileName"
+                to="/profile"
+              >
+                Profile
+              </Link>
+            </Menu.Item>
+            <Menu.Divider />
+            <Menu.Item key="2">
+              { generationButton('btn-logout', null, handleLoguotHeader, 'btnLogout', 'Logout') }
+            </Menu.Item>
+          </Menu>
+        )}
+      />
+      )
+    </Switch>
+  );
+  const menuWithoutProfile = (
+    <Menu>
       <Menu.Item key="3">
-        <div>
-          { !profileName && (
-            <Button
-              data-test="btnLogin"
-              className="btn-login"
-              href={URL_FOR_LOGIN}
-            >
-              Login
-            </Button>
-          )}
-          { profileName && (
-            <Button
-              data-test="btnLogout"
-              className="btn-logout"
-              onClick={handleLoguotHeader}
-            >
-              Logout
-            </Button>
-          )}
-        </div>
+        { generationButton('btn-login', URL_FOR_LOGIN, null, 'btnLogin', 'Login') }
       </Menu.Item>
     </Menu>
   );
+
+  const menu = profileName ? menuWithProfile : menuWithoutProfile;
   return (
     <div
       data-test="Dropdown"
@@ -81,7 +99,6 @@ DropdownLogin.propTypes = {
   profileName: PropTypes.string,
   profileFullName: PropTypes.string,
   handleLoguotHeader: PropTypes.func,
-  isNotProfile: PropTypes.bool,
 };
 
 DropdownLogin.defaultProps = {
@@ -89,7 +106,6 @@ DropdownLogin.defaultProps = {
   profileName: '',
   profileFullName: '',
   handleLoguotHeader: () => {},
-  isNotProfile: false,
 };
 
 export default DropdownLogin;

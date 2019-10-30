@@ -24,56 +24,39 @@ const LikesButton = memo(({ photoID }) => {
     window.localStorage.removeItem(photoID);
   };
 
-  const getPhotoID = window.localStorage.getItem(photoID);
-  if (getPhotoID && !like) setLike(true);
+  const isPhotoID = window.localStorage.getItem(photoID);
+  if (isPhotoID && !like) setLike(true);
+
+  const getContent = (
+    likeBool,
+    likesPhoto,
+    colorBtn,
+    colorIcon,
+  ) => (
+    <Button
+      data-test="likesButton"
+      className="likes-button__btn"
+      onClick={() => {
+        setLike(likeBool);
+        likesPhoto();
+      }}
+      style={{ backgroundColor: colorBtn }}
+    >
+      <Icon
+        className="likes-button__icon"
+        type="heart"
+        theme="filled"
+        style={{ color: colorIcon }}
+      />
+    </Button>
+  );
   return (
     <div
       data-test="likesButtonContainer"
       className="likes-button"
     >
-      { !like && (
-        <div className="likes-button__off">
-          <Button
-            data-test="likesButton"
-            className="likes-button__btn"
-            onClick={() => {
-              setLike(true);
-              likePhoto();
-            }}
-            style={{ backgroundColor: '#fff' }}
-          >
-            <Icon
-              data-test="likesButtonIcon"
-              className="likes-button__icon"
-              type="heart"
-              theme="filled"
-              style={{ color: 'red' }}
-            />
-          </Button>
-        </div>
-      )}
-
-      { like && (
-        <div className="likes-button__on">
-          <Button
-            data-test="likesButton"
-            className="likes-button__btn"
-            onClick={() => {
-              setLike(false);
-              unlikePhoto();
-            }}
-            style={{ backgroundColor: 'red' }}
-          >
-            <Icon
-              data-test="likesButtonIcon"
-              className="likes-button__icon"
-              type="heart"
-              theme="filled"
-              style={{ color: '#fff' }}
-            />
-          </Button>
-        </div>
-      )}
+      { like && getContent(false, unlikePhoto, 'red', '#fff') }
+      { !like && getContent(true, likePhoto, '#fff', 'red') }
     </div>
   );
 });

@@ -18,7 +18,6 @@ import {
   URL_FOR_LOGOUT_ICON,
   URL_FOR_LIKES,
   LIST_USER_LIKED_PHOTOS,
-  URL_FOR_PHOTO,
 } from './api';
 
 import {
@@ -102,6 +101,5 @@ export {
   PHOTO_LIKE,
   PHOTO_UNLIKE,
   LIST_USER_LIKED_PHOTOS,
-  URL_FOR_PHOTO,
   GET_PHOTO,
 };

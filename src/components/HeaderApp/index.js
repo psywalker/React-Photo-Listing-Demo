@@ -75,31 +75,13 @@ export const HeaderApp = withRouter(memo((props) => {
   };
 
   const dataSearch = getDataSearch();
-  const { location: { pathname } } = props;
-  const isNotProfile = pathname !== '/profile';
   return (
     <div className="header">
       <div className="header__inner">
         <div className="header__item">
           <div className="header__logo">
             <Logo />
-            {/* <Route
-              path="/:id"
-              render={({ match }) => {
-                // if (/^(\/profile){0}.*?/.test(match.params.id)) {
-                //   return <Logo />;
-                // }
-                // return null;
-                console.log("Match", match)
-              }}
-            /> */}
-          {/* <Route
-            exact
-            path="/^\/(?!profile).+/"
-            component={() => (
-              <Logo />
-            )}
-          /> */}
+
             <Route
               data-test="btnBackRoute"
               path="/:id"
@@ -129,7 +111,6 @@ export const HeaderApp = withRouter(memo((props) => {
             profileFullName={profileFullName}
             profilePhotoUrl={profilePhotoUrl}
             handleLoguotHeader={handleLoguotHeader}
-            isNotProfile={isNotProfile}
           />
         </div>
         <Route
@@ -155,8 +136,6 @@ HeaderApp.propTypes = {
   history: PropTypes.shape({
     prop: PropTypes.string,
   }),
-  location: PropTypes.shape({}),
-  pathname: PropTypes.string,
   logoutAction: PropTypes.func,
   profilePhotoUrl: PropTypes.string,
   profileName: PropTypes.string,
@@ -165,8 +144,6 @@ HeaderApp.propTypes = {
 };
 HeaderApp.defaultProps = {
   history: {},
-  location: {},
-  pathname: '',
   logoutAction: () => {},
   profilePhotoUrl: '',
   profileName: '',

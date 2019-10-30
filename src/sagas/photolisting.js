@@ -4,7 +4,6 @@ import get from 'lodash/get';
 import { URL_FOR_CARDS_PHOTOS } from '../constants';
 
 export const processResponse = (response) => {
-  console.log("000: ", response)
   const cards = get(response, 'data.results', []).map(item => ({
     photoName: get(item, 'urls.regular', ''),
     photoDesc: item.description !== null ? item.description : '',
