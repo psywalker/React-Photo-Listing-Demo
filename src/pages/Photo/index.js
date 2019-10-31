@@ -9,6 +9,7 @@ import {
   Tag,
   Popover,
 } from 'antd';
+import { withTranslation } from 'react-i18next';
 import ImageZoom from 'react-medium-image-zoom';
 import {
   SpinnerPhoto,
@@ -22,7 +23,6 @@ import setScrollX from '../../utils/setScrollX';
 import './index.scss';
 
 export class Photo extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -74,6 +74,7 @@ export class Photo extends Component {
       requestError,
       isSuccessPhotoRequest,
       photoImageLoadAction: photoLoadAction,
+      t,
     } = this.props;
     const photoSize = { width: photoWidth, height: photoHeight };
     setScrollX(0);
@@ -130,7 +131,7 @@ export class Photo extends Component {
                 photoDesc={info.photoDesc}
                 altDescriprion={altDescriprion}
                 photoSrc={photoSrc}
-                textButton="Download"
+                textButton={t('download')}
               />
             )}
             style={{
@@ -178,7 +179,7 @@ export class Photo extends Component {
                     <Popover
                       data-test="photoPopover"
                       placement="topLeft"
-                      title="All tags"
+                      title={t('allTags')}
                       content={(
                         <div>
                           {tags.map(item => (
@@ -208,7 +209,7 @@ export class Photo extends Component {
                           type="tag"
                           data-test="photoPopoverButtonIcon"
                         />
-                        Show all tags
+                        { t('showAllTags') }
                       </Button>
                     </Popover>
                   )}
@@ -223,7 +224,7 @@ export class Photo extends Component {
                     href="#"
                   >
                     <Icon type="share-alt" />
-                    Share
+                    { t('share') }
                   </Button>
                   <InfoPhotoModal
                     data-test="photoInfoPhotoModal"
@@ -270,6 +271,7 @@ Photo.propTypes = {
   history: PropTypes.shape({
     prop: PropTypes.string,
   }),
+  t: PropTypes.func,
 };
 Photo.defaultProps = {
   photoImageLoadAction: () => {},
@@ -290,6 +292,7 @@ Photo.defaultProps = {
   requestError: false,
   match: {},
   history: {},
+  t: () => {},
 };
 
 export const mapStateToProps = (state) => {
@@ -302,7 +305,7 @@ const mapDispatchToProps = ({
   photoImageLoadAction,
 });
 
-export default connect(
+export default withTranslation()(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Photo);
+)(Photo));

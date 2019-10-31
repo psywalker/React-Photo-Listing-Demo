@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 import Home from '.';
 import {
   cardsPhotosRequestAction,
@@ -18,7 +19,7 @@ const mapDispatchToProps = ({
   searchChangeInputValueAction,
 });
 
-export default connect(
+export default withTranslation()(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Home);
+)(Home));

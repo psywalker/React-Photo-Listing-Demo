@@ -14,7 +14,7 @@ export default class Home extends PureComponent {
 	};
 
 	componentDidUpdate = (prevProps) => {
-	  const {
+		const {
 	    cardsData,
 	    handleСardsPhotosAction,
 	    location: { state },
@@ -91,7 +91,8 @@ export default class Home extends PureComponent {
 	  const {
 	    totalCards,
 	    photolistingRequestError,
-	    errorRateLimit = '',
+			errorRateLimit = '',
+			t,
 	  } = this.props;
 	  const { cards } = this.state;
 	  const isErrorRateLimit = errorRateLimit === 'Rate Limit Exceeded';

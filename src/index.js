@@ -1,6 +1,7 @@
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
+import './i18n';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';

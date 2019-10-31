@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Route, Switch } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Menu,
   Dropdown,
@@ -17,6 +18,7 @@ const DropdownLogin = memo(({
   handleLoguotHeader,
   profileFullName,
 }) => {
+  const { t } = useTranslation();
   const generationButton = (className, href, onclick, datatest, text) => (
     <div>
       <Button
@@ -38,7 +40,7 @@ const DropdownLogin = memo(({
         component={() => (
           <Menu>
             <Menu.Item key="0">
-              { generationButton('btn-logout', null, handleLoguotHeader, 'btnLogout', 'Logout') }
+              { generationButton('btn-logout', null, handleLoguotHeader, 'btnLogout', t('logout')) }
             </Menu.Item>
           </Menu>
         )}
@@ -52,12 +54,12 @@ const DropdownLogin = memo(({
                 data-test="linkProfileName"
                 to="/profile"
               >
-                Profile
+                { t('profile') }
               </Link>
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item key="2">
-              { generationButton('btn-logout', null, handleLoguotHeader, 'btnLogout', 'Logout') }
+              { generationButton('btn-logout', null, handleLoguotHeader, 'btnLogout', t('logout')) }
             </Menu.Item>
           </Menu>
         )}
@@ -68,7 +70,7 @@ const DropdownLogin = memo(({
   const menuWithoutProfile = (
     <Menu>
       <Menu.Item key="3">
-        { generationButton('btn-login', URL_FOR_LOGIN, null, 'btnLogin', 'Login') }
+        { generationButton('btn-login', URL_FOR_LOGIN, null, 'btnLogin', t('login')) }
       </Menu.Item>
     </Menu>
   );

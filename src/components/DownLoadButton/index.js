@@ -33,7 +33,7 @@ const DownLoadButton = memo(({
           className="download-button__icon"
           type="download"
         />
-        { textButton }
+        { textButton && <div className="download-button__text">{ textButton }</div> }
       </Button>
     </div>
   );

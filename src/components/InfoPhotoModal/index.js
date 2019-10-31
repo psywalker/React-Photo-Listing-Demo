@@ -1,10 +1,12 @@
 import React, { memo, useState } from 'react';
 import { Button, Icon } from 'antd';
+import { useTranslation } from 'react-i18next';
 import Modal from 'react-awesome-modal';
 import InfoPhotoModalContent from './InfoPhotoModalContent';
 import './index.scss';
 
 const InfoPhotoModal = memo(({ ...props }) => {
+  const { t } = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
@@ -22,7 +24,7 @@ const InfoPhotoModal = memo(({ ...props }) => {
           data-test="openModalBtnIcon"
           type="info-circle"
         />
-        Info
+        { t('photoInfo.views') }
       </Button>
       <Modal
         data-test="modal"

@@ -1,8 +1,16 @@
 .download-button {
   &__btn {
     padding: 0 10px !important;
+
+    & span {
+      margin-left: 0;
+    }
   }
-  &__btn span {
-    margin-left: 0 !important;
+  .ant-btn > .anticon + span, .ant-btn > span + .anticon {
+    margin-left: 0px;
+  }
+  &__text {
+    margin-left: 5px;
+    display: inline;
   }
 }
