@@ -238,7 +238,7 @@ export class Photo extends Component {
         { !isPhotoLoading && !isSuccessPhotoRequest && requestError && (
         <Error
           data-test="photoError"
-          text="Sorry, no photo found"
+          text={t('errors.photoNotFound')}
         />
         )}
       </div>

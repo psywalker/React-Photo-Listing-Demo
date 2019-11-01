@@ -1,17 +1,23 @@
 import axios from 'axios';
 import moment from 'moment';
+import { localization as localRu } from 'moment/locale/ru';
+import { localization as localEn } from 'moment/locale/en-au';
 import 'moment-timezone';
 import { put, call } from 'redux-saga/effects';
 import get from 'lodash/get';
+import i18next from 'i18next';
 import { URL_FOR_USER_STATISTIC } from '../constants';
 
 export const processResponse = (response) => {
+  const lang = i18next.language;
   const chartData = [
     get(response, 'data.downloads.historical.values', []),
     get(response, 'data.views.historical.values', []),
     get(response, 'data.likes.historical.values', []),
   ].map(config => ({
-    dates: config.map(item => moment(new Date(item.date)).format('DD MMMM YYYY')),
+    dates: lang === 'ru'
+      ? config.map(item => moment(new Date(item.date)).locale('ru', localRu).format('DD MMMM YYYY'))
+      : config.map(item => moment(new Date(item.date)).locale('en', localEn).format('DD MMMM YYYY')),
     values: config.map(item => item.value),
   }));
   return chartData;

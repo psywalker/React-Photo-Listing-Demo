@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { loadingRequestAction, logoutAction } from '../../actions';
 import { Spinner, Error } from '../../components';
@@ -30,6 +31,7 @@ export class Profile extends PureComponent {
       profileFullName,
       profileEmail,
       profileName,
+      t,
     } = this.props;
     setScrollX(0);
     return (
@@ -52,7 +54,7 @@ export class Profile extends PureComponent {
               data-test="profileContentAvatar"
               className="profile-content__avatar"
               src={profilePhotoUrl}
-              alt="Profile avatar"
+              alt={t('profileAvatar')}
             />
             <div
               data-test="profileContentTitleWrap"
@@ -69,7 +71,7 @@ export class Profile extends PureComponent {
                 data-test="profileContentText"
                 className="profile-content__text"
               >
-                Download free, beautiful high-quality photos curated by
+                {t('profileDesc')}
                 {' '}
                 {
                   profileName
@@ -81,7 +83,7 @@ export class Profile extends PureComponent {
         { !fetching && loginError && (
           <Error
             data-test="error"
-            text="An authorization failed. Try logging in later!"
+            text={t('authorizationFailed')}
           />
         )}
       </div>
@@ -101,6 +103,7 @@ Profile.propTypes = {
   history: PropTypes.shape({
     profilePhotoUrl: PropTypes.string,
   }),
+  t: PropTypes.func,
 };
 Profile.defaultProps = {
   logoutAction: () => {},
@@ -112,6 +115,7 @@ Profile.defaultProps = {
   fetching: false,
   loginError: false,
   history: {},
+  t: () => {},
 };
 
 export const mapStateToProps = (state) => {
@@ -124,7 +128,7 @@ const mapDispatchToProps = ({
   logoutAction,
 });
 
-export default connect(
+export default withTranslation()(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Profile);
+)(Profile));

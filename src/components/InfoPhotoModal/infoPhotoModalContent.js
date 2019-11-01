@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Icon } from 'antd';
+import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import 'moment-timezone';
 import numeral from 'numeral';
@@ -25,6 +26,7 @@ const InfoPhotoModalContent = memo(({
   width,
   height,
 }) => {
+  const { t } = useTranslation();
   const date = getDate(lastUpdateInfo);
   const viewsFormat = getViewsFormat(views);
   const downloadsFormat = getDownloadsFormat(downloads);
@@ -38,7 +40,7 @@ const InfoPhotoModalContent = memo(({
         data-test="photoInfoTitle"
         className="photo-info__title"
       >
-        Info
+        { t('photoInfo.info') }
       </h2>
       { photoDesc && (
         <p className="photo-info__desc">
@@ -53,7 +55,7 @@ const InfoPhotoModalContent = memo(({
         data-test="photoInfoDate"
         className="photo-info__date"
       >
-        Published on
+        { t('photoInfo.published') }
         {' '}
         {date}
       </p>
@@ -79,7 +81,7 @@ const InfoPhotoModalContent = memo(({
           >
             <Icon type="eye" />
             {' '}
-            Views
+            { t('photoInfo.views') }
           </h3>
           <p
             data-test="photoInfoListHeadTextMain"
@@ -104,7 +106,7 @@ const InfoPhotoModalContent = memo(({
           >
             <Icon type="arrow-down" />
             {' '}
-            Downloads
+            { t('photoInfo.downloads') }
           </h3>
           <p
             data-test="photoInfoListHeadTextMain"
@@ -129,7 +131,7 @@ const InfoPhotoModalContent = memo(({
           >
             <Icon type="heart" />
             {' '}
-            Likes
+            { t('photoInfo.likes') }
           </h3>
           <p
             data-test="photoInfoListHeadTextMain"
@@ -160,7 +162,7 @@ const InfoPhotoModalContent = memo(({
             data-test="photoInfoListTitle"
             className="photo-info-list__title"
           >
-            Camera Make
+            { t('photoInfo.cameraMake') }
           </h3>
           <p
             data-test="photoInfoListText"
@@ -177,7 +179,7 @@ const InfoPhotoModalContent = memo(({
             data-test="photoInfoListTitle"
             className="photo-info-list__title"
           >
-            Camera Model
+            { t('photoInfo.cameraModel') }
           </h3>
           <p
             data-test="photoInfoListText"
@@ -194,7 +196,7 @@ const InfoPhotoModalContent = memo(({
             data-test="photoInfoListTitle"
             className="photo-info-list__title"
           >
-            Focal Length
+            { t('photoInfo.focalLength') }
           </h3>
           <p
             data-test="photoInfoListText"
@@ -211,7 +213,7 @@ const InfoPhotoModalContent = memo(({
             data-test="photoInfoListTitle"
             className="photo-info-list__title"
           >
-            Aperture
+            { t('photoInfo.aperture') }
           </h3>
           <p
             data-test="photoInfoListText"
@@ -228,7 +230,7 @@ const InfoPhotoModalContent = memo(({
             data-test="photoInfoListTitle"
             className="photo-info-list__title"
           >
-            Shutter Speed
+            { t('photoInfo.shutterSpeed') }
           </h3>
           <p
             data-test="photoInfoListText"
@@ -245,7 +247,7 @@ const InfoPhotoModalContent = memo(({
             data-test="photoInfoListTitle"
             className="photo-info-list__title"
           >
-            ISO
+            { t('photoInfo.iso') }
           </h3>
           <p
             data-test="photoInfoListText"
@@ -262,7 +264,7 @@ const InfoPhotoModalContent = memo(({
             data-test="photoInfoListTitle"
             className="photo-info-list__title"
           >
-            Dimensions
+            { t('photoInfo.dimensions') }
           </h3>
           <p
             data-test="photoInfoListText"

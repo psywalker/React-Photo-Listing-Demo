@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Highcharts from 'react-highcharts';
+import i18n from '../../i18n';
 import {
   INITIONAL_CHARTS_CONFIGS,
   CHART_CONFIG,
@@ -17,6 +18,11 @@ export const getNewConfig = (configInitionalData, config) => ({
   },
   xAxis: {
     categories: config.dates,
+  },
+  yAxis: {
+    title: {
+      text: i18n.t('chartsConfig.yAxisTitle'),
+    },
   },
   plotOptions: {
     area: {

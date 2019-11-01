@@ -14,7 +14,7 @@ export default class Home extends PureComponent {
 	};
 
 	componentDidUpdate = (prevProps) => {
-		const {
+	  const {
 	    cardsData,
 	    handleСardsPhotosAction,
 	    location: { state },
@@ -91,24 +91,26 @@ export default class Home extends PureComponent {
 	  const {
 	    totalCards,
 	    photolistingRequestError,
-			errorRateLimit = '',
-			t,
+	    errorRateLimit = '',
+	    t,
 	  } = this.props;
 	  const { cards } = this.state;
 	  const isErrorRateLimit = errorRateLimit === 'Rate Limit Exceeded';
 	  setScrollX(totalCards);
-	  if (isErrorRateLimit)
+	  if (isErrorRateLimit) {
 	    return (
 				<div className="error-text" data-test="errorText">
-					You have increased the number of downloads per hour. Try later.
+					{t('errors.increasedNumberDownloads')}
 				</div>
 	    );
-	  if (photolistingRequestError)
+	  }
+	  if (photolistingRequestError) {
 	    return (
 				<div className="error-text" data-test="errorText">
-					Error loading photolisting
+					{t('errors.errorLoadingPhotolisting')}
 				</div>
 	    );
+	  }
 
 	  return (
 			<div className="App">
@@ -121,9 +123,9 @@ export default class Home extends PureComponent {
 				/>
 
 				{!totalCards && (
-					<div className="cards__text-empty" data-test="cardsTextEmpty">
-						No images were found for your request. Try to find more.
-					</div>
+				<div className="cards__text-empty" data-test="cardsTextEmpty">
+					{t('errors.imagesNotFound')}
+				</div>
 				)}
 			</div>
 	  );

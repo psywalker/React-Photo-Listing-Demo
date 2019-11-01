@@ -17,6 +17,23 @@ i18n
           share: 'Share',
           showAllTags: 'Show all tags',
           allTags: 'All tags',
+          userAvatar: 'User Avatar',
+          profileAvatar: 'Profile avatar',
+          profileDesc: 'Download free, beautiful high-quality photos curated by',
+          userTabs: {
+            myPhotos: 'My photos',
+            myLikes: 'My Likes',
+            myStatistic: 'My statistic',
+          },
+          chartsConfig: {
+            myDownloads: 'My Downloads',
+            myViews: 'My Views',
+            myLikes: 'My Likes',
+            seriesNameDownloads: 'Downloads',
+            seriesNameViews: 'Views',
+            seriesNameLikes: 'Likes',
+            yAxisTitle: 'Values',
+          },
           photoInfo: {
             info: 'Info',
             published: 'Published on',
@@ -31,6 +48,17 @@ i18n
             iso: 'ISO',
             dimensions: 'Dimensions',
           },
+          errors: {
+            oops: 'OOPS',
+            goBackHome: 'BACK TO HOME',
+            increasedNumberDownloads: 'You have increased the number of downloads per hour. Try later.',
+            errorLoadingPhotolisting: 'Error loading photolisting',
+            imagesNotFound: 'No images were found for your request.',
+            photoNotFound: 'Sorry, no photo found',
+            failedUserStatistics: 'Failed to get user statistics. Try later again',
+            userNotFound: 'Sorry, user is not found',
+            authorizationFailed: 'An authorization failed. Try logging in later!',
+          },
         },
       },
       ru: {
@@ -43,8 +71,25 @@ i18n
           share: 'Поделиться',
           showAllTags: 'Показать все теги',
           allTags: 'Все теги',
+          userAvatar: 'Аватарка пользователя',
+          profileAvatar: 'Аватарка профиля',
+          profileDesc: 'Скачать бесплатные, красивые, высококачественные фотографии, выбранные пользователем ',
+          userTabs: {
+            myPhotos: 'Мои фотографии',
+            myLikes: 'Мои лайки',
+            myStatistic: 'Моя статистика',
+          },
+          chartsConfig: {
+            myDownloads: 'Мои скачивания',
+            myViews: 'Мои просмотры',
+            myLikes: 'Мои лайки',
+            seriesNameDownloads: 'Скачивания',
+            seriesNameViews: 'Просмотры',
+            seriesNameLikes: 'Лайки',
+            yAxisTitle: 'Количество',
+          },
           photoInfo: {
-            info: 'Информация',
+            info: 'Информация о фото',
             published: 'Опубликовано в',
             views: 'Просмотры',
             downloads: 'Скачивания',
@@ -57,6 +102,17 @@ i18n
             iso: 'ISO',
             dimensions: 'Размеры',
           },
+          errors: {
+            oops: 'Упс',
+            goBackHome: 'Вернуться на главную',
+            increasedNumberDownloads: 'Вы привысили число скачиваний за час. Попробуйте позже.',
+            errorLoadingPhotolisting: 'Ошибка загрузки фотолистинга',
+            imagesNotFound: 'По этому запросу картинок не найдено.',
+            photoNotFound: 'Извините, фото не найдено',
+            failedUserStatistics: 'Не удалось получить статистику пользователя. Попробуйте позже.',
+            userNotFound: 'Извините, пользователь не найден',
+            authorizationFailed: 'Авторизация не прошла',
+          },
         },
       },
     },
@@ -66,7 +122,7 @@ i18n
     // have a common namespace used around the full app
     ns: ['translations'],
     defaultNS: 'translations',
-    keySeparator: false, // we use content as keys
+    keySeparation: true, // we use content as keys
 
   });
 

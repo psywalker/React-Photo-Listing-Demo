@@ -7,6 +7,7 @@ import {
   Avatar,
   Tabs,
 } from 'antd';
+import { withTranslation } from 'react-i18next';
 import { userRequestAction } from '../../actions';
 import {
   Spinner,
@@ -31,6 +32,7 @@ export class User extends PureComponent {
       userPhoto,
       userFirstPhoto,
       requestError,
+      t,
     } = this.props;
     return (
       <div
@@ -47,7 +49,7 @@ export class User extends PureComponent {
                 <img
                   data-test="userAvatar"
                   className="user-card__first-img"
-                  alt="example"
+                  alt={t('userAvatar')}
                   src={userFirstPhoto}
                 />
                 <div
@@ -80,7 +82,7 @@ export class User extends PureComponent {
                     defaultActiveKey="1"
                   >
                     <TabPane
-                      tab="My photos"
+                      tab={t('userTabs.myPhotos')}
                       key="1"
                       className="user-tabs__pane"
                     >
@@ -92,7 +94,7 @@ export class User extends PureComponent {
                       />
                     </TabPane>
                     <TabPane
-                      tab="My likes"
+                      tab={t('userTabs.myLikes')}
                       key="2"
                       className="user-tabs__pane"
                     >
@@ -104,7 +106,7 @@ export class User extends PureComponent {
                       />
                     </TabPane>
                     <TabPane
-                      tab="My statistic"
+                      tab={t('userTabs.myStatistic')}
                       key="3"
                       className="user-tabs__pane"
                     >
@@ -122,7 +124,7 @@ export class User extends PureComponent {
         { !isUserFetching && requestError && (
           <Error
             data-test="photoError"
-            text="Sorry, user is not found"
+            text={t('userNotFound')}
           />
         )}
       </div>
@@ -142,6 +144,7 @@ User.propTypes = {
   match: PropTypes.shape({
     prop: PropTypes.string,
   }),
+  t: PropTypes.func,
 };
 User.defaultProps = {
   isUserFetching: true,
@@ -155,6 +158,7 @@ User.defaultProps = {
       id: '',
     },
   },
+  t: () => {},
 };
 
 export const mapStateToProps = (state) => {
@@ -166,7 +170,7 @@ const mapDispatchToProps = ({
   userRequestAction,
 });
 
-export default connect(
+export default withTranslation()(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(User);
+)(User));

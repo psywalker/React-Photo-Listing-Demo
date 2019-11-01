@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import i18n from '../../i18n';
 import { URL_FOR_ERROR_IMAGE } from '../../constants';
 import './index.scss';
 
@@ -22,7 +23,7 @@ const Error = memo(({ text, smallErrorFlag }) => (
           data-test="errorTitle"
           className="error__title"
         >
-          OOPS
+          { i18n.t('errors.oops') }
         </h3>
         <h2
           data-test="erroSubtitle"
@@ -36,7 +37,7 @@ const Error = memo(({ text, smallErrorFlag }) => (
             data-test="errorButton"
             style={{ marginLeft: '10px' }}
           >
-            BACK TO HOME
+            { i18n.t('errors.goBackHome') }
           </Button>
         </Link>
       </div>

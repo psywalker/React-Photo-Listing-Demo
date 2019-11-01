@@ -15,7 +15,7 @@ const Logo = memo(() => (
       <img
         className="logo__img"
         src={URL_FOR_LOGO}
-        alt="Logo"
+        alt="Images-Listing"
       />
     </Link>
   </div>
