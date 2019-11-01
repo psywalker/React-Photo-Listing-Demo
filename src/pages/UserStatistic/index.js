@@ -14,9 +14,20 @@ export class UserStatistic extends Component {
   }
 
   shouldComponentUpdate = (nextProps) => {
-    const { chartData: charDataPrev } = this.props;
-    const { chartData: charDataNext } = nextProps;
-    return JSON.stringify(charDataPrev) !== JSON.stringify(charDataNext);
+    const {
+      chartData: charDataPrev,
+      isListingLoading: isListingLoadingPrev,
+      requestError: requestErrorPrev,
+    } = this.props;
+    const {
+      chartData: charDataNext,
+      isListingLoading: isListingLoadingNext,
+      requestError: requestErrorNext,
+    } = nextProps;
+
+    return JSON.stringify(charDataPrev) !== JSON.stringify(charDataNext)
+    || isListingLoadingPrev !== isListingLoadingNext
+    || requestErrorPrev !== requestErrorNext;
   }
 
   render() {

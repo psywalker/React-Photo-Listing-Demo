@@ -19,7 +19,7 @@ const SelectLanguage = memo(() => {
       data-test="selectLanguage"
       className="language"
     >
-      <Select defaultValue={defaultValue} onChange={handleChange} menuItemSelectedIcon>
+      <Select defaultValue={defaultValue} onChange={handleChange}>
         <Option value="ru">
           <img className="language__img" src={URL_FOR_FLAG_RU} alt="Ru" />
         </Option>
