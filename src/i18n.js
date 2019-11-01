@@ -20,6 +20,11 @@ i18n
           userAvatar: 'User Avatar',
           profileAvatar: 'Profile avatar',
           profileDesc: 'Download free, beautiful high-quality photos curated by',
+          lang: {
+            title: 'Choose language',
+            ru: 'Russian',
+            en: 'English',
+          },
           userTabs: {
             myPhotos: 'My photos',
             myLikes: 'My Likes',
@@ -74,6 +79,11 @@ i18n
           userAvatar: 'Аватарка пользователя',
           profileAvatar: 'Аватарка профиля',
           profileDesc: 'Скачать бесплатные, красивые, высококачественные фотографии, выбранные пользователем ',
+          lang: {
+            title: 'Выберите язык',
+            ru: 'Русский',
+            en: 'Английский',
+          },
           userTabs: {
             myPhotos: 'Мои фотографии',
             myLikes: 'Мои лайки',

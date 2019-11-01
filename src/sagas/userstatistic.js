@@ -9,13 +9,13 @@ import i18next from 'i18next';
 import { URL_FOR_USER_STATISTIC } from '../constants';
 
 export const processResponse = (response) => {
-  const lang = i18next.language;
+  const isLangRu = i18next.language.includes('ru');
   const chartData = [
     get(response, 'data.downloads.historical.values', []),
     get(response, 'data.views.historical.values', []),
     get(response, 'data.likes.historical.values', []),
   ].map(config => ({
-    dates: lang === 'ru'
+    dates: isLangRu
       ? config.map(item => moment(new Date(item.date)).locale('ru', localRu).format('DD MMMM YYYY'))
       : config.map(item => moment(new Date(item.date)).locale('en', localEn).format('DD MMMM YYYY')),
     values: config.map(item => item.value),

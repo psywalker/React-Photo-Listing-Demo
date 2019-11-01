@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 import { Spinner, Error, HighchartsHOC } from '../../components';
 import { userStatistingRequestAction } from '../../actions';
 import './index.css';
@@ -23,6 +24,7 @@ export class UserStatistic extends Component {
       isListingLoading,
       requestError,
       chartData,
+      t,
     } = this.props;
 
     return (
@@ -54,7 +56,7 @@ export class UserStatistic extends Component {
         { !isListingLoading && requestError && (
           <Error
             data-test="error"
-            text="Failed to get user statistics. Try later again"
+            text={t('errors.failedUserStatistics')}
           />
         )}
       </div>
@@ -68,6 +70,7 @@ UserStatistic.propTypes = {
   userId: PropTypes.string,
   chartData: PropTypes.arrayOf(PropTypes.shape({})),
   requestError: PropTypes.bool,
+  t: PropTypes.func,
 };
 UserStatistic.defaultProps = {
   userStatistingRequestAction: () => {},
@@ -75,6 +78,7 @@ UserStatistic.defaultProps = {
   userId: '',
   chartData: [],
   requestError: false,
+  t: () => {},
 };
 
 export const mapStateToProps = (state) => {
@@ -86,7 +90,7 @@ const mapDispatchToProps = ({
   userStatistingRequestAction,
 });
 
-export default connect(
+export default withTranslation()(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UserStatistic);
+)(UserStatistic));

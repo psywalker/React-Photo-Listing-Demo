@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { ButtonBack } from '../index';
 import Logo from '../Logo';
 import DropdownLogin from '../DropdownLogin';
+import SelectLanguage from '../SelectLanguage';
 import Search from '../Search';
 import NavTop from '../NavTop';
 import getURLParam from '../../utils/getURLParam';
@@ -106,6 +107,7 @@ export const HeaderApp = withRouter(memo((props) => {
               />
             )}
           />
+          <SelectLanguage />
           <DropdownLogin
             profileName={profileName}
             profileFullName={profileFullName}

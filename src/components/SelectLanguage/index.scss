@@ -1,0 +1,24 @@
+.language {
+  margin-right: 8px;
+  transition: all .3s;
+  margin-left: auto;
+
+  &__img {
+    width: 25px;
+    position: relative;
+    top: -1px;
+  }
+  & .ant-select {
+    width: 50px;
+
+    & .ant-select-selection__rendered {
+      margin-right: 0;
+      margin-left: 2px;
+    }
+
+    & .ant-select-arrow {
+      right: 4px;
+      top: 52%;
+    }
+  }
+}
