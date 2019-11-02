@@ -1,18 +1,23 @@
 import React, { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 import { Select } from 'antd';
+import { useDispatch } from 'react-redux';
+import { updateChartsStart } from '../../actions';
 import { URL_FOR_FLAG_RU, URL_FOR_FLAG_EN } from '../../constants';
 import './index.scss';
 
 const { Option } = Select;
 
 const SelectLanguage = memo(() => {
-  const { t, i18n } = useTranslation();
-  const isLangRu = i18next.language.includes('ru');
+  const dispatch = useDispatch();
+  const userLang = window.navigator.language || window.navigator.userLanguage;
+  const isLangRu = userLang.includes('ru');
   const defaultValue = isLangRu ? 'ru' : 'en';
+  if (isLangRu) i18next.changeLanguage('ru');
+  else i18next.changeLanguage('en');
   const handleChange = (value) => {
-    i18n.changeLanguage(value);
+    i18next.changeLanguage(value);
+    dispatch(updateChartsStart());
   };
   return (
     <div

@@ -54,6 +54,8 @@ import {
   PHOTO_LIKE,
   PHOTO_UNLIKE,
   GET_PHOTO,
+  UPDATE_CHARTS_START,
+  UPDATE_CHARTS_END,
 } from './actionTypes';
 
 export {
@@ -106,4 +108,6 @@ export {
   PHOTO_UNLIKE,
   LIST_USER_LIKED_PHOTOS,
   GET_PHOTO,
+  UPDATE_CHARTS_START,
+  UPDATE_CHARTS_END,
 };

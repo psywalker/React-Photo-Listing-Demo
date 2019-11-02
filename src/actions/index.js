@@ -14,7 +14,19 @@ import {
   PHOTO_LIKE,
   PHOTO_UNLIKE,
   LIST_USER_LIKED_PHOTOS,
+  UPDATE_CHARTS_START,
+  UPDATE_CHARTS_END,
 } from '../constants';
+
+export const updateChartsStart = () => ({
+  type: UPDATE_CHARTS_START,
+  isChart: true,
+});
+
+export const updateChartsEnd = () => ({
+  type: UPDATE_CHARTS_END,
+  isChart: false,
+});
 
 export const logoutAction = () => ({
   type: LOGOUT,

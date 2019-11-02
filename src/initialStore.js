@@ -27,6 +27,9 @@ const initialStore = {
     chartData: [],
     requestError: false,
   },
+  charts: {
+    isChart: false,
+  },
   photo: {
     info: {
       lastUpdateInfo: '',

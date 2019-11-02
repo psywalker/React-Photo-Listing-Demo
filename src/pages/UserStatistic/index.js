@@ -7,37 +7,41 @@ import { userStatistingRequestAction } from '../../actions';
 import './index.css';
 
 export class UserStatistic extends Component {
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      chartData: [],
+    };
+  }
+
   componentDidMount = () => {
     const { userId } = this.props;
     const { userStatistingRequestAction: handleAction } = this.props;
     handleAction(userId);
   }
 
-  shouldComponentUpdate = (nextProps) => {
-    const {
-      chartData: charDataPrev,
-      isListingLoading: isListingLoadingPrev,
-      requestError: requestErrorPrev,
-    } = this.props;
-    const {
-      chartData: charDataNext,
-      isListingLoading: isListingLoadingNext,
-      requestError: requestErrorNext,
-    } = nextProps;
-
-    return JSON.stringify(charDataPrev) !== JSON.stringify(charDataNext)
-    || isListingLoadingPrev !== isListingLoadingNext
-    || requestErrorPrev !== requestErrorNext;
+  componentDidUpdate = (prevProps) => {
+    const { isChart: isChartPrev } = prevProps;
+    const { chartData: charDataNext, isChart: isChartNext } = this.props;
+    const { chartData } = this.state;
+    if (JSON.stringify(chartData) !== JSON.stringify(charDataNext)) {
+      this.setState({ chartData: charDataNext });
+    }
+    if (isChartPrev !== isChartNext) {
+      if (isChartNext) this.setState({ chartData: [...chartData] });
+    }
   }
 
   render() {
     const {
       isListingLoading,
       requestError,
-      chartData,
       t,
+      isChart,
     } = this.props;
-
+    const { chartData } = this.state;
+    const num = isChart ? 0 : 1;
+ 
     return (
       <div
         data-test="userStatistic"
@@ -51,6 +55,7 @@ export class UserStatistic extends Component {
         )}
         { !isListingLoading && !requestError && (
         <div
+          style={{ opacity: num }}
           data-test="userStatisticCharts"
           className="user-statistic__charts"
         >
@@ -78,6 +83,7 @@ export class UserStatistic extends Component {
 UserStatistic.propTypes = {
   userStatistingRequestAction: PropTypes.func,
   isListingLoading: PropTypes.bool,
+  isChart: PropTypes.bool,
   userId: PropTypes.string,
   chartData: PropTypes.arrayOf(PropTypes.shape({})),
   requestError: PropTypes.bool,
@@ -86,6 +92,7 @@ UserStatistic.propTypes = {
 UserStatistic.defaultProps = {
   userStatistingRequestAction: () => {},
   isListingLoading: false,
+  isChart: false,
   userId: '',
   chartData: [],
   requestError: false,
@@ -93,8 +100,8 @@ UserStatistic.defaultProps = {
 };
 
 export const mapStateToProps = (state) => {
-  const { userstatistic } = state;
-  return userstatistic;
+  const { userstatistic, charts } = state;
+  return { ...userstatistic, ...charts };
 };
 
 const mapDispatchToProps = ({
