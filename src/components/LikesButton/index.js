@@ -27,7 +27,7 @@ const LikesButton = memo(({ photoID }) => {
   const isPhotoID = window.localStorage.getItem(photoID);
   if (isPhotoID && !like) setLike(true);
 
-  const getContent = (
+  const renderContent = (
     likeBool,
     likesPhoto,
     colorBtn,
@@ -55,8 +55,8 @@ const LikesButton = memo(({ photoID }) => {
       data-test="likesButtonContainer"
       className="likes-button"
     >
-      { like && getContent(false, unlikePhoto, 'red', '#fff') }
-      { !like && getContent(true, likePhoto, '#fff', 'red') }
+      { like && renderContent(false, unlikePhoto, 'red', '#fff') }
+      { !like && renderContent(true, likePhoto, '#fff', 'red') }
     </div>
   );
 });
