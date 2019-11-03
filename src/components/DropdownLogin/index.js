@@ -19,7 +19,7 @@ const DropdownLogin = memo(({
   profileFullName,
 }) => {
   const { t } = useTranslation();
-  const generationButton = (className, href, onclick, datatest, text) => (
+  const renderButton = (className, href, onclick, datatest, text) => (
     <div>
       <Button
         data-test={datatest}
@@ -40,13 +40,12 @@ const DropdownLogin = memo(({
         component={() => (
           <Menu>
             <Menu.Item key="0">
-              { generationButton('btn-logout', null, handleLoguotHeader, 'btnLogout', t('logout')) }
+              { renderButton('btn-logout', null, handleLoguotHeader, 'btnLogout', t('logout')) }
             </Menu.Item>
           </Menu>
         )}
       />
       <Route
-        path="*"
         component={() => (
           <Menu>
             <Menu.Item key="1">
@@ -59,7 +58,7 @@ const DropdownLogin = memo(({
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item key="2">
-              { generationButton('btn-logout', null, handleLoguotHeader, 'btnLogout', t('logout')) }
+              { renderButton('btn-logout', null, handleLoguotHeader, 'btnLogout', t('logout')) }
             </Menu.Item>
           </Menu>
         )}
@@ -70,7 +69,7 @@ const DropdownLogin = memo(({
   const menuWithoutProfile = (
     <Menu>
       <Menu.Item key="3">
-        { generationButton('btn-login', URL_FOR_LOGIN, null, 'btnLogin', t('login')) }
+        { renderButton('btn-login', URL_FOR_LOGIN, null, 'btnLogin', t('login')) }
       </Menu.Item>
     </Menu>
   );
