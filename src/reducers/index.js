@@ -6,6 +6,7 @@ import photo from './photo';
 import user from './user';
 import smallphotolisting from './smallphotolisting';
 import charts from './charts';
+import lang from './lang';
 
 const allRedusers = combineReducers({
   login,
@@ -15,6 +16,7 @@ const allRedusers = combineReducers({
   user,
   smallphotolisting,
   charts,
+  lang,
 });
 
 export default allRedusers;

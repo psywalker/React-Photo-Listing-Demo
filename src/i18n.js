@@ -126,6 +126,9 @@ i18n
         },
       },
     },
+    detection: {
+      order: ['htmlTag', 'querystring', 'cookie', 'localStorage', 'navigator', 'path', 'subdomain'],
+    },
     fallbackLng: 'ru',
     debug: true,
 

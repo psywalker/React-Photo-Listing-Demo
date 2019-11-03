@@ -30,6 +30,7 @@ const initialStore = {
   charts: {
     isChart: false,
   },
+  lang: 'ru',
   photo: {
     info: {
       lastUpdateInfo: '',

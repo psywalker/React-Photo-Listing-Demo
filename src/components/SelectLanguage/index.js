@@ -1,30 +1,35 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import i18next from 'i18next';
 import { Select } from 'antd';
 import { useDispatch } from 'react-redux';
-import { updateChartsStart } from '../../actions';
-import { URL_FOR_FLAG_RU, URL_FOR_FLAG_EN } from '../../constants';
+import { changeLang } from '../../actions';
+import detectLang from '../../utils/detectLang';
+import {
+  URL_FOR_FLAG_RU,
+  URL_FOR_FLAG_EN,
+  INITIAL_LANG,
+} from '../../constants';
 import './index.scss';
 
 const { Option } = Select;
 
 const SelectLanguage = memo(() => {
   const dispatch = useDispatch();
-  const userLang = window.navigator.language || window.navigator.userLanguage;
-  const isLangRu = userLang.includes('ru');
-  const defaultValue = isLangRu ? 'ru' : 'en';
-  if (isLangRu) i18next.changeLanguage('ru');
-  else i18next.changeLanguage('en');
+  const lang = detectLang();
+
+  useEffect(() => {
+    if (INITIAL_LANG !== lang) dispatch(changeLang(lang));
+  }, [dispatch, lang]);
   const handleChange = (value) => {
     i18next.changeLanguage(value);
-    dispatch(updateChartsStart());
+    dispatch(changeLang(value));
   };
   return (
     <div
       data-test="selectLanguage"
       className="language"
     >
-      <Select defaultValue={defaultValue} onChange={handleChange}>
+      <Select defaultValue={lang} onChange={handleChange}>
         <Option value="ru">
           <img className="language__img" src={URL_FOR_FLAG_RU} alt="Ru" />
         </Option>

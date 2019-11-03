@@ -1,5 +1,6 @@
 import i18n from '../i18n';
 
+export const LAST_RENDERED_CHART = 2;
 export const INITIONAL_CHARTS_CONFIGS = (num) => {
   const arr = [
     {

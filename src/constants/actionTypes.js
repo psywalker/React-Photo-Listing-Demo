@@ -25,3 +25,6 @@ export const SEARCH_TEXT = 'SEARCH_TEXT';
 export const SEARCH_TEXT_CHANGE_INPUT_VALUE = 'SEARCH_TEXT_CHANGE_INPUT_VALUE';
 export const UPDATE_CHARTS_START = 'UPDATE_CHARTS_START';
 export const UPDATE_CHARTS_END = 'UPDATE_CHARTS_END';
+export const LANG_RU = 'LANG_RU';
+export const LANG_EN = 'LANG_EN';
+export const LANG = 'LANG';

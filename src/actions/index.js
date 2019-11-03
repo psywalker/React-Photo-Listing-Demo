@@ -16,7 +16,23 @@ import {
   LIST_USER_LIKED_PHOTOS,
   UPDATE_CHARTS_START,
   UPDATE_CHARTS_END,
+  LANG_RU,
+  LANG_EN,
+  LANG,
 } from '../constants';
+
+export const changeLang = lang => ({
+  type: LANG,
+  lang,
+});
+
+export const setLangRu = () => ({
+  type: LANG_RU,
+});
+
+export const setLangEn = () => ({
+  type: LANG_EN,
+});
 
 export const updateChartsStart = () => ({
   type: UPDATE_CHARTS_START,
