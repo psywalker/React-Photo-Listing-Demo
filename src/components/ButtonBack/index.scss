@@ -1,5 +1,7 @@
 .btn-back {
   margin-left: 7px;
   margin-top: 1px;
-  padding-left: 10px !important;
+  &.ant-btn {
+    padding-left: 10px;
+  }
 }

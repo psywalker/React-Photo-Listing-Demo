@@ -1,6 +1,7 @@
 .likes-button {
-  &__btn {
-    padding: 0 10px !important;
+
+  .ant-btn.likes-button__btn {
+    padding: 0 10px;
 
     &:hover {
       opacity: .9;

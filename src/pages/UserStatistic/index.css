@@ -10,22 +10,3 @@
 .user-statistic__chart-wrap {
     margin: 0 0 50px;
 }
-/*.user-statistic-chart__series_downloads path {
-    fill: rgba(255, 0, 255, .5) !important;
-    stroke: rgba(255, 0, 255, .5) !important;
-    stroke-width: 2px;
-}
-.highcharts-markers.user-statistic-chart__series_downloads path,
-.highcharts-legend-item.user-statistic-chart__series_downloads path {
-    fill: rgba(255, 0, 255, .5) !important;
-}
-
-
-.user-statistic-chart__series_views path {
-    stroke: orange !important;
-    stroke-width: 2px;
-}
-.user-statistic-chart__series_likes path {
-    stroke: lime !important;
-    stroke-width: 2px;
-}*/

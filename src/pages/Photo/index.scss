@@ -9,7 +9,7 @@
 
 	& .ant-card-extra,
 	& .ant-card-head-title {
-		padding: 10px 0 !important;
+		padding: 10px 0;
 	}
 
 	&-twitter {
@@ -93,11 +93,11 @@
 		&__tags {
 			position: relative;
 			& .ant-btn {
-				margin-left: 0px !important;
+				margin-left: 0px;
 			}
 			@media screen and ( min-width: 0px ) and ( max-width: 400px ) {
 				& .ant-btn {
-					margin-left: 3px !important;
+					margin-left: 3px;
 				}
 			}
 		}
@@ -110,7 +110,7 @@
 		margin: 0 16px;
 	}
 	.ant-tag {
-		margin-bottom: 8px !important;
+		margin-bottom: 8px;
 		cursor: pointer;
 	}
 }

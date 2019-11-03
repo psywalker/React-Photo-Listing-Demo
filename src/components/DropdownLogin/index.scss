@@ -5,9 +5,9 @@
     opacity: .8;
   }
 }
-.ant-menu,
-.ant-dropdown-menu {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+.ant-dropdown > .ant-menu.ant-menu-root.ant-menu-vertical,
+.ant-dropdown > .ant-dropdown-menu.ant-menu-root.ant-menu-vertical {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.ant-menu-item:not(:last-child) { margin-bottom: 0 !important; }
+.ant-dropdown .ant-menu-vertical .ant-menu-item:not(:last-child) { margin-bottom: 0; }

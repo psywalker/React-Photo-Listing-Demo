@@ -1,6 +1,6 @@
 .download-button {
-  &__btn {
-    padding: 0 10px !important;
+  &__btn.ant-btn {
+    padding: 0 10px;
 
     & span {
       margin-left: 0;

@@ -202,7 +202,6 @@ export class Photo extends Component {
                     >
                       <Button
                         data-test="photoPopoverButton"
-                        style={{ marginLeft: '10px' }}
                         href="#"
                       >
                         <Icon
@@ -220,7 +219,6 @@ export class Photo extends Component {
                 >
                   <Button
                     data-test="photoFooterBtnsBtn"
-                    style={{ marginLeft: '10px' }}
                     href="#"
                   >
                     <Icon type="share-alt" />
