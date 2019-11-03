@@ -203,12 +203,13 @@ export class Photo extends Component {
                       <Button
                         data-test="photoPopoverButton"
                         href="#"
+                        className="photoPopoverButton"
                       >
                         <Icon
                           type="tag"
                           data-test="photoPopoverButtonIcon"
                         />
-                        { t('showAllTags') }
+                        <span className="photoPopoverButton__text">{ t('showAllTags') }</span>
                       </Button>
                     </Popover>
                   )}
@@ -220,9 +221,10 @@ export class Photo extends Component {
                   <Button
                     data-test="photoFooterBtnsBtn"
                     href="#"
+                    className="photoFooterBtnsBtn"
                   >
                     <Icon type="share-alt" />
-                    { t('share') }
+                    <span className="photoFooterBtnsBtn__text">{ t('share') }</span>
                   </Button>
                   <InfoPhotoModal
                     data-test="photoInfoPhotoModal"

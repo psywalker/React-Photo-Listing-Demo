@@ -102,6 +102,34 @@
 			}
 		}
 	}
+
+	@media screen and ( min-width: 0px ) and ( max-width: 740px ) {
+		& .download-button {
+			&__text {
+				display: none;
+			}	
+		}
+
+		& .openModalBtn {
+			padding: 0 10px;
+			&__text {
+				display: none;
+			}	
+		}
+		& .photoFooterBtnsBtn {
+			padding: 0 10px;
+			&__text {
+				display: none;
+			}	
+		}
+		& .photoPopoverButton {
+			padding: 0 10px;
+			&__text {
+				display: none;
+			}	
+		}
+	}
+
 }
 
 .ant-popover {

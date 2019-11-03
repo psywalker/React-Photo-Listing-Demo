@@ -19,12 +19,13 @@ const InfoPhotoModal = memo(({ ...props }) => {
         data-test="openModalBtn"
         style={{ marginLeft: '10px' }}
         onClick={openModal}
+        className="openModalBtn"
       >
         <Icon
           data-test="openModalBtnIcon"
           type="info-circle"
         />
-        { t('photoInfo.views') }
+        <span className="openModalBtn__text">{ t('photoInfo.views') }</span>
       </Button>
       <Modal
         data-test="modal"
