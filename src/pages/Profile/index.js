@@ -34,8 +34,7 @@ export class Profile extends PureComponent {
 
   componentDidMount = () => {
     const localStorageloginData = getLoginData();
-    const { profilePhotoUrl } = this.props;
-    if (!profilePhotoUrl || !localStorageloginData) {
+    if (!localStorageloginData) {
       const { loadingRequestAction: handleAction } = this.props;
       handleAction(window.document.location);
     }
@@ -54,20 +53,14 @@ export class Profile extends PureComponent {
   }
 
   handleLoguotProfile = () => {
-    const { history, logoutAction: handleAction } = this.props;
+    const { logoutAction: handleAction } = this.props;
     handleAction();
-    window.localStorage.removeItem('token');
-    history.push('/');
   };
 
   render() {
     const {
       fetching,
       loginError,
-      // profilePhotoUrl,
-      // profileFullName,
-      // profileEmail,
-      // profileName,
       t,
     } = this.props;
     const {

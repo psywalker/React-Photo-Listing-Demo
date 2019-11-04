@@ -16,6 +16,7 @@ const PhotoCard = memo(({
   const localStorageloginData = getLoginData();
   const login = useSelector(state => state.login);
   const { profileName } = login;
+
   return (
     <li className="photo-card-list-item photo-card-list__item">
 

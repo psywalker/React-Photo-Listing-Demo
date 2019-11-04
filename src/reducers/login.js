@@ -22,7 +22,10 @@ const login = (state = initialStore, action = {}) => {
         loginError: true,
       };
     case 'LOGOUT':
-      return initialStore.login;
+      return {
+        ...state,
+        ...initialStore.login,
+      };
     default:
       return state;
   }
