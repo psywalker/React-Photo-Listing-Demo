@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { LastLocationProvider } from 'react-router-last-location';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { BackTop, Icon } from 'antd';
 import {
   Photo,
   User,
@@ -17,6 +18,9 @@ const Main = memo(() => (
     <LastLocationProvider>
       <HeaderApp />
       <div className="page">
+        <BackTop>
+          <div className="ant-back-top-inner"><Icon type="arrow-up" /></div>
+        </BackTop>
         <Switch>
           <Route exact path="/" component={props => <HomeHOC {...props} />} />
           <Route path="/photo/:id" component={props => <Photo {...props} />} />
