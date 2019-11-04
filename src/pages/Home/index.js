@@ -64,6 +64,12 @@ export default class Home extends PureComponent {
     return this.getCardsPhotos();
   };
 
+  handleUrl = (str) => {
+    const { history: { push } } = this.props;
+    const newUrl = `?search=${str}`;
+    push(newUrl, {});
+  }
+
   getCardsPhotos = () => {
     const { cardsData, handleСardsPhotosAction } = this.props;
     handleСardsPhotosAction(cardsData);

@@ -1,6 +1,10 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
+import {
+  isTablet,
+  isMobile
+} from 'react-device-detect';
 import Masonry from 'react-masonry-component';
 import PhotoCard from './PhotoCard';
 import SpinnerPhotoCard from '../SpinnerPhotoCard';
@@ -22,7 +26,7 @@ const PhotoCardList = memo(({
     hasMore={totalCards > cards.length}
   >
     <Masonry
-      className="photo-card-list"
+      className={`photo-card-list ${isTablet || isMobile ? 'photo-card-list_theme_mobile' : ''}`}
       elementType="ul"
       disableImagesLoaded={false}
       updateOnEachImageLoad={false}

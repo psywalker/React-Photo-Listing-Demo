@@ -43,6 +43,31 @@
     display: none;
   }
 
+  &.photo-card-list_theme_mobile {
+    & .photo-card-list__autor,
+    & .photo-card-list__tags,
+    & .photo-card-list__desc,
+    & .download-button,
+    & .likes-button {
+      color: #000;
+      display: block;
+      position: static;
+    }
+
+    & .photo-card-list__autor {
+      & .photo-card-autor__name {
+        color: #000;
+      }
+    }
+
+    & .photo-card-list__tags {
+      & .tag {
+        color: #fff;
+        background: #000;
+      }
+    }
+  }
+
   &__item {
     position: relative;
     width: calc(100%/3 - 10px);
@@ -62,6 +87,19 @@
       & .download-button,
       & .likes-button {
         display: block;
+      }
+    }
+  }
+
+  &.photo-card-list_theme_mobile {
+    & .photo-card-list__item {
+      margin-bottom: 0;
+      & .photo-card-list__header,
+      & .photo-card-list__footer {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
     }
   }

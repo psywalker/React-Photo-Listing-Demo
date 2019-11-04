@@ -19,14 +19,15 @@ const PhotoCard = memo(({
 
   return (
     <li className="photo-card-list-item photo-card-list__item">
+      <header className="photo-card-list__header">
+        <PhotoCardAutor
+          userID={item.userID}
+          userAvatar={item.userAvatar}
+          title={item.title}
+        />
 
-      <PhotoCardAutor
-        userID={item.userID}
-        userAvatar={item.userAvatar}
-        title={item.title}
-      />
-
-      { (localStorageloginData || profileName) && <LikesButton photoID={item.photoID} /> }
+        { (localStorageloginData || profileName) && <LikesButton photoID={item.photoID} /> }
+      </header>
 
       <PhotoCardImg
         photoID={item.photoID}
@@ -34,17 +35,18 @@ const PhotoCard = memo(({
         photoName={item.photoName}
       />
 
-      <PhotoCardTags
-        onSearchTagValue={onSearchTagValue}
-        tags={item.tags}
-      />
+      <footer className="photo-card-list__footer">
+        <PhotoCardTags
+          onSearchTagValue={onSearchTagValue}
+          tags={item.tags}
+        />
 
-      <DownLoadButton
-        altDescriprion={item.photoAltDesc}
-        photoDesc={item.photoDesc}
-        photoSrc={item.photoName}
-      />
-
+        <DownLoadButton
+          altDescriprion={item.photoAltDesc}
+          photoDesc={item.photoDesc}
+          photoSrc={item.photoName}
+        />
+      </footer>
     </li>
   );
 });

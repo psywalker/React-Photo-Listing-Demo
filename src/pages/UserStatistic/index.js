@@ -23,9 +23,11 @@ export class UserStatistic extends Component {
     const { chartData } = this.state;
 
     if (JSON.stringify(chartData) !== JSON.stringify(charDataNext)) {
+      // The very first download of data for charts
       return this.setState({ chartData: charDataNext });
     }
     if (langPrev !== langNext) {
+      // All subsequent data downloads for charts. The status should be updated.
       return this.setState({ chartData: [...chartData] });
     }
 
