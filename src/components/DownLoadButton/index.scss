@@ -1,4 +1,7 @@
 .download-button {
+  &__popover {
+    
+  }
   &__btn.ant-btn {
     padding: 0 10px;
 
@@ -12,5 +15,13 @@
   &__text {
     margin-left: 5px;
     display: inline;
+  }
+}
+
+.download-sizes {
+  margin-left: -5px;
+  &__btn.ant-btn {
+    margin-left: 5px;
+    margin-bottom: 5px;
   }
 }

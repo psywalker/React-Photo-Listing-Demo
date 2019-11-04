@@ -20,6 +20,13 @@ export const processResponse = (response) => {
       width: get(response, 'data.width', 300),
       height: get(response, 'data.height', 300),
     },
+    photoUrlSizes: [
+      get(response, 'data.urls.thumb', ''),
+      get(response, 'data.urls.small', ''),
+      get(response, 'data.urls.regular', ''),
+      get(response, 'data.urls.raw', ''),
+      get(response, 'data.urls.full', ''),
+    ],
     userFirstName: get(response, 'data.user.first_name', ''),
     userLastName: get(response, 'data.user.last_name', ''),
     userName: get(response, 'data.user.username', ''),

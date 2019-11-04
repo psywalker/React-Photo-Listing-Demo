@@ -74,6 +74,7 @@ export class Photo extends Component {
       requestError,
       isSuccessPhotoRequest,
       photoImageLoadAction: photoLoadAction,
+      photoUrlSizes,
       t,
     } = this.props;
     const photoSize = { width: photoWidth, height: photoHeight };
@@ -132,6 +133,8 @@ export class Photo extends Component {
                 altDescriprion={altDescriprion}
                 photoSrc={photoSrc}
                 textButton={t('download')}
+                photoUrlSizes={photoUrlSizes}
+                placement="bottom"
               />
             )}
             style={{

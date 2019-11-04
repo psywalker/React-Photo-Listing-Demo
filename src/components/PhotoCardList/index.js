@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
 import {
   isTablet,
-  isMobile
+  isMobile,
 } from 'react-device-detect';
 import Masonry from 'react-masonry-component';
 import PhotoCard from './PhotoCard';

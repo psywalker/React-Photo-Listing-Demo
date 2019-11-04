@@ -45,6 +45,8 @@ const PhotoCard = memo(({
           altDescriprion={item.photoAltDesc}
           photoDesc={item.photoDesc}
           photoSrc={item.photoName}
+          photoUrlSizes={item.photoUrlSizes}
+          placement="top"
         />
       </footer>
     </li>

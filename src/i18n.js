@@ -20,6 +20,7 @@ i18n
           userAvatar: 'User Avatar',
           profileAvatar: 'Profile avatar',
           profileDesc: 'Download free, beautiful high-quality photos curated by',
+          changePhotoSize: 'Change size',
           lang: {
             title: 'Choose language',
             ru: 'Russian',
@@ -53,6 +54,13 @@ i18n
             iso: 'ISO',
             dimensions: 'Dimensions',
           },
+          photoSizeNames: {
+            thumb: 'Thumb',
+            small: 'Small',
+            regular: 'Regular',
+            raw: 'Big',
+            full: 'Full',
+          },
           errors: {
             oops: 'OOPS',
             goBackHome: 'BACK TO HOME',
@@ -79,6 +87,7 @@ i18n
           userAvatar: 'Аватарка пользователя',
           profileAvatar: 'Аватарка профиля',
           profileDesc: 'Скачать бесплатные, красивые, высококачественные фотографии, выбранные пользователем ',
+          changePhotoSize: 'Выбрать размер',
           lang: {
             title: 'Выберите язык',
             ru: 'Русский',
@@ -111,6 +120,13 @@ i18n
             shutterSpeed: 'Скорость затвора',
             iso: 'ISO',
             dimensions: 'Размеры',
+          },
+          photoSizeNames: {
+            thumb: 'Крошечный',
+            small: 'Малый',
+            regular: 'Средний',
+            raw: 'Большой',
+            full: 'Огромный',
           },
           errors: {
             oops: 'Упс',

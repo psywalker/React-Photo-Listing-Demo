@@ -70,6 +70,7 @@ PhotoCardTags.propTypes = {
 PhotoCardTags.defaultProps = {
   onSearchTagValue: () => {},
   tags: [],
+  photoUrlSizes: [],
 };
 
 export default PhotoCardTags;
