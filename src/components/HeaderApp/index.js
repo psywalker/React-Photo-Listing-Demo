@@ -10,6 +10,7 @@ import SelectLanguage from '../SelectLanguage';
 import Search from '../Search';
 import NavTop from '../NavTop';
 import getURLParam from '../../utils/getURLParam';
+import getLoginData from '../../utils/getLoginData';
 import { NAV_TOP_ITEM_ACTIVE_DEFAULT, QUERY_TEXT_DEFAULT } from '../../constants';
 import {
   logoutAction,
@@ -32,10 +33,20 @@ export const HeaderApp = withRouter(memo((props) => {
     filters,
     cardsData,
   } = props;
-
+  
+  let loginData = {
+    profileName,
+    profilePhotoUrl,
+    profileFullName,
+  };
+  const localStorageloginData = getLoginData();
+  if (!profileName && localStorageloginData) {
+    loginData = { ...localStorageloginData };
+  }
   const handleLoguotHeader = () => {
     handleAction();
     window.localStorage.removeItem('token');
+    window.localStorage.removeItem('loginData');
     history.push('/');
   };
   const getDataSearch = () => {
@@ -109,9 +120,9 @@ export const HeaderApp = withRouter(memo((props) => {
           />
           <SelectLanguage />
           <DropdownLogin
-            profileName={profileName}
-            profileFullName={profileFullName}
-            profilePhotoUrl={profilePhotoUrl}
+            profileName={loginData.profileName}
+            profileFullName={loginData.profileFullName}
+            profilePhotoUrl={loginData.profilePhotoUrl}
             handleLoguotHeader={handleLoguotHeader}
           />
         </div>

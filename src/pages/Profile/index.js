@@ -5,15 +5,52 @@ import { connect } from 'react-redux';
 import { loadingRequestAction, logoutAction } from '../../actions';
 import { Spinner, Error } from '../../components';
 import setScrollX from '../../utils/setScrollX';
+import getLoginData from '../../utils/getLoginData';
 import './index.scss';
 
 export class Profile extends PureComponent {
+  constructor(...args) {
+    super(...args);
+    const {
+      profilePhotoUrl,
+      profileFullName,
+      profileEmail,
+      profileName,
+    } = this.props;
+
+    let loginData = {
+      profilePhotoUrl,
+      profileFullName,
+      profileEmail,
+      profileName,
+    };
+    const localStorageloginData = getLoginData();
+    if (!profileName && localStorageloginData) {
+      loginData = { ...localStorageloginData };
+    }
+
+    this.state = { ...loginData };
+  }
+
   componentDidMount = () => {
+    const localStorageloginData = getLoginData();
     const { profilePhotoUrl } = this.props;
-    if (!profilePhotoUrl) {
+    if (!profilePhotoUrl || !localStorageloginData) {
       const { loadingRequestAction: handleAction } = this.props;
       handleAction(window.document.location);
     }
+  }
+
+  componentDidUpdate = (prevProps) => {
+    const localStorageloginData = getLoginData();
+    const { profilePhotoUrl: profilePhotoUrlPrev } = prevProps;
+    const { profilePhotoUrl: profilePhotoUrlNext } = this.props;
+
+    if (profilePhotoUrlPrev !== profilePhotoUrlNext) {
+      return this.setState({ ...localStorageloginData });
+    }
+
+    return false;
   }
 
   handleLoguotProfile = () => {
@@ -27,12 +64,18 @@ export class Profile extends PureComponent {
     const {
       fetching,
       loginError,
+      // profilePhotoUrl,
+      // profileFullName,
+      // profileEmail,
+      // profileName,
+      t,
+    } = this.props;
+    const {
       profilePhotoUrl,
       profileFullName,
       profileEmail,
       profileName,
-      t,
-    } = this.props;
+    } = this.state;
     setScrollX(0);
     return (
       <div

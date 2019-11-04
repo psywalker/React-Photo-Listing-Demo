@@ -33,6 +33,8 @@ export const api = {
 export function* fetchLoginData(token) {
   try {
     const dataForProps = yield call(api.getProfile, token);
+    const loginData = { token, ...dataForProps };
+    window.localStorage.setItem('loginData', JSON.stringify(loginData));
     yield put({ type: 'LOGIN_SUCCESS', dataForProps });
   } catch {
     yield put({ type: 'LOGIN_ERROR' });

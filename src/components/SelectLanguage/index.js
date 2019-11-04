@@ -15,7 +15,12 @@ const { Option } = Select;
 
 const SelectLanguage = memo(() => {
   const dispatch = useDispatch();
-  const lang = detectLang();
+  let lang = detectLang();
+  const langLocalStorage = window.localStorage.getItem('lang');
+  if (langLocalStorage && langLocalStorage !== lang) {
+    lang = langLocalStorage;
+    i18next.changeLanguage(langLocalStorage);
+  }
 
   useEffect(() => {
     if (INITIAL_LANG !== lang) dispatch(changeLang(lang));
@@ -23,6 +28,7 @@ const SelectLanguage = memo(() => {
   const handleChange = (value) => {
     i18next.changeLanguage(value);
     dispatch(changeLang(value));
+    window.localStorage.setItem('lang', value);
   };
   return (
     <div

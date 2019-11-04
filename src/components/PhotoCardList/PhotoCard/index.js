@@ -1,17 +1,19 @@
 import React, { memo } from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import PhotoCardImg from '../PhotoCardImg';
 import PhotoCardTags from '../PhotoCardTags';
 import PhotoCardAutor from '../PhotoCardAutor';
 import LikesButton from '../../LikesButton';
 import DownLoadButton from '../../DownLoadButton';
+import getLoginData from '../../../utils/getLoginData';
 import './index.scss';
 
 const PhotoCard = memo(({
   onSearchTagValue,
   item,
 }) => {
+  const localStorageloginData = getLoginData();
   const login = useSelector(state => state.login);
   const { profileName } = login;
   return (
@@ -23,7 +25,7 @@ const PhotoCard = memo(({
         title={item.title}
       />
 
-      { profileName && <LikesButton photoID={item.photoID} /> }
+      { (localStorageloginData || profileName) && <LikesButton photoID={item.photoID} /> }
 
       <PhotoCardImg
         photoID={item.photoID}
