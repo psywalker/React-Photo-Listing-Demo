@@ -135,6 +135,8 @@ export class Photo extends Component {
                 textButton={t('download')}
                 photoUrlSizes={photoUrlSizes}
                 placement="bottom"
+                title={userFirstName}
+                userID={userName}
               />
             )}
             style={{
@@ -275,6 +277,10 @@ Photo.propTypes = {
     prop: PropTypes.string,
   }),
   t: PropTypes.func,
+  photoUrlSizes: PropTypes.arrayOf(PropTypes.shape({
+    url: PropTypes.string,
+    value: PropTypes.string,
+  })),
 };
 Photo.defaultProps = {
   photoImageLoadAction: () => {},
@@ -296,6 +302,7 @@ Photo.defaultProps = {
   match: {},
   history: {},
   t: () => {},
+  photoUrlSizes: {},
 };
 
 export const mapStateToProps = (state) => {

@@ -21,6 +21,8 @@ i18n
           profileAvatar: 'Profile avatar',
           profileDesc: 'Download free, beautiful high-quality photos curated by',
           changePhotoSize: 'Change size',
+          photoBy: 'Photo by',
+          photoOn: 'on',
           lang: {
             title: 'Choose language',
             ru: 'Russian',
@@ -88,6 +90,8 @@ i18n
           profileAvatar: 'Аватарка профиля',
           profileDesc: 'Скачать бесплатные, красивые, высококачественные фотографии, выбранные пользователем ',
           changePhotoSize: 'Выбрать размер',
+          photoBy: 'Фотография ',
+          photoOn: 'на',
           lang: {
             title: 'Выберите язык',
             ru: 'Русский',

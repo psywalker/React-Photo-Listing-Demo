@@ -21,11 +21,26 @@ export const processResponse = (response) => {
       height: get(response, 'data.height', 300),
     },
     photoUrlSizes: [
-      get(response, 'data.urls.thumb', ''),
-      get(response, 'data.urls.small', ''),
-      get(response, 'data.urls.regular', ''),
-      get(response, 'data.urls.raw', ''),
-      get(response, 'data.urls.full', ''),
+      {
+        url: get(response, 'data.urls.thumb', ''),
+        value: 'photoSizeNames.thumb',
+      },
+      {
+        url: get(response, 'data.urls.small', ''),
+        value: 'photoSizeNames.small',
+      },
+      {
+        url: get(response, 'data.urls.regular', ''),
+        value: 'photoSizeNames.regular',
+      },
+      {
+        url: get(response, 'data.urls.raw', ''),
+        value: 'photoSizeNames.raw',
+      },
+      {
+        url: get(response, 'data.urls.full', ''),
+        value: 'photoSizeNames.full',
+      },
     ],
     userFirstName: get(response, 'data.user.first_name', ''),
     userLastName: get(response, 'data.user.last_name', ''),

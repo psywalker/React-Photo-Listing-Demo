@@ -1,0 +1,16 @@
+.download-sizes {
+  margin-left: -5px;
+  &__btn.ant-btn {
+    margin-left: 5px;
+    margin-bottom: 5px;
+  }
+}
+.credit {
+  padding-left: 5px;
+}
+
+.download-button-popover.ant-popover {
+  .ant-popover-content > .ant-popover-arrow {
+    display: none;
+  }
+}

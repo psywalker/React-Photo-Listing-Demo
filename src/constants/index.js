@@ -2,7 +2,6 @@ import {
   NAV_TOP_ITEM_ACTIVE_DEFAULT,
   QUERY_TEXT_DEFAULT,
   INITIAL_LANG,
-  PHOTO_SIZE_NAMES,
 } from './defaults';
 
 import {
@@ -124,5 +123,4 @@ export {
   LANG_RU,
   LANG,
   INITIAL_LANG,
-  PHOTO_SIZE_NAMES,
 };

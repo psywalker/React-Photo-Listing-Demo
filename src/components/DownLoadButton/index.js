@@ -1,14 +1,10 @@
 import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { saveAs } from 'file-saver';
-import { useTranslation } from 'react-i18next';
 import {
   Button,
   Icon,
-  Popover,
 } from 'antd';
-import handleDowloadPhoto from '../../utils/handleDowloadPhoto';
-import { PHOTO_SIZE_NAMES } from '../../constants';
+import DownloadSizesPopover from '../DownloadSizesPopover';
 import './index.scss';
 
 const DownLoadButton = memo(({
@@ -17,53 +13,39 @@ const DownLoadButton = memo(({
   placement,
   textButton = null,
   photoUrlSizes,
+  userID,
+  title,
 }) => {
-  const [popupVisible, setPopupVisible] = useState(false);
-  const { t } = useTranslation();
-  const downLoadPhoto = (url) => {
-    const photoName = handleDowloadPhoto(altDescriprion, photoDesc);
-    saveAs(url, photoName);
+  const [buttonVisible, setButtonVisible] = useState(false);
+  const containerStyle = {
+    display: buttonVisible ? 'block' : null,
   };
-
-  const handleVisibleChange = (visible) => {
-    setPopupVisible(visible);
+  const handleVisibleButtonChangeFalse = () => {
+    setButtonVisible(false);
   };
-  const hidePopover = () => {
-    setPopupVisible(false);
+  const handleVisibleButtonChange = () => {
+    setButtonVisible(!buttonVisible);
   };
   return (
     <div
       data-test="downloadButtonContainer"
       className="download-button"
+      style={containerStyle}
     >
-      <Popover
-        className="download-button__popover"
-        data-test="photoCardPopover"
+      <DownloadSizesPopover
+        photoUrlSizes={photoUrlSizes}
+        userID={userID}
+        title={title}
+        altDescriprion={altDescriprion}
+        photoDesc={photoDesc}
         placement={placement}
-        title={t('changePhotoSize')}
-        visible={popupVisible}
-        onVisibleChange={handleVisibleChange}
-        content={(
-          <div className="download-button__popup download-sizes">
-            { photoUrlSizes.map((item, i) => (
-              <Button
-                className="download-sizes__btn"
-                size="small"
-                onClick={() => { 
-                  downLoadPhoto(item);
-                  hidePopover();
-                }}
-              >
-                {t(`photoSizeNames.${PHOTO_SIZE_NAMES[i]}`)}
-              </Button>
-            ))}
-          </div>
-        )}
-        trigger="click"
+        textButton={textButton}
+        handleVisibleButtonChangeFalse={handleVisibleButtonChangeFalse}
       >
         <Button
           data-test="downloadButton"
           className="download-button__btn"
+          onClick={handleVisibleButtonChange}
         >
           <Icon
             data-test="downloadButtonIcon"
@@ -72,24 +54,31 @@ const DownLoadButton = memo(({
           />
           { textButton && <div className="download-button__text">{ textButton }</div> }
         </Button>
-      </Popover>
+      </DownloadSizesPopover>
     </div>
   );
 });
 
 DownLoadButton.propTypes = {
+  userID: PropTypes.string,
+  title: PropTypes.string,
   altDescriprion: PropTypes.string,
   photoDesc: PropTypes.string,
   placement: PropTypes.string,
   textButton: PropTypes.string,
-  photoUrlSizes: PropTypes.arrayOf(PropTypes.string),
+  photoUrlSizes: PropTypes.arrayOf(PropTypes.shape({
+    url: PropTypes.string,
+    value: PropTypes.string,
+  })),
 };
 DownLoadButton.defaultProps = {
+  userID: '',
+  title: '',
   altDescriprion: '',
   photoDesc: '',
   placement: '',
   textButton: '',
-  photoUrlSizes: [],
+  photoUrlSizes: {},
 };
 
 export default DownLoadButton;

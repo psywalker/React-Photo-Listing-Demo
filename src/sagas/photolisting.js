@@ -6,11 +6,26 @@ import { URL_FOR_CARDS_PHOTOS } from '../constants';
 export const processResponse = (response) => {
   const cards = get(response, 'data.results', []).map(item => ({
     photoUrlSizes: [
-      get(item, 'urls.thumb', ''),
-      get(item, 'urls.small', ''),
-      get(item, 'urls.regular', ''),
-      get(item, 'urls.raw', ''),
-      get(item, 'urls.full', ''),
+      {
+        url: get(item, 'urls.thumb', ''),
+        value: 'photoSizeNames.thumb',
+      },
+      {
+        url: get(item, 'urls.small', ''),
+        value: 'photoSizeNames.small',
+      },
+      {
+        url: get(item, 'urls.regular', ''),
+        value: 'photoSizeNames.regular',
+      },
+      {
+        url: get(item, 'urls.raw', ''),
+        value: 'photoSizeNames.raw',
+      },
+      {
+        url: get(item, 'urls.full', ''),
+        value: 'photoSizeNames.full',
+      },
     ],
     photoName: get(item, 'urls.regular', ''),
     photoDesc: item.description !== null ? item.description : '',
