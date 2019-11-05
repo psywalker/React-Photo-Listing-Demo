@@ -6,6 +6,7 @@ import {
   PHOTO_IMAGE_LOAD,
   USER_STATISTIC_FETCHING,
   LOGIN_FETCHING,
+  LOGIN_SUCCESS,
   CARDS_PHOTOS_FETCHING,
   PAGINATION_CHANGE,
   FILTER_ITEM_VALUE,
@@ -98,6 +99,10 @@ export const loadingRequestAction = location => ({
   type: LOGIN_FETCHING,
   fetching: true,
   location,
+});
+export const loginSuccess = action => ({
+  type: LOGIN_SUCCESS,
+  dataForProps: action.loginData,
 });
 
 export const cardsPhotosRequestAction = cardsData => ({
