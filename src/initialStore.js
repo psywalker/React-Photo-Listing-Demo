@@ -8,6 +8,7 @@ const initialStore = {
     profileEmail: '',
     fetching: false,
     loginError: false,
+    token: '',
   },
   photolisting: {
     filters,

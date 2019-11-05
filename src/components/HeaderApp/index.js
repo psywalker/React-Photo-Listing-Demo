@@ -17,6 +17,7 @@ import {
   searchTextAction,
   searchChangeInputValueAction,
   filterItemValueAction,
+  loginSuccess,
 } from '../../actions';
 import './index.scss';
 
@@ -27,6 +28,7 @@ export const HeaderApp = withRouter(memo((props) => {
     profilePhotoUrl,
     profileFullName,
     logoutAction: handleAction,
+    loginSuccess,
     searchTextAction,
     searchChangeInputValueAction,
     filterItemValueAction,
@@ -34,14 +36,10 @@ export const HeaderApp = withRouter(memo((props) => {
     cardsData,
   } = props;
   
-  let loginData = {
-    profileName,
-    profilePhotoUrl,
-    profileFullName,
-  };
   const localStorageloginData = getLoginData();
   if (!profileName && localStorageloginData) {
-    loginData = { ...localStorageloginData };
+    const loginData = { ...localStorageloginData };
+    loginSuccess(loginData);
   }
   const handleLoguotHeader = () => {
     handleAction();
@@ -120,9 +118,9 @@ export const HeaderApp = withRouter(memo((props) => {
           />
           <SelectLanguage />
           <DropdownLogin
-            profileName={loginData.profileName}
-            profileFullName={loginData.profileFullName}
-            profilePhotoUrl={loginData.profilePhotoUrl}
+            profileName={profileName}
+            profileFullName={profileFullName}
+            profilePhotoUrl={profilePhotoUrl}
             handleLoguotHeader={handleLoguotHeader}
           />
         </div>
@@ -170,6 +168,7 @@ export const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
+  loginSuccess,
   logoutAction,
   searchTextAction,
   searchChangeInputValueAction,

@@ -102,7 +102,7 @@ export const loadingRequestAction = location => ({
 });
 export const loginSuccess = action => ({
   type: LOGIN_SUCCESS,
-  dataForProps: action.loginData,
+  dataForProps: action,
 });
 
 export const cardsPhotosRequestAction = cardsData => ({

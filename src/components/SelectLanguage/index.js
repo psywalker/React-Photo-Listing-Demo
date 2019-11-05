@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from 'react';
 import i18next from 'i18next';
 import { Select } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeLang } from '../../actions';
 import detectLang from '../../utils/detectLang';
 import {
@@ -15,16 +15,25 @@ const { Option } = Select;
 
 const SelectLanguage = memo(() => {
   const dispatch = useDispatch();
+  const langFromProps = useSelector(state => state.lang);
   let lang = detectLang();
   const langLocalStorage = window.localStorage.getItem('lang');
-  if (langLocalStorage && langLocalStorage !== lang) {
+  if (langLocalStorage && langFromProps !== langLocalStorage) {
+    dispatch(changeLang(langLocalStorage));
+    i18next.changeLanguage(langLocalStorage);
     lang = langLocalStorage;
+  } else {
+    dispatch(changeLang(langLocalStorage));
     i18next.changeLanguage(langLocalStorage);
   }
+  // if (langLocalStorage && langLocalStorage !== lang) {
+  //   lang = langLocalStorage;
+  //   i18next.changeLanguage(langLocalStorage);
+  // }
 
-  useEffect(() => {
-    if (INITIAL_LANG !== lang) dispatch(changeLang(lang));
-  }, [dispatch, lang]);
+  // useEffect(() => {
+  //   if (INITIAL_LANG !== lang) dispatch(changeLang(lang));
+  // }, [dispatch, lang]);
   const handleChange = (value) => {
     i18next.changeLanguage(value);
     dispatch(changeLang(value));
