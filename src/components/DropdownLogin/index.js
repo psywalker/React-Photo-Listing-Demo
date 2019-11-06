@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Route, Switch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +19,20 @@ const DropdownLogin = memo(({
   profileFullName,
 }) => {
   const { t } = useTranslation();
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const onVisibleChange = (value) => {
+    setDropdownVisible(value);
+  };
+  const handleScroll = () => {
+    setDropdownVisible(false);
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   const renderButton = (className, href, onclick, datatest, text) => (
     <div>
       <Button
@@ -38,7 +52,7 @@ const DropdownLogin = memo(({
         exact
         path="/profile"
         component={() => (
-          <Menu>
+          <Menu onClick={handleScroll}>
             <Menu.Item key="0">
               { renderButton('btn-logout', null, handleLoguotHeader, 'btnLogout', t('logout')) }
             </Menu.Item>
@@ -47,7 +61,7 @@ const DropdownLogin = memo(({
       />
       <Route
         component={() => (
-          <Menu>
+          <Menu onClick={handleScroll}>
             <Menu.Item key="1">
               <Link
                 data-test="linkProfileName"
@@ -67,7 +81,7 @@ const DropdownLogin = memo(({
     </Switch>
   );
   const menuWithoutProfile = (
-    <Menu>
+    <Menu onClick={handleScroll}>
       <Menu.Item key="3">
         { renderButton('btn-login', URL_FOR_LOGIN, null, 'btnLogin', t('login')) }
       </Menu.Item>
@@ -80,7 +94,12 @@ const DropdownLogin = memo(({
       data-test="Dropdown"
       className="dropdown"
     >
-      <Dropdown overlay={menu} trigger={['click']}>
+      <Dropdown
+        overlay={menu}
+        trigger={['click']}
+        visible={dropdownVisible}
+        onVisibleChange={onVisibleChange}
+      >
         <div className="dropdown__inner">
           { !profileName && <Avatar icon="user" /> }
           { profileName && (
