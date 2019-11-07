@@ -97,10 +97,22 @@ export const HeaderApp = withRouter(memo((props) => {
             />
           </div>
 
-          <Route
+          {/* <Route
             exact
             path="/"
             component={() => (
+              <Search
+                data-test="search"
+                onSearchInputValue={getSearchText}
+                onChangeInputValue={getChangeInputValue}
+                queryText={dataSearch.queryText}
+              />
+            )}
+          /> */}
+          <Route
+            exact
+            path="/"
+            render={() => (
               <Search
                 data-test="search"
                 onSearchInputValue={getSearchText}

@@ -6,7 +6,6 @@ import { changeLang } from '../../actions';
 import {
   URL_FOR_FLAG_RU,
   URL_FOR_FLAG_EN,
-  INITIAL_LANG,
 } from '../../constants';
 import './index.scss';
 
