@@ -2,6 +2,7 @@ import {
   NAV_TOP_ITEM_ACTIVE_DEFAULT,
   QUERY_TEXT_DEFAULT,
   INITIAL_LANG,
+  INITIAL_LOGIN_DATA,
 } from './defaults';
 
 import {
@@ -125,4 +126,5 @@ export {
   LANG_RU,
   LANG,
   INITIAL_LANG,
+  INITIAL_LOGIN_DATA,
 };

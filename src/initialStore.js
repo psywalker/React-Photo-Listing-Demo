@@ -1,14 +1,14 @@
 import filters from './filters';
+import getLoginData from './utils/getLoginData';
+import { INITIAL_LOGIN_DATA } from './constants';
+
+const localStorageLang = window.localStorage.getItem('lang') || 'ru';
+const localStorageloginData = getLoginData() || { ...INITIAL_LOGIN_DATA };
 
 const initialStore = {
   login: {
-    profilePhotoUrl: '',
-    profileFullName: '',
-    profileName: '',
-    profileEmail: '',
-    fetching: false,
-    loginError: false,
-    token: '',
+    ...INITIAL_LOGIN_DATA,
+    ...localStorageloginData,
   },
   photolisting: {
     filters,
@@ -31,7 +31,7 @@ const initialStore = {
   charts: {
     isChart: false,
   },
-  lang: 'ru',
+  lang: localStorageLang,
   photo: {
     info: {
       lastUpdateInfo: '',
@@ -84,4 +84,6 @@ const initialStore = {
     },
   ],
 };
+
+console.log("1: ", initialStore.login)
 export default initialStore;

@@ -16,17 +16,13 @@ const SelectLanguage = memo(() => {
   const [selectVisible, setSelectVisible] = useState(false);
   const dispatch = useDispatch();
   const propsLang = useSelector(state => state.lang);
-  const localStorageLang = window.localStorage.getItem('lang');
-  let lang = INITIAL_LANG;
 
   const setLang = (value) => {
     i18next.changeLanguage(value);
     dispatch(changeLang(value));
     window.localStorage.setItem('lang', value);
-    lang = value;
   };
 
-  if (localStorageLang && localStorageLang !== propsLang) setLang(localStorageLang);
   const onVisibleChange = (value) => {
     setSelectVisible(value);
   };
@@ -44,7 +40,7 @@ const SelectLanguage = memo(() => {
       data-test="selectLanguage"
       className="language"
     >
-      <Select defaultValue={lang} onChange={setLang} open={selectVisible} onDropdownVisibleChange={onVisibleChange}>
+      <Select defaultValue={propsLang} onChange={setLang} open={selectVisible} onDropdownVisibleChange={onVisibleChange}>
         <Option value="ru">
           <img className="language__img" src={URL_FOR_FLAG_RU} alt="Ru" />
         </Option>

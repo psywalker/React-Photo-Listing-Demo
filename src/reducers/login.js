@@ -1,4 +1,5 @@
 import initialStore from '../initialStore';
+import { INITIAL_LOGIN_DATA } from '../constants';
 
 const login = (state = initialStore, action = {}) => {
   switch (action.type) {
@@ -24,7 +25,7 @@ const login = (state = initialStore, action = {}) => {
     case 'LOGOUT':
       return {
         ...state,
-        ...initialStore.login,
+        ...INITIAL_LOGIN_DATA,
       };
     default:
       return state;

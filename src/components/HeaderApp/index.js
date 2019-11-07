@@ -10,7 +10,6 @@ import SelectLanguage from '../SelectLanguage';
 import Search from '../Search';
 import NavTop from '../NavTop';
 import getURLParam from '../../utils/getURLParam';
-import getLoginData from '../../utils/getLoginData';
 import { NAV_TOP_ITEM_ACTIVE_DEFAULT, QUERY_TEXT_DEFAULT } from '../../constants';
 import {
   logoutAction,
@@ -28,7 +27,6 @@ export const HeaderApp = withRouter(memo((props) => {
     profilePhotoUrl,
     profileFullName,
     logoutAction: handleAction,
-    loginSuccess,
     searchTextAction,
     searchChangeInputValueAction,
     filterItemValueAction,
@@ -36,11 +34,6 @@ export const HeaderApp = withRouter(memo((props) => {
     cardsData,
   } = props;
   
-  const localStorageloginData = getLoginData();
-  if (!profileName && localStorageloginData) {
-    const loginData = { ...localStorageloginData };
-    loginSuccess(loginData);
-  }
   const handleLoguotHeader = () => {
     handleAction();
     window.localStorage.removeItem('token');
