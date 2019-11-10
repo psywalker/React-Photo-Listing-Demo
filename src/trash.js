@@ -472,3 +472,309 @@ className="header-app"
   </div>
 </Header>
 </div> */}
+
+// =============================================== 
+// Search:
+
+// /*
+// import React, { PureComponent } from 'react';
+// import PropTypes from 'prop-types';
+// import { Icon, Button, Input, AutoComplete } from 'antd';
+// import debounce from 'lodash/debounce';
+// import './index.scss';
+
+// const InputSearch = Input.Search;
+// const { Option } = AutoComplete;
+
+// function getRandomInt(max, min = 0) {
+//   return Math.floor(Math.random() * (max - min + 1)) + min; // eslint-disable-line no-mixed-operators
+// }
+
+
+// function renderOption(item) {
+//   return (
+//     <Option key={item.category} text={item.category}>
+//       <div className="global-search-item">
+//         <span className="global-search-item-desc">
+//           {/* Found
+//           {' '} */}
+//           {item.query}
+//           {/* {' '}
+//           on
+//           {' '}
+//           {item.category} */}
+
+//         </span>
+//         {/* <span className="global-search-item-count">
+//           {' '}
+//           {item.count}
+//           {' '}
+//           results
+//         </span> */}
+//       </div>
+//     </Option>
+//   );
+// }
+// class Search extends PureComponent {
+//   constructor(...args) {
+//     super(...args);
+//     const { queryText } = this.props;
+//     this.state = {
+//       inputValue: queryText,
+//       submitValue: '',
+//       dataSource: [],
+//       options: [
+//         {
+//           query: 'working',
+//           category: 'working',
+//           count: 1,
+//         },
+//         {
+//           query: 'wording',
+//           category: 'wording',
+//           count: 1,
+//         },
+//       ],
+//     };
+//   }
+
+//   componentDidUpdate = (prevProps) => {
+//     const { queryText } = this.props;
+//     if (prevProps.queryText !== queryText) {
+//       this.setState({
+//         inputValue: queryText,
+//       });
+//     }
+//   };
+
+//   onChangeDebounced = debounce((value) => {
+//     const { onChangeInputValue } = this.props;
+//     onChangeInputValue(value);
+//   }, 500)
+
+//   submitSearch = (value, q) => {
+//     this.setState({
+//       submitValue: value,
+//     });
+//     const { inputValue, options, dataSource } = this.state;
+//     const { onSearchInputValue } = this.props;
+//     console.log('1: submitSearch: ', value, inputValue);
+//     if (inputValue) {
+//       onSearchInputValue(value);
+//       const newOptions = options.map(({ query, category, count }) => {
+//         if (value === query) {
+//           return {
+//             query,
+//             category,
+//             count: count + 1,
+//           };
+//         }
+//         return {
+//           query,
+//           category,
+//           count,
+//         };
+//       });
+//       this.setState({
+//         options: [...newOptions],
+//       });
+//     }
+//   }
+
+//   handleButton = () => {
+//     //console.log('2: handleButton');
+//     const { onSearchInputValue } = this.props;
+//     const { inputValue, options, dataSource } = this.state;
+//     const value = inputValue;
+
+//     const isQuery = options.some((item) => item.query === value);
+//     if (!isQuery) {
+//       const newObj = {    
+//         query: value,
+//         category: value,
+//         count: 1,
+//       }
+
+//       this.setState({
+//         options: [...options, newObj],
+//       });
+//     } else {
+//       const newOptions = options.map(({ query, category, count }) => {
+//         if (value === query) {
+//           return {
+//             query,
+//             category,
+//             count: count + 1,
+//           };
+//         }
+//         return {
+//           query,
+//           category,
+//           count,
+//         };
+//       });
+//       this.setState({
+//         options: [...newOptions],
+//       });
+//     }
+//     onSearchInputValue(value);
+    
+//   }
+
+//   handleInputChange = (value) => {
+//     this.setState({
+//       inputValue: value,
+//     }, () => {
+//       const { inputValue } = this.state;
+//       if (inputValue) this.onChangeDebounced(inputValue);
+//     });
+//   };
+
+//   searchResult = (querySearch) => {
+//     const {options } = this.state;
+//     return options.filter(({ query, category, count }, idx) => {
+//       if (querySearch.length <= query.length) {
+//         const strQuerySearch = query.substr(0, querySearch.length);
+//         const strQuery = querySearch.substr(0, querySearch.length);
+//         if (strQuerySearch === strQuery) {
+//           return {
+//             query,
+//             category: `${querySearch}${idx}`,
+//             count,
+//           };
+//         }
+//         return false;
+//       }
+
+//       return false;
+//     });
+//   }
+
+//   handleSearch = (value) => {
+//     this.setState({
+//       dataSource: this.searchResult(value),
+//     });
+//   };
+
+//   handleKeyPress= (e) => {
+//     //console.log('handleKeyPress', e);
+//   };
+
+//   handleKeyDown = (e) => {
+
+//     if (e.keyCode === 13) {
+      
+//       const { onSearchInputValue } = this.props;
+//       const { options, inputValue, submitValue } = this.state;
+//       const value = e.target.value;
+//       //if (e.target.value === submitValue) return false;
+//       console.log('3: handleKeyDown: ', e.target.value, inputValue, submitValue);
+      
+//       const isQuery = options.some((item) => item.query === value);
+//       if (!isQuery) {
+//         const newObj = {    
+//           query: value,
+//           category: value,
+//           count: 1,
+//         }
+
+//         this.setState({
+//           options: [...options, newObj],
+//         });
+//       } else {
+//         const newOptions = options.map(({ query, category, count }) => {
+//           if (value === query) {
+//             return {
+//               query,
+//               category,
+//               count: count + 1,
+//             };
+//           }
+//           return {
+//             query,
+//             category,
+//             count,
+//           };
+//         });
+//         this.setState({
+//           options: [...newOptions],
+//         });
+//       }
+//       onSearchInputValue(value);
+      
+//     }
+    
+//   };
+
+//   render() {
+//     const { inputValue, dataSource, options } = this.state;
+//     const newDataSource = dataSource.map(({ query, category, count }) => {
+//       for (let i = 0; i < options.length; i++) {
+//         const optionQuery = options[i].query;
+//         if (optionQuery === query) {
+//           const optionsCount = options[i].count;
+//           if (optionsCount !== count) {
+//             return {
+//               query,
+//               category,
+//               count: optionsCount,
+//             };
+//           }
+//         }
+//       }
+//       return {
+//         query,
+//         category,
+//         count,
+//       };
+//     })
+//     return (
+//       <div
+//         data-test="searchContainer"
+//         className="search"
+//       >
+//         <AutoComplete
+//           className="global-search"
+//           style={{ width: '100%' }}
+//           dataSource={newDataSource.map(renderOption)}
+//           onSelect={this.submitSearch}
+//           onSearch={this.handleSearch}
+//           onChange={this.handleInputChange}
+//           defaultActiveFirstOption={false}
+//           value={inputValue}
+//           optionLabelProp="text"
+//           //backfill={true}
+
+//         >
+//           <Input
+//             //onKeyPress={this.handleKeyPress}
+//             onKeyDown={this.handleKeyDown}
+//             suffix={(
+//               <Button
+//                 className="search-btn"
+//                 style={{ marginRight: -12 }}
+//                 onClick={this.handleButton}
+//               >
+//                 <Icon type="search" />
+//               </Button>
+//             )}
+//           />
+//         </AutoComplete>
+//       </div>
+//     );
+//   }
+// }
+
+// Search.propTypes = {
+//   queryText: PropTypes.string,
+//   onSearchInputValue: PropTypes.func,
+//   onChangeInputValue: PropTypes.func,
+// };
+// Search.defaultProps = {
+//   queryText: '',
+//   onSearchInputValue: () => {},
+//   onChangeInputValue: () => {},
+// };
+
+// export default Search;
+// */

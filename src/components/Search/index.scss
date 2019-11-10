@@ -1,4 +1,11 @@
 .search {
   flex-grow: 2;
   margin: 0 10px;
+
+  & .ant-select-selection__clear {
+    right: 55px;
+  }
+  & .ant-input-affix-wrapper .ant-input:not(:last-child) {
+    padding-right: 68px;
+  }
 }

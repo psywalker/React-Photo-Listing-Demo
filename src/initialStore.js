@@ -85,5 +85,4 @@ const initialStore = {
   ],
 };
 
-console.log("1: ", initialStore.login)
 export default initialStore;

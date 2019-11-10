@@ -47,10 +47,12 @@ export const HeaderApp = withRouter(memo((props) => {
     let navTopItemActive = NAV_TOP_ITEM_ACTIVE_DEFAULT;
 
     if (tagName) {
-      const tag = filters.filter(item => item.label.toLowerCase() === tagName);
+      const tag = filters.filter(item => item.label.toLowerCase() === tagName.toLowerCase());
       navTopItemActive = tag.length ? tag[0].id : null;
       queryText = cardsDataQuery;
     }
+
+    if (!tagName && window.location.href.indexOf('?search') !== -1) navTopItemActive = null;
 
     return {
       queryText,
@@ -69,8 +71,12 @@ export const HeaderApp = withRouter(memo((props) => {
   };
 
   const getChangeInputValue = (text) => {
-    searchChangeInputValueAction(text);
-    handleUrl(text);
+    if (text) {
+      searchChangeInputValueAction(text);
+      handleUrl(text);
+    } else {
+      handleUrl('');
+    }
   };
   const getFilterItemValue = (itemText, itemId) => {
     filterItemValueAction(itemText, itemId);
@@ -118,6 +124,7 @@ export const HeaderApp = withRouter(memo((props) => {
                 onSearchInputValue={getSearchText}
                 onChangeInputValue={getChangeInputValue}
                 queryText={dataSearch.queryText}
+                history={history}
               />
             )}
           />
