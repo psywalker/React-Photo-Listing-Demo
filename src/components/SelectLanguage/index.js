@@ -2,7 +2,6 @@ import React, { memo, useState, useEffect } from 'react';
 import i18next from 'i18next';
 import { Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import detectLang from '../../utils/detectLang';
 import { changeLang } from '../../actions';
 import {
   URL_FOR_FLAG_RU,
@@ -16,14 +15,12 @@ const SelectLanguage = memo(() => {
   const [selectVisible, setSelectVisible] = useState(false);
   const dispatch = useDispatch();
   const propsLang = useSelector(state => state.lang);
-  const browserLang = detectLang();
 
   const setLang = (value) => {
     i18next.changeLanguage(value);
     dispatch(changeLang(value));
     window.localStorage.setItem('lang', value);
   };
-
   const onVisibleChange = (value) => {
     setSelectVisible(value);
   };
@@ -37,9 +34,6 @@ const SelectLanguage = memo(() => {
     };
   }, []);
 
-  useEffect(() => {
-    if (browserLang !== propsLang) setLang(propsLang);
-  }, browserLang);
   return (
     <div
       data-test="selectLanguage"
