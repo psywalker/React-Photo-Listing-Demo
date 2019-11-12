@@ -5,6 +5,9 @@ import { INITIAL_LOGIN_DATA } from './constants';
 const localStorageLang = window.localStorage.getItem('lang') || 'ru';
 const localStorageloginData = getLoginData() || { ...INITIAL_LOGIN_DATA };
 
+console.log("7.1: ", localStorageLang)
+console.log("7.2: ", localStorageloginData)
+
 const initialStore = {
   login: {
     ...INITIAL_LOGIN_DATA,

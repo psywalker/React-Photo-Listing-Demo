@@ -23,6 +23,12 @@ i18n
           changePhotoSize: 'Change size',
           photoBy: 'Photo by',
           photoOn: 'on',
+          search: {
+            youSearched: 'You searched',
+            oneTime: 'time',
+            oneTimes: 'times',
+            placeholder: 'Search free high-resolution photos',
+          },
           lang: {
             title: 'Choose language',
             ru: 'Russian',
@@ -92,6 +98,12 @@ i18n
           changePhotoSize: 'Выбрать размер',
           photoBy: 'Фотография ',
           photoOn: 'на',
+          search: {
+            youSearched: 'Вы искали',
+            oneTime: 'раз',
+            oneTimes: 'раза',
+            placeholder: 'Поиск бесплатных фотографий в высоком разрешении',
+          },
           lang: {
             title: 'Выберите язык',
             ru: 'Русский',

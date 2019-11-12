@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import {
   Icon,
   Button,
@@ -13,61 +14,45 @@ import './index.scss';
 
 const { Option } = AutoComplete;
 
-function renderOption(item) {
-  return (
-    <Option key={item.category} text={item.category}>
-      <div className="global-search-item">
-        <span className="global-search-item-desc">
-          Вы искали слово
-          {' '}
-          <b>
-            «
-            {item.query}
-            »
-          </b>
-        </span>
-        <span className="global-search-item-count">
-          {' '}
-          {item.count}
-          {' '}
-          {declOfNum(item.count)}
-        </span>
-      </div>
-    </Option>
-  );
-}
 class Search extends PureComponent {
   constructor(...args) {
     super(...args);
     const { queryText } = this.props;
     this.state = {
       inputValue: queryText,
-      dataSource: [],
       queryFlag: false,
-      options: [
-        {
-          query: 'working',
-          category: 'working',
-          count: 1,
-        },
-        {
-          query: 'wording',
-          category: 'wording',
-          count: 1,
-        },
-      ],
+      isSelectOpen: false,
+      dataSource: [],
+      options: [],
     };
-    this.inputSearch = null;
+    this.querySubmitFlag = false;
   }
 
-  componentDidUpdate = (prevProps) => {
+  componentDidMount = () => {
+    const searchOptions = JSON.parse(window.localStorage.getItem('searchOptions')) || [];
+    this.setState({
+      options: searchOptions,
+    });
+
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
     const { queryText } = this.props;
-    if (prevProps.queryText !== queryText) { 
+    const { options } = this.state;
+    if (prevProps.queryText !== queryText) {
       const tagName = getURLParam(window.location, 'search');
       const value = !tagName ? '' : queryText;
       this.setState({
         inputValue: value,
       });
+    }
+    if (JSON.stringify(prevState.options) !== JSON.stringify(options)) {
+      window.localStorage.setItem('searchOptions', JSON.stringify(options));
+      this.setState({
+        isSelectOpen: false,
+      });
+      this.querySubmitFlag = false;
     }
   };
 
@@ -76,17 +61,71 @@ class Search extends PureComponent {
     onChangeInputValue(value);
   }, 500)
 
+  componentUnmount = () => {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    this.setState({
+      isSelectOpen: false,
+    });
+  };
+
+  renderOption = (item) => {
+    const { t } = this.props;
+    return (
+      <Option key={item.category} text={item.category}>
+        <div className="global-search-item">
+          <span className="global-search-item-desc">
+            { t('search.youSearched') }
+            {' '}
+            <b>
+              «
+              {item.query}
+              »
+            </b>
+          </span>
+          <span className="global-search-item-count">
+            {' '}
+            {item.count}
+            {' '}
+            {declOfNum(item.count)}
+          </span>
+        </div>
+      </Option>
+    );
+  }
+
   submitSearch = (value) => {
     const { onSearchInputValue } = this.props;
     if (value) {
-      console.log("1: submitSearch::: ", value)
       this.setState({
         queryFlag: true,
       });
-      this.increaseCount(value);
+      this.increaseCount(value, true);
       onSearchInputValue(value);
     }
   }
+
+  handleKeyUp = (e) => {
+    const { value } = e.target;
+    this.handleSearch(value);
+    this.setState({
+      isSelectOpen: true,
+    });
+    if (e.keyCode === 13 && value) {
+      const { onSearchInputValue } = this.props;
+      const { queryFlag } = this.state;
+
+      if (!queryFlag) this.increaseCount(value);
+      else this.setState({ queryFlag: false });
+      this.createNewOption(value);
+      onSearchInputValue(value);
+      this.setState({
+        isSelectOpen: false,
+      });
+    }
+  };
 
   handleButton = (e) => {
     e.stopPropagation();
@@ -131,24 +170,18 @@ class Search extends PureComponent {
     });
   };
 
-  handleKeyUp = (e) => {
-    const { value } = e.target;
-    if (e.keyCode === 13 && value) {
-      
-      const { onSearchInputValue } = this.props;
-      const { queryFlag } = this.state;
-      console.log("2: handleKeyUp::: ", e.target)
-
-      if (!queryFlag) this.increaseCount(value);
-      else this.setState({ queryFlag: false });
-      this.createNewOption(value);
-      onSearchInputValue(value);
-    }
+  handleInputBlur = () => {
+    this.setState({
+      isSelectOpen: false,
+    });
   };
 
   handleInputFocus = () => {
     const { inputValue } = this.state;
     this.handleSearch(inputValue);
+    this.setState({
+      isSelectOpen: true,
+    });
   };
 
   createNewOption = (value) => {
@@ -161,7 +194,12 @@ class Search extends PureComponent {
     }
   };
 
-  increaseCount = (value) => {
+  increaseCount = (value, flag) => {
+    if (flag) this.querySubmitFlag = true;
+    if (this.querySubmitFlag && !flag) {
+      this.querySubmitFlag = false;
+      return false;
+    }
     const { options, dataSource } = this.state;
     let newDataSource = [];
     const newOptions = options.map((itemOption) => {
@@ -176,14 +214,15 @@ class Search extends PureComponent {
       return itemOption;
     }).sort((a, b) => b.count - a.count);
 
-    this.setState({
+    return this.setState({
       dataSource: newDataSource,
       options: newOptions,
     });
   }
 
   render() {
-    const { inputValue, dataSource } = this.state;
+    const { inputValue, dataSource, isSelectOpen } = this.state;
+    const { t } = this.props;
     return (
       <div
         data-test="searchContainer"
@@ -192,23 +231,24 @@ class Search extends PureComponent {
         <AutoComplete
           className="global-search"
           style={{ width: '100%' }}
-          dataSource={dataSource.map(renderOption)}
+          dataSource={dataSource.map(this.renderOption)}
+          open={isSelectOpen}
+          onBlur={this.handleInputBlur}
           onSelect={this.submitSearch}
           onSearch={this.handleSearch}
           onChange={this.handleInputChange}
           onFocus={this.handleInputFocus}
           defaultActiveFirstOption={false}
+          placeholder={t('search.placeholder')}
           optionLabelProp="text"
           value={inputValue}
           backfill
           allowClear
+          autoFocus
         >
           <Input
-            onKeyUp={this.handleKeyUp}
+            onKeyDown={this.handleKeyUp}
             onClick={this.handleInputFocus}
-            ref={(input) => {
-              this.inputSearch = input;
-            }}
             value={inputValue}
             suffix={(
               <Button
@@ -231,12 +271,14 @@ Search.propTypes = {
   queryText: PropTypes.string,
   onSearchInputValue: PropTypes.func,
   onChangeInputValue: PropTypes.func,
+  t: PropTypes.func,
 };
 Search.defaultProps = {
   history: {},
   queryText: '',
   onSearchInputValue: () => {},
   onChangeInputValue: () => {},
+  t: () => {},
 };
 
-export default Search;
+export default withTranslation()(Search);
