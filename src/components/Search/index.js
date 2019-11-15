@@ -20,19 +20,15 @@ class Search extends PureComponent {
     const { queryText } = this.props;
     this.state = {
       inputValue: queryText,
-      queryFlag: false,
       isSelectOpen: false,
       dataSource: [],
       options: [],
     };
-    this.querySubmitFlag = false;
   }
 
   componentDidMount = () => {
     const searchOptions = JSON.parse(window.localStorage.getItem('searchOptions')) || [];
-    this.setState({
-      options: searchOptions,
-    });
+    this.setState({ options: searchOptions });
 
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -43,16 +39,11 @@ class Search extends PureComponent {
     if (prevProps.queryText !== queryText) {
       const tagName = getURLParam(window.location, 'search');
       const value = !tagName ? '' : queryText;
-      this.setState({
-        inputValue: value,
-      });
+      this.setState({ inputValue: value });
     }
     if (JSON.stringify(prevState.options) !== JSON.stringify(options)) {
       window.localStorage.setItem('searchOptions', JSON.stringify(options));
-      this.setState({
-        isSelectOpen: false,
-      });
-      this.querySubmitFlag = false;
+      this.setState({ isSelectOpen: false });
     }
   };
 
@@ -66,9 +57,7 @@ class Search extends PureComponent {
   }
 
   handleScroll = () => {
-    this.setState({
-      isSelectOpen: false,
-    });
+    this.setState({ isSelectOpen: false });
   };
 
   renderOption = (item) => {
@@ -96,35 +85,22 @@ class Search extends PureComponent {
     );
   }
 
-  submitSearch = (value) => {
-    const { onSearchInputValue } = this.props;
-    if (value) {
-      this.setState({
-        queryFlag: true,
-      });
-      this.increaseCount(value, true);
-      onSearchInputValue(value);
+  handleKeyDown = (e) => {
+    const { value } = e.target || e;
+    this.setState({ isSelectOpen: !!value });
+    this.searchResult(value);
+    if (!e.target && e) {
+      this.increaseCount(e);
+      return false;
     }
-  }
-
-  handleKeyUp = (e) => {
-    const { value } = e.target;
-    this.handleSearch(value);
-    this.setState({
-      isSelectOpen: true,
-    });
     if (e.keyCode === 13 && value) {
       const { onSearchInputValue } = this.props;
-      const { queryFlag } = this.state;
-
-      if (!queryFlag) this.increaseCount(value);
-      else this.setState({ queryFlag: false });
+      this.increaseCount(value);
       this.createNewOption(value);
       onSearchInputValue(value);
-      this.setState({
-        isSelectOpen: false,
-      });
+      this.setState({ isSelectOpen: false });
     }
+    return false;
   };
 
   handleButton = (e) => {
@@ -142,16 +118,14 @@ class Search extends PureComponent {
 
   handleInputChange = (value) => {
     this.setState({
+      isSelectOpen: !!value,
       inputValue: value,
-    }, () => {
-      const { queryFlag, inputValue } = this.state;
-      if (!queryFlag) this.onChangeDebounced(inputValue);
-      if (queryFlag) this.setState({ queryFlag: false });
     });
+    this.onChangeDebounced(value);
   };
 
   searchResult = (value) => {
-    if (!value) return [];
+    if (!value) return;
     const { options } = this.state;
     const items = options
       .filter(({ query }) => value.length <= query.length)
@@ -160,28 +134,17 @@ class Search extends PureComponent {
         return value.toLowerCase() === querySearch ? item : false;
       }).sort((a, b) => b.count - a.count);
 
-    if (!items.length) return [];
-    return items;
+    this.setState({ dataSource: items.length ? items : [] });
   }
 
-  handleSearch = (value) => {
-    this.setState({
-      dataSource: this.searchResult(value),
-    });
-  };
-
   handleInputBlur = () => {
-    this.setState({
-      isSelectOpen: false,
-    });
+    this.setState({ isSelectOpen: false });
   };
 
   handleInputFocus = () => {
     const { inputValue } = this.state;
-    this.handleSearch(inputValue);
-    this.setState({
-      isSelectOpen: true,
-    });
+    this.searchResult(inputValue);
+    this.setState({ isSelectOpen: true });
   };
 
   createNewOption = (value) => {
@@ -194,12 +157,7 @@ class Search extends PureComponent {
     }
   };
 
-  increaseCount = (value, flag) => {
-    if (flag) this.querySubmitFlag = true;
-    if (this.querySubmitFlag && !flag) {
-      this.querySubmitFlag = false;
-      return false;
-    }
+  increaseCount = (value) => {
     const { options, dataSource } = this.state;
     let newDataSource = [];
     const newOptions = options.map((itemOption) => {
@@ -234,8 +192,8 @@ class Search extends PureComponent {
           dataSource={dataSource.map(this.renderOption)}
           open={isSelectOpen}
           onBlur={this.handleInputBlur}
-          onSelect={this.submitSearch}
-          onSearch={this.handleSearch}
+          onSelect={this.handleKeyDown}
+          onSearch={this.searchResult}
           onChange={this.handleInputChange}
           onFocus={this.handleInputFocus}
           defaultActiveFirstOption={false}
@@ -247,7 +205,7 @@ class Search extends PureComponent {
           autoFocus
         >
           <Input
-            onKeyDown={this.handleKeyUp}
+            onKeyDown={this.handleKeyDown}
             onClick={this.handleInputFocus}
             value={inputValue}
             suffix={(
