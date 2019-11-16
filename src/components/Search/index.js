@@ -9,7 +9,6 @@ import {
 } from 'antd';
 import debounce from 'lodash/debounce';
 import declOfNum from '../../utils/declOfNum';
-import getURLParam from '../../utils/getURLParam';
 import './index.scss';
 
 const { Option } = AutoComplete;
@@ -17,9 +16,9 @@ const { Option } = AutoComplete;
 class Search extends PureComponent {
   constructor(...args) {
     super(...args);
-    const { queryText } = this.props;
+    const { queryText: { value } } = this.props;
     this.state = {
-      inputValue: queryText,
+      inputValue: value,
       isSelectOpen: false,
       dataSource: [],
       options: [],
@@ -37,9 +36,7 @@ class Search extends PureComponent {
     const { queryText } = this.props;
     const { options } = this.state;
     if (prevProps.queryText !== queryText) {
-      const tagName = getURLParam(window.location, 'search');
-      const value = !tagName ? '' : queryText;
-      this.setState({ inputValue: value });
+      this.setState({ inputValue: queryText.value });
     }
     if (JSON.stringify(prevState.options) !== JSON.stringify(options)) {
       window.localStorage.setItem('searchOptions', JSON.stringify(options));
@@ -212,15 +209,13 @@ class Search extends PureComponent {
 }
 
 Search.propTypes = {
-  history: PropTypes.shape({}),
-  queryText: PropTypes.string,
+  queryText: PropTypes.shape({}),
   onSearchInputValue: PropTypes.func,
   onChangeInputValue: PropTypes.func,
   t: PropTypes.func,
 };
 Search.defaultProps = {
-  history: {},
-  queryText: '',
+  queryText: {},
   onSearchInputValue: () => {},
   onChangeInputValue: () => {},
   t: () => {},

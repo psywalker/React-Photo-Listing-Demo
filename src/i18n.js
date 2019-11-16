@@ -125,7 +125,7 @@ i18n
           },
           photoInfo: {
             info: 'Информация о фото',
-            published: 'Опубликовано в',
+            published: 'Опубликовано',
             views: 'Просмотры',
             downloads: 'Скачивания',
             likes: 'Лайки',

@@ -2,11 +2,14 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Icon } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { localization as localRu } from 'moment/locale/ru';
+import { localization as localEn } from 'moment/locale/en-gb';
+import i18next from 'i18next';
 import moment from 'moment';
 import 'moment-timezone';
 import numeral from 'numeral';
 
-export const getDate = lastUpdateInfo => moment(lastUpdateInfo).format('LL');
+export const getDate = (lastUpdateInfo, isLangRu) => moment(lastUpdateInfo).locale(isLangRu ? 'ru' : 'en', isLangRu ? localRu : localEn).format('LL');
 export const getViewsFormat = views => numeral(views).format('0,0');
 export const getDownloadsFormat = downloads => numeral(downloads).format('0,0');
 export const getLikesFormat = likes => numeral(likes).format('0,0');
@@ -27,7 +30,8 @@ const InfoPhotoModalContent = memo(({
   height,
 }) => {
   const { t } = useTranslation();
-  const date = getDate(lastUpdateInfo);
+  const isLangRu = i18next.language.includes('ru');
+  const date = getDate(lastUpdateInfo, isLangRu);
   const viewsFormat = getViewsFormat(views);
   const downloadsFormat = getDownloadsFormat(downloads);
   const likesFormat = getLikesFormat(likes);
