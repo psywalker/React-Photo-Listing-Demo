@@ -110,7 +110,7 @@ DownloadSizesPopover.defaultProps = {
   altDescriprion: '',
   photoDesc: '',
   placement: '',
-  photoUrlSizes: {},
+  photoUrlSizes: [],
   handleVisibleButtonChangeFalse: () => {},
   children: {},
 };

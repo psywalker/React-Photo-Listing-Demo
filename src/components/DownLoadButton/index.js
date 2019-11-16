@@ -78,7 +78,7 @@ DownLoadButton.defaultProps = {
   photoDesc: '',
   placement: '',
   textButton: '',
-  photoUrlSizes: {},
+  photoUrlSizes: [],
 };
 
 export default DownLoadButton;

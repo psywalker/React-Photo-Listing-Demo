@@ -4,7 +4,7 @@ import NavTop from './NavTop';
 import Search from './Search';
 import Spinner from './Spinner';
 import SpinnerPhoto from './SpinnerPhoto';
-import InfoPhotoModal from './InfoPhotoModal';
+import PhotoInfoModal from './PhotoInfoModal';
 import Error from './Error';
 import HighchartsHOC from './HighchartsHOC';
 import SmallPhotoListing from './SmallPhotoListing';
@@ -23,7 +23,7 @@ export {
   Search,
   Spinner,
   SpinnerPhoto,
-  InfoPhotoModal,
+  PhotoInfoModal,
   Error,
   HomeHOC,
   Photo,

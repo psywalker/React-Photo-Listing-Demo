@@ -2,10 +2,10 @@ import React, { memo, useState } from 'react';
 import { Button, Icon } from 'antd';
 import { useTranslation } from 'react-i18next';
 import Modal from 'react-awesome-modal';
-import InfoPhotoModalContent from './InfoPhotoModalContent';
+import PhotoInfoModalContent from './PhotoInfoModalContent';
 import './index.scss';
 
-const InfoPhotoModal = memo(({ ...props }) => {
+const PhotoInfoModal = memo(({ ...props }) => {
   const { t } = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
   const openModal = () => setModalVisible(true);
@@ -34,10 +34,10 @@ const InfoPhotoModal = memo(({ ...props }) => {
         onClickAway={closeModal}
         className="modal"
       >
-        <InfoPhotoModalContent {...props} />
+        <PhotoInfoModalContent {...props} />
       </Modal>
     </div>
   );
 });
 
-export default InfoPhotoModal;
+export default PhotoInfoModal;

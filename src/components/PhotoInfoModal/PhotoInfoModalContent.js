@@ -198,7 +198,7 @@ const InfoPhotoModalContent = memo(({
         >
           <h3
             data-test="photoInfoListTitle"
-            className="photo-info-list__title"
+            className="photo-info-list__title photo-info-list__title_type_focal"
           >
             { t('photoInfo.focalLength') }
           </h3>

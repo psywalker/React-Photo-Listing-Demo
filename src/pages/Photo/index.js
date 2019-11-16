@@ -13,7 +13,7 @@ import { withTranslation } from 'react-i18next';
 import ImageZoom from 'react-medium-image-zoom';
 import {
   SpinnerPhoto,
-  InfoPhotoModal,
+  PhotoInfoModal,
   Error,
   DownLoadButton,
 } from '../../components';
@@ -231,7 +231,7 @@ export class Photo extends Component {
                     <Icon type="share-alt" />
                     <span className="photoFooterBtnsBtn__text">{ t('share') }</span>
                   </Button>
-                  <InfoPhotoModal
+                  <PhotoInfoModal
                     data-test="photoInfoPhotoModal"
                     {...info}
                   />
@@ -302,7 +302,7 @@ Photo.defaultProps = {
   match: {},
   history: {},
   t: () => {},
-  photoUrlSizes: {},
+  photoUrlSizes: [],
 };
 
 export const mapStateToProps = (state) => {
