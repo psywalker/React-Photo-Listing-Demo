@@ -91,14 +91,12 @@ class Search extends PureComponent {
     this.searchResult(value);
     if (!e.target && e) {
       this.increaseCount(e);
-      return false;
-    }
-    if (e.keyCode === 13 && value) {
+    } else if (e.keyCode === 13 && value) {
       const { onSearchInputValue } = this.props;
       this.increaseCount(value);
       this.createNewOption(value);
-      onSearchInputValue(value);
       this.setState({ isSelectOpen: false });
+      onSearchInputValue(value);
     }
     return false;
   };
@@ -128,13 +126,10 @@ class Search extends PureComponent {
     if (!value) return;
     const { options } = this.state;
     const items = options
-      .filter(({ query }) => value.length <= query.length)
-      .filter((item) => {
-        const querySearch = item.query.substr(0, value.length).toLowerCase();
-        return value.toLowerCase() === querySearch ? item : false;
-      }).sort((a, b) => b.count - a.count);
+      .filter(({ query }) => query.startsWith(value))
+      .sort((a, b) => b.count - a.count);
 
-    this.setState({ dataSource: items.length ? items : [] });
+    this.setState({ dataSource: items });
   }
 
   handleInputBlur = () => {
@@ -158,22 +153,14 @@ class Search extends PureComponent {
   };
 
   increaseCount = (value) => {
-    const { options, dataSource } = this.state;
-    let newDataSource = [];
-    const newOptions = options.map((itemOption) => {
-      if (value === itemOption.query) {
-        newDataSource = dataSource.map(itemDataSource => (
-          value !== itemDataSource.query
-            ? itemDataSource
-            : { ...itemDataSource, count: itemDataSource.count + 1 }
-        )).sort((a, b) => b.count - a.count);
-        return { ...itemOption, count: itemOption.count + 1 };
-      }
-      return itemOption;
-    }).sort((a, b) => b.count - a.count);
+    const { options } = this.state;
+
+    const newOptions = options
+      .map(item => (item.query === value
+        ? { ...item, count: item.count + 1 }
+        : item));
 
     return this.setState({
-      dataSource: newDataSource,
       options: newOptions,
     });
   }

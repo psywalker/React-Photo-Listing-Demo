@@ -777,4 +777,21 @@ className="header-app"
 // };
 
 // export default Search;
+    // const re = new RegExp(`^${escapeRegExp(value)}`, 'i');
+    // const items = options.filter(({ query }) => re.test(query))
+    //   .sort((a, b) => b.count - a.count);
+
+    ////////////
+    // const items = options
+    //   .filter(({ query }) => value.length <= query.length)
+    //   .filter((item) => {
+    //     const querySearch = item.query.substr(0, value.length).toLowerCase();
+    //     return value.toLowerCase() === querySearch ? item : false;
+    //   }).sort((a, b) => b.count - a.count);
+
+    // this.setState({ dataSource: items.length ? items : [] });
+
+        // const newDataSource = options
+    //   .filter(({ query }) => query === value)
+    //   .map(item => ({ ...item, count: item.count + 1 }));
 // */
