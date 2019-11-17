@@ -38,13 +38,12 @@ class Search extends PureComponent {
   componentDidUpdate = (prevProps, prevState) => {
     const { queryText } = this.props;
     const { options, inputValue } = this.state;
+    this.searchInput.focus();
     if (prevState.inputValue !== inputValue || prevProps.queryText !== queryText) {
       let tagName = getURLParam(window.location, 'search');
       if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') !== -1) tagName = '';
-      if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') === -1) {
-        tagName = QUERY_TEXT_DEFAULT;
-        this.searchInput.focus();
-      }
+      if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') === -1) tagName = QUERY_TEXT_DEFAULT;
+
       this.setState({ inputValue: tagName });
     }
     if (JSON.stringify(prevState.options) !== JSON.stringify(options)) {
@@ -142,6 +141,7 @@ class Search extends PureComponent {
 
   handleInputBlur = () => {
     this.setState({ isSelectOpen: false });
+    this.searchInput.blur();
   };
 
   handleInputFocus = () => {

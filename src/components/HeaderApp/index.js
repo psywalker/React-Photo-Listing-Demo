@@ -31,7 +31,7 @@ export const HeaderApp = withRouter(memo((props) => {
     filterItemValueAction,
     filters,
   } = props;
-  
+
   const handleLoguotHeader = () => {
     handleAction();
     window.localStorage.removeItem('token');
