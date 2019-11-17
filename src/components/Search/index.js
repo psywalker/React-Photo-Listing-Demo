@@ -38,7 +38,8 @@ class Search extends PureComponent {
     const { options, inputValue } = this.state;
     if (prevState.inputValue !== inputValue || prevProps.queryText !== queryText) {
       let tagName = getURLParam(window.location, 'search');
-      if (!tagName && window.location.href.indexOf('?search') === -1) tagName = QUERY_TEXT_DEFAULT;
+      if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') !== -1) tagName = '';
+      if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') === -1) tagName = QUERY_TEXT_DEFAULT;
       this.setState({ inputValue: tagName });
     }
     if (JSON.stringify(prevState.options) !== JSON.stringify(options)) {
@@ -53,7 +54,7 @@ class Search extends PureComponent {
 
   handleUrl = (str) => {
     const { history } = this.props;
-    const newUrl = `?search=${str}`;
+    const newUrl = `?search=${str === 'undefined' || str === undefined ? '' : str}`;
     history.push(newUrl, {});
   };
 
