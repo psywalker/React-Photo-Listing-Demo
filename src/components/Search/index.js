@@ -25,6 +25,8 @@ class Search extends PureComponent {
       dataSource: [],
       options: [],
     };
+
+    this.searchInput = null;
   }
 
   componentDidMount = () => {
@@ -39,7 +41,10 @@ class Search extends PureComponent {
     if (prevState.inputValue !== inputValue || prevProps.queryText !== queryText) {
       let tagName = getURLParam(window.location, 'search');
       if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') !== -1) tagName = '';
-      if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') === -1) tagName = QUERY_TEXT_DEFAULT;
+      if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') === -1) {
+        tagName = QUERY_TEXT_DEFAULT;
+        this.searchInput.focus();
+      }
       this.setState({ inputValue: tagName });
     }
     if (JSON.stringify(prevState.options) !== JSON.stringify(options)) {
@@ -122,7 +127,7 @@ class Search extends PureComponent {
       isSelectOpen: !!value,
       inputValue: value,
     });
-    this.handleUrl(value)
+    this.handleUrl(value);
   };
 
   searchResult = (value) => {
@@ -198,6 +203,9 @@ class Search extends PureComponent {
             onKeyDown={this.handleKeyDown}
             onClick={this.handleInputFocus}
             value={inputValue}
+            ref={(searchInput) => {
+              this.searchInput = searchInput;
+            }}
             suffix={(
               <Button
                 className="search-btn"

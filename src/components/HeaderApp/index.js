@@ -10,7 +10,7 @@ import SelectLanguage from '../SelectLanguage';
 import Search from '../Search';
 import NavTop from '../NavTop';
 import getURLParam from '../../utils/getURLParam';
-import { NAV_TOP_ITEM_ACTIVE_DEFAULT, QUERY_TEXT_DEFAULT } from '../../constants';
+import { NAV_TOP_ITEM_ACTIVE_DEFAULT } from '../../constants';
 import {
   logoutAction,
   searchTextAction,
@@ -30,7 +30,6 @@ export const HeaderApp = withRouter(memo((props) => {
     searchTextAction,
     filterItemValueAction,
     filters,
-    cardsData,
   } = props;
   
   const handleLoguotHeader = () => {
@@ -40,20 +39,16 @@ export const HeaderApp = withRouter(memo((props) => {
     history.push('/');
   };
   const getDataSearch = () => {
-    const cardsDataQuery = cardsData.query;
     const tagName = getURLParam(window.location, 'search');
-    let queryText = '';
-    let navTopItemActive = NAV_TOP_ITEM_ACTIVE_DEFAULT;
+    let navTopItemActive = (!tagName && window.location.href.indexOf('?search') !== -1) ? null : NAV_TOP_ITEM_ACTIVE_DEFAULT;
 
     if (tagName) {
       const tag = filters.filter(item => item.label.toLowerCase() === tagName.toLowerCase());
       navTopItemActive = tag.length ? tag[0].id : null;
-      queryText = cardsDataQuery;
-    } else if (!tagName && window.location.href.indexOf('?search') !== -1) navTopItemActive = null;
-    else if (!tagName && window.location.href.indexOf('?search') === -1) queryText = QUERY_TEXT_DEFAULT;
+    }
 
     return {
-      queryText: { value: queryText },
+      queryText: { value: '' },
       navTopItemActive,
     };
   };
