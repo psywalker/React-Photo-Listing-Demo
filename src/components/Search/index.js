@@ -7,7 +7,6 @@ import {
   Input,
   AutoComplete,
 } from 'antd';
-import debounce from 'lodash/debounce';
 import declOfNum from '../../utils/declOfNum';
 import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
 import './index.scss';
@@ -29,7 +28,7 @@ class Search extends PureComponent {
   componentDidMount = () => {
     const searchOptions = JSON.parse(window.localStorage.getItem('searchOptions')) || [];
     this.setState({ options: searchOptions });
-    handleVisibleByScroll('addEventListener', ['scroll'], [this.handleScroll]);
+    handleVisibleByScroll('addEventListener', ['scroll', 'resize'], [this.handleScroll]);
   }
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -44,13 +43,8 @@ class Search extends PureComponent {
     }
   };
 
-  onChangeDebounced = debounce((value) => {
-    const { onChangeInputValue } = this.props;
-    onChangeInputValue(value);
-  }, 500)
-
   componentWillUnmount = () => {
-    handleVisibleByScroll('removeEventListener', ['scroll'], [this.handleScroll]);
+    handleVisibleByScroll('removeEventListener', ['scroll', 'resize'], [this.handleScroll]);
   }
 
   handleScroll = () => {
@@ -60,7 +54,7 @@ class Search extends PureComponent {
   renderOption = (item) => {
     const { t } = this.props;
     return (
-      <Option key={item.category} text={item.category}>
+      <Option key={item.query} text={item.query}>
         <div className="global-search-item">
           <span className="global-search-item-desc">
             { t('search.youSearched') }
@@ -83,13 +77,14 @@ class Search extends PureComponent {
   }
 
   handleKeyDown = (e) => {
+    const { onSearchInputValue } = this.props;
     const { value } = e.target || e;
     this.setState({ isSelectOpen: !!value });
     this.searchResult(value);
     if (!e.target && e) {
       this.increaseCount(e);
+      onSearchInputValue(e);
     } else if (e.keyCode === 13 && value) {
-      const { onSearchInputValue } = this.props;
       this.increaseCount(value);
       this.createNewOption(value);
       this.setState({ isSelectOpen: false });
@@ -116,7 +111,6 @@ class Search extends PureComponent {
       isSelectOpen: !!value,
       inputValue: value,
     });
-    this.onChangeDebounced(value);
   };
 
   searchResult = (value) => {
@@ -144,7 +138,7 @@ class Search extends PureComponent {
     const isQuery = options.some(item => item.query === value);
     if (!isQuery) {
       this.setState({
-        options: [...options, { query: value, category: value, count: 1 }],
+        options: [...options, { query: value, count: 1 }],
       });
     }
   };

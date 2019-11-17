@@ -29,9 +29,9 @@ const SelectLanguage = memo(() => {
     setSelectVisible(false);
   };
   useEffect(() => {
-    handleVisibleByScroll('addEventListener', ['scroll'], [handleScroll]);
+    handleVisibleByScroll('addEventListener', ['scroll', 'resize'], [handleScroll]);
     return () => {
-      handleVisibleByScroll('removeEventListener', ['scroll'], [handleScroll]);
+      handleVisibleByScroll('removeEventListener', ['scroll', 'resize'], [handleScroll]);
     };
   }, []);
 
