@@ -28,7 +28,6 @@ export const HeaderApp = withRouter(memo((props) => {
     profileFullName,
     logoutAction: handleAction,
     searchTextAction,
-    searchChangeInputValueAction,
     filterItemValueAction,
     filters,
     cardsData,
@@ -69,14 +68,6 @@ export const HeaderApp = withRouter(memo((props) => {
     handleUrl(text);
   };
 
-  const getChangeInputValue = (text) => {
-    if (text) {
-      searchChangeInputValueAction(text);
-      handleUrl(text);
-    } else {
-      handleUrl('');
-    }
-  };
   const getFilterItemValue = (itemText, itemId) => {
     filterItemValueAction(itemText, itemId);
     handleUrl(itemText);
@@ -109,8 +100,8 @@ export const HeaderApp = withRouter(memo((props) => {
               <Search
                 data-test="search"
                 onSearchInputValue={getSearchText}
-                onChangeInputValue={getChangeInputValue}
                 queryText={dataSearch.queryText}
+                history={history}
               />
             )}
           />

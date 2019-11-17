@@ -8,7 +8,9 @@ import {
   AutoComplete,
 } from 'antd';
 import declOfNum from '../../utils/declOfNum';
+import getURLParam from '../../utils/getURLParam';
 import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
+import { QUERY_TEXT_DEFAULT } from '../../constants';
 import './index.scss';
 
 const { Option } = AutoComplete;
@@ -33,9 +35,11 @@ class Search extends PureComponent {
 
   componentDidUpdate = (prevProps, prevState) => {
     const { queryText } = this.props;
-    const { options } = this.state;
-    if (prevProps.queryText !== queryText) {
-      this.setState({ inputValue: queryText.value });
+    const { options, inputValue } = this.state;
+    if (prevState.inputValue !== inputValue || prevProps.queryText !== queryText) {
+      let tagName = getURLParam(window.location, 'search');
+      if (!tagName && window.location.href.indexOf('?search') === -1) tagName = QUERY_TEXT_DEFAULT;
+      this.setState({ inputValue: tagName });
     }
     if (JSON.stringify(prevState.options) !== JSON.stringify(options)) {
       window.localStorage.setItem('searchOptions', JSON.stringify(options));
@@ -46,6 +50,12 @@ class Search extends PureComponent {
   componentWillUnmount = () => {
     handleVisibleByScroll('removeEventListener', ['scroll', 'resize'], [this.handleScroll]);
   }
+
+  handleUrl = (str) => {
+    const { history } = this.props;
+    const newUrl = `?search=${str}`;
+    history.push(newUrl, {});
+  };
 
   handleScroll = () => {
     this.setState({ isSelectOpen: false });
@@ -111,6 +121,7 @@ class Search extends PureComponent {
       isSelectOpen: !!value,
       inputValue: value,
     });
+    this.handleUrl(value)
   };
 
   searchResult = (value) => {
@@ -205,14 +216,14 @@ class Search extends PureComponent {
 Search.propTypes = {
   queryText: PropTypes.shape({}),
   onSearchInputValue: PropTypes.func,
-  onChangeInputValue: PropTypes.func,
   t: PropTypes.func,
+  history: PropTypes.shape({}),
 };
 Search.defaultProps = {
   queryText: {},
   onSearchInputValue: () => {},
-  onChangeInputValue: () => {},
   t: () => {},
+  history: {},
 };
 
 export default withTranslation()(Search);
