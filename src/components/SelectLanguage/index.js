@@ -7,6 +7,7 @@ import {
   URL_FOR_FLAG_RU,
   URL_FOR_FLAG_EN,
 } from '../../constants';
+import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
 import './index.scss';
 
 const { Option } = Select;
@@ -28,9 +29,9 @@ const SelectLanguage = memo(() => {
     setSelectVisible(false);
   };
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    handleVisibleByScroll('addEventListener', ['scroll'], [handleScroll]);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      handleVisibleByScroll('removeEventListener', ['scroll'], [handleScroll]);
     };
   }, []);
 

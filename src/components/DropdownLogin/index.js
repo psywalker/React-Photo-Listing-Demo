@@ -10,6 +10,7 @@ import {
 } from 'antd';
 import UserAvatar from '../UserAvatar';
 import { URL_FOR_LOGIN } from '../../constants';
+import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
 import './index.scss';
 
 const DropdownLogin = memo(({
@@ -27,12 +28,14 @@ const DropdownLogin = memo(({
   const handleScroll = () => {
     setDropdownVisible(false);
   };
+
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    handleVisibleByScroll('addEventListener', ['scroll'], [handleScroll]);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      handleVisibleByScroll('removeEventListener', ['scroll'], [handleScroll]);
     };
-  }, []);
+  });
+
   const renderButton = (className, href, onclick, datatest, text) => (
     <div>
       <Button

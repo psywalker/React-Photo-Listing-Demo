@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { saveAs } from 'file-saver';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +8,7 @@ import {
   Popover,
 } from 'antd';
 import handleDowloadPhoto from '../../utils/handleDowloadPhoto';
+import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
 import './index.scss';
 
 const DownloadSizesPopover = memo(({
@@ -34,6 +35,14 @@ const DownloadSizesPopover = memo(({
   const hidePopover = () => {
     setPopupVisible(false);
   };
+
+  useEffect(() => {
+    handleVisibleByScroll('addEventListener', ['scroll', 'resize'], [hidePopover, handleVisibleButtonChangeFalse]);
+    return () => {
+      handleVisibleByScroll('removeEventListener', ['scroll', 'resize'], [hidePopover, handleVisibleButtonChangeFalse]);
+    };
+  });
+
   return (
     <Popover
       overlayClassName="download-button__popover download-button-popover"

@@ -9,6 +9,7 @@ import {
 } from 'antd';
 import debounce from 'lodash/debounce';
 import declOfNum from '../../utils/declOfNum';
+import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
 import './index.scss';
 
 const { Option } = AutoComplete;
@@ -28,8 +29,7 @@ class Search extends PureComponent {
   componentDidMount = () => {
     const searchOptions = JSON.parse(window.localStorage.getItem('searchOptions')) || [];
     this.setState({ options: searchOptions });
-
-    window.addEventListener('scroll', this.handleScroll);
+    handleVisibleByScroll('addEventListener', ['scroll'], [this.handleScroll]);
   }
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -49,8 +49,8 @@ class Search extends PureComponent {
     onChangeInputValue(value);
   }, 500)
 
-  componentUnmount = () => {
-    window.removeEventListener('scroll', this.handleScroll);
+  componentWillUnmount = () => {
+    handleVisibleByScroll('removeEventListener', ['scroll'], [this.handleScroll]);
   }
 
   handleScroll = () => {
@@ -179,11 +179,11 @@ class Search extends PureComponent {
           onSelect={this.handleKeyDown}
           onSearch={this.searchResult}
           onChange={this.handleInputChange}
-          onFocus={this.handleInputFocus}
           defaultActiveFirstOption={false}
           placeholder={t('search.placeholder')}
           optionLabelProp="text"
           value={inputValue}
+          defaultOpen={false}
           backfill
           allowClear
           autoFocus

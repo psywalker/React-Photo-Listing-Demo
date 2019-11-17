@@ -20,6 +20,7 @@ import {
 import { photoRequestAction, photoImageLoadAction } from '../../actions';
 import getPhotoSize from './getPhotoSize';
 import setScrollX from '../../utils/setScrollX';
+import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
 import './index.scss';
 
 export class Photo extends Component {
@@ -36,7 +37,7 @@ export class Photo extends Component {
     const { match, photoRequestAction: requestAction } = this.props;
     requestAction(match);
     this.setPhotoSize();
-    window.addEventListener('resize', this.setPhotoSize);
+    handleVisibleByScroll('addEventListener', ['resize'], [this.setPhotoSize]);
   };
 
   componentDidUpdate = (prevProps) => {
@@ -45,7 +46,7 @@ export class Photo extends Component {
   }
 
   componentWillUnmount = () => {
-    window.removeEventListener('resize', this.setPhotoSize);
+    handleVisibleByScroll('removeEventListener', ['resize'], [this.setPhotoSize]);
   }
 
   setPhotoSize = () => {
