@@ -21,6 +21,7 @@ class Search extends PureComponent {
     const { queryText: { value } } = this.props;
     this.state = {
       inputValue: value,
+      lastRequest: value,
       isSelectOpen: false,
       dataSource: [],
       options: [],
@@ -30,19 +31,29 @@ class Search extends PureComponent {
   }
 
   componentDidMount = () => {
+    const tagName = getURLParam(window.location, 'search');
     const searchOptions = JSON.parse(window.localStorage.getItem('searchOptions')) || [];
-    this.setState({ options: searchOptions });
+    this.setState({ options: searchOptions, lastRequest: tagName });
     handleVisibleByScroll('addEventListener', ['scroll', 'resize'], [this.handleScroll]);
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    const { queryText } = this.props;
+    const { queryText, navTopItemActive } = this.props;
     const { options, inputValue } = this.state;
     this.searchInput.focus();
+    if (prevProps.navTopItemActive !== navTopItemActive) {
+      const tagName = getURLParam(window.location, 'search');
+      this.setState({ lastRequest: tagName });
+    }
+
     if (prevState.inputValue !== inputValue || prevProps.queryText !== queryText) {
       let tagName = getURLParam(window.location, 'search');
       if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') !== -1) tagName = '';
-      if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') === -1) tagName = QUERY_TEXT_DEFAULT;
+      if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') === -1) {
+        tagName = QUERY_TEXT_DEFAULT;
+        this.setState({ lastRequest: tagName });
+      }
+      if (tagName === QUERY_TEXT_DEFAULT) this.setState({ lastRequest: tagName });
 
       this.setState({ inputValue: tagName });
     }
@@ -93,18 +104,29 @@ class Search extends PureComponent {
 
   handleKeyDown = (e) => {
     const { onSearchInputValue } = this.props;
+    const { lastRequest } = this.state;
     const { value } = e.target || e;
     this.setState({ isSelectOpen: !!value });
     this.searchResult(value);
-    if (!e.target && e) {
+    if (!e.target && e && e !== lastRequest) {
       this.increaseCount(e);
       onSearchInputValue(e);
-    } else if (e.keyCode === 13 && value) {
+      this.setState({ lastRequest: e });
+    } else if (e.keyCode === 13 && value && value !== lastRequest) {
       this.increaseCount(value);
       this.createNewOption(value);
       this.setState({ isSelectOpen: false });
       onSearchInputValue(value);
+      this.setState({ lastRequest: value });
     }
+
+    if (
+      (!e.target && e && e === lastRequest)
+      || (e.keyCode === 13 && value && value === lastRequest
+      )) {
+      this.setState({ isSelectOpen: false }, () => this.setState({ isSelectOpen: false }));
+    }
+
     return false;
   };
 
@@ -112,12 +134,18 @@ class Search extends PureComponent {
     e.stopPropagation();
     e.target.blur();
     const { onSearchInputValue } = this.props;
-    const { inputValue } = this.state;
+    const { inputValue, lastRequest } = this.state;
 
-    if (inputValue) {
+    if (inputValue && inputValue !== lastRequest) {
       this.increaseCount(inputValue);
       this.createNewOption(inputValue);
       onSearchInputValue(inputValue);
+      this.setState({ lastRequest: inputValue });
+    }
+
+    if (inputValue && inputValue === lastRequest) {
+      this.searchInput.focus();
+      this.setState({ isSelectOpen: false });
     }
   }
 
@@ -227,12 +255,14 @@ Search.propTypes = {
   onSearchInputValue: PropTypes.func,
   t: PropTypes.func,
   history: PropTypes.shape({}),
+  navTopItemActive: PropTypes.number,
 };
 Search.defaultProps = {
   queryText: {},
   onSearchInputValue: () => {},
   t: () => {},
   history: {},
+  navTopItemActive: 2,
 };
 
 export default withTranslation()(Search);

@@ -96,6 +96,7 @@ export const HeaderApp = withRouter(memo((props) => {
                 data-test="search"
                 onSearchInputValue={getSearchText}
                 queryText={dataSearch.queryText}
+                navTopItemActive={dataSearch.navTopItemActive}
                 history={history}
               />
             )}
