@@ -7,6 +7,7 @@ const NavTop = memo(({
   navTopItemActive,
   onFilterItemValue,
   filters,
+  changeNvTopItemActive,
 }) => (
   <ul className="nav-top" data-test="navTop">
     {filters.map(item => (
@@ -19,6 +20,7 @@ const NavTop = memo(({
           data-test="navTopItemTag"
           color={`${item.id === navTopItemActive ? 'purple' : ''}`}
           onClick={() => {
+            changeNvTopItemActive(item.id);
             if (item.id !== navTopItemActive) onFilterItemValue(item.filterValue, item.id);
           }}
         >
@@ -35,6 +37,7 @@ NavTop.propTypes = {
     label: PropTypes.string,
     filterValue: PropTypes.string,
   })),
+  changeNvTopItemActive: PropTypes.func,
   onFilterItemValue: PropTypes.func,
   navTopItemActive: PropTypes.number,
 };
@@ -42,5 +45,6 @@ NavTop.defaultProps = {
   filters: [],
   navTopItemActive: 0,
   onFilterItemValue: () => {},
+  changeNvTopItemActive: () => {},
 };
 export default NavTop;

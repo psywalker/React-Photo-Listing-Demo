@@ -11,6 +11,7 @@ import declOfNum from '../../utils/declOfNum';
 import getURLParam from '../../utils/getURLParam';
 import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
 import isStrSearchEmpty from '../../utils/isStrSearchEmpty';
+import { QUERY_TEXT_DEFAULT } from '../../constants';
 import './index.scss';
 
 const { Option } = AutoComplete;
@@ -18,7 +19,6 @@ const { Option } = AutoComplete;
 class Search extends PureComponent {
   constructor(...args) {
     super(...args);
-    //const { queryText: { value } } = this.props;
     const { queryText } = this.props;
     this.state = {
       inputValue: queryText,
@@ -38,12 +38,14 @@ class Search extends PureComponent {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    const { navTopItemActive, queryText, updatedApp } = this.props;
+    const { navTopItemActive, queryText, changeQueryText } = this.props;
     const { options, inputValue } = this.state;
     this.searchInput.focus();
-    console.log("3: ", inputValue, queryText)
-    if (prevProps.queryText !== queryText) {
-      //updatedApp(false)
+    if (prevState.inputValue !== inputValue) {
+      changeQueryText(inputValue);
+    }
+    if (inputValue === null && queryText === null) {
+      this.setState({ inputValue: QUERY_TEXT_DEFAULT, lastRequest: QUERY_TEXT_DEFAULT });
     }
     if (prevProps.navTopItemActive !== navTopItemActive) {
       const tagName = getURLParam(window.location, 'search');
@@ -243,14 +245,16 @@ class Search extends PureComponent {
 }
 
 Search.propTypes = {
-  queryText: PropTypes.shape({}),
+  queryText: PropTypes.string,
   onSearchInputValue: PropTypes.func,
   t: PropTypes.func,
+  changeQueryText: PropTypes.func,
   history: PropTypes.shape({}),
   navTopItemActive: PropTypes.number,
 };
 Search.defaultProps = {
-  queryText: {},
+  queryText: '',
+  changeQueryText: () => {},
   onSearchInputValue: () => {},
   t: () => {},
   history: {},
