@@ -66,6 +66,7 @@ import {
   LANG_EN,
   LANG_RU,
   LANG,
+  UPDATED_APP,
 } from './actionTypes';
 
 export {
@@ -127,4 +128,5 @@ export {
   LANG,
   INITIAL_LANG,
   INITIAL_LOGIN_DATA,
+  UPDATED_APP,
 };

@@ -10,7 +10,7 @@ import {
 import declOfNum from '../../utils/declOfNum';
 import getURLParam from '../../utils/getURLParam';
 import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
-import { QUERY_TEXT_DEFAULT } from '../../constants';
+import isStrSearchEmpty from '../../utils/isStrSearchEmpty';
 import './index.scss';
 
 const { Option } = AutoComplete;
@@ -18,10 +18,11 @@ const { Option } = AutoComplete;
 class Search extends PureComponent {
   constructor(...args) {
     super(...args);
-    const { queryText: { value } } = this.props;
+    //const { queryText: { value } } = this.props;
+    const { queryText } = this.props;
     this.state = {
-      inputValue: value,
-      lastRequest: value,
+      inputValue: queryText,
+      lastRequest: queryText,
       isSelectOpen: false,
       dataSource: [],
       options: [],
@@ -31,30 +32,21 @@ class Search extends PureComponent {
   }
 
   componentDidMount = () => {
-    const tagName = getURLParam(window.location, 'search');
     const searchOptions = JSON.parse(window.localStorage.getItem('searchOptions')) || [];
-    this.setState({ options: searchOptions, lastRequest: tagName });
+    this.setState({ options: searchOptions });
     handleVisibleByScroll('addEventListener', ['scroll', 'resize'], [this.handleScroll]);
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    const { queryText, navTopItemActive } = this.props;
+    const { navTopItemActive, queryText, updatedApp } = this.props;
     const { options, inputValue } = this.state;
     this.searchInput.focus();
+    console.log("3: ", inputValue, queryText)
+    if (prevProps.queryText !== queryText) {
+      //updatedApp(false)
+    }
     if (prevProps.navTopItemActive !== navTopItemActive) {
       const tagName = getURLParam(window.location, 'search');
-      this.setState({ lastRequest: tagName });
-    }
-
-    if (prevState.inputValue !== inputValue || prevProps.queryText !== queryText) {
-      let tagName = getURLParam(window.location, 'search');
-      if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') !== -1) tagName = '';
-      if ((!tagName || tagName === 'undefined') && window.location.href.indexOf('?search') === -1) {
-        tagName = QUERY_TEXT_DEFAULT;
-        this.setState({ lastRequest: tagName });
-      }
-      if (tagName === QUERY_TEXT_DEFAULT) this.setState({ lastRequest: tagName });
-
       this.setState({ inputValue: tagName });
     }
     if (JSON.stringify(prevState.options) !== JSON.stringify(options)) {
@@ -69,7 +61,7 @@ class Search extends PureComponent {
 
   handleUrl = (str) => {
     const { history } = this.props;
-    const newUrl = `?search=${str === 'undefined' || str === undefined ? '' : str}`;
+    const newUrl = `${isStrSearchEmpty(str) ? '' : `?search=${str}`}`;
     history.push(newUrl, {});
   };
 

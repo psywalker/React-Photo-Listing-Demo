@@ -29,3 +29,4 @@ export const UPDATE_CHARTS_END = 'UPDATE_CHARTS_END';
 export const LANG_RU = 'LANG_RU';
 export const LANG_EN = 'LANG_EN';
 export const LANG = 'LANG';
+export const UPDATED_APP = 'UPDATED_APP';

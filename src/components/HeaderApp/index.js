@@ -10,13 +10,14 @@ import SelectLanguage from '../SelectLanguage';
 import Search from '../Search';
 import NavTop from '../NavTop';
 import getURLParam from '../../utils/getURLParam';
-import { NAV_TOP_ITEM_ACTIVE_DEFAULT } from '../../constants';
+import { NAV_TOP_ITEM_ACTIVE_DEFAULT, QUERY_TEXT_DEFAULT } from '../../constants';
 import {
   logoutAction,
   searchTextAction,
   searchChangeInputValueAction,
   filterItemValueAction,
   loginSuccess,
+  updatedApp,
 } from '../../actions';
 import './index.scss';
 
@@ -30,6 +31,8 @@ export const HeaderApp = withRouter(memo((props) => {
     searchTextAction,
     filterItemValueAction,
     filters,
+    updatedApp,
+    updateFlag,
   } = props;
 
   const handleLoguotHeader = () => {
@@ -40,7 +43,13 @@ export const HeaderApp = withRouter(memo((props) => {
   };
   const getDataSearch = () => {
     const tagName = getURLParam(window.location, 'search');
-    let navTopItemActive = (!tagName && window.location.href.indexOf('?search') !== -1) ? null : NAV_TOP_ITEM_ACTIVE_DEFAULT;
+    let navTopItemActive = updateFlag ? 2 : null;
+    let queryText = updateFlag ? QUERY_TEXT_DEFAULT : tagName || '';
+
+    //if (updateFlag) updatedApp(false)
+
+    console.log("1: ", queryText)
+    console.log("2: ", updateFlag)
 
     if (tagName) {
       const tag = filters.filter(item => item.label.toLowerCase() === tagName.toLowerCase());
@@ -48,7 +57,8 @@ export const HeaderApp = withRouter(memo((props) => {
     }
 
     return {
-      queryText: { value: '' },
+      //queryText: { value: queryText },
+      queryText,
       navTopItemActive,
     };
   };
@@ -74,7 +84,7 @@ export const HeaderApp = withRouter(memo((props) => {
       <div className="header__inner">
         <div className="header__item">
           <div className="header__logo">
-            <Logo />
+            <Logo history={history} />
 
             <Route
               data-test="btnBackRoute"
@@ -98,6 +108,7 @@ export const HeaderApp = withRouter(memo((props) => {
                 queryText={dataSearch.queryText}
                 navTopItemActive={dataSearch.navTopItemActive}
                 history={history}
+                updatedApp={updatedApp}
               />
             )}
           />
@@ -148,8 +159,8 @@ HeaderApp.defaultProps = {
 };
 
 export const mapStateToProps = (state) => {
-  const { login, photolisting } = state;
-  return { ...login, ...photolisting };
+  const { login, photolisting, updatedApp: updateFlag } = state;
+  return { ...login, ...photolisting, updateFlag };
 };
 
 const mapDispatchToProps = {
@@ -158,6 +169,7 @@ const mapDispatchToProps = {
   searchTextAction,
   searchChangeInputValueAction,
   filterItemValueAction,
+  updatedApp,
 };
 
 export default withLastLocation(connect(
