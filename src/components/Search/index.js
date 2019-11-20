@@ -12,6 +12,7 @@ import getURLParam from '../../utils/getURLParam';
 import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
 import isStrSearchEmpty from '../../utils/isStrSearchEmpty';
 import { QUERY_TEXT_DEFAULT } from '../../constants';
+import filters from '../../filters';
 import './index.scss';
 
 const { Option } = AutoComplete;
@@ -44,12 +45,20 @@ class Search extends PureComponent {
     if (prevState.inputValue !== inputValue) {
       changeQueryText(inputValue);
     }
-    if (inputValue === null && queryText === null) {
+
+    if (inputValue === null && queryText === QUERY_TEXT_DEFAULT) {
       this.setState({ inputValue: QUERY_TEXT_DEFAULT, lastRequest: QUERY_TEXT_DEFAULT });
     }
     if (prevProps.navTopItemActive !== navTopItemActive) {
       const tagName = getURLParam(window.location, 'search');
       this.setState({ inputValue: tagName });
+      if (tagName) {
+        const tag = filters.filter(item => item.label.toLowerCase() === tagName.toLowerCase());
+        if (tag.length) {
+          const { lastRequest } = this.state;
+          //if (lastRequest !== tagName) this.setState({ lastRequest: tagName });
+        }
+      }
     }
     if (JSON.stringify(prevState.options) !== JSON.stringify(options)) {
       window.localStorage.setItem('searchOptions', JSON.stringify(options));

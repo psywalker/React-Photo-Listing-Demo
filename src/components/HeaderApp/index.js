@@ -69,21 +69,38 @@ export const HeaderApp = withRouter(memo((props) => {
   };
 
   useEffect(() => {
-    const tagName = getURLParam(window.location, 'search');
-    let itemActive = NAV_TOP_ITEM_ACTIVE_DEFAULT;
-
-    if (tagName) {
-      const tag = filters.filter(item => item.label.toLowerCase() === tagName.toLowerCase());
-      itemActive = tag.length ? tag[0].id : null;
-      setNavTopItemActive(itemActive);
-    }
-
     if (updateFlag) {
-      setUpdateFlag(false);
       setNavTopItemActive(NAV_TOP_ITEM_ACTIVE_DEFAULT);
-      setQueryText(QUERY_TEXT_DEFAULT)
+      setQueryText(QUERY_TEXT_DEFAULT);
+      setUpdateFlag(false);
     }
-  }, [queryText, filters, updateFlag]);
+  }, [updateFlag]);
+
+  // useEffect(() => {
+  //   const tagName = getURLParam(window.location, 'search');
+  //   let itemActive = NAV_TOP_ITEM_ACTIVE_DEFAULT;
+
+  //   if (tagName) {
+  //     const tag = filters.filter(item => item.label.toLowerCase() === tagName.toLowerCase());
+  //     itemActive = tag.length ? tag[0].id : null;
+  //     setNavTopItemActive(itemActive);
+  //     if (tag.length) setQueryText(tag[0].fitlerValue);
+  //   }
+  // }, [filters]);
+
+  useEffect(() => {
+    if (queryText === 'undefined' || queryText === undefined) setNavTopItemActive(null);
+    else {
+      const tagName = getURLParam(window.location, 'search');
+      let itemActive = NAV_TOP_ITEM_ACTIVE_DEFAULT;
+
+      if (tagName) {
+        const tag = filters.filter(item => item.label.toLowerCase() === tagName.toLowerCase());
+        itemActive = tag.length ? tag[0].id : null;
+        setNavTopItemActive(itemActive);
+      }
+    }
+  }, [queryText, filters]);
 
   return (
     <div className="header">
