@@ -17,7 +17,6 @@ import {
   searchChangeInputValueAction,
   filterItemValueAction,
   loginSuccess,
-  updatedApp,
 } from '../../actions';
 import './index.scss';
 
@@ -31,12 +30,12 @@ export const HeaderApp = withRouter(memo((props) => {
     searchTextAction,
     filterItemValueAction,
     filters,
-    updatedApp,
   } = props;
 
   const [queryText, setQueryText] = useState(QUERY_TEXT_DEFAULT);
   const [navTopItemActive, setNavTopItemActive] = useState(NAV_TOP_ITEM_ACTIVE_DEFAULT);
-  const [updateFlag, setUpdateFlag] = useState(false);
+  const [isUpdateApp, setIsUpdateApp] = useState(false);
+  const [isUpdateNavItem, setIsUpdateNavItem] = useState(false);
 
   const handleLoguotHeader = () => {
     handleAction();
@@ -60,7 +59,7 @@ export const HeaderApp = withRouter(memo((props) => {
     handleUrl(itemText);
   };
 
-  const changeNvTopItemActive = (num) => {
+  const changeNavTopItemActive = (num) => {
     setNavTopItemActive(num);
   };
 
@@ -69,27 +68,15 @@ export const HeaderApp = withRouter(memo((props) => {
   };
 
   useEffect(() => {
-    if (updateFlag) {
+    if (isUpdateApp) {
       setNavTopItemActive(NAV_TOP_ITEM_ACTIVE_DEFAULT);
       setQueryText(QUERY_TEXT_DEFAULT);
-      setUpdateFlag(false);
+      setIsUpdateApp(false);
     }
-  }, [updateFlag]);
-
-  // useEffect(() => {
-  //   const tagName = getURLParam(window.location, 'search');
-  //   let itemActive = NAV_TOP_ITEM_ACTIVE_DEFAULT;
-
-  //   if (tagName) {
-  //     const tag = filters.filter(item => item.label.toLowerCase() === tagName.toLowerCase());
-  //     itemActive = tag.length ? tag[0].id : null;
-  //     setNavTopItemActive(itemActive);
-  //     if (tag.length) setQueryText(tag[0].fitlerValue);
-  //   }
-  // }, [filters]);
+  }, [isUpdateApp]);
 
   useEffect(() => {
-    if (queryText === 'undefined' || queryText === undefined) setNavTopItemActive(null);
+    if (queryText === undefined) setNavTopItemActive(null);
     else {
       const tagName = getURLParam(window.location, 'search');
       let itemActive = NAV_TOP_ITEM_ACTIVE_DEFAULT;
@@ -107,7 +94,7 @@ export const HeaderApp = withRouter(memo((props) => {
       <div className="header__inner">
         <div className="header__item">
           <div className="header__logo">
-            <Logo setUpdateFlag={setUpdateFlag} />
+            <Logo setIsUpdateApp={setIsUpdateApp} />
 
             <Route
               data-test="btnBackRoute"
@@ -131,8 +118,9 @@ export const HeaderApp = withRouter(memo((props) => {
                 changeQueryText={changeQueryText}
                 queryText={queryText}
                 navTopItemActive={navTopItemActive}
+                isUpdateNavItem={isUpdateNavItem}
+                setIsUpdateNavItem={setIsUpdateNavItem}
                 history={history}
-                updatedApp={updatedApp}
               />
             )}
           />
@@ -153,8 +141,9 @@ export const HeaderApp = withRouter(memo((props) => {
                 data-test="navTop"
                 navTopItemActive={navTopItemActive}
                 onFilterItemValue={getFilterItemValue}
-                changeNvTopItemActive={changeNvTopItemActive}
+                changeNavTopItemActive={changeNavTopItemActive}
                 filters={filters}
+                setIsUpdateNavItem={setIsUpdateNavItem}
               />
             </div>
           )}
@@ -184,8 +173,8 @@ HeaderApp.defaultProps = {
 };
 
 export const mapStateToProps = (state) => {
-  const { login, photolisting, updatedApp: updateFlag } = state;
-  return { ...login, ...photolisting, updateFlag };
+  const { login, photolisting } = state;
+  return { ...login, ...photolisting };
 };
 
 const mapDispatchToProps = {
@@ -194,7 +183,6 @@ const mapDispatchToProps = {
   searchTextAction,
   searchChangeInputValueAction,
   filterItemValueAction,
-  updatedApp,
 };
 
 export default withLastLocation(connect(

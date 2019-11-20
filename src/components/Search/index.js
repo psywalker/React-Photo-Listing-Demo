@@ -7,12 +7,10 @@ import {
   Input,
   AutoComplete,
 } from 'antd';
-import declOfNum from '../../utils/declOfNum';
 import getURLParam from '../../utils/getURLParam';
 import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
 import isStrSearchEmpty from '../../utils/isStrSearchEmpty';
 import { QUERY_TEXT_DEFAULT } from '../../constants';
-import filters from '../../filters';
 import './index.scss';
 
 const { Option } = AutoComplete;
@@ -33,8 +31,10 @@ class Search extends PureComponent {
   }
 
   componentDidMount = () => {
+    const tagName = getURLParam(window.location, 'search');
     const searchOptions = JSON.parse(window.localStorage.getItem('searchOptions')) || [];
-    this.setState({ options: searchOptions });
+    if (tagName) this.setState({ lastRequest: tagName, options: searchOptions })
+    else this.setState({ lastRequest: QUERY_TEXT_DEFAULT, options: searchOptions })
     handleVisibleByScroll('addEventListener', ['scroll', 'resize'], [this.handleScroll]);
   }
 
@@ -42,23 +42,19 @@ class Search extends PureComponent {
     const { navTopItemActive, queryText, changeQueryText } = this.props;
     const { options, inputValue } = this.state;
     this.searchInput.focus();
-    if (prevState.inputValue !== inputValue) {
+    if ((prevState.inputValue !== inputValue) || (!prevState.inputValue && !inputValue)) {
       changeQueryText(inputValue);
     }
-
     if (inputValue === null && queryText === QUERY_TEXT_DEFAULT) {
       this.setState({ inputValue: QUERY_TEXT_DEFAULT, lastRequest: QUERY_TEXT_DEFAULT });
     }
     if (prevProps.navTopItemActive !== navTopItemActive) {
+      const { isUpdateNavItem, setIsUpdateNavItem } = this.props;
       const tagName = getURLParam(window.location, 'search');
-      this.setState({ inputValue: tagName });
-      if (tagName) {
-        const tag = filters.filter(item => item.label.toLowerCase() === tagName.toLowerCase());
-        if (tag.length) {
-          const { lastRequest } = this.state;
-          //if (lastRequest !== tagName) this.setState({ lastRequest: tagName });
-        }
-      }
+      if (isUpdateNavItem) {
+        this.setState({ lastRequest: tagName, inputValue: tagName });
+        setIsUpdateNavItem(false);
+      } else this.setState({ inputValue: tagName });
     }
     if (JSON.stringify(prevState.options) !== JSON.stringify(options)) {
       window.localStorage.setItem('searchOptions', JSON.stringify(options));
@@ -81,24 +77,15 @@ class Search extends PureComponent {
   };
 
   renderOption = (item) => {
-    const { t } = this.props;
     return (
       <Option key={item.query} text={item.query}>
         <div className="global-search-item">
           <span className="global-search-item-desc">
-            { t('search.youSearched') }
-            {' '}
             <b>
               «
               {item.query}
               »
             </b>
-          </span>
-          <span className="global-search-item-count">
-            {' '}
-            {item.count}
-            {' '}
-            {declOfNum(item.count)}
           </span>
         </div>
       </Option>
@@ -255,7 +242,9 @@ class Search extends PureComponent {
 
 Search.propTypes = {
   queryText: PropTypes.string,
+  isUpdateNavItem: PropTypes.bool,
   onSearchInputValue: PropTypes.func,
+  setIsUpdateNavItem: PropTypes.func,
   t: PropTypes.func,
   changeQueryText: PropTypes.func,
   history: PropTypes.shape({}),
@@ -263,8 +252,10 @@ Search.propTypes = {
 };
 Search.defaultProps = {
   queryText: '',
+  isUpdateNavItem: false,
   changeQueryText: () => {},
   onSearchInputValue: () => {},
+  setIsUpdateNavItem: () => {},
   t: () => {},
   history: {},
   navTopItemActive: 2,

@@ -34,7 +34,6 @@ const initialStore = {
     isChart: false,
   },
   lang: localStorageLang,
-  updatedApp: false,
   photo: {
     info: {
       lastUpdateInfo: '',

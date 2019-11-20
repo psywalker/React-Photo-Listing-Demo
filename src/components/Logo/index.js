@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { URL_FOR_LOGO } from '../../constants';
 import './index.scss';
 
-const Logo = memo(({ setUpdateFlag }) => (
+const Logo = memo(({ setIsUpdateApp }) => (
   <div
     data-test="Logo"
     className="logo"
@@ -12,7 +12,7 @@ const Logo = memo(({ setUpdateFlag }) => (
     <Link
       data-test="siteLogoLinkRouter"
       to={{ pathname: '/', state: { flag: true } }}
-      onClick={() => setUpdateFlag(true)}
+      onClick={() => setIsUpdateApp(true)}
     >
       <img
         className="logo__img"
@@ -24,10 +24,10 @@ const Logo = memo(({ setUpdateFlag }) => (
 ));
 
 Logo.propTypes = {
-  setUpdateFlag: PropTypes.func,
+  setIsUpdateApp: PropTypes.func,
 };
 Logo.defaultProps = {
-  setUpdateFlag: () => {},
+  setIsUpdateApp: () => {},
 };
 
 export default Logo;

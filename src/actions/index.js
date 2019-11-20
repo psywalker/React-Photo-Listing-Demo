@@ -20,17 +20,11 @@ import {
   LANG_RU,
   LANG_EN,
   LANG,
-  UPDATED_APP,
 } from '../constants';
 
 export const changeLang = lang => ({
   type: LANG,
   lang,
-});
-
-export const updatedApp = flag => ({
-  type: UPDATED_APP,
-  updatedApp: flag,
 });
 
 export const setLangRu = () => ({
