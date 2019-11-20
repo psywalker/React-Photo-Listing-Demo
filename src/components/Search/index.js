@@ -42,7 +42,7 @@ class Search extends PureComponent {
     const { navTopItemActive, queryText, changeQueryText } = this.props;
     const { options, inputValue } = this.state;
     this.searchInput.focus();
-    if ((prevState.inputValue !== inputValue) || (!prevState.inputValue && !inputValue)) {
+    if ((prevState.inputValue !== inputValue)) {
       changeQueryText(inputValue);
     }
     if (inputValue === null && queryText === QUERY_TEXT_DEFAULT) {
