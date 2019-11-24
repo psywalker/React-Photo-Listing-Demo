@@ -30,3 +30,5 @@ export const LANG_RU = 'LANG_RU';
 export const LANG_EN = 'LANG_EN';
 export const LANG = 'LANG';
 export const UPDATED_APP = 'UPDATED_APP';
+export const UPDATE_TAGS_START = 'UPDATE_TAGS_START';
+export const UPDATE_TAGS_END = 'UPDATE_TAGS_END';

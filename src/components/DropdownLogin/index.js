@@ -1,6 +1,12 @@
 import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Route, Switch } from 'react-router-dom';
+import {
+  Link,
+  Route,
+  Switch,
+  withRouter,
+} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import {
   Menu,
@@ -11,16 +17,16 @@ import {
 import UserAvatar from '../UserAvatar';
 import { URL_FOR_LOGIN } from '../../constants';
 import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
+import { logoutAction } from '../../actions';
 import './index.scss';
 
-const DropdownLogin = memo(({
-  profileName,
-  profilePhotoUrl,
-  handleLoguotHeader,
-  profileFullName,
-}) => {
+const DropdownLogin = memo(({ history }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const profileName = useSelector(state => state.login.profileName);
+  const profilePhotoUrl = useSelector(state => state.login.profilePhotoUrl);
+  const profileFullName = useSelector(state => state.login.profileFullName);
 
   const onVisibleChange = (value) => {
     setDropdownVisible(value);
@@ -29,10 +35,17 @@ const DropdownLogin = memo(({
     setDropdownVisible(false);
   };
 
+  const handleLoguotHeader = () => {
+    dispatch(logoutAction());
+    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('loginData');
+    history.push('/');
+  };
+
   useEffect(() => {
-    handleVisibleByScroll('addEventListener', ['scroll', 'resize'], [handleScroll]);
+    handleVisibleByScroll('addEventListener', ['scroll'], [handleScroll]);
     return () => {
-      handleVisibleByScroll('removeEventListener', ['scroll', 'resize'], [handleScroll]);
+      handleVisibleByScroll('removeEventListener', ['scroll'], [handleScroll]);
     };
   });
 
@@ -118,17 +131,11 @@ const DropdownLogin = memo(({
 });
 
 DropdownLogin.propTypes = {
-  profilePhotoUrl: PropTypes.string,
-  profileName: PropTypes.string,
-  profileFullName: PropTypes.string,
-  handleLoguotHeader: PropTypes.func,
+  history: PropTypes.shape({}),
 };
 
 DropdownLogin.defaultProps = {
-  profilePhotoUrl: '',
-  profileName: '',
-  profileFullName: '',
-  handleLoguotHeader: () => {},
+  history: {},
 };
 
-export default DropdownLogin;
+export default withRouter(DropdownLogin);

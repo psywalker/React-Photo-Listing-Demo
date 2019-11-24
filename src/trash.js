@@ -795,3 +795,58 @@ className="header-app"
     //   .filter(({ query }) => query === value)
     //   .map(item => ({ ...item, count: item.count + 1 }));
 // */
+/// 
+/* 
+handleKeyDown = (e, e2) => {
+    const {
+      searchTextAction: onSearchInputValue,
+      updateTagsStartAction: updateTagStart,
+    } = this.props;
+    const { lastRequest } = this.state;
+    const value = e && e.target ? e.target.value : e;
+    this.setState({ isSelectOpen: !!value });
+    this.searchResult(value);
+    console.log("1.1: handleKeyDown ::: ", e, " : ", lastRequest)
+    console.log("1.2: handleKeyDown ::: ", e2)
+    console.log("1.3: handleKeyDown ::: ", e , " : " , value)
+    if (e === lastRequest) {
+      this.queryCancel = true;
+      return false;
+    }
+
+    if (e && !e.target && e !== lastRequest) {
+      console.log("1.4: handleKeyDown ::: ", e)
+      console.log("1.5: handleKeyDown ::: ", e2)
+      console.log("1.6: handleKeyDown ::: ", value)
+      this.increaseCount(e);
+      onSearchInputValue(e);
+      this.setState({ lastRequest: e });
+      updateTagStart(e);
+    } else if (e.keyCode === 13 && value && value !== lastRequest) {
+      console.log("1.7: handleKeyDown ::: ", e)
+      console.log("1.8: handleKeyDown ::: ", e2)
+      console.log("1.9: handleKeyDown ::: ", value)
+      console.log("1.10: handleKeyDown ::: ", this.queryCancel, " : ", lastRequest)
+      if (this.queryCancel) {
+        this.queryCancel = false;
+        return false;
+      }
+      this.increaseCount(value);
+      this.createNewOption(value);
+      this.setState({ isSelectOpen: false });
+      onSearchInputValue(value);
+      this.setState({ lastRequest: value });
+      updateTagStart(value);
+    }
+
+    if (
+      (!e.target && e && e === lastRequest)
+      || (e.keyCode === 13 && value && value === lastRequest
+      )) {
+      this.setState({ isSelectOpen: false }, () => this.setState({ isSelectOpen: false }));
+    }
+
+    return false;
+  };
+
+*/

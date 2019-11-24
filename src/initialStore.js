@@ -1,7 +1,7 @@
 import i18next from 'i18next';
 import filters from './filters';
 import getLoginData from './utils/getLoginData';
-import { INITIAL_LOGIN_DATA } from './constants';
+import { INITIAL_LOGIN_DATA, NAV_TOP_ITEM_ACTIVE_DEFAULT, QUERY_TEXT_DEFAULT } from './constants';
 
 const localStorageLang = window.localStorage.getItem('lang') || 'ru';
 const localStorageloginData = getLoginData() || { ...INITIAL_LOGIN_DATA };
@@ -34,6 +34,11 @@ const initialStore = {
     isChart: false,
   },
   lang: localStorageLang,
+  updateTags: {
+    id: NAV_TOP_ITEM_ACTIVE_DEFAULT,
+    tagValue: QUERY_TEXT_DEFAULT,
+    isUpdateTag: false,
+  },
   photo: {
     info: {
       lastUpdateInfo: '',

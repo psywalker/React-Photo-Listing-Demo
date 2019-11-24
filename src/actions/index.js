@@ -20,7 +20,20 @@ import {
   LANG_RU,
   LANG_EN,
   LANG,
+  UPDATE_TAGS_START,
+  UPDATE_TAGS_END,
 } from '../constants';
+
+export const updateTagsStartAction = value => ({
+  type: UPDATE_TAGS_START,
+  isUpdateTag: true,
+  newTagvalue: value,
+});
+
+export const updateTagsEndAction = () => ({
+  type: UPDATE_TAGS_END,
+  isUpdateTag: false,
+});
 
 export const changeLang = lang => ({
   type: LANG,

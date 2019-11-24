@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import {
   Icon,
   Button,
@@ -9,8 +11,8 @@ import {
 } from 'antd';
 import getURLParam from '../../utils/getURLParam';
 import handleVisibleByScroll from '../../utils/handleVisibleByScroll';
-import isStrSearchEmpty from '../../utils/isStrSearchEmpty';
-import { QUERY_TEXT_DEFAULT } from '../../constants';
+import { QUERY_TEXT_DEFAULT, NAV_TOP_ITEM_ACTIVE_DEFAULT } from '../../constants';
+import { updateTagsStartAction, updateTagsEndAction, searchTextAction } from '../../actions';
 import './index.scss';
 
 const { Option } = AutoComplete;
@@ -18,44 +20,55 @@ const { Option } = AutoComplete;
 class Search extends PureComponent {
   constructor(...args) {
     super(...args);
-    const { queryText } = this.props;
     this.state = {
-      inputValue: queryText,
-      lastRequest: queryText,
+      inputValue: '',
+      lastRequest: '',
       isSelectOpen: false,
       dataSource: [],
       options: [],
     };
 
     this.searchInput = null;
+    this.queryCancel = false;
   }
 
   componentDidMount = () => {
+    const { updateTagsStartAction: updateTagStart } = this.props;
     const tagName = getURLParam(window.location, 'search');
     const searchOptions = JSON.parse(window.localStorage.getItem('searchOptions')) || [];
-    if (tagName) this.setState({ lastRequest: tagName, options: searchOptions })
-    else this.setState({ lastRequest: QUERY_TEXT_DEFAULT, options: searchOptions })
-    handleVisibleByScroll('addEventListener', ['scroll', 'resize'], [this.handleScroll]);
+    if (tagName) {
+      this.setState({
+        lastRequest: tagName,
+        options: searchOptions,
+        inputValue: tagName,
+      });
+      updateTagStart(tagName);
+    } else {
+      this.setState({
+        lastRequest: QUERY_TEXT_DEFAULT,
+        inputValue: QUERY_TEXT_DEFAULT,
+        options: searchOptions,
+      });
+      updateTagStart(QUERY_TEXT_DEFAULT);
+      this.handleUrl('');
+    }
+    handleVisibleByScroll('addEventListener', ['scroll'], [this.handleScroll]);
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    const { navTopItemActive, queryText, changeQueryText } = this.props;
-    const { options, inputValue } = this.state;
+    const {
+      updateTags: { isUpdateTag, tagValue },
+      updateTagsEndAction: updateTagEnd,
+    } = this.props;
+    const { options } = this.state;
     this.searchInput.focus();
-    if ((prevState.inputValue !== inputValue)) {
-      changeQueryText(inputValue);
+
+    if (isUpdateTag) {
+      this.setState({ lastRequest: tagValue, inputValue: tagValue });
+      this.handleUrl(tagValue);
+      updateTagEnd();
     }
-    if (inputValue === null && queryText === QUERY_TEXT_DEFAULT) {
-      this.setState({ inputValue: QUERY_TEXT_DEFAULT, lastRequest: QUERY_TEXT_DEFAULT });
-    }
-    if (prevProps.navTopItemActive !== navTopItemActive) {
-      const { isUpdateNavItem, setIsUpdateNavItem } = this.props;
-      const tagName = getURLParam(window.location, 'search');
-      if (isUpdateNavItem) {
-        this.setState({ lastRequest: tagName, inputValue: tagName });
-        setIsUpdateNavItem(false);
-      } else this.setState({ inputValue: tagName });
-    }
+
     if (JSON.stringify(prevState.options) !== JSON.stringify(options)) {
       window.localStorage.setItem('searchOptions', JSON.stringify(options));
       this.setState({ isSelectOpen: false });
@@ -63,12 +76,12 @@ class Search extends PureComponent {
   };
 
   componentWillUnmount = () => {
-    handleVisibleByScroll('removeEventListener', ['scroll', 'resize'], [this.handleScroll]);
+    handleVisibleByScroll('removeEventListener', ['scroll'], [this.handleScroll]);
   }
 
   handleUrl = (str) => {
     const { history } = this.props;
-    const newUrl = `${isStrSearchEmpty(str) ? '' : `?search=${str}`}`;
+    const newUrl = str ? `?search=${str}` : '';
     history.push(newUrl, {});
   };
 
@@ -93,28 +106,38 @@ class Search extends PureComponent {
   }
 
   handleKeyDown = (e) => {
-    const { onSearchInputValue } = this.props;
+    const {
+      searchTextAction: onSearchInputValue,
+      updateTagsStartAction: updateTagStart,
+    } = this.props;
     const { lastRequest } = this.state;
-    const { value } = e.target || e;
+    const value = e && e.target ? e.target.value : e;
     this.setState({ isSelectOpen: !!value });
     this.searchResult(value);
-    if (!e.target && e && e !== lastRequest) {
+
+    if (e === lastRequest) {
+      this.queryCancel = true;
+      this.setState({ isSelectOpen: false }, () => this.setState({ isSelectOpen: false }));
+      return false;
+    }
+
+    if (e && !e.target && e !== lastRequest) {
       this.increaseCount(e);
       onSearchInputValue(e);
       this.setState({ lastRequest: e });
+      updateTagStart(e);
     } else if (e.keyCode === 13 && value && value !== lastRequest) {
+      if (this.queryCancel) {
+        this.queryCancel = false;
+        this.setState({ isSelectOpen: false });
+        return false;
+      }
       this.increaseCount(value);
       this.createNewOption(value);
       this.setState({ isSelectOpen: false });
       onSearchInputValue(value);
       this.setState({ lastRequest: value });
-    }
-
-    if (
-      (!e.target && e && e === lastRequest)
-      || (e.keyCode === 13 && value && value === lastRequest
-      )) {
-      this.setState({ isSelectOpen: false }, () => this.setState({ isSelectOpen: false }));
+      updateTagStart(value);
     }
 
     return false;
@@ -123,14 +146,18 @@ class Search extends PureComponent {
   handleButton = (e) => {
     e.stopPropagation();
     e.target.blur();
-    const { onSearchInputValue } = this.props;
+    const {
+      searchTextAction: onSearchInputValue,
+      updateTagsStartAction: updateAction,
+    } = this.props;
     const { inputValue, lastRequest } = this.state;
 
     if (inputValue && inputValue !== lastRequest) {
       this.increaseCount(inputValue);
       this.createNewOption(inputValue);
-      onSearchInputValue(inputValue);
       this.setState({ lastRequest: inputValue });
+      onSearchInputValue(inputValue);
+      updateAction(inputValue);
     }
 
     if (inputValue && inputValue === lastRequest) {
@@ -220,7 +247,7 @@ class Search extends PureComponent {
           <Input
             onKeyDown={this.handleKeyDown}
             onClick={this.handleInputFocus}
-            value={inputValue}
+            onChange={this.handleInputChange}
             ref={(searchInput) => {
               this.searchInput = searchInput;
             }}
@@ -241,24 +268,44 @@ class Search extends PureComponent {
 }
 
 Search.propTypes = {
-  queryText: PropTypes.string,
-  isUpdateNavItem: PropTypes.bool,
-  onSearchInputValue: PropTypes.func,
-  setIsUpdateNavItem: PropTypes.func,
+  updateTagsStartAction: PropTypes.func,
+  updateTagsEndAction: PropTypes.func,
+  searchTextAction: PropTypes.func,
   t: PropTypes.func,
-  changeQueryText: PropTypes.func,
+  updateTags: PropTypes.shape({
+    id: PropTypes.number,
+    tagValue: PropTypes.string,
+    isUpdateTag: PropTypes.bool,
+  }),
   history: PropTypes.shape({}),
-  navTopItemActive: PropTypes.number,
 };
 Search.defaultProps = {
-  queryText: '',
-  isUpdateNavItem: false,
-  changeQueryText: () => {},
-  onSearchInputValue: () => {},
-  setIsUpdateNavItem: () => {},
+  updateTagsStartAction: () => {},
+  updateTagsEndAction: () => {},
+  searchTextAction: () => {},
   t: () => {},
+  updateTags: {
+    id: NAV_TOP_ITEM_ACTIVE_DEFAULT,
+    tagValue: QUERY_TEXT_DEFAULT,
+    isUpdateTag: false,
+  },
   history: {},
-  navTopItemActive: 2,
 };
 
-export default withTranslation()(Search);
+export const mapStateToProps = (state) => {
+  const updateTags = {
+    ...state.updateTags,
+  };
+  return { updateTags };
+};
+
+const mapDispatchToProps = {
+  updateTagsStartAction,
+  updateTagsEndAction,
+  searchTextAction,
+};
+
+export default withRouter(withTranslation()(connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Search)));
