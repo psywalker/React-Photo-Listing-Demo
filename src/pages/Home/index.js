@@ -8,16 +8,8 @@ import 'antd/dist/antd.css';
 import './index.scss';
 
 /**
- * @class
- * @typedef {Object} Props
- * @prop {Function} handleСardsPhotosAction
- * @prop {Function} searchTextAction
- * @prop {Object} cardsData
- * @param {string} cardsData.query - string of query
- * @param {number} cardsData.page - page of query
- * @param {number} cardsData.per_page - number of images per page
- * @extends {React.PureComponent<Props>}
- * @return {React.ReactElement} - React component
+ * @module Home
+ * @extends PureComponent
  */
 export default class Home extends PureComponent {
   state = {
@@ -26,8 +18,20 @@ export default class Home extends PureComponent {
   };
 
 /**
- * @param {Object} prevProps - string of query
- * @returns {boolean} false
+  * Object for request
+  * @typedef {Object} cardsData
+  * @property {string} query - request string.
+  * @property {number} page - page number.
+  * @property {number} per_page - count of image on page.
+ */
+  /**
+  * @typedef {Object} prevProps
+  * @property {cardsData} - object of data
+ */
+  /**
+  * componentDidUpdate
+  * @method
+  * @param {prevProps} - prev props object
  */
   componentDidUpdate = (prevProps) => {
     const {
