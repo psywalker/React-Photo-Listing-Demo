@@ -5,7 +5,7 @@
   "homepage": "https://psywalker.github.io/React-Photo-Listing-Demo/",
   "dependencies": {
     "antd": "^3.11.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-jest": "24.7.1",
     "chai": "^4.2.0",
     "enzyme": "^3.7.0",
